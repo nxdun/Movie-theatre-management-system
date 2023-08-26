@@ -2,16 +2,15 @@
   "name": "movie-theatre-management-system",
   "version": "1.0.0",
   "description": "ITP Project for Group ITP23_WD_B1_06",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "mongoose": "^7.4.5"
+  "devDependencies": {
+    "concurrently": "^8.2.1",
+    "nodemon": "^3.0.1"
   }
 }
