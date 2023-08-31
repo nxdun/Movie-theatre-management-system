@@ -1,7 +1,7 @@
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 
-const Navbar = ({ click }) => {
+const Navbar = () => {
   
   
   return (
@@ -15,16 +15,16 @@ const Navbar = ({ click }) => {
           <Link to="/cart" className="cart__link">
             <i className="fas fa-shopping-cart"></i>
             <span>
-              Cart <span className="cartlogo__badge"></span>
+              Cart <span className="cartlogo__badge">0</span>
             </span>
           </Link>
         </li>
         <li>
-          <Link to="/home">Shop</Link>
+          <Link to="/shop">Shop</Link>
         </li>
       </ul>
 
-      <div className="hamburger__menu" onClick={click}>
+      <div className="hamburger__menu">
         <div></div>
         <div></div>
         <div></div>

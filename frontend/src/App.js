@@ -2,12 +2,20 @@
 import './App.css';
 import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
 
+
+// Screens
+import ShopScreen from "./screens/ShopScreen";
+import ProductScreen from "./screens/ProductScreen";
+import CartScreen from "./screens/CartScreen";
+
+// Components
+import Navbar from "./components/Navbar";
+
 function App() {
   return (
     <Router>
-      <Navbar click={() => setSideToggle(true)} />
-      <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
-      <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
+      <Navbar/>
+      
       <main className="app">
         <Routes>
           <Route exact path="/shop" element={<ShopScreen />} />
