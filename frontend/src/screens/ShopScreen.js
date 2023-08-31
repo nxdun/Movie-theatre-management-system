@@ -11,6 +11,9 @@ const Home = () => {
         <h2>Get the best deals and exclusives on your favorite movies !!</h2>
         <div className="homescreen__products">
             <Product/>
+            <Product/>
+            <Product/>
+            <Product/>
             </div>
         </div>
     );
