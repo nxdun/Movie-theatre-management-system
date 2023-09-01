@@ -1,14 +1,14 @@
 import "./ProductScreen.css";
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams} from 'react-router-dom'; // Import useParams and useNavigate
+import { useParams, useNavigate } from 'react-router-dom'; // Import useParams and useNavigate
 import { getProductDetails } from '../redux/actions/productActions';
-
+import { addToCart } from '../redux/actions/cartActions';
 
 const ProductScreen = () => {
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const { id } = useParams(); // Use useParams to get the 'id' parameter
 
@@ -21,7 +21,10 @@ const ProductScreen = () => {
     }//if product not exist or id not equal to product id then dispatch
   }, [dispatch, id, product]);
 
-  
+  const addToCartHandler = () => {
+    dispatch(addToCart(id, qty));//add to cart with id and qty
+    navigate(`/cart`); // Use navigate to perform navigation this need to channge later
+  };
 
   return (
     <div className="productscreen">
@@ -65,7 +68,7 @@ const ProductScreen = () => {
                 </select>
               </p>
               <p>
-                <button type="button" >
+                <button type="button" onClick={addToCartHandler}>
                   Add To Cart
                 </button>
               </p>
