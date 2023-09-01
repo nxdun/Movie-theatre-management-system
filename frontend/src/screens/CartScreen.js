@@ -22,6 +22,10 @@ const CartScreen = () => {
         dispatch(removeFromCart(id));
     }//remove from cart
 
+    //subtotal count increment when item qty updated
+    const getCartCount = () => {
+        return cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);//each item qty added to cartCount and return
+    }//get cart count
     
 
     return (<div className="cartscreen"> 
@@ -39,7 +43,7 @@ const CartScreen = () => {
     </div>
     <div className="cartscreen__right">
         <div className="cartscreen__info">
-            <p>Subtotal (0) items</p>
+            <p>Subtotal ({getCartCount()}) items</p>
             <p>Rs 499.99</p>
             </div>
             <div>
