@@ -1,30 +1,54 @@
 import './CartScreen.css';
-//Components
+import {useDispatch, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
+
+//Componets
 import CartItem from '../components/CartItem';
 
-const CartScreen = () => {
-    return (
-        <div className="cartscreen">
-            <div className="cartscreen__left">
-                <h2>Shopping Cart</h2>
-                <CartItem/>
-                <CartItem/>
-                <CartItem/>
-                <CartItem/>
-                <CartItem/>
-                </div>
-                <div className="cartscreen__right">
-                    <div className="cartscreen__info">
-                        <p>Subtotal (0) items</p>
-                        <p>$499.99</p>
-                        </div>
-                        <div>
-                            <button>Proceed To Checkout</button>
-                            </div>
-                        </div>
-    </div>
+//Actions
+import {addToCart} from '../redux/actions/cartActions';
 
-    )
+const CartScreen = () => {
+    const dispatch = useDispatch();
+
+    const cart = useSelector(state => state.cart);//select state and what want from state
+    const {cartItems} = cart;//access cart items
+
+    const qtyChangeHandler = (id, qty) => {
+        dispatch(addToCart(id, qty));
+    }
+
+    
+
+    
+
+    return (<div className="cartscreen"> 
+    <div className="cartscreen__left">
+        <h2> Shopping Cart </h2>
+
+            {cartItems.length === 0 ? (
+                <div>
+                Your Cart is Empty <Link to="/shop">Go Back</Link>
+            </div>//0 == no items in cart if cart is empty show go back
+            ) : ( cartItems.map((item) => <CartItem item={item} qtyChangeHandler ={qtyChangeHandler} />)//else show cart items
+            )}
+                
+        
+    </div>
+    <div className="cartscreen__right">
+        <div className="cartscreen__info">
+            <p>Subtotal (0) items</p>
+            <p>Rs 499.99</p>
+            </div>
+            <div>
+                <button>Proceed To Checkout</button>
+
+            </div>     
+    </div>
+     </div>
+    );
+    
 
 };
+
 export default CartScreen;
