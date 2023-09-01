@@ -23,7 +23,7 @@ const ShopScreen = () => {
         <h1 className="homescreen__title">Deals and Exclusives</h1>
         <h2>Get the best deals and exclusives on your favorite movies !!</h2>
         <div className="homescreen__products">
-            {loading ? <h2>loading...</h2> : error ? <h2>{error}</h2> : products.map((product => 
+            {loading ? <h2>Loading Products....</h2> : error ? <h2>{error}</h2> : products.map((product => 
                 <Product key={product._id} productId={product._id}
                 name ={product.name}
                 price={product.price}
