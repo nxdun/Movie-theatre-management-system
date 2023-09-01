@@ -1,19 +1,19 @@
 import './Product.css';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const Product = () => {
+const Product = ({imageUrl, name, price, description, productId}) => {
   return (
     <div className="product">
-      <img src="https://cdn.entertainment-focus.com/wp-content/uploads/2023/05/18224411/fastx_intl_16x9_packshot_publi-1-696x392.jpg" alt="product 1" />
+      <img src={imageUrl} alt={name}/>
 
       <div className="product__info">
-        <p className="info__name">product 01</p>
+        <p className="info__name">{name}</p>
 
-        <p className="info__description">Hello world...</p>
+        <p className="info__description">{description.substring(0, 100)}...</p>
 
-        <p className="info__price">Rs900</p>
+        <p className="info__price">Rs{price}</p>
 
-        <Link to={`/product/${1111}`} className="info__button">
+        <Link to={`/product/${productId}`} className="info__button">
           View
         </Link>
       </div>
