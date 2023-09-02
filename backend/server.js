@@ -29,6 +29,8 @@ connection.once("open", () => {
     console.log("MongoDB connection success!");
 });
 
+const bookingRouter = require('./routes/bookings.js');
+app.use('/booking', bookingRouter);
 
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
