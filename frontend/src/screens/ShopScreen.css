@@ -28,3 +28,15 @@
         grid-template-columns: repeat(1, 1fr);
     }
 }
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+.search__box {
+    width: 30%;
+    height: 30px;
+    position: relative;
+}
