@@ -54,7 +54,9 @@ const ShopScreen = () => {
           <h2>loading...</h2>
         ) : error ? (
           <h2>{error}</h2>
-        )  : (
+        ) : filteredProducts.length === 0 ? (
+          <h2>No results found.</h2>
+        ) : (
           filteredProducts.map((product) => (
             <Product
               key={product._id}
