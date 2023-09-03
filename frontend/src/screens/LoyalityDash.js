@@ -12,7 +12,6 @@ const LoyalityDash = () => {
         <LoyalityTable className="table-col" />
         <LoyalityControls className="control-col" />
       </div>
-      <Footer />
     </div>
   );
 };

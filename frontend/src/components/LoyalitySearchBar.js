@@ -1,3 +1,5 @@
+import "./LoyalitySearchBar.css"
+
 const LoyalitySearchBar = () => {
     return (
         <div className="search-bar" >

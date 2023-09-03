@@ -141,3 +141,7 @@ body {
   border: 4px solid var(--red); /* Using the red color variable */
   color: var(--red); /* text color */
 }
+
+body{
+  background-color: var(--black);
+}
