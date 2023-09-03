@@ -1,0 +1,15 @@
+.search-bar {
+  background-color: lightgray;
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 100%; /* Ensure the search bar doesn't exceed its parent's width */
+}
+
+.table {
+  background-color: lightblue;
+  flex-grow: 1;
+  overflow: auto;
+  word-wrap: break-word;
+  white-space: normal; /* Ensure text wraps within the table */
+  max-width: 100%; /* Prevent the table from exceeding its parent's width */
+}

@@ -1,0 +1,19 @@
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .table-col {
+    flex: 1; /* Use flex: 1; to allow columns to grow and fill available space */
+    padding: 10px; /* Adjust padding as needed */
+    box-sizing: border-box; /* Include padding in the width calculation */
+  }
+  
+  .control-col {
+    flex: 1; /* Use flex: 1; to allow columns to grow and fill available space */
+    padding: 10px; /* Adjust padding as needed */
+    box-sizing: border-box; /* Include padding in the width calculation */
+  }
+
