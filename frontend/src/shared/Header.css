@@ -1,0 +1,96 @@
+/* Default Value Removal */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Container */
+.header-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+
+/* Centered Icon */
+.icon {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Header Text */
+.header-h1 {
+  font-size: 24px;
+  margin-left: 210px;
+}
+
+/* Buttons Container */
+.button-container-main {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* Login Button */
+.login-button {
+  margin-left: 10px;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+/* Style for the login image */
+.login-img {
+  width: 100px; /* Adjust the image size as needed */
+  height: 100px;
+  object-fit: contain; /* Keep the image aspect ratio */
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+/* Style for the Administrator text */
+.admin-text {
+  font-size: 16px; /* Adjust the font size as needed */
+  margin-top: 10px; /* Add spacing between image and text */
+  text-align: center; /* Center the text horizontally */
+}
+
+/* Buttons Container 2 */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    margin-right: 10px; /* Add spacing between buttons */
+    margin-left: 10px; /* Add spacing between buttons */
+  }
+  
+
+/* Disable Button */
+.disable-button {
+    width: 130px; /* Set the initial width */
+    height: 50px; /* Set the initial height */
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    cursor: pointer; /* Add pointer cursor for buttons */
+    
+
+  }
+  
+  /* Logout Button */
+  .logout-button {
+    width: 130px; /* Set the initial width */
+    height: 50px; /* Set the initial height */
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    cursor: pointer; /* Add pointer cursor for buttons */
+    margin-top: 10px; /* Add spacing between image and text */
+  }
