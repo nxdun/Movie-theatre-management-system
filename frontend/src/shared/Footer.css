@@ -1,0 +1,18 @@
+
+.footer {
+    background-color: var(--black);
+    color: var(--white); 
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .footer-content {
+    padding: 20px;
+  }
+  
+  .footer-text {
+    font-size: 16px;
+  }
+  
