@@ -8,11 +8,12 @@ import {
 } from "react-router-dom";
 
 function App() {
+
   return (
     <Router> {/* routeer */}
       <Switch> {/* stop redirect if path found */}
         <Route path="/loyality/dashboard" exact>
-          <LoyalityDash />
+          <LoyalityDash  />
         </Route>
         <Redirect to="/" />
       </Switch>

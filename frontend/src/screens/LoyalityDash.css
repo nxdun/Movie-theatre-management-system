@@ -6,8 +6,7 @@
 }
 
 .table-col {
-  /*flex: 1;  Use flex: 1; to allow columns to grow and fill available space */
-
+  flex: 1;  /*Use flex: 1; to allow columns to grow and fill available space */
   padding: 10px; /* Adjust padding as needed */
   box-sizing: border-box; /* Include padding in the width calculation */
 }

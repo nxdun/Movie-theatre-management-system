@@ -1,3 +1,5 @@
+import './LoyalityControls.css'
+
 const LoyalityControls = () => {
     return (
         <div className = "btn-container">

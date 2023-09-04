@@ -5,11 +5,12 @@ import LoyalityTable from "../components/LoyalityTable";
 import "./LoyalityDash.css";
 
 const LoyalityDash = () => {
+
   return (
     <div>
       <Header />
       <div className="main-container">
-        <LoyalityTable className="table-col" />
+        <LoyalityTable className="table-col"  />
         <LoyalityControls className="control-col" />
       </div>
     </div>

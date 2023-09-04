@@ -1,135 +1,54 @@
-.btn {
+
+.search-bar {
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: space-between; /* Add this line to space elements apart */
+}
+
+.buttonn {
   background-color: var(--black);
-  width: 400px;
-  padding-left: 150px;
-  padding-right: 150px;
   text-align: center;
   text-decoration: none;
-  display: block;
-  font-size: 16px;
+  font-size: 8px;
   border-radius: 20px; /* Add border-radius for curved corners */
   box-shadow: 5px 4px 7px 0 #505050;
-
   color: var(--white);
 }
 
-.btn:hover {
-  background-color: var(--black);
-  color: white;
+.buttonn:hover {
+  outline: 5px solid var(--green);
+  color: var(--white);
   text-decoration: none;
 }
 
-.btn-1 {
-  padding-top: 35px;
-  padding-bottom: 35px;
-  margin-top: 50px;
-  margin-left: 30px;
-  margin-right: 30px;
+.button-back {
+  padding: 15px 30px;
+  margin-left: -40px;
+}
+.select-search {
+  margin-left: 40px;
+  padding: 15px 40px;
 }
 
-.btn-1:hover {
-  outline: 4px solid var(--green);
-  color: var(--green);
-  background-color: var(--black);
-  padding-top: 35px;
-  padding-bottom: 35px;
-  margin-top: 50px;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-.btn-2 {
-  margin-top: 35px;
-  padding-top: 35px;
-  padding-bottom: 35px;
-  margin-left: 30px;
-  margin-right: 30px;
+.search-bar {
+  margin-left: 0px;
+  padding: 15px 50px;
+  margin-top: 1px;
 }
 
-.btn-2:hover {
-  outline: 4px solid var(--green);
-  color: var(--green);
-  background-color: var(--black);
-  margin-top: 35px;
-  padding-top: 35px;
-  padding-bottom: 35px;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-.btn-3 {
-  padding-top: 35px;
-  padding-bottom: 35px;
-  margin-top: 15px;
-  margin-left: 29px;
-  margin-right: 30px;
+.search-submit {
+  padding: 15px 10px;
+  cursor: pointer;
+  margin-top: -8px;
+  margin-left: 10px;
 }
 
-.btn-3:hover {
-  outline: 4px solid var(--green);
-  color: var(--green);
-  background-color: var(--black);
-  padding-top: 35px;
-  padding-bottom: 35px;
-  margin-top: 15px;
-  margin-left: 29px;
-  margin-right: 30px;
+.button-filter,
+.button-reset,
+.button-refresh {
+  padding: 15px 25px;
 }
-
-.btn-4 {
-  padding-top: 35px;
-  padding-bottom: 35px;
-  margin-top: 15px;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-.btn-4:hover {
-  outline: 4px solid var(--red);
-  color: var(--red);
-  background-color: var(--black);
-  padding-top: 35px;
-  padding-bottom: 35px;
-  margin-top: 15px;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-.btn-5 {
-  margin-top: 35px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-.btn-5:hover {
-  outline: 4px solid var(--green);
-  color: var(--green);
-  background-color: var(--black);
-  margin-top: 35px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-.btn-6 {
-  padding-top: 25px;
-  padding-bottom: 25px;
-  margin-top: 15px;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-.btn-6:hover {
-  outline: 4px solid var(--green);
-  color: var(--green);
-  background-color: var(--black);
-  padding-top: 25px;
-  padding-bottom: 25px;
-  margin-top: 15px;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-.btn-container {
-  display: flex-inline;
+.search-form {
+  display: flex;
+  align-items: center;
 }

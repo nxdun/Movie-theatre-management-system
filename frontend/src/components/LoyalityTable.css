@@ -1,12 +1,12 @@
 .search-bar {
-  background-color: lightgray;
+  background-color: var(--black);
   padding: 10px;
   margin-bottom: 10px;
   max-width: 100%; /* Ensure the search bar doesn't exceed its parent's width */
 }
 
 .table {
-  background-color: lightblue;
+  background-color: var(--white);
   flex-grow: 1;
   overflow: auto;
   word-wrap: break-word;
