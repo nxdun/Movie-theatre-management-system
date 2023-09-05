@@ -38,25 +38,45 @@ router.route("/:id").get((req, res) => {
 });
 
 // DELETE: /bookings/:id
-router.route("/:id").delete((req, res) => {
-    Booking.findByIdAndDelete(req.params.id).then(() => res.json("Booking deleted.")).catch(err => res.status(400).json("Error: " + err));
+router.route("/:id").delete(async(req, res) => {
+    let userId = req.params.id;
+    await Booking.findByIdAndDelete(userId).then(() => {
+        res.status(200).send({status: "Booking deleted"});
+    }).catch((err) => {
+        console.log(err.message);
+        res.status(500).send({status: "Error with delete booking"});
+    })
 });
 
-// POST: /bookings/update/:id
-router.route("/update/:id").post((req, res) => {
-    Booking.findById(req.params.id).then(booking => {
-        booking.bookingId = req.body.bookingId;
-        booking.bookingDate = Date(req.body.bookingDate);
-        booking.showTime = req.body.showTime;
-        booking.theaterId = req.body.theaterId;
-        booking.seatId = req.body.seatId;
-        booking.price = Number(req.body.price);
-        booking.customerId = req.body.customerId;
+// update: /bookings/:id
+router.route("/update/:id").put(async (req, res) => {
+    let userId = req.params.id;
+    const {seatId, price} = req.body;
+  
+    const updateBooking = {
+        seatId,
+        price,
+    }
+    
+    const update = await Booking.findIDAndUpdate(userId, updateBooking)
+    .then(() => {
 
-        booking.save().then(() => res.json("Booking updated!")).catch(err => res.status(400).json("Error: " + err));
-    }).catch(err => res.status(400).json("Error: " + err));
+     res.status(200).send({status: "Booking Updated", user: update})
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({status: "Error with updating data"});
+    })   
+});
+
+router.route("/get/:id").get(async (req, res) => {
+    let userId = req.params.id;
+    await Booking.findById(userId).then(() => {
+        res.status(200).send({status: "Booking fetched", user: user})
+    }).catch((err) => {
+        console.log(err.message);
+        res.status(500).send({status: "Error with get booking"});
+    })
 });
 
 
-
-module.exports = router; 
+module.exports = router;
