@@ -14,7 +14,8 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.1",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "react-scripts": "^5.0.1"
   },
   "dependencies": {
     "cors": "^2.8.5",

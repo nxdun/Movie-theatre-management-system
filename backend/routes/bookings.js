@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let Booking = require("../models/booking.model");
+let Booking = require("../models/booking.js");
 
 // POST: /bookings/
 router.route("/").post((req, res) => {
