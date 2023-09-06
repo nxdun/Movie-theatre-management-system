@@ -1,54 +1,77 @@
+/* LoyaltySearchBar.module.css */
 
 .search-bar {
   display: flex;
-  align-items: center; /* Center vertically */
-  justify-content: space-between; /* Add this line to space elements apart */
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .buttonn {
-  background-color: var(--black);
+  background-color:var(--black);
+  color: white;
+  padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  font-size: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
   border-radius: 20px; /* Add border-radius for curved corners */
-  box-shadow: 5px 4px 7px 0 #505050;
-  color: var(--white);
+  box-shadow: 0px 1px 2px 0px #515151,
+            1px 2px 4px 0px #515151,
+            2px 4px 8px 0px #515151,
+            2px 4px 16px 0px #515151;
 }
 
-.buttonn:hover {
-  outline: 5px solid var(--green);
-  color: var(--white);
-  text-decoration: none;
+
+.buttonn:hover:not(.search-bar) {
+  background-color: #3e8e41;
+  outline : 10px solid #3e8e41;
+  border: #3e8e41;
+  box-shadow: 0px 1px 2px 0px #a8e7b5,
+  1px 2px 4px 0px #a8e7b5,
+  2px 4px 8px 0px #a8e7b5,
+  2px 4px 16px 0px #a8e7b5;
 }
 
-.button-back {
-  padding: 15px 30px;
-  margin-left: -40px;
-}
 .select-search {
-  margin-left: 40px;
-  padding: 15px 40px;
+  background-color: var(--black);
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.search-bar {
-  margin-left: 0px;
-  padding: 15px 50px;
-  margin-top: 1px;
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar-input {
+  background-color: var(--black);
+  border: 1px solid green;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  cursor: text;
 }
 
 .search-submit {
-  padding: 15px 10px;
+  background-color: var(--black);
+  color: white;
+  padding: 10px;
+  font-size: 16px;
   cursor: pointer;
-  margin-top: -8px;
-  margin-left: 10px;
 }
 
 .button-filter,
 .button-reset,
 .button-refresh {
-  padding: 15px 25px;
-}
-.search-form {
-  display: flex;
-  align-items: center;
+  background-color: var(--black);
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 10px;
 }

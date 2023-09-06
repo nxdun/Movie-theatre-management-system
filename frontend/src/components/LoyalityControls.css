@@ -1,12 +1,12 @@
 .btn {
   background-color: var(--black);
   width: 400px;
-  padding-left: 150px;
-  padding-right: 150px;
+  padding-left: 110px;
+  padding-right: 110px;
   text-align: center;
   text-decoration: none;
   display: block;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 20px; /* Add border-radius for curved corners */
   box-shadow: 5px 4px 7px 0 #505050;
 
@@ -20,6 +20,7 @@
 }
 
 .btn-1 {
+  color: var(--green);
   padding-top: 35px;
   padding-bottom: 35px;
   margin-top: 50px;
@@ -132,4 +133,5 @@
 
 .btn-container {
   display: flex-inline;
+  height:100vh;
 }
