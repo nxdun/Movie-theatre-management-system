@@ -2,7 +2,7 @@ const router = require("express").Router();
 let Booking = require("../models/booking.js");
 
 // POST: /bookings/
-router.route("/").post((req, res) => {
+router.route("/add").post((req, res) => {
     const bookingId = req.body.bookingId;
     const bookingDate = Date(req.body.bookingDate);
     const showTime = req.body.showTime;
@@ -38,7 +38,7 @@ router.route("/:id").get((req, res) => {
 });
 
 // DELETE: /bookings/:id
-router.route("/:id").delete(async(req, res) => {
+router.route("/delete/:id").delete(async(req, res) => {
     let userId = req.params.id;
     await Booking.findByIdAndDelete(userId).then(() => {
         res.status(200).send({status: "Booking deleted"});
@@ -61,7 +61,7 @@ router.route("/update/:id").put(async (req, res) => {
     const update = await Booking.findIDAndUpdate(userId, updateBooking)
     .then(() => {
 
-     res.status(200).send({status: "Booking Updated", user: update})
+     res.status(200).send({status: "Booking Updated"})
     }).catch((err) => {
         console.log(err);
         res.status(500).send({status: "Error with updating data"});
