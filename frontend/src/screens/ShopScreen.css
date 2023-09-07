@@ -36,7 +36,8 @@
     margin-top: 2rem;
 }
 .search__box {
-    width: 30%;
-    height: 30px;
+    width: 50%;
+    height: 35px;
     position: relative;
+    border-radius: 25px;
 }
