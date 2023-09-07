@@ -2,6 +2,7 @@ import express from 'express';  // import express
 import cors from 'cors';       // import cors
 import 'dotenv/config';       // import dotenv with config
 import logger from "./utils/logger.js";
+import { connect } from './utils/database.connection.js';
 
 require('dotenv').config();
 // console.log(process.env)
@@ -18,7 +19,8 @@ res.send("Hello from express");       // send response
     
     
  app.listen(PORT, () =>{ 
-    logger.info("hi");
+    logger.info("konnektinn...");
+    connect();
     console.log(`Server running on port: ${PORT}`)
 }); // listen to port
 
