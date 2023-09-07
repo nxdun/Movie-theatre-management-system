@@ -1,5 +1,6 @@
 import "./App.css";
-import LoyalityDash from "./screens/LoyalityDash";
+import LoyalityDash from "./screens/LoyalityDash"
+import CustomerRegisterForm from "./components/CustomerRegisterForm.js"
 import {
   BrowserRouter as Router,
   Route,
@@ -14,6 +15,9 @@ function App() {
       <Switch> {/* stop redirect if path found */}
         <Route path="/loyality/dashboard" exact>
           <LoyalityDash  />
+        </Route>
+        <Route path="/register" exact>
+          <CustomerRegisterForm />
         </Route>
         <Redirect to="/" />
       </Switch>
