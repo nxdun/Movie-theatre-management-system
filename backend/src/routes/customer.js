@@ -2,8 +2,8 @@ const router = require("express").Router();
 const Customer = require("../models/customer.js");
 const logem = require("../utils/logger.js");
 
-// Creates a new customer
-router.route("/add").post((req, res) => {
+// Creates a normal customer + with or without ticket count(admin)
+router.route("/a/add").post((req, res) => {
   const {
     UserName,
     FirstName,
@@ -26,13 +26,86 @@ router.route("/add").post((req, res) => {
     Email,
     optInForMarketing,
     TicketCount,
+    LoyaltyRegisteredDate: null,
+    Type: false,
   });
 
   newCustomer
     .save()
-    .then(() => res.json("Customer added!"))
+    .then(() => res.json("Non-Loyalty Customer added!"))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+
+// Creates a normal customer + without ticket count(normal)
+// succed with ticket count but not added to database
+// for normal registeration with added security
+router.route("/add").post((req, res) => {
+  const {
+    UserName,
+    FirstName,
+    LastName,
+    BirthDate,
+    PhoneNumber,
+    Gender,
+    Email,
+    optInForMarketing,
+  } = req.body;
+
+  const newCustomer = new Customer({
+    UserName,
+    FirstName,
+    LastName,
+    BirthDate,
+    PhoneNumber,
+    Gender,
+    Email,
+    optInForMarketing,
+    TicketCount:0,
+    LoyaltyRegisteredDate: null,
+    Type: false,
+  });
+
+  newCustomer
+    .save()
+    .then(() => res.json("Non-Loyalty Customer added!"))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+// Creates a loyality customer
+router.route("/loyaltyadd").post((req, res) => {
+  const {
+    UserName,
+    FirstName,
+    LastName,
+    BirthDate,
+    PhoneNumber,
+    Gender,
+    Email,
+    optInForMarketing,
+    TicketCount,
+  } = req.body;
+
+  const newLoyaltyCustomer = new Customer({
+    UserName,
+    FirstName,
+    LastName,
+    BirthDate,
+    PhoneNumber,
+    Gender,
+    Email,
+    optInForMarketing,
+    TicketCount,
+    LoyaltyRegisteredDate: new Date(), // Set to the current date and time
+    Type: true,
+    LoyaltyPoints: 0,
+  });
+
+  newLoyaltyCustomer
+    .save()
+    .then(() => res.json("Loyalty Customer added!"))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 
 // Get all customers
 router.route("/").get((req, res) => {

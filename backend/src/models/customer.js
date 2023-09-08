@@ -21,7 +21,6 @@ const customerSchema = new Schema({
     type: String,
     required: true,
   },
-
   Gender: {
     type: String,
     required: true,
@@ -36,7 +35,25 @@ const customerSchema = new Schema({
   },
   TicketCount: {
     type: Number,
-    required: true,
+    default: 0,
+  },
+
+  // Loyalty-related fields
+  Type: {
+    type: Boolean,
+    default: false,
+  },
+  LoyaltyPoints: {
+    type: Number,
+    default: 0, // Default to 0 points
+  },
+  LoyaltyRegisteredDate: {
+    type: Date,
+    default: Date.now,
+  },
+  PointResetDate: {
+    type: Date,
+    default: null, // Default to null
   },
 });
 const Customer = mongoose.model("customer", customerSchema);
