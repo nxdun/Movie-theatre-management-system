@@ -10,11 +10,11 @@ const stockSchema = new Schema({
         required: true,
     },
     P_quantity: {
-        type: Int,
+        type: String,
         required: true,
     },
     St_price: {
-        type: double,
+        type: String,
         required: true,
     },
 })

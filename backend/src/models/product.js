@@ -14,17 +14,14 @@ const productSchema = new Schema({
         required: true,
     },
     P_price: {
-        type: double,
+        type: String,
         required: true,
     },
     P_quantity: {
         type: String,
         required: true,
     },
-    P_quantity: {
-        type: Int,
-        required: true, 
-    },
+   
     P_status: {
         type: Boolean,
         required: true,

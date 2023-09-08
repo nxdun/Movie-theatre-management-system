@@ -1,6 +1,6 @@
 const router = require('express').Router();
 let Product = require('../models/product.js');
-const { route } = require('./product.js');
+//const { route } = require('./product.js');
 
 router.route('/add').post((req, res) => {
     const P_id = req.body.P_id;

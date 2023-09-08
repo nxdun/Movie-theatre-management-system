@@ -1,68 +1,113 @@
-const routes = require("express").Router();
-const { Router } = require("express");
-let Supplier = require("../models/supplier.js");
+const express = require('express');
+const router = express.Router();
+const Supplier = require('../models/supplier');
 
-Router.route("/add").post((req, res) => {
-    const S_name = req.body.S_name;
-    const S_id = req.body.S_id;
-    const S_address = req.body.S_address;
-    const S_email = req.body.S_email;
-    const S_status = req.body.S_status;
-    const S_createDate = req.body.S_createDate;
+// Add a new supplier
+router.post('/add', async (req, res) => {
+  try {
+    const {
+      S_id,
+      S_name,
+      S_address,
+      S_email,
+      S_status,
+      S_createDate,
+    } = req.body;
 
     const newSupplier = new Supplier({
-        S_name,
-        S_id,
-        S_address,
-        S_email,
-        S_status,
-        S_createDate
+      S_id,
+      S_name,
+      S_address,
+      S_email,
+      S_status,
+      S_createDate,
     });
 
-    newSupplier.save()
-    .then(() => res.json("Supplier added!"))
-    .catch(err => res.status(400).json("Error: " + err));
-})
+    const savedSupplier = await newSupplier.save();
+    res.json({ status: 'Supplier added', supplier: savedSupplier });
+  } catch (error) {
+    res.status(400).json({ status: 'Error', error: error.message });
+  }
+});
 
-routes.route("/").get((req, res) => {
-    Supplier.find()
-    .then(supplier => res.json(supplier))
-    .catch(err => res.status(400).json("Error: " + err));
-})
+// Get all suppliers
+router.get('/', async (req, res) => {
+  try {
+    const suppliers = await Supplier.find();
+    res.json({ status: 'Suppliers retrieved', suppliers });
+  } catch (error) {
+    res.status(400).json({ status: 'Error', error: error.message });
+  }
+});
 
-routes.route("update/:id").put(async(req, res) => {
-    let supplierId = req.params.id;
-    const {S_name, S_id, S_address, S_email, S_status, S_createDate} = req.body;
+// Update a supplier by ID
+router.put('/update/:id', async (req, res) => {
+  try {
+    const supplierId = req.params.id;
+    const {
+      S_id,
+      S_name,
+      S_address,
+      S_email,
+      S_status,
+      S_createDate,
+    } = req.body;
 
-    const updateSupplier = {
-        S_name,
-        S_id,
-        S_address,
-        S_email,
-        S_status,
-        S_createDate
+    const updatedSupplier = {
+      S_id,
+      S_name,
+      S_address,
+      S_email,
+      S_status,
+      S_createDate,
+    };
+
+    const result = await Supplier.findByIdAndUpdate(
+      supplierId,
+      updatedSupplier,
+      { new: true }
+    );
+
+    if (!result) {
+      return res.status(404).json({ status: 'Supplier not found' });
     }
-    const update = awaitSupplier.findByIdAndUpdate(supplierId, updateSupplier)
-    .then(() => {
-        res.status(200).send({status: "Supplier updated"})  
-    }).
-        catch(err => res.status(500).send({status: "Error with updating data", error: err.message}));   
-    })
 
-    routes.route("/delete/:S_id").delete(async(req, res) => {
-        let supplierId = req.params.id;
+    res.json({ status: 'Supplier updated', supplier: result });
+  } catch (error) {
+    res.status(500).json({ status: 'Error', error: error.message });
+  }
+});
 
-        await Supplier.findByIdAndDelete(supplierId)
-        .then(() => {
-            res.status(200).send({status: "Supplier deleted"});
-        }).catch(err => res.status(500).send({status: "Error with delete supplier", error: err.message}));
-    })
-    routes.route("/get/:S_id").get(async(req, res) => {
-        let supplierId = req.params.id;
-        const supplier = await Supplier.findById(supplierId)
-        .then(() => {
-            res.status(200).send({status: "Supplier fetched", supplier})
-        }).catch(err => res.status(500).send({status: "Error with get supplier", error: err.message}));
-    })
-    module.exports = routes;
+// Delete a supplier by ID
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    const supplierId = req.params.id;
+    const result = await Supplier.findByIdAndDelete(supplierId);
 
+    if (!result) {
+      return res.status(404).json({ status: 'Supplier not found' });
+    }
+
+    res.json({ status: 'Supplier deleted' });
+  } catch (error) {
+    res.status(500).json({ status: 'Error', error: error.message });
+  }
+});
+
+// Get a supplier by ID
+router.get('/get/:id', async (req, res) => {
+  try {
+    const supplierId = req.params.id;
+    const supplier = await Supplier.findById(supplierId);
+
+    if (!supplier) {
+      return res.status(404).json({ status: 'Supplier not found' });
+    }
+
+    res.json({ status: 'Supplier retrieved', supplier });
+  } catch (error) {
+    res.status(500).json({ status: 'Error', error: error.message });
+  }
+});
+
+module.exports = router;
