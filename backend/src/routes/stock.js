@@ -11,7 +11,7 @@ router.route('/add').post((req, res) => {
         P_id,
         s_id,
         P_quantity,
-        St_price
+        St_price,
     })
 
     newStock.save()

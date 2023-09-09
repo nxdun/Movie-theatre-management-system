@@ -43,7 +43,7 @@ router.route('/update/:p_id').put(async(req, res) => {
         P_status,
         P_createDate
     }   
-    const update= awaitproduct.findByIdAndUpdate(productId, updateProduct)
+    const update= await Product.findByIdAndUpdate(productId,updateProduct)
     .then(() => {
         res.status(200).send({status: "Product updated"})
     }).catch(err => res.status(500).send({status: "Error with updating data", error: err.message}));
