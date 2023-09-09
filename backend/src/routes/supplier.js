@@ -41,24 +41,42 @@ router.get('/', async (req, res) => {
 });
 
 // Update a supplier by ID
-router.route("update/:id").put(async(req, res) => {
-  let supplierId = req.params.id;
-  const { S_id, S_name, S_address, S_email, S_status, S_createDate} = req.body;
+router.put('/update/:id', async (req, res) => {
+  try {
+    const supplierId = req.params.id;
+    const {
+      S_id,
+      S_name,
+      S_address,
+      S_email,
+      S_status,
+      S_createDate,
+    } = req.body;
 
-  const updateSupplier = {
-    S_id,
-    S_name,
-    S_address,
-    S_email,
-    S_status,
-    S_createDate,
+    const updatedSupplier = {
+      S_id,
+      S_name,
+      S_address,
+      S_email,
+      S_status,
+      S_createDate,
+    };
+
+    const result = await Supplier.findByIdAndUpdate(
+      supplierId,
+      updatedSupplier,
+      { new: true }
+    );
+
+    if (!result) {
+      return res.status(404).json({ status: 'Supplier not found' });
+    }
+
+    res.json({ status: 'Supplier updated', supplier: result });
+  } catch (error) {
+    res.status(500).json({ status: 'Error', error: error.message });
   }
-  const update = awaitSupplier.findByIdAndUpdate(supplierId, updateSupplier)
-  .then(() => {
-      res.status(200).send({status: "Supplier updated"})  
-  }).
-      catch(err => res.status(500).send({status: "Error with updating data"}));   
-  })
+});
 
 // Delete a supplier by ID
 router.delete('/delete/:id', async (req, res) => {
