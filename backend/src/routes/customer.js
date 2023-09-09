@@ -16,29 +16,49 @@ router.route("/a/add").post((req, res) => {
     TicketCount,
   } = req.body;
 
-  const newCustomer = new Customer({
-    UserName,
-    FirstName,
-    LastName,
-    BirthDate,
-    PhoneNumber,
-    Gender,
-    Email,
-    optInForMarketing,
-    TicketCount,
-    LoyaltyRegisteredDate: null,
-    Type: false,
-  });
+  // Check if a customer with the same UserName or PhoneNumber already exists
+  Customer.findOne({ $or: [{ UserName }, { PhoneNumber }] })
+    .then((existingCustomer) => {
+      if (existingCustomer) {
+        // If a customer with the same UserName or PhoneNumber exists, throw an error
+        res
+          .status(400)
+          .json(
+            "A customer with the same UserName or PhoneNumber already exists."
+          );
+      } else {
+        // If no customer with a matching UserName or PhoneNumber is found, create a new customer
+        const newCustomer = new Customer({
+          UserName,
+          FirstName,
+          LastName,
+          BirthDate,
+          PhoneNumber,
+          Gender,
+          Email,
+          optInForMarketing,
+          TicketCount,
+          LoyaltyRegisteredDate: null,
+          Type: false,
+        });
 
-  newCustomer
-    .save()
-    .then(() => res.json("Non-Loyalty Customer added!"))
-    .catch((err) => res.status(400).json("Error: " + err));
+        newCustomer
+          .save()
+          .then(() => res.json("Non-Loyalty Customer added!"))
+          .catch((err) =>
+            res.status(400).json("Error creating customer: " + err)
+          );
+      }
+    })
+    .catch((err) =>
+      res.status(400).json("Error checking for existing customer: " + err)
+    );
 });
 
 // Creates a normal customer + without ticket count(normal)
 // succed with ticket count but not added to database
 // for normal registeration with added security
+// throws error if same username or number exists
 router.route("/add").post((req, res) => {
   const {
     UserName,
@@ -51,28 +71,47 @@ router.route("/add").post((req, res) => {
     optInForMarketing,
   } = req.body;
 
-  const newCustomer = new Customer({
-    UserName,
-    FirstName,
-    LastName,
-    BirthDate,
-    PhoneNumber,
-    Gender,
-    Email,
-    optInForMarketing,
-    TicketCount:0,
-    LoyaltyRegisteredDate: null,
-    Type: false,
-  });
+  // Check if a customer with the same UserName or PhoneNumber already exists
+  Customer.findOne({ $or: [{ UserName }, { PhoneNumber }] })
+    .then((existingCustomer) => {
+      if (existingCustomer) {
+        // If a customer with the same UserName or PhoneNumber exists, throw an error
+        res
+          .status(400)
+          .json(
+            "A customer with the same UserName or PhoneNumber already exists."
+          );
+      } else {
+        // If no customer with a matching UserName or PhoneNumber is found, create a new customer
+        const newCustomer = new Customer({
+          UserName,
+          FirstName,
+          LastName,
+          BirthDate,
+          PhoneNumber,
+          Gender,
+          Email,
+          optInForMarketing,
+          TicketCount: 0,
+          LoyaltyRegisteredDate: null,
+          Type: false,
+        });
 
-  newCustomer
-    .save()
-    .then(() => res.json("Non-Loyalty Customer added!"))
-    .catch((err) => res.status(400).json("Error: " + err));
+        newCustomer
+          .save()
+          .then(() => res.json("Non-Loyalty Customer added!"))
+          .catch((err) =>
+            res.status(400).json("Error creating customer: " + err)
+          );
+      }
+    })
+    .catch((err) =>
+      res.status(400).json("Error checking for existing customer: " + err)
+    );
 });
 
-// Creates a loyality customer
-router.route("/loyaltyadd").post((req, res) => {
+// Route to create a loyalty customer
+router.route("/loyalityadd").post((req, res) => {
   const {
     UserName,
     FirstName,
@@ -85,27 +124,45 @@ router.route("/loyaltyadd").post((req, res) => {
     TicketCount,
   } = req.body;
 
-  const newLoyaltyCustomer = new Customer({
-    UserName,
-    FirstName,
-    LastName,
-    BirthDate,
-    PhoneNumber,
-    Gender,
-    Email,
-    optInForMarketing,
-    TicketCount,
-    LoyaltyRegisteredDate: new Date(), // Set to the current date and time
-    Type: true,
-    LoyaltyPoints: 0,
-  });
+  // Check if a customer with the same UserName or PhoneNumber already exists
+  Customer.findOne({ $or: [{ UserName }, { PhoneNumber }] })
+    .then((existingCustomer) => {
+      if (existingCustomer) {
+        // If a customer with the same UserName or PhoneNumber exists, throw an error
+        res
+          .status(400)
+          .json(
+            "A customer with the same UserName or PhoneNumber already exists."
+          );
+      } else {
+        // If no customer with a matching UserName or PhoneNumber is found, create a new loyalty customer
+        const newLoyaltyCustomer = new Customer({
+          UserName,
+          FirstName,
+          LastName,
+          BirthDate,
+          PhoneNumber,
+          Gender,
+          Email,
+          optInForMarketing,
+          TicketCount: 0,
+          LoyaltyRegisteredDate: new Date(),
+          Type: true,
+          LoyaltyPoints: 0,
+        });
 
-  newLoyaltyCustomer
-    .save()
-    .then(() => res.json("Loyalty Customer added!"))
-    .catch((err) => res.status(400).json("Error: " + err));
+        newLoyaltyCustomer
+          .save()
+          .then(() => res.json("Loyalty Customer added!"))
+          .catch((err) =>
+            res.status(400).json("Error creating loyalty customer: " + err)
+          );
+      }
+    })
+    .catch((err) =>
+      res.status(400).json("Error checking for existing customer: " + err)
+    );
 });
-
 
 // Get all customers
 router.route("/").get((req, res) => {
@@ -159,11 +216,9 @@ router.route("/get/:id").get(async (req, res) => {
         TicketCount,
       };
 
-      const result = await Customer.findByIdAndUpdate(
-        cid,
-        updatedCustomer,
-        { new: true }
-      );
+      const result = await Customer.findByIdAndUpdate(cid, updatedCustomer, {
+        new: true,
+      });
 
       if (!result) {
         return res.status(404).json({ status: "Customer is not found" });
