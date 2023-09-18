@@ -2,7 +2,7 @@ import "./LoyalityTable.css";
 import LoyalitySearchBar from "./LoyalitySearchBar";
 import React, { useState, useEffect } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
-import axios from 'axios';
+import axios from "axios";
 
 // createTheme creates a new theme named nadun that overrides the build in dark theme
 createTheme(
@@ -35,29 +35,37 @@ createTheme(
   "dark"
 );
 
-const LoyalityTable = () => {
+const LoyalityTable = (props) => {
+  const [tableKey, setTableKey] = useState(0);
+  // Add a key state to force table refresh when the refresh button is clicked
+  const handleTableRefresh = () => {
+    // Increment the key to force a refresh
+    setTableKey(tableKey + 1); 
+  };
+
+  //column decalration
   const [columns, setColumns] = useState([
     {
       name: "UserName",
-      selector: row => row.UserName,
+      selector: (row) => row.UserName,
       sortable: true,
-      width: '150px',
+      width: "150px",
     },
     {
       name: "FirstName",
-      selector: row => row.FirstName,
+      selector: (row) => row.FirstName,
       sortable: true,
     },
     {
       name: "LastName",
-      selector: row => row.LastName,
+      selector: (row) => row.LastName,
       sortable: true,
     },
     {
       name: "BirthDate",
-      selector: row => row.BirthDate,
+      selector: (row) => row.BirthDate,
       sortable: true,
-      format: row => {
+      format: (row) => {
         const datee = new Date(row.BirthDate);
         return isNaN(datee) || datee.getFullYear() === 1970
           ? "Not Assigned"
@@ -66,98 +74,84 @@ const LoyalityTable = () => {
     },
     {
       name: "PhoneNumber",
-      selector: row => row.PhoneNumber, 
+      selector: (row) => row.PhoneNumber,
       sortable: true,
-      width: '150px'
+      width: "150px",
     },
     {
       name: "Gender",
-      selector: row => row.Gender,
+      selector: (row) => row.Gender,
       sortable: true,
     },
     {
       name: "Email",
-      selector: row => row.Email,
+      selector: (row) => row.Email,
       sortable: true,
-      width: '200px'
+      width: "200px",
     },
     {
       name: "optInForMarketing",
-      selector: row => row.optInForMarketing,
+      selector: (row) => row.optInForMarketing,
       sortable: true,
-      format: row => {
-        return row.optInForMarketing ? '✓' : 'X';
+      format: (row) => {
+        return row.optInForMarketing ? "✓" : "X";
       },
-      width: '100px',
+      width: "100px",
       center: true,
     },
     {
       name: "Type",
-      selector: row => row.Type,
+      selector: (row) => row.Type,
       sortable: true,
-      format: row => {
+      format: (row) => {
         return row.Type ? "Loyalty Member" : "Not a Loyalty Member";
       },
     },
     {
       name: "LoyaltyPoints",
-      selector: row => row.LoyaltyPoints,
+      selector: (row) => row.LoyaltyPoints,
       sortable: true,
-      format: row => {
+      format: (row) => {
         return row.LoyaltyPoints === null ? "Not Assigned" : row.LoyaltyPoints;
       },
-      width: '150px',
+      width: "150px",
       center: true,
     },
     {
       name: "LoyaltyRegisteredDate",
-      selector: row => row.LoyaltyRegisteredDate,
+      selector: (row) => row.LoyaltyRegisteredDate,
       sortable: true,
-      format: row => {
+      format: (row) => {
         const datee = new Date(row.LoyaltyRegisteredDate);
         return isNaN(datee) || datee.getFullYear() === 1970
           ? "Not Assigned"
           : datee.toLocaleDateString();
       },
-      width: '150px'
+      width: "150px",
     },
     {
       name: "PointResetDate",
-      selector: row => row.PointResetDate,
+      selector: (row) => row.PointResetDate,
       sortable: true,
-      format: row => {
+      format: (row) => {
         const datee = new Date(row.PointResetDate);
         return isNaN(datee) || datee.getFullYear() === 1970
           ? "Not Assigned"
           : datee.toLocaleDateString();
       },
-      width: '150px'
+      width: "150px",
     },
   ]);
-
-  const [data, setData] = useState([
-    {
-      name: "John Doe",
-      email: "nana@gmail.com",
-      phone: "1234567890",
-      points: "100",
-      totalAmount: "1000",
-      registeredOn: "2021-01-01",
-      lastUpdated: "2021-01-01",
-      lastOrder: "121",
-      lastOrderDate: "2021-01-01",
-      lastOrderAmount: "1000",
-      lastOrderStatus: "Delivered",
-    },
-  ]);
+  // empty US var to set data
+  const [data, setData] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/customer/');
+        const response = await axios.get("/customer/");
         setData(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -166,7 +160,7 @@ const LoyalityTable = () => {
 
   return (
     <div className="table">
-      <LoyalitySearchBar />
+      <LoyalitySearchBar onRefresh={handleTableRefresh} />
       <div>
         <DataTable
           columns={columns}
@@ -178,9 +172,9 @@ const LoyalityTable = () => {
           customStyles={{
             cells: {
               style: {
-                whiteSpace: 'nowrap', // Prevent text wrapping
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
+                whiteSpace: "nowrap", // Prevent text wrapping
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               },
             },
           }}

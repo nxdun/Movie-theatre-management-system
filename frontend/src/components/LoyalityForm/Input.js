@@ -1,5 +1,5 @@
 import "./Input.css";
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import { validate } from "./LoyalityValidators";
 
 // Input reducer used for handling input change
@@ -30,6 +30,15 @@ const Input = (props) => {
     isValid: false,
     isTouched: false,
   });
+
+  // Trigger initial validation when the component mounts
+  useEffect(() => {
+    dispatch({
+      type: "CHANGE",
+      val: inputState.value,
+      validators: props.validators,
+    });
+  }, [props.validators, inputState.value]);
 
   // Touch handler for handling input touch
   const touchHandler = () => {

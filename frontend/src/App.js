@@ -1,3 +1,4 @@
+
 import "./App.css";
 import LoyalityDash from "./screens/LoyalityDash"
 import CustomerRegisterForm from "./components/CustomerRegisterForm.js"
@@ -7,6 +8,8 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
+
+
 
 function App() {
 

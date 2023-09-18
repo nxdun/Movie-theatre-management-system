@@ -1,6 +1,6 @@
 import "./LoyalitySearchBar.css";
 
-const LoyalitySearchBar = () => {
+const LoyalitySearchBar = props => {
   return (
     <div className="search-bar">
       <button className="buttonn button-back">{"<< back"}</button>
@@ -23,7 +23,7 @@ const LoyalitySearchBar = () => {
 
       <button className="buttonn button-filter">&#128854;</button>
       <button className="buttonn button-reset">R</button>
-      <button className="buttonn button-refresh">&#10227;</button>
+      <button className="buttonn button-refresh" onClick={props.onRefresh}>&#10227;</button>
     </div>
   );
 };
