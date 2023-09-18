@@ -23,4 +23,7 @@ connection .once("open", () => {
     console.log("MongoDB connection success!");
 });
 
+const scheduleRouter = require("./routes/schedules.js");
+app.use("/schedule", scheduleRouter);
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
