@@ -13,6 +13,8 @@ import CartScreen from "./screens/CartScreen";
 import Navbar from "./components/Navbar";
 import Backdrop from "./components/Backdrop";
 import SideDrawer from './components/SideDrawer';
+import Success from "./components/Success";
+import Cancel from "./components/Cancel";
 
 function App() {
 
@@ -29,6 +31,8 @@ function App() {
           <Route exact path="/shop" element={<ShopScreen />} />
           <Route exact path="/product/:id" element={<ProductScreen />} />
           <Route exact path="/cart" element={<CartScreen />} />
+          <Route exact path="/success" element={<Success />} />
+          <Route exact path="/cancel" element={<Cancel />} />
           
         </Routes>
       </main>
