@@ -1,6 +1,8 @@
 import './CartScreen.css';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
+import { loadStripe } from '@stripe/stripe-js';
 
 //Componets
 import CartItem from '../components/CartItem';
@@ -31,6 +33,46 @@ const CartScreen = () => {
         return cartItems.reduce((price, item) => item.price * item.qty + price, 0);//each item price * qty added to cartCount and return
     }//get cart subtotal price calculate according to qty
     
+    //Payment gatway intergration
+    const makePayment = async () => {
+        const stripe = await loadStripe(
+          'pk_test_51NlliISAPYrR3kauO4GtknKkONKpAlH0onfzaaajpeYKoUFHhlimvwk94t74OqBMwPW0OQBp2n3OpPiOs94xSwHk001Lex4Wqi' // Replace with your actual Stripe public key
+        );
+    
+        const body = {
+          products: cartItems,
+        };
+    
+        const headers = {
+          'Content-Type': 'application/json',
+        };
+    
+        try {
+          const response = await fetch('/api/create-checkout-session', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body),
+          });
+    
+          if (response.ok) {
+            const session = await response.json();
+    
+            const result = await stripe.redirectToCheckout({
+              sessionId: session.id,
+            });
+    
+            if (result.error) {
+              alert(result.error.message);
+            }
+          } else {
+            throw new Error('Failed to create checkout session');
+          }
+        } catch (error) {
+          console.error(error);
+          alert('An error occurred while processing your payment please try again..');//if error occured show alert
+        }
+      };
+
 
     return (<div className="cartscreen"> 
     <div className="cartscreen__left">
@@ -52,8 +94,7 @@ const CartScreen = () => {
             <p>Rs.{getCartSubTotal().toFixed(2)}</p>
             </div>
             <div>
-                <button>Proceed To Checkout</button>
-
+            <button onClick={makePayment}>Proceed To Checkout</button>
             </div>     
     </div>
      </div>
