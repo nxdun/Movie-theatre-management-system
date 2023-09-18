@@ -42,8 +42,8 @@
   .cartscreen__right div button {
     padding: 10px 17px;
     width: 100%;
-    background: #00ff00;
-    color: #000000;
+    background: #000000;
+    color: #ffffff;
     border: 1px solid #171717;
     cursor: pointer;
   }

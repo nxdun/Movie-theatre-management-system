@@ -66,6 +66,10 @@
     cursor: pointer;
     border-radius: 5px;
   }
+
+  .right__info  button:hover {
+    opacity: 0.9;
+  }
   
   .right__info select {
     padding: 10px 16px;
