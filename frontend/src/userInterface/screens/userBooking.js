@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import ReactSelect from "react-select";
-//import "./editPrivRoom.css";
+import "../styles/userBooking.css";
 
-
-const EditPrivRoom = () => {
+const UserBooking = () => {
   const options = [
     { value: "gujarat", label: "Gujarat" },
     { value: "delhi", label: "Delhi" },
@@ -383,15 +383,9 @@ const EditPrivRoom = () => {
         </div>
       </div>
     </React.Fragment>
-
-    /*<div>
-    
-                    <button className='btn btn-primary'>Add Room</button>
-                    <button className='btn btn-primary'>Cancel</button>
-    
-    
-                </div>*/
   );
 };
 
-export default EditPrivRoom;
+//ReactDOM.render(<UserBooking />, document.getElementById("root"));
+
+export default UserBooking;

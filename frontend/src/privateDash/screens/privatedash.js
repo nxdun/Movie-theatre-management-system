@@ -6,6 +6,7 @@ import SidePanel  from '../components/sidePanelBtns'; // import SidePanel compon
 //import SearchBar from '../components/SearchBar'; // import SearchBar component
 //import PrivDataTable from '../components/privDataTable'; // import DataTable component
 import Header from '../components/Header'; // import Header component
+import { Router } from 'react-router-dom';
 
 
 
@@ -18,6 +19,7 @@ const PrivateDashboard = () => {
 
           <div>
            {/*<PrivDataTable /> */}
+            <h2>Main Private screening dashboard</h2>
             <SidePanel />
 
           </div>
@@ -48,6 +50,8 @@ const PrivateDashboard = () => {
 
 
       </div>
+
+      
   )
 };
 
