@@ -12,10 +12,9 @@ const Popup = ({ isOpen, onClose, content }) => {
         ariaHideApp={false} // This is for prevent accessibility warnings
       >
         <div className="modled-container">
-          <h2 className="poptitle">Popup Title</h2>
           <FormCreator/>
-          <button className="outside-close-button" onClick={onClose}>
-            Close
+          <button className="outside-close-button disable-button" onClick={onClose}>
+            X
           </button>
         </div>
       </Modal>

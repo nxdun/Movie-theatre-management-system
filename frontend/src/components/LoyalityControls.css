@@ -134,4 +134,5 @@
 .btn-container {
   display: flex-inline;
   height:100vh;
+  background-color: var(--black);
 }
