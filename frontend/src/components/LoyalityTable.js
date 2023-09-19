@@ -36,11 +36,31 @@ createTheme(
 );
 
 const LoyalityTable = (props) => {
+  
+  //selected row ids
+  const [selectedRowsIds, setSelectedRowsIds] = useState([]);
+  const handleDeleteSelectedRows = async () => {
+    try {
+      // Send a DELETE request to delete the selected rows based on their IDs
+      await Promise.all(
+        selectedRowsIds.map(async (id) => {
+          await axios.delete(`/customer/delete/${id}`);
+        })
+      );
+  
+      // Clear the selected rows
+      setSelectedRowsIds([]);
+  
+    } catch (error) {
+      console.error("Error deleting rows:", error);
+    }
+  };
+
   const [tableKey, setTableKey] = useState(0);
   // Add a key state to force table refresh when the refresh button is clicked
   const handleTableRefresh = () => {
     // Increment the key to force a refresh
-    setTableKey(tableKey + 1); 
+    setTableKey(tableKey + 1);
   };
 
   //column decalration
@@ -172,13 +192,19 @@ const LoyalityTable = (props) => {
           customStyles={{
             cells: {
               style: {
-                whiteSpace: "nowrap", // Prevent text wrapping
+                whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               },
             },
           }}
-          noHeader={true} // Hide the table header to allow content-based column width
+          noHeader={true}
+          selectableRowsHighlight={true} // Enable row selection
+          selectableRowsSelected={selectedRowsIds} // Pass selected row IDs
+          onSelectedRowsChange={({ selectedRows }) => {
+            // Extract and store selected row IDs
+            setSelectedRowsIds(selectedRows.map((row) => row._id));
+          }}
         />
       </div>
     </div>

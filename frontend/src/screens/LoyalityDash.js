@@ -10,6 +10,7 @@ const LoyalityDash = () => {
   
   //popup must need constants
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [refreshTable, setRefreshTable] = useState(false);
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -19,12 +20,18 @@ const LoyalityDash = () => {
     setIsPopupOpen(false);
   };
 
+  const handleDeleteRows = () => {
+    setRefreshTable(!refreshTable);
+  };
+
+ 
+
   return (
     <div>
       <Header />
       <div className="main-container">
-        <LoyalityTable className="table-col" />
-        <LoyalityControls  open={openPopup} className="control-col" />
+        <LoyalityTable refreshTable={refreshTable} onDeleteRows={handleDeleteRows}  className="table-col" delete = {deleteRow} />
+        <LoyalityControls  onDelete={handleDeleteRows}  open={openPopup} className="control-col" />
       </div>
       <div>
         <Popup
