@@ -7,7 +7,7 @@ const errorHandler = (res, status, message) => {
   res.status(status).json({ status: message });
 };
 
-// Create a customer
+// Modify the createCustomer function to handle both creation and editing
 const createCustomer = async (req, res, loyalty = false) => {
   const {
     UserName,
@@ -18,50 +18,81 @@ const createCustomer = async (req, res, loyalty = false) => {
     Gender,
     Email,
     optInForMarketing,
-    TicketCount = 0,
+    TicketCount = 0, // Set default TicketCount to 0
+    Type = false, // Set default Type to false
+    LoyaltyPoints = null, // Set default LoyaltyPoints to null
+    LoyaltyRegisteredDate = null, // Set default LoyaltyRegisteredDate to null
+    PointResetDate = null, // Set default PointResetDate to null
   } = req.body;
 
   try {
-    const existingCustomer = await Customer.findOne({ $or: [{ UserName }, { PhoneNumber }] });
-    if (existingCustomer) {
-      return errorHandler(res, 400, "A customer with the same UserName or PhoneNumber already exists.");
-    }
-
-    const newCustomer = new Customer({
-      UserName,
-      FirstName,
-      LastName,
-      BirthDate,
-      PhoneNumber,
-      Gender,
-      Email,
-      optInForMarketing,
-      TicketCount,
-      LoyaltyRegisteredDate: loyalty ? new Date() : null,
-      Type: loyalty,
-      LoyaltyPoints: loyalty ? 0 : undefined,
+    // Check if the customer already exists by UserName or PhoneNumber
+    const existingCustomer = await Customer.findOne({
+      $or: [{ UserName }, { PhoneNumber }],
     });
 
-    await newCustomer.save();
-    res.json(loyalty ? "Loyalty Customer added!" : "Non-Loyalty Customer added!");
+    if (existingCustomer) {
+      // If the customer exists, update the customer fields
+      existingCustomer.UserName = UserName;
+      existingCustomer.FirstName = FirstName;
+      existingCustomer.LastName = LastName;
+      existingCustomer.BirthDate = BirthDate;
+      existingCustomer.PhoneNumber = PhoneNumber;
+      existingCustomer.Gender = Gender;
+      existingCustomer.Email = Email;
+      existingCustomer.optInForMarketing = optInForMarketing;
+
+      // If it's a loyalty customer, update loyalty-specific fields
+      if (loyalty) {
+        existingCustomer.Type = loyalty;
+        existingCustomer.LoyaltyPoints = LoyaltyPoints;
+        existingCustomer.LoyaltyRegisteredDate = new Date();
+      }
+
+      // Save the updated customer
+      await existingCustomer.save();
+      res.json(`Customer ${existingCustomer.UserName} updated.`);
+    } else {
+      // If the customer doesn't exist, create a new customer
+      const newCustomer = new Customer({
+        UserName,
+        FirstName,
+        LastName,
+        BirthDate,
+        PhoneNumber,
+        Gender,
+        Email,
+        optInForMarketing,
+        TicketCount, // Use the provided default TicketCount
+        Type, // Use the provided default Type
+        LoyaltyPoints, // Use the provided default LoyaltyPoints
+        LoyaltyRegisteredDate, // Use the provided default LoyaltyRegisteredDate
+        PointResetDate, // Use the provided default PointResetDate
+      });
+
+      await newCustomer.save();
+      res.json(
+        loyalty ? "Loyalty Customer added!" : "Non-Loyalty Customer added!"
+      );
+    }
   } catch (err) {
-    errorHandler(res, 400, `Error creating ${loyalty ? 'loyalty' : 'non-loyalty'} customer: ${err}`);
+    errorHandler(
+      res,
+      400,
+      `Error creating/editing ${
+        loyalty ? "loyalty" : "non-loyalty"
+      } customer: ${err}`
+    );
   }
 };
 
-// Create a normal customer with or without ticket count (admin)
-router.route("/a/add").post(async (req, res) => {
-  await createCustomer(req, res);
-});
+//....................
+//.......routes.......
+//....................
 
-// Create a normal customer without ticket count (normal)
+//add
 router.route("/add").post(async (req, res) => {
   await createCustomer(req, res);
-});
-
-// Create a loyalty customer
-router.route("/loyaltyadd").post(async (req, res) => {
-  await createCustomer(req, res, true);
 });
 
 // Get all customers
@@ -94,7 +125,9 @@ router.route("/update/:id").put(async (req, res) => {
     const cid = req.params.id;
     const updatedCustomer = req.body;
 
-    const result = await Customer.findByIdAndUpdate(cid, updatedCustomer, { new: true });
+    const result = await Customer.findByIdAndUpdate(cid, updatedCustomer, {
+      new: true,
+    });
     if (!result) {
       return errorHandler(res, 404, "Customer is not found");
     }

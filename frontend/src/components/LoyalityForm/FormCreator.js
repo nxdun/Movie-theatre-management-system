@@ -1,9 +1,11 @@
 import "./FormCreator.css";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
+//main function
 const FormCreator = () => {
   const initialValues = {
-    username: "",
+    UserName: "",
     FirstName: "",
     LastName: "",
     BirthDate: "",
@@ -11,34 +13,51 @@ const FormCreator = () => {
     Gender: "",
     Email: "",
     optInForMarketing: false,
-    TicketCount: 0,
-    Type: false,
+    TicketCount:0,
+    Type:false,
     LoyaltyPoints: 0,
-    LoyaltyRegisteredDate: "",
-    PointResetDate: "",
+    LoyaltyRegisteredDate: null,
+    PointResetDate: null,
   };
 
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
+  // Form validation
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
+
+  // Special handling for checkboxes(common error)
+  if (type === "checkbox") {
+    setFormValues({ ...formValues, [name]: checked });
+  } else {
     setFormValues({ ...formValues, [name]: value });
+  }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validate(formValues);
     setFormErrors(errors);
-    setIsSubmit(true);
+
+    if (Object.keys(errors).length === 0) {
+      try {
+        const response = await axios.post("/customer/add/", formValues);
+        console.log(response.data); // Assuming the response contains a success message
+        setIsSubmit(true);
+        setFormErrors({}); // Clear any previous errors
+      } catch (error) {
+        console.error("Error submitting data:", error);
+        console.log(error.response.data);
+        console.log("Form values submitted:", formValues);
+        // Handle the error and display an error message if needed
+      }
+    } else {
+      setIsSubmit(false); // Validation failed, do not set isSubmit to true
+    }
   };
 
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors]);
   const validate = (values) => {
     const errors = {};
     const usernameRegex = /^[a-zA-Z0-9_]{5,15}$/;
@@ -47,10 +66,10 @@ const FormCreator = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const loyaltyPointsRegex = /^\d+(\.\d{1,2})?$/;
 
-    if (!values.username) {
-      errors.username = "Username is required!";
-    } else if (!usernameRegex.test(values.username)) {
-      errors.username =
+    if (!values.UserName) {
+      errors.UserName = "Username is required!";
+    } else if (!usernameRegex.test(values.UserName)) {
+      errors.UserName =
         "Username must be 5-15 characters and can only include letters, numbers, and underscores.";
     }
 
@@ -75,31 +94,25 @@ const FormCreator = () => {
         "Phone Number must start with +94 and have 9 additional numbers.";
     }
 
-    if (values.Type !== true && values.Type !== false) {
-      errors.Type = "Type must be true or false.";
-    }
-
     if (!loyaltyPointsRegex.test(values.LoyaltyPoints)) {
       errors.LoyaltyPoints =
         "Loyalty Points must be a valid number with up to two decimal places.";
     }
 
-    if (!values.email) {
-      errors.email = "Email is required!";
-    } else if (!emailRegex.test(values.email)) {
-      errors.email = "This is not a valid email format!";
+    if (!values.Email) {
+      errors.Email = "Email is required!";
+    } else if (!emailRegex.test(values.Email)) {
+      errors.Email = "This is not a valid email format!";
     }
 
     return errors;
   };
 
   return (
-    <div className="modal-container">
+      <div className="modal-container">
       {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="ui message success">Signed in successfully</div>
-      ) : (
-        ""
-      )}
+        <div className="ui message success">Data submitted successfully</div>
+      ) : null}
 
       <form onSubmit={handleSubmit} className="modal-form">
         <div className="ui divider"></div>
@@ -113,7 +126,7 @@ const FormCreator = () => {
                 placeholder="UserName"
                 value={formValues.UserName}
                 onChange={handleChange}
-              />
+                />
             </div>
             <p className="error">{formErrors.UserName}</p>
             <div className="field">
@@ -249,7 +262,7 @@ const FormCreator = () => {
                 onChange={handleChange}
               />
             </div>
-            <button className="sub-button">Add</button>
+            <button className="sub-button" >Add</button>
           </div>
         </div>
       </form>
