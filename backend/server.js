@@ -6,6 +6,12 @@ const mongoose = require("mongoose");
 const Advertisement = require("./model/advertisementModel");
 const advertisementRoutes = require("./routes/advertisementRoute");
 
+const Screen = require("./model/screenModel");
+const screenRoutes = require("./routes/screenRoute");
+
+const Display = require("./model/displayModel");
+const displayRoutes = require("./routes/displayRoute");
+
 connectDB();
 
 
@@ -15,7 +21,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(advertisementRoutes);
-
+app.use(screenRoutes);
+app.use(displayRoutes);
 
 
 const PORT = process.env.PORT || 5000;
