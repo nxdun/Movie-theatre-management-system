@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
-const stripe = require('stripe')('sk_test_51NlliISAPYrR3kauLt4SWQ0yJUfNBjL7eOuG2IYfoL3eZVVTXs8dZ6vxFrv5pP3IruTVR0Z8oKoN1wdf3P0pjIYx009xsURUqk');
+const stripe = require('stripe')('sk_test_51Ns9obAuazamskfx2FbGPFJyekhZ7Le2CEX6fBvU18ZnocXHhBGhz3FQdy1kjQ9BTgPGvyiq8XsOxvHOhrG5w9eI00zvkNE8OF');
 
 const cors = require('cors');
 

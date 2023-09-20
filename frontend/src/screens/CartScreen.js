@@ -36,7 +36,7 @@ const CartScreen = () => {
     //Payment gatway intergration
     const makePayment = async () => {
         const stripe = await loadStripe(
-          'pk_test_51NlliISAPYrR3kauO4GtknKkONKpAlH0onfzaaajpeYKoUFHhlimvwk94t74OqBMwPW0OQBp2n3OpPiOs94xSwHk001Lex4Wqi' // Replace with your actual Stripe public key
+          'pk_test_51Ns9obAuazamskfxFgZzz5Z9X2tDM9NDLLI0Wserb178ONKNbJ8hnbb7a9AqqCgEd0PTJDxKKYgUZDwnMy6skPcM00LieKKLAa' // Replace with your actual Stripe public key
         );
     
         const body = {
