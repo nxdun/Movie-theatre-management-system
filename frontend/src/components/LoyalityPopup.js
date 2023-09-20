@@ -1,8 +1,9 @@
 import Modal from "react-modal";
 import "./LoyalityPopup.css";
 import FormCreator from "./LoyalityForm/FormCreator";
+import FormEditor from "./LoyalityForm/FormEditor";
 
-const Popup = ({ isOpen, onClose, content }) => {
+const Popup = ({ isOpen, onClose, comp }) => {
   return (
     <div className="main-Popup">
       <Modal
@@ -12,7 +13,7 @@ const Popup = ({ isOpen, onClose, content }) => {
         ariaHideApp={false} // This is for prevent accessibility warnings
       >
         <div className="modled-container">
-          <FormCreator/>
+        {comp === "creator" ? <FormCreator /> : <FormEditor />}
           <button className="outside-close-button disable-button" onClick={onClose}>
             X
           </button>

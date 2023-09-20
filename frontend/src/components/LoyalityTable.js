@@ -45,7 +45,6 @@ const LoyalityTable = (props) => {
     // Increment the key to force a refresh
     setTableKey(tableKey + 1);
   };
-
   //column decalration
   const [columns, setColumns] = useState([
     {
@@ -147,6 +146,10 @@ const LoyalityTable = (props) => {
   ]);
   // empty US var to set data
   const [data, setData] = useState("");
+  const ReloadMe = () => {
+    window.location.reload();
+  }
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -163,7 +166,7 @@ const LoyalityTable = (props) => {
 
   return (
     <div className="table">
-      <LoyalitySearchBar onRefresh={handleTableRefresh} />
+      <LoyalitySearchBar onRefresh={ReloadMe}  />
       <div>
         <DataTable
           columns={columns}

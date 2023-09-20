@@ -74,3 +74,7 @@ input:focus, select:focus {
   border-color: #0074d9; /* Change the border color when focused */
   outline: none; /* Remove the default focus outline */
 }
+
+.error{
+  color: red;
+}

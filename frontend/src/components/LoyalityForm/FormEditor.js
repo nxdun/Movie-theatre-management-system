@@ -3,10 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 //main function
-const ReloadMe = () => {
-  window.location.reload();
-}
-
 const FormCreator = () => {
   const initialValues = {
     UserName: "",
@@ -46,15 +42,12 @@ const FormCreator = () => {
     const errors = validate(formValues);
     setFormErrors(errors);
 
-
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post("/customer/add/", formValues);
-        console.log(response.data); 
+        console.log(response.data); // Assuming the response contains a success message
         setIsSubmit(true);
-        setFormErrors({});
-        ReloadMe();
-
+        setFormErrors({}); // Clear any previous errors
       } catch (error) {
         console.error("Error submitting data:", error);
         console.log(error.response.data);

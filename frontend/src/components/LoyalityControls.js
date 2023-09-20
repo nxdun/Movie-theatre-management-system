@@ -19,7 +19,7 @@ const LoyalityControls = props => {
         <div className = "btn-container">
             <button className="btn btn-1" >Change rules</button>
             <button className="btn btn-2" onClick={props.open}>Add manually</button>
-            <button className="btn btn-3" >EDIT selection</button>
+            <button className="btn btn-3" onClick={props.edit}>EDIT selection</button>
             <button className="btn btn-4" onClick={handleDeleteSelection}>DELETE selection</button>
             <button className="btn btn-5">SHOW LOGS</button>
             <button className="btn btn-6">REVIEW SUBMISSIONS</button>
