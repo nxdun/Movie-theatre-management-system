@@ -78,3 +78,13 @@ input:focus, select:focus {
 .error{
   color: red;
 }
+
+.field input[type="checkbox"]{
+  display: inline-block;
+  width: 18px; /* Adjust as needed */
+  height: 18px; /* Adjust as needed */
+  border: 2px solid #000; /* Adjust color as needed */
+  border-radius: 4px; /* Adjust to desired roundness */
+  margin-right: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}

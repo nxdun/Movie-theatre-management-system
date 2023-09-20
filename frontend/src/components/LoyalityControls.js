@@ -35,9 +35,13 @@ const LoyalityControls = props => {
       
   };
       
+    const handleEditor = () => {
+     props.editor(); // Trigger the editor popup
+  };
+      
     return (
         <div className = "btn-container">
-            <button className="btn btn-1" >Change rules</button>
+            <button className="btn btn-1" onClick={handleEditor}>Change rules</button>
             <button className="btn btn-2" onClick={props.open}>Add manually</button>
             <button className="btn btn-3" onClick={handleEdition}>EDIT selection</button>
             <button className="btn btn-4" onClick={handleDeleteSelection}>DELETE selection</button>

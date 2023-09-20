@@ -14,6 +14,7 @@ const LoyalityDash = () => {
   const [selectedRowsIds, setSelectedRowsIds] = useState([]); //selected row ids
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isPopupOpen2, setIsPopupOpen2] = useState(false);
+  const [isPopupOpen3, setIsPopupOpen3] = useState(false);
   //constants
   const ReloadMe = () => {
     window.location.reload();
@@ -30,6 +31,12 @@ const LoyalityDash = () => {
   };
   const closePopup2 = () => {
     setIsPopupOpen2(false);
+  };
+  const openPopup3 = () => {
+    setIsPopupOpen3(true);
+  };
+  const closePopup3 = () => {
+    setIsPopupOpen3(false);
   };
   const handleDeleteSelectedRows = async () => {
     try {
@@ -67,6 +74,7 @@ const LoyalityDash = () => {
         <LoyalityControls
           open={openPopup}
           edit={openPopup2}
+          editor={openPopup3}
           rowId={selectedRowsIds}
           onDelete={handleDeleteSelectedRows}
           className="control-col"
@@ -87,6 +95,14 @@ const LoyalityDash = () => {
           d = {Data}
           content="This is the popup content."
           comp="yuyu"
+        />
+      </div>
+      <div>
+        <Popup
+          isOpen={isPopupOpen3}
+          onClose={closePopup3}
+          content="This is the popup content."
+          comp="editor"
         />
       </div>
     </div>
