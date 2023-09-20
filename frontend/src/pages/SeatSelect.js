@@ -30,20 +30,20 @@ function SeatSelect() {
 
     // Prepare booking data
     const bookingData = {
-      bookingId: 'B1', // Implement your logic for generating a unique booking ID
+      bookingId: 'C1', 
       bookingDate: new Date(),
       showTime: '6.00PM',
       theaterId: 'A',
       seatId: selectedButtons.join(', '), // Join selected button IDs
       price: selectedButtons.length * 1000, // Calculate price based on the number of selected buttons
-      customerId: 'cus1',
+      customerId: 'cus2',
     };
 
-    // Send a POST request to your server to add the booking
+    // Send a POST request to server to add the booking
     axios.post('http://localhost:5101/booking/add', bookingData)
       .then((response) => {
         console.log(response.data);
-        // Optionally, you can reset the selected buttons state here
+        
         setSelectedButtons([]);
         alert('Booking successful!');
       })
@@ -76,6 +76,7 @@ return (
           onClick={() => handleButtonClick(seatId)}
         >
           Button {seatId}
+        
         </button>
       ))}
     </div>
