@@ -8,18 +8,28 @@ import { useState } from "react";
 import axios from "axios";
 
 const LoyalityDash = () => {
-  // constants
+  
+  //usestates
+  const [Data, setData] = useState([]);
+  const [selectedRowsIds, setSelectedRowsIds] = useState([]); //selected row ids
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPopupOpen2, setIsPopupOpen2] = useState(false);
+  //constants
   const ReloadMe = () => {
     window.location.reload();
   }
-  const [selectedRowsIds, setSelectedRowsIds] = useState([]); //selected row ids
   const execEdit = () => {};
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const openPopup = () => {
     setIsPopupOpen(true);
   };
   const closePopup = () => {
     setIsPopupOpen(false);
+  };
+  const openPopup2 = () => {
+    setIsPopupOpen2(true);
+  };
+  const closePopup2 = () => {
+    setIsPopupOpen2(false);
   };
   const handleDeleteSelectedRows = async () => {
     try {
@@ -38,6 +48,10 @@ const LoyalityDash = () => {
       console.log("Error deleting rows:", error);
     }
   };
+  const ssendRow = (obj) => {
+    setData(obj)
+  }
+
  
 
   return (
@@ -47,11 +61,12 @@ const LoyalityDash = () => {
         <LoyalityTable
           ssetSelectedRowsIds={setSelectedRowsIds}
           sselectedRowsIds={selectedRowsIds}
+          sendRow = {ssendRow}
           className="table-col"
         />
         <LoyalityControls
           open={openPopup}
-          edit={execEdit}
+          edit={openPopup2}
           rowId={selectedRowsIds}
           onDelete={handleDeleteSelectedRows}
           className="control-col"
@@ -63,6 +78,15 @@ const LoyalityDash = () => {
           onClose={closePopup}
           content="This is the popup content."
           comp="creator"
+        />
+      </div>
+      <div>
+        <Popup
+          isOpen={isPopupOpen2}
+          onClose={closePopup2}
+          d = {Data}
+          content="This is the popup content."
+          comp="yuyu"
         />
       </div>
     </div>

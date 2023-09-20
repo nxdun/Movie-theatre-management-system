@@ -3,26 +3,38 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 //main function
-const FormCreator = () => {
-  const initialValues = {
-    UserName: "",
-    FirstName: "",
-    LastName: "",
-    BirthDate: "",
-    PhoneNumber: "",
-    Gender: "",
-    Email: "",
-    optInForMarketing: false,
-    TicketCount:0,
-    Type:false,
-    LoyaltyPoints: 0,
-    LoyaltyRegisteredDate: null,
-    PointResetDate: null,
-  };
+const FormCreator = (props) => {
+  const ReloadMe = () => {
+    window.location.reload();
+  }
 
+  if(props.e.length === 0){
+    props.close();
+  }else if(props.e.length >=2){
+    props.close();
+  }
+  const first = props.e[0];
+  const initialValues = {
+    UserName: first.UserName ? first.UserName : null,
+    FirstName: first.FirstName,
+    LastName: first.LastName,
+    BirthDate: first.BirthDate.split('T')[0],
+    PhoneNumber: first.PhoneNumber,
+    Gender: first.Gender,
+    Email: first.Email,
+    optInForMarketing: first.optInForMarketing,
+    TicketCount:first.TicketCount,
+    Type:first.Type,
+    LoyaltyPoints: first.LoyaltyPoints,
+    LoyaltyRegisteredDate: first.LoyaltyRegisteredDate ? first.LoyaltyRegisteredDate.split('T')[0] : null,
+    PointResetDate: first.PointResetDate ? first.PointResetDate.split('T')[0] : null,
+  };
+  console.log(props.e)
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+
+  
 
   // Form validation
   const handleChange = (e) => {
@@ -48,6 +60,7 @@ const FormCreator = () => {
         console.log(response.data); // Assuming the response contains a success message
         setIsSubmit(true);
         setFormErrors({}); // Clear any previous errors
+        ReloadMe();
       } catch (error) {
         console.error("Error submitting data:", error);
         console.log(error.response.data);
@@ -120,7 +133,8 @@ const FormCreator = () => {
   return (
       <div className="modal-container">
       {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="ui message success">Data submitted successfully</div>
+        <div className="ui message success" >Data submitted successfully</div>
+        
       ) : null}
 
       <form onSubmit={handleSubmit} className="modal-form">
@@ -128,7 +142,7 @@ const FormCreator = () => {
         <div className="ui form">
           <div className="l-div">
             <div className="field">
-              <label>UserName</label>
+              <label>FEUserName</label>
               <input
                 type="text"
                 name="UserName"
@@ -144,7 +158,7 @@ const FormCreator = () => {
                 type="text"
                 name="FirstName"
                 placeholder="First Name"
-                value={formValues.FirstName}
+                value= {formValues.FirstName}
                 onChange={handleChange}
               />
             </div>

@@ -2,10 +2,10 @@ import "./FormCreator.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-//main function
+//main function FC
 const ReloadMe = () => {
   window.location.reload();
-}
+};
 
 const FormCreator = () => {
   const initialValues = {
@@ -17,8 +17,8 @@ const FormCreator = () => {
     Gender: "",
     Email: "",
     optInForMarketing: false,
-    TicketCount:0,
-    Type:false,
+    TicketCount: 0,
+    Type: false,
     LoyaltyPoints: 0,
     LoyaltyRegisteredDate: null,
     PointResetDate: null,
@@ -32,13 +32,12 @@ const FormCreator = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-
-  // Special handling for checkboxes(common error)
-  if (type === "checkbox") {
-    setFormValues({ ...formValues, [name]: checked });
-  } else {
-    setFormValues({ ...formValues, [name]: value });
-  }
+    // Special handling for checkboxes(common error)
+    if (type === "checkbox") {
+      setFormValues({ ...formValues, [name]: checked });
+    } else {
+      setFormValues({ ...formValues, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -46,15 +45,13 @@ const FormCreator = () => {
     const errors = validate(formValues);
     setFormErrors(errors);
 
-
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post("/customer/add/", formValues);
-        console.log(response.data); 
+        console.log(response.data);
         setIsSubmit(true);
         setFormErrors({});
         ReloadMe();
-
       } catch (error) {
         console.error("Error submitting data:", error);
         console.log(error.response.data);
@@ -125,7 +122,7 @@ const FormCreator = () => {
   };
 
   return (
-      <div className="modal-container">
+    <div className="modal-container">
       {Object.keys(formErrors).length === 0 && isSubmit ? (
         <div className="ui message success">Data submitted successfully</div>
       ) : null}
@@ -135,14 +132,14 @@ const FormCreator = () => {
         <div className="ui form">
           <div className="l-div">
             <div className="field">
-              <label>UserName</label>
+              <label>FC:UserName</label>
               <input
                 type="text"
                 name="UserName"
                 placeholder="UserName"
                 value={formValues.UserName}
                 onChange={handleChange}
-                />
+              />
             </div>
             <p className="error">{formErrors.UserName}</p>
             <div className="field">
@@ -278,7 +275,7 @@ const FormCreator = () => {
                 onChange={handleChange}
               />
             </div>
-            <button className="sub-button" >Add</button>
+            <button className="sub-button">Add</button>
           </div>
         </div>
       </form>

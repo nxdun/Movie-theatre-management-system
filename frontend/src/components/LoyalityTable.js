@@ -37,16 +37,9 @@ createTheme(
 
 const LoyalityTable = (props) => {
   
- 
 
-  const [tableKey, setTableKey] = useState(0);
-  // Add a key state to force table refresh when the refresh button is clicked
-  const handleTableRefresh = () => {
-    // Increment the key to force a refresh
-    setTableKey(tableKey + 1);
-  };
   //column decalration
-  const [columns, setColumns] = useState([
+  const [columns, setColumns, sendRow] = useState([
     {
       name: "UserName",
       selector: (row) => row.UserName,
@@ -189,6 +182,7 @@ const LoyalityTable = (props) => {
           selectableRowsSelected={props.sselectedRowsIds} // Pass selected row IDs
           onSelectedRowsChange={({ selectedRows }) => {
             // Extract and store selected row IDs
+            props.sendRow(selectedRows);
             props.ssetSelectedRowsIds(selectedRows.map((row) => row._id));
           }}
         />
