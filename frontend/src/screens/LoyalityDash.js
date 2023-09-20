@@ -5,12 +5,14 @@ import LoyalityTable from "../components/LoyalityTable";
 import "./LoyalityDash.css";
 import Popup from "../components/LoyalityPopup";
 import { useState } from "react";
+import axios from "axios";
 
 const LoyalityDash = () => {
-  
+  //selected row ids
+  const [selectedRowsIds, setSelectedRowsIds] = useState([]);
+
   //popup must need constants
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [refreshTable, setRefreshTable] = useState(false);
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -20,18 +22,35 @@ const LoyalityDash = () => {
     setIsPopupOpen(false);
   };
 
-  const handleDeleteRows = () => {
-    setRefreshTable(!refreshTable);
-  };
 
- 
+  const handleDeleteSelectedRows = async () => {
+    try {
+      // Send a DELETE request to delete the selected rows based on their IDs
+      await Promise.all(
+        selectedRowsIds.map(async (id) => {
+          await axios.delete(`/customer/delete/${id}`);
+        })
+      );
+  
+      // Clear the selected rows
+      setSelectedRowsIds([]);
+  
+    } catch (error) {
+      console.log("Error deleting rows:", error);
+    }
+  };
 
   return (
     <div>
       <Header />
       <div className="main-container">
-        <LoyalityTable refreshTable={refreshTable} onDeleteRows={handleDeleteRows}  className="table-col" delete = {deleteRow} />
-        <LoyalityControls  onDelete={handleDeleteRows}  open={openPopup} className="control-col" />
+        <LoyalityTable ssetSelectedRowsIds = { setSelectedRowsIds } sselectedRowsIds={ selectedRowsIds } className="table-col" />
+        <LoyalityControls
+          open={openPopup}
+          rowId={selectedRowsIds}
+          onDelete={handleDeleteSelectedRows}
+          className="control-col"
+        />
       </div>
       <div>
         <Popup
