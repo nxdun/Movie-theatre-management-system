@@ -72,3 +72,17 @@ button {
   color: white;
   background-color: green;
 }
+
+/* Add this CSS for the "unavailable" class */
+.unavailable {
+  background-color: red;
+  color: white;
+  cursor: not-allowed;
+}
+
+/* Optional: You can also style the selected "unavailable" button differently */
+.unavailable.selected {
+  background-color: red;
+  color: white;
+  cursor: not-allowed;
+}
