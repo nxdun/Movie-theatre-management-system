@@ -17,7 +17,7 @@ function SeatSelect() {
     axios.get('http://localhost:5101/booking/')
       .then((response) => {
         const bookedSeatIds = response.data.map((booking) => booking.seatId);
-        // Split the comma-separated strings into arrays of seat IDs
+        
         const allBookedSeats = bookedSeatIds.flatMap(seatIds => seatIds.split(',').map(id => id.trim()));
         setBookedSeats(allBookedSeats);
         console.log('Fetched booked seats:', allBookedSeats);
