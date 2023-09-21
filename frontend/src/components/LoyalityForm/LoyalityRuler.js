@@ -56,7 +56,7 @@ const LoyalityRuler = () => {
     if (Object.keys(errors).length === 0) {
       try {
         console.log(formValues);
-        await axios.patch("/loyalty/", formValues);
+        await axios.patch("/loyality/", formValues);
         setIsSubmit(true);
       } catch (error) {
         console.error("Error submitting data:", error);
