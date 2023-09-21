@@ -9,7 +9,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SeatSelect />} />
-          <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
+          <Route path="/Slip/:bookingId/:seatId/:theaterId/:price" element={<Slip />} />
+
         </Routes>
       </BrowserRouter>
     </div>

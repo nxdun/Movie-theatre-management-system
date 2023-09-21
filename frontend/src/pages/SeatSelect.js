@@ -58,7 +58,7 @@ function SeatSelect() {
 
     // Prepare booking data
     const bookingData = {
-      bookingId: 'C14',
+      bookingId: 'C20',
       bookingDate: new Date(),
       showTime: '6.00PM',
       theaterId: 'A',
@@ -75,7 +75,7 @@ function SeatSelect() {
         setSelectedButtons([]);
         
         // Navigate to the slip page and pass seat information as URL parameters
-        navigate(`/Slip/${bookingData.seatId}/${bookingData.theaterId}/${bookingData.price}`);
+        navigate(`/Slip/${bookingData.bookingId}/${bookingData.seatId}/${bookingData.theaterId}/${bookingData.price}`);
       })
       .catch((error) => {
         console.error('Error:', error);
