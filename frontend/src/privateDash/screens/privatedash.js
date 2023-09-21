@@ -31,7 +31,16 @@ const DUMMY_PRIVSCREENS = [ // dummy data for private screening rooms
     imageUrl: 'https://fastly.picsum.photos/id/85/1280/774.jpg?hmac=h_HHpvfhMmLP6uOSrHS7HSlXVRuMKfBbc8HFKd1Acv4'
   
   },
+  {
+    id: 'p2',
+    privscname: 'Screen 1',
+    privseatcapacity: '100',
+    privscdescription: 'Screen 1 is the largest screen in the cinema',
+    privscprice: '£100',
+    privsclocation: 'London',
+    imageUrl: 'https://fastly.picsum.photos/id/85/1280/774.jpg?hmac=h_HHpvfhMmLP6uOSrHS7HSlXVRuMKfBbc8HFKd1Acv4'
   
+  },  
 
 ];
 
