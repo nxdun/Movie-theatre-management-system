@@ -1,0 +1,90 @@
+body{
+  background-color: var(--white);
+}
+.modal-container {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex; /* Add flex container */
+  justify-content: space-between; /* Distribute items evenly */
+  align-items: center;
+}
+
+
+/* Add flex properties to l-div and r-div */
+.l-div {
+  flex: 1; /* Take up 1/2 of the available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.r-div {
+  flex: 1; /* Take up 1/2 of the available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title-f {
+  font-weight: bold;
+  color: green;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Submit button styles */
+.sub-button {
+  position: relative;
+  background-color: var(--green);
+  color: var(--white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sub-button:hover {
+  background-color: #004400; /* Darker green on hover */
+}
+
+/* Style for the UserName input */
+input, select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f7f7f7;
+  color: #333;
+  width: 100%;
+}
+
+/* Style for the placeholder text in the UserName input */
+input::placeholder, select::placeholder {
+  color: #999;
+}
+
+/* Style for the UserName input when it's focused */
+input:focus, select:focus {
+  border-color: #0074d9; /* Change the border color when focused */
+  outline: none; /* Remove the default focus outline */
+}
+
+.error{
+  color: red;
+}
+
+.field input[type="checkbox"]{
+  display: inline-block;
+  width: 18px; /* Adjust as needed */
+  height: 18px; /* Adjust as needed */
+  border: 2px solid #000; /* Adjust color as needed */
+  border-radius: 4px; /* Adjust to desired roundness */
+  margin-right: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}

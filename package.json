@@ -24,6 +24,10 @@
     "express": "^4.18.2",
     "mongodb": "^6.0.0",
     "mongoose": "^7.4.5",
-    "stripe": "^13.6.0"
+    "stripe": "^13.6.0",
+    "react-data-table-component": "^7.5.4",
+    "react-modal": "^3.16.1",
+    "react-router-dom": "^5.3.4",
+    "styled-component": "^2.8.0"
   }
 }

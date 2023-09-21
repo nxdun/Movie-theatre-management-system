@@ -1,0 +1,36 @@
+
+  /* Style the button container */
+  .btn-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: flex-end; /* Align buttons to the right within the container */
+  }
+  
+  /* Style the buttons */
+  .btn {
+    background-color: white; /* Set the background color for the buttons */
+    color: black; /* Set the text color for the buttons */
+    padding: 10px 20px; /* Add padding for better button appearance */
+    margin: 5px 0; /* Add margin between buttons */
+    border: none; /* Remove button borders */
+    cursor: pointer; /* Show a pointer cursor on hover */
+    text-align: right; /* Right-align the button text */
+  }
+  
+  /* Add specific styles for each button */
+  .btn.btn01 {
+    /* Additional styles for the "Add Private Room" button if needed */
+  }
+  
+  .btn.btn02 {
+    /* Additional styles for the "Manage Room Benefits" button if needed */
+  }
+  
+  .btn.btn03 {
+    /* Additional styles for the "Review Screen Bookings" button if needed */
+  }
+  
+  .btn.btn04 {
+    /* Additional styles for the "Generate Report" button if needed */
+  }
+  

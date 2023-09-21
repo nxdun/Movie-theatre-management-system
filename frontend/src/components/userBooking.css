@@ -1,0 +1,120 @@
+/*@import url(https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css);
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");*/
+
+/* main color pallete */
+:root {
+    --black: #222222;
+    --white: #FFFFFF;
+    --green: #006600;
+    --red: #ff0000;
+  }
+
+body {
+    
+    font-family: "Rubik", sans-serif;
+}
+.form-area{
+    background-color: #fff;
+    box-shadow: 0px 5px 10px rgba(90, 116, 148, 0.3);
+    padding: 40px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-area .form-inner{
+  width: 100%;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 15px 19px;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #475F7B;
+    background-color: #FFF;
+    border: 1px solid #DFE3E7;
+    border-radius: .267rem;
+    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-control:focus {
+    color: #475F7B;
+    background-color: #FFF;
+    border-color: #5A8DEE;
+    outline: 0;
+    box-shadow: 0 3px 8px 0 rgba(0,0,0,.1);
+}
+.text-primary{
+  color : #5a8dee !important;
+}
+.btn-primary {
+    border-color: #5a8dee !important;
+    background-color: #5a8dee !important;
+    color: #fff;
+}
+.form-submit{
+  padding: 13px 30px;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  font-weight: 400;
+}
+.userprofile-img-bx {
+    min-height: 150px;
+    min-width: 150px;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    margin-right: 0px;
+    position: relative;
+}
+.userprofile-img-bx .prf-img-prev {
+    min-height: 150px;
+    min-width: 150px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #e5e5e5;
+}
+.profile-img-change-btn {
+    display: inline-block;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 20%);
+    padding-top: 10px;
+    top: 0px;
+    right: -4px;
+    text-align: center;
+    font-size: 12px;
+}
+.filepreviewprofile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.react-form-group .css-yk16xz-control,
+.react-form-group .css-yk16xz-control:hover{
+    min-height: 53px;
+    border: 1px solid #DFE3E7;
+}
+.react-form-group .css-26l3qy-menu{
+    z-index: 3;
+}
+.react-form-group .css-1pahdxg-control {
+    min-height: 53px;
+    background-color: #FFF;
+    border:1px solid #5A8DEE;
+    outline: 0;
+    box-shadow: 0 3px 8px 0 rgb(0 0 0 / 10%);
+}
+.react-form-group .css-1hwfws3{
+    padding: 2px 19px;
+}

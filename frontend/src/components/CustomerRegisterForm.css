@@ -1,0 +1,54 @@
+/* Form container styles */
+.form-container {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  max-width: 500px;
+  margin: 0 auto;
+}
+.head-label {
+  font-weight: bold;
+  color: green;
+  margin-bottom: 10px;
+  text-align: center;
+}
+/* Form input styles */
+.form-input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid var(--black);
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* Form label styles */
+.form-label {
+  font-weight: bold;
+  color: var(--white);
+}
+
+/* Submit button styles */
+.form-submit-button {
+  position: relative;
+  background-color: var(--green);
+  color: var(--white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-submit-button:hover {
+  background-color: #004400; /* Darker green on hover */
+}
+
+
+/* Error message styles */
+.error-message {
+  color: var(--red);
+  font-weight: bold;
+  margin-top: 5px;
+}

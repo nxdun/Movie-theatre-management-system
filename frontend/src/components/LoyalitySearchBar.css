@@ -1,0 +1,78 @@
+/* LoyaltySearchBar.module.css */
+
+.search-bar {
+  display: flex;
+  align-items: center; /* Add this to vertically align items in the center */
+  margin-bottom: 0px;
+}
+
+.buttonn {
+  background-color: var(--black);
+  color: white;
+  padding: 15px 20px; /* Update padding to ensure consistent button height */
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.buttonn:hover:not(.search-bar, .button-back) {
+  background-color: #3e8e41;
+  outline: 10px solid #3e8e41;
+  border-left: #3e8e41;
+  border-right: #3e8e41;
+  transition: all 0.3s ease;
+}
+.button-back:hover {
+  background-color: #3e8e41;
+  outline: 1000px solid #3e8e41;
+  border-left: #3e8e41;
+  border-right: #3e8e41;
+  transition: all 0.5s ease;
+}
+
+.select-search {
+  background-color: var(--black);
+  color: white;
+  padding: 15px 20px; /* Update padding to ensure consistent button height */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-form {
+  width: 50%; /* Increase the width of the search form as needed */
+  display: flex; /* Add this to make the form and button appear in a single line */
+ 
+}
+
+.search-bar-input {
+  flex: 2 !; /* Add this to make the input take up 80% of the width */
+  background-color: var(--black);
+  border: 1px solid green;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  cursor: text;
+}
+
+.search-submit {
+  background-color: var(--black);
+  color: white;
+  padding: 15px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button-filter,
+.button-reset,
+.button-refresh {
+  background-color: var(--black);
+  color: white;
+  padding: 15px 20px; 
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+}

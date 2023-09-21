@@ -1,0 +1,31 @@
+.outside-close-button{
+  width: 100px;
+  height: 50px;
+  position: fixed; /* Use fixed positioning to make it stay in place */
+  top: 9%; /* Position from the top edge of the viewport */
+  right: 8%; /* Position from the left edge of the viewport */
+  outline: 1px solid red;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.ReactModal__Body, .ReactModalPortal, .ReactModal__Content{
+  padding: 0px !important; /*remove forced padding from react-modal*/
+}
+
+.modled-container{
+  background-color: var(--black);
+}
+
+
+.poptitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--white);
+  margin: 0;
+  padding: 10px 0; 
+  text-align: center; /* Center the text horizontally */
+}
