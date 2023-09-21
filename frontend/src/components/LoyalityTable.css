@@ -1,0 +1,39 @@
+.search-bar {
+  background-color: var(--black);
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 100%; /* Ensure the search bar doesn't exceed its parent's width */
+}
+
+.table {
+  height: 100vh;
+  overflow-y: auto ;
+  background-color: var(--black);
+  flex-grow: 1;
+  word-wrap: break-word;
+  white-space: normal; /* Ensure text wraps within the table */
+  max-width: 100%; /* Prevent the table from exceeding its parent's width */
+}
+
+/* scrollbar */
+
+
+::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+}
+
+/* Define the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #333333; /* Dark color for scrollbar thumb */
+  border-radius: 6px; /* Rounded corners for the thumb */
+}
+
+/* Define the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--green); /* Dark color for scrollbar thumb on hover */
+}
+
+/* Define the scrollbar track piece */
+::-webkit-scrollbar-track {
+  background-color: #222222; /* Dark color for scrollbar track */
+}
