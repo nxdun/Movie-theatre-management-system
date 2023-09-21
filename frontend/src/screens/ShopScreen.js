@@ -51,7 +51,14 @@ const ShopScreen = () => {
 
       <div className="homescreen__products">
         {loading ? (
-          <h2>loading products...</h2>
+          <div class="screen">
+          <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <h1>Loading Products...</h1>
+          </div>
+        </div>
         ) : error ? (
           <h2>{error}</h2>
         ) : filteredProducts.length === 0 ? (

@@ -29,7 +29,14 @@ const ProductScreen = () => {
   return (
     <div className="productscreen">
       {loading ? (
-        <h2>Loading...</h2>
+         <div class="screen">
+         <div class="loader">
+           <div class="dot"></div>
+           <div class="dot"></div>
+           <div class="dot"></div>
+           <h1>Loading Products...</h1>
+         </div>
+       </div>
       ) : error ? (
         <h2>{error}</h2>//if none of these are true then show product
       ) : (
