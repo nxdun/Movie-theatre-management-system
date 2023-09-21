@@ -1,12 +1,12 @@
 import React, { useCallback, useReducer } from "react";
 
-import Input from "../components/FormElements/Input";
-import Button from "../components/FormElements/Button";
+import Input from "../components/PrivateScreenForm/Input";
+import Button from "../components/PrivateScreenForm/Button";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
 } from "../components/util/validators";
-import "../styles/addPrivRoom.css";
+import "./addPrivRoom.css";
 
 const formReducer = (state, action) => {
   switch (action.type) {

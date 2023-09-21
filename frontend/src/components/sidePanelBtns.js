@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/sidePanelBtns.css";
+import "./sidePanelBtns.css";
 import { useNavigate } from "react-router-dom";
 
 const SidePnlBtns = () => {

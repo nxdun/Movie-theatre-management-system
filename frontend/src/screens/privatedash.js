@@ -3,10 +3,10 @@ import React, { useState } from 'react';   // import React and useState hook
 
 //components
 import PrivScreenList from '../components/PrivScreenList';
-import SidePanel  from '../components/sidePanelBtns'; // import SidePanel component
+import SidePanel  from "../components/sidePanelBtns"; // import SidePanel component
 //import SearchBar from '../components/SearchBar'; // import SearchBar component
 //import PrivDataTable from '../components/privDataTable'; // import DataTable component
-import Header from '../components/Header'; // import Header component
+import Header from "../components/PrivHeader"; // import Header component
 import { Router } from 'react-router-dom';
 
 

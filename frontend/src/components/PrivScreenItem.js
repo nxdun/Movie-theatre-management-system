@@ -1,8 +1,8 @@
 import React from "react";
 
 import Card from "./UIelements/Card";
-import "../styles/PrivScreenItem.css";
-import Button from "./FormElements/Button"
+import "../components/PrivScreenItem.css";
+import Button from "./PrivateScreenForm/Button";
 
 
 const PrivScreenItem = (props) => {

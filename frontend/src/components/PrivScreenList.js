@@ -2,7 +2,7 @@ import React from "react";
 
 import PrivScreenItem from "./PrivScreenItem";
 import Card from "./UIelements/Card";
-import "../styles/PrivScreenList.css";
+import "../components/PrivScreenList.css";
 
 const PrivScreenList = (props) => {
   if (props.items.length === 0) {
