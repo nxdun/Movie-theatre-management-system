@@ -95,7 +95,7 @@ const createCustomer = async (req, res, loyalty = false) => {
 
 //add
 router.route("/add").post(async (req, res) => {
-  await createCustomer(req, res);
+  await createCustomer(req, res);  
 });
 
 // Get all customers
