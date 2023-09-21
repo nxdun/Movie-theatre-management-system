@@ -1,6 +1,5 @@
 const router = require("express").Router();
-let Prd = require("../models/Prd");
-//const { route } = require('./product.js');
+const Product = require("../models/Prd"); // Import the Product model
 
 router.route("/add").post(async (req, res) => {
   try {
@@ -17,16 +16,14 @@ router.route("/add").post(async (req, res) => {
     await newProduct.save();
     res.json({ message: "Product added successfully" });
   } catch (err) {
-    res.status(400).json({ error: "Error adding PPRRDD", details: err.message });
+    res.status(400).json({ error: "Error adding Product", details: err.message });
   }
 });
 
 router.route("/").get((req, res) => {
-  Prd.find()
-    .then((product) => res.json(product))
+  Product.find()
+    .then((products) => res.json(products)) // Change "product" to "products"
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-
-
-module.exports = router; // Path: backend/routes/supplier.js
+module.exports = router;
