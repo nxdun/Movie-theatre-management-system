@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import './App.css';
 import React from 'react';
 //import { Switch } from 'react-router-dom'; ----> this works with react-router-dom v5
@@ -28,44 +28,11 @@ function App() {
         <Route path="/edit-room" exact element={<EditPrivateRoom />} />
         <Route path="/review-booking" exact element={<ReviewBookings />} />
         <Route path="/view-report" exact element={<GenerateReport />} />
-
-        
-        
-
-
         <Route path="/user1" exact element={<UserScreen />} />
         <Route path="/user-booking" exact element={<UserBooking />} />
   
       </Routes>
 
-=======
-
-import "./App.css";
-import LoyalityDash from "./screens/LoyalityDash"
-import CustomerRegisterForm from "./components/CustomerRegisterForm.js"
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from "react-router-dom";
-
-
-
-function App() {
-
-  return (
-    <Router> {/* routeer */}
-      <Switch> {/* stop redirect if path found */}
-        <Route path="/loyality/dashboard" exact>
-          <LoyalityDash  />
-        </Route>
-        <Route path="/register" exact>
-          <CustomerRegisterForm />
-        </Route>
-        <Redirect to="/" />
-      </Switch>
->>>>>>> main
     </Router>
   );
 }
