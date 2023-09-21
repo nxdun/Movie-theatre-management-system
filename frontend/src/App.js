@@ -26,13 +26,13 @@ function App() {
          {/*nadun*/}
         <Route path="/loyality/dashboard" exact element={<LoyalityDash />} />
          {/*dunal*/}
-        <Route path="/private-sc" exact element={<PrivateScreenDash />} />  
-        <Route path="/add-room" exact element={<AddPrivateRoom />} />
-        <Route path="/edit-room" exact element={<EditPrivateRoom />} />
-        <Route path="/review-booking" exact element={<ReviewBookings />} />
-        <Route path="/view-report" exact element={<GenerateReport />} />
+        <Route path="/privatedash" exact element={<PrivateScreenDash />} />  
+        <Route path="/addroom" exact element={<AddPrivateRoom />} />
+        <Route path="/editroom" exact element={<EditPrivateRoom />} />
+        <Route path="/reviewbooking" exact element={<ReviewBookings />} />
+        <Route path="/viewreport" exact element={<GenerateReport />} />
         <Route path="/user1" exact element={<UserScreen />} />
-        <Route path="/user-booking" exact element={<UserBooking />} />
+        <Route path="/userbooking" exact element={<UserBooking />} />
         <Route path="/user-booking" exact element={<UserBooking />} />
   
       </Routes>

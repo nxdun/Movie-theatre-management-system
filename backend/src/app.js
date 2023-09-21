@@ -16,7 +16,7 @@ const loyaltyRoute = require("./routes/loyalitydb.js");
 require("dotenv").config();
 // console.log(process.env))
 const app = express(); 
-const PORT = process.env.PORT || 3009; 
+const PORT = process.env.PORT || 3013; 
 app.use(cors()); 
 // only access 3000 in frontend req app.use(cors({origin: "http://localhost:3000"}));
 app.use(express.json({ limit: "2mb" })); // use express json increase limit
