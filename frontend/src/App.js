@@ -1,23 +1,17 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-//pages & components
 import SeatSelect from './pages/SeatSelect';
+import Slip from './pages/Slip';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div className="pages">
-          <Routes>
-            <Route 
-              path="/" 
-              element={<SeatSelect />} 
-            />
-          </Routes>
-          </div>
+        <Routes>
+          <Route path="/" element={<SeatSelect />} />
+          <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
+        </Routes>
       </BrowserRouter>
-      
-      
     </div>
   );
 }
