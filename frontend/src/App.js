@@ -1,29 +1,38 @@
 
-import "./App.css";
-import LoyalityDash from "./screens/LoyalityDash"
-import CustomerRegisterForm from "./components/CustomerRegisterForm.js"
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from "react-router-dom";
+import './App.css';
+import React from 'react';
+//import { Switch } from 'react-router-dom'; ----> this works with react-router-dom v5
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
+//adminscreens
+import PrivateScreenDash from './privateDash/screens/privatedash';
+import AddPrivateRoom from './privateDash/screens/addPrivRoom';
+import ReviewBookings from './privateDash/screens/viewPrivScBookingReport';
+import GenerateReport from './privateDash/screens/viewPrivScBookings';
+import EditPrivateRoom from './privateDash/screens/editPrivRoom';
 
+//userscreens
+import UserBooking from './privateDash/screens/userBooking'; //import userScreen component
+import UserScreen from './privateDash/screens/userScreen'; //import userBooking component
 
 function App() {
-
+  
   return (
-    <Router> {/* routeer */}
-      <Switch> {/* stop redirect if path found */}
-        <Route path="/loyality/dashboard" exact>
-          <LoyalityDash  />
-        </Route>
-        <Route path="/register" exact>
-          <CustomerRegisterForm />
-        </Route>
-        <Redirect to="/" />
-      </Switch>
+
+    <Router>
+      
+      <Routes>
+
+        <Route path="/" exact element={<PrivateScreenDash />} />  {/*this will be private-dash*/}
+        <Route path="/add-room" exact element={<AddPrivateRoom />} />
+        <Route path="/edit-room" exact element={<EditPrivateRoom />} />
+        <Route path="/review-booking" exact element={<ReviewBookings />} />
+        <Route path="/view-report" exact element={<GenerateReport />} />
+        <Route path="/user1" exact element={<UserScreen />} />
+        <Route path="/user-booking" exact element={<UserBooking />} />
+  
+      </Routes>
+
     </Router>
   );
 }
