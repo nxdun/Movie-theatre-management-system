@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column; /* Stack buttons vertically */
     align-items: flex-end; /* Align buttons to the right within the container */
-    margin: 20px; /* Add some margin for spacing */
   }
   
   /* Style the buttons */

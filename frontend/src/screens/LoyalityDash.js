@@ -1,5 +1,4 @@
 import Header from "../shared/Header";
-import Footer from "../shared/Footer";
 import LoyalityControls from "../components/LoyalityControls";
 import LoyalityTable from "../components/LoyalityTable";
 import "./LoyalityDash.css";
