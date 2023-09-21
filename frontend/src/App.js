@@ -6,13 +6,13 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 //adminscreens
 import PrivateScreenDash from './privateDash/screens/privatedash';
 import AddPrivateRoom from './privateDash/screens/addPrivRoom';
-import ReviewBookings from './privateDash/screens/viewBooking';
-import GenerateReport from './privateDash/screens/viewReport';
+import ReviewBookings from './privateDash/screens/viewPrivScBookingReport';
+import GenerateReport from './privateDash/screens/viewPrivScBookings';
 import EditPrivateRoom from './privateDash/screens/editPrivRoom';
 
 //userscreens
-import UserScreen from './userInterface/screens/userScreen'; //import userScreen component
-import UserBooking from './userInterface/screens/userBooking'; //import userBooking component
+import UserBooking from './privateDash/screens/userBooking'; //import userScreen component
+import UserScreen from './privateDash/screens/userScreen'; //import userBooking component
 
 function App() {
   

@@ -1,13 +1,7 @@
 import React, { useState } from 'react';   // import React and useState hook
 
-
-//components
 import PrivScreenList from '../components/PrivScreenList';
-import SidePanel  from '../components/sidePanelBtns'; // import SidePanel component
-//import SearchBar from '../components/SearchBar'; // import SearchBar component
-//import PrivDataTable from '../components/privDataTable'; // import DataTable component
-import Header from '../components/Header'; // import Header component
-import { Router } from 'react-router-dom';
+
 
 
 const DUMMY_PRIVSCREENS = [ // dummy data for private screening rooms
@@ -36,60 +30,17 @@ const DUMMY_PRIVSCREENS = [ // dummy data for private screening rooms
 ];
 
 
-
-const PrivateDashboard = () => {
-  return (
-
-    
-      <div>
-          <Header />
-          <PrivScreenList items={DUMMY_PRIVSCREENS}/>  
-
-          <div>
-           {/*<PrivDataTable /> */}
-            <h2>Main Private screening dashboard</h2>
-            <SidePanel />
-
-          </div>
-          
-
-
+const userScreen = () => {
+    return (
 
         <div>
 
+           <h2>User Screen</h2>
+           <PrivScreenList items={DUMMY_PRIVSCREENS}/> 
 
-         <h2>Main Private screening dashboard</h2>  
-
-
-         </div>
-
-        
-
-         <div>
-
-          
-         </div>
-
-
-
-
-
-
-
-
-      </div>
-
-      
-  )
+        </div>
+    )
 };
 
 
-
-
-
-
-export default PrivateDashboard; // export PrivateDash component
-
-
-
-
+export default userScreen;

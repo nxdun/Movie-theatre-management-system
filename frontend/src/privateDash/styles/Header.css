@@ -1,11 +1,11 @@
-/* main color pallete */
+/* main color pallete 
 :root {
     --black: #222222;
     --white: #FFFFFF;
     --green: #006600;
     --red: #ff0000;
   }
-  
+  */
   /* Default Value Removal */
   body {
     margin: 0;
