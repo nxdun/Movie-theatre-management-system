@@ -1,30 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from './components/Header';
+import AddMovie from "./components/AddMovie";
+import AllMovies from "./components/AllMovies";
+import UpdateMovie from "./components/UpdateMovie";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Header />
+
+        <Routes>
+          <Route path="/addMovie" exact element={<AddMovie />} /> {/*we write exact eod for only display path=/ for exact /*/}
+          <Route path="/" exact element={<AllMovies />} />
+          <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
-
-
-
-
-
 
 export default App;
