@@ -6,10 +6,10 @@ import logger from "./utils/logger.js";
 import { connect } from "./utils/database.connection.js";
 
 //routes(middlewares)
-const customerRoutes = require("./routes/customer.js");
 const productRouter = require("./routes/product.js");
 const supplierRouter = require("./routes/supplier.js");
 const stockRouter = require("./routes/stock.js");
+const customerRoutes = require("./routes/customer.js");
 const loyaltyRoute = require("./routes/loyalitydb.js");
 
 
@@ -37,5 +37,3 @@ app.listen(PORT, () => {
   app.use("/supplier", supplierRouter);
 
 }); // listen to port
-
-

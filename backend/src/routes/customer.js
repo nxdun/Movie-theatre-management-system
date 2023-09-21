@@ -1,3 +1,5 @@
+import logger from "../utils/logger.js";
+
 const router = require("express").Router();
 const Customer = require("../models/customer.js");
 const logem = require("../utils/logger.js");
@@ -76,6 +78,7 @@ const createCustomer = async (req, res, loyalty = false) => {
       );
     }
   } catch (err) {
+    logger.error("error in customer.js");
     errorHandler(
       res,
       400,
