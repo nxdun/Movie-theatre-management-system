@@ -33,7 +33,7 @@ function App() {
         <Route path="/viewreport" exact element={<GenerateReport />} />
         <Route path="/user1" exact element={<UserScreen />} />
         <Route path="/userbooking" exact element={<UserBooking />} />
-        <Route path="/user-booking" exact element={<UserBooking />} />
+        
   
       </Routes>
 
