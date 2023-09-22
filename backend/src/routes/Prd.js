@@ -21,9 +21,12 @@ router.route("/add").post(async (req, res) => {
 });
 
 router.route("/").get((req, res) => {
-  Prd.find()
-    .then((products) => res.json(products)) // Change "product" to "products"
-    .catch((err) => res.status(400).json("Error: " + err));
+  Product.find()
+    .then((products) => res.json(products))
+    .catch((err) => {
+      console.error("Error: ", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
 });
 
 module.exports = router;

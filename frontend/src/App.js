@@ -39,10 +39,10 @@ import "./App.css";
       <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
       <main className="app">
       <Routes>
-         {/*nadun*/}
-        <Route path="/loyality/dashboard" exact element={<LoyalityDash />} />
-         {/*dunal*/}
-        <Route path="/privatedash" exact element={<PrivateScreenDash />} />  
+        {/* nadun */}
+        <Route path="/loyality" exact element={<LoyalityDash />} />
+        {/* dunal */}
+        <Route path="/privatedash" exact element={<PrivateScreenDash />} />
         <Route path="/addroom" exact element={<AddPrivateRoom />} />
         <Route path="/editroom" exact element={<EditPrivateRoom />} />
         <Route path="/reviewbooking" exact element={<ReviewBookings />} />
