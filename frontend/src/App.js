@@ -49,7 +49,7 @@ import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
         <Route path="/user1" exact element={<UserScreen />} />
         <Route path="/userbooking" exact element={<UserBooking />} />
 
-         {/*vishwa*/}
+         {/*vishwaa*/}
 
           <Route exact path="/shop" element={<ShopScreen />} />
           <Route exact path="/product/:id" element={<ProductScreen />} />
