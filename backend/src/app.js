@@ -24,10 +24,10 @@ const cors = require('cors');
 app.use(express.json({ limit: "2mb" }));
 app.use(cors());
 
-// Define your routes
-app.use('/prd', Prd);
-app.use('/customer', customerRoutes);
+// Routes
+app.use("/customer",customerRoutes);
 app.use("/loyality", loyaltyRoute);
+app.use('/prd', Prd);
 app.use("/product", productRouter);
 app.use("/supplier", supplierRouter);
 app.use("/stock", stockRouter);

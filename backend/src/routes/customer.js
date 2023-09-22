@@ -1,17 +1,10 @@
-import logger from "../utils/logger.js";
 
 const router = require("express").Router();
 const Customer = require("../models/customer.js");
-const logem = require("../utils/logger.js");
-const LoyaltySettings = require("../configs/loyaltySettings.js");
-const waitForDatabase = require("../configs/databaseMiddleware.js");
+const logger = require("../utils/logger.js");
 
 
-// Get loyalty settings
-router.get("/", async (req, res) => { 
-  const loyaltySettings = LoyaltySettings.getLoyaltySettings();
-  res.json(loyaltySettings);
-});
+
 // Error handling middleware
 const errorHandler = (res, status, message) => {
   res.status(status).json({ status: message });
@@ -103,6 +96,7 @@ const createCustomer = async (req, res, loyalty = false) => {
 
 //add
 router.route("/add").post(async (req, res) => {
+  console.log(req.loyaltyData);
   await createCustomer(req, res);  
 });
 
