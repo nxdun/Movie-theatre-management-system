@@ -131,16 +131,29 @@
 /* Alert message popup styles */
 .alert {
   position: fixed;
-  top: 0;
-  left: 10;
-  right: 0;
+  top: 20px; 
+  right: 20px; 
   background: red;
   color: white;
   text-align: center;
   padding: 10px;
   display: none;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+  z-index: 1000; 
 }
 
 .alert.show {
   display: block;
+  animation: fadeIn 0.3s ease-in-out; 
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
