@@ -1,4 +1,5 @@
-import React, { useCallback, useReducer } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import Input from "../components/PrivateScreenForm/Input";
 import Button from "../components/PrivateScreenForm/Button";
@@ -6,35 +7,12 @@ import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
 } from "../components/util/validators";
-import "./addPrivRoom.css";
-
-const formReducer = (state, action) => {
-  switch (action.type) {
-    case "INPUT_CHANGE":
-      let formIsValid = true;
-      for (const inputID in state.inputs) {
-        if (inputID === action.inputID) {
-          formIsValid = formIsValid && action.isValid;
-        } else {
-          formIsValid = formIsValid && state.inputs[inputID].isValid;
-        }
-      }
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.inputID]: { value: action.value, isValid: action.isValid },
-        },
-        isValid: formIsValid,
-      };
-    default:
-      return state;
-  }
-};
+import { useForm } from "../components/PrivateScreenHooks/privScform-hook";
+import "./inputPrivRoom.css";
 
 const AddPrivRoom = () => {
-  const [formState, dispatch] = useReducer(formReducer, {
-    inputs: {
+  const [formState, inputHandler] = useForm(
+    {
       privscname: {
         value: "",
         isValid: false,
@@ -56,19 +34,22 @@ const AddPrivRoom = () => {
         isValid: false,
       },
     },
-    isValid: false,
-  });
+    false
+  );
 
-  const inputHandler = useCallback((id, value, isValid) => {
-    dispatch({
-      type: "INPUT_CHANGE",
-      value: value,
-      isValid: isValid,
-      inputID: id,
-    });
-  }, []);
+  const navigate = useNavigate();
+
+  const handleCancelButtooncliclk = () => {
+    navigate("/privatescreen/dashboard");
+  };
+
+  const privScreenSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log(formState.inputs); // send this to the backend!
+  };
+
   return (
-    <form className="privscreen-form">
+    <form className="privscreen-form" onSubmit={privScreenSubmitHandler}>
       <h4 className="form-heading mb-4 text-primary text-center">
         Add Private Screening Room
       </h4>
@@ -119,7 +100,7 @@ const AddPrivRoom = () => {
       <Button type="submit" disabled={!formState.isValid}>
         ADD ROOM
       </Button>
-      <Button >Cancel</Button>
+      <Button onClick={handleCancelButtooncliclk}>Cancel</Button>
     </form>
   );
 };

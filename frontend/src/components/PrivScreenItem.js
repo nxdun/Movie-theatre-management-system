@@ -19,7 +19,7 @@ const PrivScreenItem = (props) => {
             <p>Location:    <b>{props.privsclocation}</b></p>  
          </div>
         <div className="priv-sclist-item__actions">
-            <Button>EDIT</Button>
+            <Button to={`/privateScreen/${props.id}`}>EDIT</Button>
             <Button danger>DELETE</Button>
         </div>
         </Card>

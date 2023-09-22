@@ -8,13 +8,13 @@ const SidePnlBtns = () => {
 
   <div className="btn-container">
 
-      <button className='btn 01' onClick={() => navigate("/add-room")}>
+      <button className='btn 01' onClick={() => navigate("/privateScreen/Addroom")}>
         Add Private Room
       </button>     
         
-        <button className='btn 03' onClick={() => navigate("/review-booking")}>
+        <button className='btn 03' onClick={() => navigate("/privateScreen/Reviewbooking")}>
           Review Screen Bookings</button>
-        <button className='btn 04' onClick={() => navigate("/view-report")}>
+        <button className='btn 04' onClick={() => navigate("/privateScreen/Viewbookingreport")}>
           Generate Report</button>
 
 
