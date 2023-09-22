@@ -14,9 +14,9 @@ const PrivScreenItem = (props) => {
         <div className="priv-sclist-item__info">
             <h2>{props.privscname}</h2>
             <h3>Price(Rs):  {props.privscprice}</h3>
-            <p>{props.privscdescription}</p>
             <p>Seat Capacity:    <b>{props.privseatcapacity}</b></p>
             <p>Location:    <b>{props.privsclocation}</b></p>  
+            <p>{props.privscdescription}</p>
          </div>
         <div className="priv-sclist-item__actions">
             <Button to={`/privateScreen/${props.id}`}>EDIT</Button>

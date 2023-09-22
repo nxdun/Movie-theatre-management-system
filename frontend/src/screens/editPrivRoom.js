@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 
 import Input from "../components/PrivateScreenForm/Input";
 import Button from "../components/PrivateScreenForm/Button";
+import Card from "../components/UIelements/Card";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
@@ -39,11 +40,41 @@ const DUMMY_PRIVSCREENS = [ // dummy data for private screening rooms
 
 
 const EditPrivRoom = () => {
+
+  const [isLoading, setIsLoading] = useState(true);
+
   const privScId = useParams().privScId;
 
-  const identifiedPrivSc = DUMMY_PRIVSCREENS.find(p => p.id === privScId);
+  const [formState, inputHandler, setFormData] =useForm({
+    privscname: {
+      value: "",
+      isValid: false,
+    },
+    privscprice: {
+      value: "",
+      isValid: false,
+    },
+    privseatcapacity: {
+      value: "",
+      isValid: false,
+    },
+    privsclocation: {
+      value: "",
+      isValid: false,
+    },
+    privscdescription: {
+      value: "",
+      isValid: false,
+    },
 
-  const [formState, inputHandler] =useForm({
+  },false);
+
+  const identifiedPrivSc = DUMMY_PRIVSCREENS.find(p => p.id === privScId);
+  
+  useEffect(() => {
+  if (identifiedPrivSc) {
+
+  setFormData({
     privscname: {
       value: identifiedPrivSc.privscname,
       isValid: true,
@@ -64,18 +95,37 @@ const EditPrivRoom = () => {
       value: identifiedPrivSc.privscdescription,
       isValid: true,
     },
-
   },true);
+}
+  setIsLoading(false);
+}, [setFormData, identifiedPrivSc]);
+
+
+  const privScreenUpdateSubmitHandler = event => {
+    event.preventDefault(); 
+    console.log(formState.inputs); // send  this to the backend!
+  };
 
   if (!identifiedPrivSc) {
     return (
       <div className="center">
+        <Card>
         <h2>Could not find private screening room!</h2>
+        </Card>
       </div>
     );
   }
+
+  if (isLoading) {
+    return (
+      <div className="center">
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
+
   return (   
-  <form className="privscreen-form" >
+  <form className="privscreen-form" onSubmit={privScreenUpdateSubmitHandler}>
   <h4 className="form-heading mb-4 text-primary text-center">
     Edit Private Screening Room
   </h4>
@@ -139,6 +189,8 @@ const EditPrivRoom = () => {
   </Button>
   
   </form> 
+    
+
     
     
 
