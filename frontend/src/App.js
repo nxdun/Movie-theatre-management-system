@@ -2,6 +2,8 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SeatSelect from './pages/SeatSelect';
 import Slip from './pages/Slip';
+import SeatUpdate from './pages/SeatUpdate';
+import SeatManage from './pages/SeatManage';
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SeatSelect />} />
           <Route path="/Slip/:bookingId/:seatId/:theaterId/:price" element={<Slip />} />
+          <Route path="/SeatManage" element={<SeatManage />} />
 
         </Routes>
       </BrowserRouter>

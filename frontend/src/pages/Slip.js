@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
+
 function Slip() {
   // Get URL parameters
   const { bookingId, seatId, theaterId, price } = useParams();
@@ -29,6 +30,19 @@ function Slip() {
           console.error('Error deleting booking:', error);
           setIsDeleting(false);
         });
+
+        
+        
+    };
+
+    const handleUpdateClick = (seatId) => {
+      // Assuming you have the seatId value
+      navigate(`/Slip/${bookingId}/${seatId}/${theaterId}/${price}`);
+    };
+
+    const handleGoToSeatManageClick = () => {
+      // Navigate to the SeatManage component
+      navigate('/SeatManage');
     };
     
 
@@ -48,9 +62,9 @@ function Slip() {
         </div>
       )}
 
-      <Link to="/">
-        <button>Update</button>
-      </Link>
+      <button onClick={() => handleUpdateClick(seatId)}>Update</button>
+      <button onClick={handleGoToSeatManageClick}>Go to SeatManage</button>
+
     </div>
   );
 }
