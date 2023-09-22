@@ -40,7 +40,7 @@ import "./App.css";
       <main className="app">
       <Routes>
         {/* nadun */}
-        <Route path="/loyality" exact element={<LoyalityDash />} />
+        <Route path="/loyality/dashboard" exact element={<LoyalityDash />} />
         {/* dunal */}
         <Route path="/privatedash" exact element={<PrivateScreenDash />} />
         <Route path="/addroom" exact element={<AddPrivateRoom />} />

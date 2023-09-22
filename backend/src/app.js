@@ -27,7 +27,7 @@ app.use(cors());
 // Define your routes
 app.use('/prd', Prd);
 app.use('/customer', customerRoutes);
-app.use("/loyalty", loyaltyRoute);
+app.use("/loyality", loyaltyRoute);
 app.use("/product", productRouter);
 app.use("/supplier", supplierRouter);
 app.use("/stock", stockRouter);
