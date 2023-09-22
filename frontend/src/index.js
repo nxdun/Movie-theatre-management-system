@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'; //there is no client thing in video res
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import './index.css';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 

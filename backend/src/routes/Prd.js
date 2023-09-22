@@ -1,46 +1,15 @@
-const router = require("express").Router();
-const Product = require("../models/Prd"); // Import the Product model
+const express = require('express');
+const router = express.Router();
+const { getAllProducts, getProductById } = require("../controller/productControllers"); // Corrected import path
 
-router.route("/add").post(async (req, res) => {
-  try {
-    const { name, imageUrl, description, price, countInStock } = req.body;
+//@Get all products from db
+//@route GET /api/products
+//@access Public
+router.get("/", getAllProducts);
 
-    const newProduct = new Product({
-      name,
-      imageUrl,
-      description,
-      price,
-      countInStock,
-    });
-
-    await newProduct.save();
-    res.json({ message: "Product added successfully" });
-  } catch (err) {
-    res.status(400).json({ error: "Error adding Product", details: err.message });
-  }
-});
-
-router.route("/").get((req, res) => {
-  Product.find()
-    .then((products) => res.json(products))
-    .catch((err) => {
-      console.error("Error: ", err);
-      res.status(500).json({ error: "Internal Server Error" });
-    });
-});
-
-
-router.route("/get/:id").get(async (req, res) => {
-  try {
-    const prdID = req.params.id;
-    const result = await Product.findById(prdID);
-    if (!result) {
-      res.status(400).json(res, 404, "Prd not found");
-    }
-    res.status(200).json({ status: "Prd fetched", result });
-  } catch (err) {
-    res.status(400).json(res, 500, `Error with get customer: ${err.message}`);
-  }
-});
+//@Get a product by ID from db
+//@route GET /api/products/:id
+//@access Public
+router.get("/:id", getProductById);
 
 module.exports = router;

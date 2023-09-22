@@ -6,8 +6,10 @@ import Product from '../components/Product';
 
 const ShopScreen = () => {
   const dispatch = useDispatch();
-  const getProducts = useSelector((state) => state.getProducts);
-  const { products, loading, error } = getProducts;
+
+  const { products, loading, error } = useSelector((state) => state.getProducts);
+
+
 
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchInput, setSearchInput] = useState('');

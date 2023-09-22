@@ -53,7 +53,7 @@ import "./App.css";
          {/*vishwaa*/}
 
           <Route exact path="/shop" element={<ShopScreen />} />
-          <Route exact path="/product/:id" element={<ProductScreen />} />
+          <Route exact path="/prd/:id" element={<ProductScreen />} />
           <Route exact path="/cart" element={<CartScreen />} />
           <Route exact path="/success" element={<Success />} />
           <Route exact path="/cancel" element={<Cancel />} />
