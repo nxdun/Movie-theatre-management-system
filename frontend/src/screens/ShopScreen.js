@@ -51,11 +51,11 @@ const ShopScreen = () => {
 
       <div className="homescreen__products">
         {loading ? (
-          <div class="screen">
-          <div class="loader">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+          <div className="screen">
+          <div className="loader">
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
             <h1>Loading Products...</h1>
           </div>
         </div>
