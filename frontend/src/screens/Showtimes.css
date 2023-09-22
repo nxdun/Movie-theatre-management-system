@@ -16,8 +16,7 @@
     justify-content: space-between;
     border: 2px solid #000; 
     border-radius: 8px;
-    padding: 5px; 
-    margin-top: 80px;
+    padding: 5px;
     
   }
   
@@ -25,7 +24,7 @@
     width: 200px; 
     height: 150px;
     background-color: #001323;
-    color: rgb(243, 205, 17);
+    color: rgb(252, 250, 240);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,11 +37,15 @@
   }
   
   .date-item.selected {
-    background-color: #512525;
+    background-color: #ffffff;
+    color: #000;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
   }
   
   .date-item:hover {
-    background-color: #512525;
+    background-color: #022b58;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
   }
 
 
@@ -59,6 +62,9 @@
 
 .showtimes.show {
   max-height: 1000px; 
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  padding-top: 6px;
 }
 
 /* Showtime list */
@@ -85,12 +91,12 @@
 }
 
 .showtime-item.selected {
-  background-color: #380043;
+  background-color: #001323;
   color: #fff;
 }
 
 .showtime-item:hover {
-  background-color: #380636;
+  background-color: #001323;
   color: #fff;
 
 }
@@ -140,7 +146,7 @@
   display: none;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
-  z-index: 1000; 
+  z-index: 1000;
 }
 
 .alert.show {
