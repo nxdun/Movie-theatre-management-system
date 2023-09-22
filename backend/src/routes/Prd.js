@@ -33,7 +33,6 @@ router.route("/").get((req, res) => {
 router.route("/get/:id").get(async (req, res) => {
   try {
     const prdID = req.params.id;
-    console.log(prdID);
     const result = await Product.findById(prdID);
     if (!result) {
       res.status(400).json(res, 404, "Prd not found");
