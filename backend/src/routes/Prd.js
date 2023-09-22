@@ -21,7 +21,7 @@ router.route("/add").post(async (req, res) => {
 });
 
 router.route("/").get((req, res) => {
-  Product.find()
+  Prd.find()
     .then((products) => res.json(products)) // Change "product" to "products"
     .catch((err) => res.status(400).json("Error: " + err));
 });

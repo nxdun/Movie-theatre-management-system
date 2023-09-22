@@ -1,10 +1,10 @@
-const Product = require('../models/Product');
+const Prd = require('../src/models/Prd');
 //@GET Product function
 const getAllProducts = async (req, res) => {
     try {
-        const products = await Product.find({});
+        const Prd = await Prd.find({});
 
-        res.json(products);
+        res.json(Prd);
 
     } catch (error) {
         console.error(error);
@@ -14,9 +14,9 @@ const getAllProducts = async (req, res) => {
 //@GET Product by id function
 const getProductsById = async (req, res) => {
     try {
-        const products = await Product.findById(req.params.id);
+        const Prd = await Prd.findById(req.params.id);
 
-        res.json(products);
+        res.json(Prd);
           
     } catch (error) {
         console.error(error);

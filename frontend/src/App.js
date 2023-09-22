@@ -1,6 +1,5 @@
-import './App.css';
-  import { useState } from "react";
-  import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
+import { useState } from "react";
+import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
   
   
   // Screens
@@ -15,8 +14,7 @@ import './App.css';
   import Success from "./components/Success";
   import Cancel from "./components/Cancel";
   import React from 'react';
-  //import { Switch } from 'react-router-dom'; ----> this works with react-router-dom v5
-  import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+  
   
   //adminscreens
   import PrivateScreenDash from "./screens/privatedash";
@@ -34,7 +32,11 @@ import './App.css';
     
     return (
       <Router>
-      
+        {/*Vishwa*/}
+      <Navbar click={() => setSideToggle(true)} />
+      <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+      <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
+      <main className="app">
       <Routes>
          {/*nadun*/}
         <Route path="/loyality/dashboard" exact element={<LoyalityDash />} />
@@ -46,22 +48,17 @@ import './App.css';
         <Route path="/viewreport" exact element={<GenerateReport />} />
         <Route path="/user1" exact element={<UserScreen />} />
         <Route path="/userbooking" exact element={<UserBooking />} />
+
          {/*vishwa*/}
-         <Navbar click={() => setSideToggle(true)} />
-      <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
-      <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
-      <main className="app">
-        <Routes>
+
           <Route exact path="/shop" element={<ShopScreen />} />
           <Route exact path="/product/:id" element={<ProductScreen />} />
           <Route exact path="/cart" element={<CartScreen />} />
           <Route exact path="/success" element={<Success />} />
           <Route exact path="/cancel" element={<Cancel />} />
-          
-        </Routes>
-      </main>
-      </Routes>
 
+      </Routes>
+      </main>
     </Router>
   );
 }
