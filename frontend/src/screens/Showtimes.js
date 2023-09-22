@@ -17,7 +17,7 @@ const Showtimes = () => {
 
   };
 
-  // Function to generate an array of dates for the week
+  // Function to generate an array of dates with day names for the week
   const getWeekDates = () => {
     const today = new Date();
     const weekDates = [];
@@ -25,7 +25,15 @@ const Showtimes = () => {
     for (let i = 0; i < 7; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
-      weekDates.push(date.toISOString().split('T')[0]);
+
+      // Get the day name
+      const options = { weekday: 'long' };
+      const dayName = new Intl.DateTimeFormat('en-US', options).format(date);
+
+      weekDates.push({
+        date: date.toISOString().split('T')[0],
+        dayName: dayName,
+      });
     }
 
     return weekDates;
@@ -39,11 +47,11 @@ const Showtimes = () => {
   // Function to handle date click
   const handleDateClick = (date) => {
     if (date === selectedDate) {
-      // If the clicked date is the same as the selected date, hide the showtime details
+
       setSelectedDate(null);
       setSelectedShowtime(null);
     } else {
-      // If a different date is clicked, display its showtime details
+
       setSelectedDate(date);
     }
   };
@@ -51,7 +59,7 @@ const Showtimes = () => {
   // Function to handle showtime click
   const handleShowtimeClick = (showtime) => {
     if (showtime === selectedShowtime) {
-      // If the same showtime is clicked twice, deselect it
+      //  same showtime is clicked twice, deselect it
       setSelectedShowtime(null);
     } else {
       setSelectedShowtime(showtime);
@@ -65,7 +73,7 @@ const Showtimes = () => {
       // If no showtime is selected, show an alert
       setAlertMessage("Please select a showtime");
     } else {
-      // If a showtime is selected, log it to the console
+
       console.log("Selected Showtime:", selectedShowtime);
     }
   };
@@ -80,13 +88,14 @@ const Showtimes = () => {
       </div>
       <h2>Avatar</h2>
       <div className="date-list">
-        {weekDates.map((date) => (
+        {weekDates.map((dateInfo) => (
           <div
-            key={date}
-            className={`date-item ${date === selectedDate ? 'selected' : ''}`}
-            onClick={() => handleDateClick(date)}
+            key={dateInfo.date}
+            className={`date-item ${dateInfo.date === selectedDate ? 'selected' : ''}`}
+            onClick={() => handleDateClick(dateInfo.date)}
           >
-            {date}
+            <div className="date-value">{dateInfo.date}</div>
+            <div className="day-name">{dateInfo.dayName}</div>
           </div>
         ))}
       </div>
@@ -118,7 +127,7 @@ const Showtimes = () => {
           )
         ) : null}
       </div>
-      {/* Alert message popup */}
+    
       <div className={`alert ${alertMessage ? 'show' : ''}`}>
         {alertMessage}
         <button onClick={() => setAlertMessage(null)}>Close</button>
