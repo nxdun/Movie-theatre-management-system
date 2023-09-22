@@ -39,7 +39,7 @@ import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
       <main className="app">
       <Routes>
         {/* nadun */}
-        <Route path="/" exact element={<LoyaltyDash />} />
+        <Route path="/loyality" exact element={<LoyalityDash />} />
         {/* dunal */}
         <Route path="/privatedash" exact element={<PrivateScreenDash />} />
         <Route path="/addroom" exact element={<AddPrivateRoom />} />
