@@ -1,9 +1,10 @@
 const router = require("express").Router();
 let Booking = require("../models/booking.js");
+const { v4: uuidv4 } = require("uuid"); // Import the uuid package
 
 // POST: /bookings/
 router.route("/add").post((req, res) => {
-    const bookingId = req.body.bookingId;
+    const bookingId = uuidv4(); // Generate a unique ID
     const bookingDate = Date(req.body.bookingDate);
     const showTime = req.body.showTime;
     const theaterId = req.body.theaterId;
@@ -37,22 +38,23 @@ router.route("/:id").get((req, res) => {
     Booking.findById(req.params.id).then(booking => res.json(booking)).catch(err => res.status(400).json("Error: " + err));
 });
 
-// DELETE: /bookings/:id
-router.route("/delete/:id").delete(async (req, res) => {
+// DELETE: /bookings/delete/:seatId
+router.route("/delete/:seatId").delete(async (req, res) => {
     try {
-        const userId = req.params.id;
-        const deletedBooking = await Booking.findByIdAndDelete(userId);
-        
+        const seatId = req.params.seatId;
+        const deletedBooking = await Booking.findOneAndDelete({ seatId: seatId });
+
         if (!deletedBooking) {
             return res.status(404).send({ status: "Booking not found" });
         }
-        
+
         res.status(200).send({ status: "Booking deleted" });
     } catch (err) {
         console.error(err.message);
         res.status(500).send({ status: "Error with delete booking" });
     }
 });
+
 
 
 
