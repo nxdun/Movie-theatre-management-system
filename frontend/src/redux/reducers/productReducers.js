@@ -10,6 +10,7 @@ export const getProductsReducer = (state = { products: [] }, action) => {
       };
     case actionTypes.GET_PRODUCTS_SUCCESS:
       return {
+        ...state,
         products: action.payload,
         loading: false,
       };

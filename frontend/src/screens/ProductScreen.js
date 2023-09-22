@@ -16,10 +16,9 @@ const ProductScreen = () => {
   const { loading, error, product } = productDetails;//if error or loading show error or loading
 
   useEffect(() => {
-    if (!product || id !== product._id) {
-      dispatch(getProductDetails(id));
-    }//if product not exist or id not equal to product id then dispatch
-  }, [dispatch, id, product]);
+    console.log("Dispatching getProductDetails with id:", id);
+    dispatch(getProductDetails(id));
+  }, [dispatch, id])
 
   const addToCartHandler = () => {
     dispatch(addToCart(id, qty));//add to cart with id and qty

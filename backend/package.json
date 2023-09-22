@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.22.15",
-    "@babel/node": "^7.22.15",
+    "@babel/node": "^7.22.19",
     "@babel/preset-env": "^7.22.15",
     "nodemon": "^3.0.1"
   },
