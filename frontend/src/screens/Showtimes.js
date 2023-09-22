@@ -1,4 +1,3 @@
-// Showtimes.js
 import React, { useState } from 'react';
 import './Showtimes.css'; // Import the CSS file
 
@@ -13,27 +12,21 @@ const Showtimes = () => {
     '2023-09-27': ['10:30', '14:30', '18:30'],
     '2023-09-28': ['10:30', '14:30', '18:30'],
     '2023-09-29': ['10:30', '14:30', '18:30'],
-
-
   };
 
-  // Function to generate an array of dates with day names for the week
+  // Generate an array of dates for the week starting from today, along with day names
   const getWeekDates = () => {
     const today = new Date();
+    const offset = 330 * 60 * 1000;
+    const todayWithOffset = new Date(today.getTime() + offset); // matching the local time zone
     const weekDates = [];
 
     for (let i = 0; i < 7; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
-
-      // Get the day name
-      const options = { weekday: 'long' };
-      const dayName = new Intl.DateTimeFormat('en-US', options).format(date);
-
-      weekDates.push({
-        date: date.toISOString().split('T')[0],
-        dayName: dayName,
-      });
+      const date = new Date(todayWithOffset);
+      date.setDate(todayWithOffset.getDate() + i);
+      const dateString = date.toISOString().split('T')[0];
+      const dayName = date.toLocaleDateString('en-US', { weekday: 'long' }); // Get the day name
+      weekDates.push({ date: dateString, day: dayName });
     }
 
     return weekDates;
@@ -47,11 +40,10 @@ const Showtimes = () => {
   // Function to handle date click
   const handleDateClick = (date) => {
     if (date === selectedDate) {
-
+      // If the clicked date is the same as the selected date, hide the showtime details
       setSelectedDate(null);
       setSelectedShowtime(null);
     } else {
-
       setSelectedDate(date);
     }
   };
@@ -59,7 +51,7 @@ const Showtimes = () => {
   // Function to handle showtime click
   const handleShowtimeClick = (showtime) => {
     if (showtime === selectedShowtime) {
-      //  same showtime is clicked twice, deselect it
+      // If the same showtime is clicked twice, deselect it
       setSelectedShowtime(null);
     } else {
       setSelectedShowtime(showtime);
@@ -67,18 +59,16 @@ const Showtimes = () => {
     }
   };
 
-
   const handleContinueClick = () => {
     if (!selectedShowtime) {
       // If no showtime is selected, show an alert
       setAlertMessage("Please select a showtime");
     } else {
-
       console.log("Selected Showtime:", selectedShowtime);
     }
   };
 
-  // Generate the array of dates for the week
+  // Generate the array of dates for the week starting from today in the local time zone
   const weekDates = getWeekDates();
 
   return (
@@ -88,14 +78,14 @@ const Showtimes = () => {
       </div>
       <h2>Avatar</h2>
       <div className="date-list">
-        {weekDates.map((dateInfo) => (
+        {weekDates.map(({ date, day }) => (
           <div
-            key={dateInfo.date}
-            className={`date-item ${dateInfo.date === selectedDate ? 'selected' : ''}`}
-            onClick={() => handleDateClick(dateInfo.date)}
+            key={date}
+            className={`date-item ${date === selectedDate ? 'selected' : ''}`}
+            onClick={() => handleDateClick(date)}
           >
-            <div className="date-value">{dateInfo.date}</div>
-            <div className="day-name">{dateInfo.dayName}</div>
+            <div>{date}</div>
+            <div className="day-name">{day}</div>
           </div>
         ))}
       </div>
@@ -127,7 +117,7 @@ const Showtimes = () => {
           )
         ) : null}
       </div>
-    
+      {/* Alert message popup */}
       <div className={`alert ${alertMessage ? 'show' : ''}`}>
         {alertMessage}
         <button onClick={() => setAlertMessage(null)}>Close</button>

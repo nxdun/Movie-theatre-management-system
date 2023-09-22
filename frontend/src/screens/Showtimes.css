@@ -28,7 +28,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
+    flex-direction: column;
+    text-align: center;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -44,8 +46,13 @@
   
   .date-item:hover {
     background-color: #022b58;
-    color: rgb(255, 255, 255);
+    color: rgb(252, 252, 252);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Add styling for day name */
+  .day-name {
+    font-size: 40px; 
   }
 
 
