@@ -48,22 +48,6 @@ import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
         <Route path="/viewreport" exact element={<GenerateReport />} />
         <Route path="/user1" exact element={<UserScreen />} />
         <Route path="/userbooking" exact element={<UserBooking />} />
-<<<<<<< HEAD
-        {/* vishwa */}
-        
-        {/* <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
-        <Backdrop show={sideToggle} click={() => setSideToggle(false)} /> */}
-        <main className="app">
-          <Routes>
-            <Route exact path="/shop" element={<ShopScreen />} />
-            <Route exact path="/product/:id" element={<ProductScreen />} />
-            <Route exact path="/cart" element={<CartScreen />} />
-            <Route exact path="/success" element={<Success />} />
-            <Route exact path="/cancel" element={<Cancel />} />
-          </Routes>
-        </main>
-      </Routes>
-=======
 
          {/*vishwa*/}
 
@@ -75,7 +59,6 @@ import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
 
       </Routes>
       </main>
->>>>>>> 6c3c9d5f41cec76d9a9d896695564d07bb0bdbcc
     </Router>
   );
 }
