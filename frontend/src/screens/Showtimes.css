@@ -1,0 +1,146 @@
+/* Header styling */
+.header {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  height: 30px; 
+  line-height: 2px; 
+}
+
+
+/* Date boxes */
+.date-list {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid #000; 
+    border-radius: 8px;
+    padding: 5px; 
+    margin-top: 80px;
+    
+  }
+  
+  .date-item {
+    width: 200px; 
+    height: 150px;
+    background-color: #001323;
+    color: rgb(243, 205, 17);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 5px; 
+    border-radius: 8px;
+  }
+  
+  .date-item.selected {
+    background-color: #512525;
+  }
+  
+  .date-item:hover {
+    background-color: #512525;
+  }
+
+
+/* Showtimes section */
+.showtimes {
+  margin-top: 10px; 
+  padding: 5px; 
+  background-color: #ebebeb;
+  border-radius: 8px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.showtimes.show {
+  max-height: 1000px; 
+}
+
+/* Showtime list */
+.showtime-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.showtime-item {
+  width: 100px; 
+  height: 50px; 
+  background-color: #eef1f3;
+  color: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+  border: 2px solid #2196F3;
+  border-radius: 8px;
+}
+
+.showtime-item.selected {
+  background-color: #380043;
+  color: #fff;
+}
+
+.showtime-item:hover {
+  background-color: #380636;
+  color: #fff;
+
+}
+
+  h2 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 60px;
+  }
+  
+  h3 {
+    font-size: 27px;
+  }
+
+  h4 {
+    font-size: 25px;
+  }
+  /* Button styling */
+.continue-button {
+  display: block;
+  margin: 0 auto; 
+  text-align: center; 
+  padding: 10px 20px; 
+  background-color: #0c9405;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.continue-button:hover {
+  background-color: #075103;
+}
+
+/* Alert message popup styles */
+.alert {
+  position: fixed;
+  top: 0;
+  left: 10;
+  right: 0;
+  background: red;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  display: none;
+}
+
+.alert.show {
+  display: block;
+}
