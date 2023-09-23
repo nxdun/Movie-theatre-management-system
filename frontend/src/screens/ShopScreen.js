@@ -1,4 +1,5 @@
 import './ShopScreen.css'
+import Footer from '../shared/Footer';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts as listProducts } from '../redux/actions/productActions';
@@ -78,6 +79,7 @@ const ShopScreen = () => {
           ))
         )}
       </div>
+      <Footer/>
     </div>
   );
 };

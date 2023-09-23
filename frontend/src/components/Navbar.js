@@ -15,8 +15,14 @@ const Navbar = ({ click }) => {
   
   return (
     <nav className="navbar">
-      <div className="navbar__logo">
-        <h2>GALAXY CINEMAS</h2>
+      <div className="icon">
+      <div className="rotator">
+        <img
+          src="https://raw.githubusercontent.com/nxdun/BlaBla/main/2.png"
+          alt="logo"
+          className="header-img"
+        />
+      </div>
       </div>
 
       <ul className="navbar__links">

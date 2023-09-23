@@ -5,7 +5,7 @@ const Header = () => {
       <div className="icon">
       <div className="rotator">
         <img
-          src="https://raw.githubusercontent.com/nxdun/BlaBla/main/logo.svg"
+          src="https://raw.githubusercontent.com/nxdun/BlaBla/main/2.png"
           alt="logo"
           className="header-img"
         />
