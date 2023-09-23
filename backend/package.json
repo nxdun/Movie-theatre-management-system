@@ -6,7 +6,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "nodemon --exec babel-node src/app.js"
+    "start": "nodemon --exec babel-node src/app.js",
+    "go": "cd frontend & npm start"
   },
   "devDependencies": {
     "@babel/core": "^7.22.15",
