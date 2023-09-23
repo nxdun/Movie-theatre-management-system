@@ -102,7 +102,7 @@ export default function UpdateMovie() {
                         <div className="grid grid-cols-2 gap-4">
                             <div className="mb-3">
                                 <label htmlFor="firstName" className="form-label" >
-                                    First Name
+                                Title
                                 </label>
                                 <input
                                     type="text"
@@ -115,24 +115,33 @@ export default function UpdateMovie() {
 
                                 />
                             </div>
-                            <div className="mb-3">
-                                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700" className="form-label">
-                                    Last Name
-                                </label>
-                                <input
-                                    type="text"
-                                    id="lastName"
-                                    placeholder="Last Name"
-                                    className="form-control"
-                                    value={genre}
-                                    onChange={(e) => setGenre(e.target.value)}
 
-                                />
-                            </div>
+
+                            <div className="mb-3">
+
+                            <label htmlFor="languages" className="form-label">Genre</label>
+                                <select
+                                        className="form-select"
+                                        id="genre"
+                                            onChange={(e) => {
+                                        setGenre(e.target.value);
+                                        }}
+                            >
+                                <option value="Action">Action</option>
+                                <option value="Adventure">Adventure</option>
+                                <option value="Comedy">Comedy</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Science Fiction">Science Fiction</option>
+                        </select>
+                        </div>
+
+  
+                            
                         </div>
                         <div>
                             <label  htmlFor="email" className="block text-sm font-medium text-gray-700">
-                                Email
+                            Director
                             </label>
                             <input
                                 type="text"
@@ -146,7 +155,7 @@ export default function UpdateMovie() {
                         </div>
                         <div>
                             <label htmlFor="age" className="block text-sm font-medium text-gray-700">
-                                Age
+                            Release Date
                             </label>
                             <input
                                 type="text"
@@ -160,7 +169,7 @@ export default function UpdateMovie() {
                         </div>
                         <div>
                             <label htmlFor="dob" className="block text-sm font-medium text-gray-700">
-                                Date of Birth
+                            Languages
                             </label>
                             <input
                                 type="text"
@@ -173,7 +182,7 @@ export default function UpdateMovie() {
                         </div>
                         <div>
                             <label htmlFor="" className="block text-sm font-medium text-gray-700">
-                                Role
+                            Runtime
                             </label>
                             <input
                                 type="text"
@@ -187,7 +196,7 @@ export default function UpdateMovie() {
                         </div>
                         <div>
                             <label htmlFor="" className="block text-sm font-medium text-gray-700">
-                                Role
+                            Rating
                             </label>
                             <input
                                 type="text"
