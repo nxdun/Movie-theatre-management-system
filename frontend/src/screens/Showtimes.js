@@ -32,8 +32,9 @@ const Showtimes = () => {
     return weekDates;
   };
 
-  // State to keep track of the selected date and showtime
-  const [selectedDate, setSelectedDate] = useState(null);
+  const weekDates = getWeekDates();
+
+  const [selectedDate, setSelectedDate] = useState(weekDates[0]?.date || null);
   const [selectedShowtime, setSelectedShowtime] = useState(null);
   const [alertMessage, setAlertMessage] = useState(null);
 
@@ -67,7 +68,7 @@ const Showtimes = () => {
 
       setTimeout(() => {
         setAlertMessage(null);
-      }, 2000);
+      }, 3000);
 
     } else {
       console.log("Selected Showtime:", selectedShowtime);
@@ -75,7 +76,9 @@ const Showtimes = () => {
   };
 
   // Generate the array of dates
-  const weekDates = getWeekDates();
+ // const weekDates = getWeekDates();
+
+  
 
   return (
     <div>

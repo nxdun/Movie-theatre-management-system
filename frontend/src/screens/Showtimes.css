@@ -78,8 +78,11 @@
 .showtimes.show {
   max-height: 500px; 
   background-color: #ffffff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.4);
   padding-top: 6px;
+  border: 1px solid #000;
+  border-left: 5px solid #000; 
+  border-right: 5px solid #000; 
 }
 
 /* Showtime list */
@@ -103,6 +106,8 @@
   margin: 5px;
   border: 2px solid #2196F3;
   border-radius: 8px;
+  margin-left: 6px;
+  
 }
 
 .showtime-item.selected {
@@ -124,15 +129,18 @@
   
   h3 {
     font-size: 27px;
+    margin-left: 25px;
   }
 
   h4 {
     font-size: 25px;
+    margin-left: 25px;
   }
   /* Button styling */
 .continue-button {
   display: block;
   margin: 0 auto; 
+  margin-bottom: 10px;
   text-align: center; 
   padding: 10px 20px; 
   background-color: #0c9405;
