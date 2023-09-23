@@ -30,8 +30,9 @@ const createCustomer = async (req, res, loyalty = false) => {
     Gender,
     Email,
     optInForMarketing,
-    TicketCount = 0, // Set default TicketCount to 0
+    TicketCount ,
     Type = false, // Set default Type to false
+    LoyaltyPoints , 
     LoyaltyRegisteredDate = null, // Set default LoyaltyRegisteredDate to null
     PointResetDate = null, // Set default PointResetDate to null
   } = req.body;
@@ -51,6 +52,7 @@ const createCustomer = async (req, res, loyalty = false) => {
       existingCustomer.PhoneNumber = PhoneNumber;
       existingCustomer.Gender = Gender;
       existingCustomer.Email = Email;
+      existingCustomer.LoyaltyPoints = LoyaltyPoints;
       existingCustomer.optInForMarketing = optInForMarketing;
 
       // Save the updated customer

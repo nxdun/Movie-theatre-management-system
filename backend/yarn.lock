@@ -996,6 +996,11 @@
   dependencies:
     sparse-bitfield "^3.0.3"
 
+"@stripe/stripe-js@^2.1.6":
+  version "2.1.6"
+  resolved "https://registry.npmjs.org/@stripe/stripe-js/-/stripe-js-2.1.6.tgz"
+  integrity sha512-QSzqQIcowgap7a40f3a7oUR+59Xet/i8fp1EsnzzwxK5oPRQsCbbLQ4Cd6qM0y1pdZMonFnCrAWayWdE9Lr0iA==
+
 "@types/node@*":
   version "20.5.9"
   resolved "https://registry.npmjs.org/@types/node/-/node-20.5.9.tgz"
