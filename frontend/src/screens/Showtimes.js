@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './Showtimes.css'; // Import the CSS file
+import './Showtimes.css';
 
 const Showtimes = () => {
-  // Sample data: showtimes for the week
+  // Sample data
   const showtimesByDate = {
     '2023-09-22': ['10:30', '14:30', '18:30'],
     '2023-09-23': ['10:30', '14:30', '18:30'],
@@ -14,7 +14,7 @@ const Showtimes = () => {
     '2023-09-29': ['10:30', '14:30', '18:30'],
   };
 
-  // Generate an array of dates for the week starting from today, along with day names
+  // get dates; starting from today, along with day names
   const getWeekDates = () => {
     const today = new Date();
     const offset = 330 * 60 * 1000;
@@ -25,7 +25,7 @@ const Showtimes = () => {
       const date = new Date(todayWithOffset);
       date.setDate(todayWithOffset.getDate() + i);
       const dateString = date.toISOString().split('T')[0];
-      const dayName = date.toLocaleDateString('en-US', { weekday: 'long' }); // Get the day name
+      const dayName = date.toLocaleDateString('en-US', { weekday: 'long'}); // Get the day name
       weekDates.push({ date: dateString, day: dayName });
     }
 
@@ -37,10 +37,10 @@ const Showtimes = () => {
   const [selectedShowtime, setSelectedShowtime] = useState(null);
   const [alertMessage, setAlertMessage] = useState(null);
 
-  // Function to handle date click
+  // handle date click
   const handleDateClick = (date) => {
     if (date === selectedDate) {
-      // If the clicked date is the same as the selected date, hide the showtime details
+
       setSelectedDate(null);
       setSelectedShowtime(null);
     } else {
@@ -74,7 +74,7 @@ const Showtimes = () => {
     }
   };
 
-  // Generate the array of dates for the week starting from today in the local time zone
+  // Generate the array of dates
   const weekDates = getWeekDates();
 
   return (
@@ -91,7 +91,8 @@ const Showtimes = () => {
             onClick={() => handleDateClick(date)}
           >
             <div>{date}</div>
-            <div className="day-name">{day}</div>
+            <div className="day-name">{day.substring(0, 3)}
+            </div>
           </div>
         ))}
       </div>

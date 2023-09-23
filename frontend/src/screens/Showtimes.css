@@ -12,13 +12,15 @@
 
 /* Date boxes */
 .date-list {
-    display: flex;
-    justify-content: space-between;
-    border: 2px solid #000; 
-    border-radius: 8px;
-    padding: 5px;
-    
-  }
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 0 auto; 
+  border-left: 2px solid #000; 
+  border-right: 2px solid #000; 
+  max-width: 800px; 
+}
+
   
   .date-item {
     width: 200px; 
@@ -41,13 +43,19 @@
   .date-item.selected {
     background-color: #ffffff;
     color: #000;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8); 
+    transform: translateY(-5px); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  }
+  
+  .date-item.selected:hover {
+    transform: translateY(-8px); 
   }
   
   .date-item:hover {
-    background-color: #022b58;
-    color: rgb(252, 252, 252);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.4);
   }
 
   /* Add styling for day name */
@@ -68,7 +76,7 @@
 }
 
 .showtimes.show {
-  max-height: 1000px; 
+  max-height: 500px; 
   background-color: #ffffff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
   padding-top: 6px;
