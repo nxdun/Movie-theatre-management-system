@@ -1,0 +1,73 @@
+/* adminDashboard.css */
+
+/* Styles for the entire admin dashboard container */
+.adminDashbord {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0; /* Light background color */
+  min-height: 100vh; /* Minimum height to fill the screen */
+}
+
+/* Styles for the Admin Dashboard title */
+.adminDashbord__title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333; /* Darker text color */
+}
+
+/* Styles for the grid of buttons */
+.adminDashbord__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  max-width: 800px; /* Limit the width of the grid */
+}
+
+/* Styles for the individual buttons */
+.adminDashbord__button {
+  background-color: #3498db;
+  border: none;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 18px;
+  width: 250px;
+  height: 200px;
+}
+
+.adminDashbord__button h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.adminDashbord__button:hover {
+  background-color: #2980b9;
+}
+
+/* Add some margin and padding to improve spacing */
+.adminDashbord__grid {
+  margin: 20px 0;
+  padding: 20px;
+}
+
+/* Add a subtle border to the buttons */
+.adminDashbord__button {
+  border: 1px solid #ccc;
+}
+
+/* Style for the button text */
+.adminDashbord__button h1 {
+  font-weight: bold;
+}
+
+/* Add a bit of box shadow to create a lifted effect */
+.adminDashbord__button:hover {
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
