@@ -1,9 +1,7 @@
 .footerdiv {
-  position: relative;
-  bottom: 0;
-  background-color: var(--black);
-  color: var(--white);
-  width: 100%;
+  background-color: #333; 
+  color: #fff; 
+  padding: 2rem 0; 
   text-align: center;
 }
 
@@ -12,5 +10,17 @@
 }
 
 .footer-text {
-  font-size: 16px;
+  font-size: 1.5rem; 
+  margin-bottom: 10px; 
+  font-weight: bold; 
+  text-transform: uppercase; 
+}
+
+
+.footerdiv::before {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color: #555;
+  margin: 1rem 0;
 }
