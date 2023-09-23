@@ -94,6 +94,7 @@ const CartScreen = () => {
             <p>Rs.{getCartSubTotal().toFixed(2)}</p>
             </div>
             <div>
+              <button>Redeem Loyality Points</button>
             <button onClick={makePayment}>Proceed To Checkout</button>
             </div>     
     </div>
