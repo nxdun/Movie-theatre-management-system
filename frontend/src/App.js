@@ -23,7 +23,6 @@ import "./App.css";
   import GenerateReport from "./screens/viewPrivScBookingReport";
   import EditPrivateRoom from "./screens/editPrivRoom";
   import LoyalityDash from './screens/LoyalityDash';
-  import AdminDashboard from './screens/adminDashboard';
   
   //userscreens
   import UserBooking from "./screens/userBooking"; //import userScreen component
@@ -37,7 +36,6 @@ import "./App.css";
       <Routes>
         {/* nadun */}
         <Route path="/loyality/dashboard" exact element={<LoyalityDash />} />
-        <Route path="/adminDashboard" exact element={<AdminDashboard/>} />
         {/* dunal */}
         <Route path="/privatedash" exact element={<PrivateScreenDash />} />
         <Route path="/addroom" exact element={<AddPrivateRoom />} />
