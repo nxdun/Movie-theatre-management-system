@@ -1,8 +1,18 @@
-import logger from "../utils/logger.js";
-
+const axios = require("axios");
 const router = require("express").Router();
 const Customer = require("../models/customer.js");
-const logem = require("../utils/logger.js");
+const logger = require("../utils/logger.js");
+
+// Define a function to fetch loyalty rules dataa
+const fetchLoyaltyRules = async () => {
+  try {
+    const response = await axios.get("http://localhost:3013/loyality/");
+    return response.data;
+  } catch (error) {
+    // Handle any errors that occur during the axios request
+    throw new Error("Failed to fetch loyalty rules: " + error.message);
+  }
+};
 
 // Error handling middleware
 const errorHandler = (res, status, message) => {
@@ -22,7 +32,6 @@ const createCustomer = async (req, res, loyalty = false) => {
     optInForMarketing,
     TicketCount = 0, // Set default TicketCount to 0
     Type = false, // Set default Type to false
-    LoyaltyPoints = null, // Set default LoyaltyPoints to null
     LoyaltyRegisteredDate = null, // Set default LoyaltyRegisteredDate to null
     PointResetDate = null, // Set default PointResetDate to null
   } = req.body;
@@ -44,13 +53,6 @@ const createCustomer = async (req, res, loyalty = false) => {
       existingCustomer.Email = Email;
       existingCustomer.optInForMarketing = optInForMarketing;
 
-      // If it's a loyalty customer, update loyalty-specific fields
-      if (loyalty) {
-        existingCustomer.Type = loyalty;
-        existingCustomer.LoyaltyPoints = LoyaltyPoints;
-        existingCustomer.LoyaltyRegisteredDate = new Date();
-      }
-
       // Save the updated customer
       await existingCustomer.save();
       res.json(`Customer ${existingCustomer.UserName} updated.`);
@@ -67,10 +69,19 @@ const createCustomer = async (req, res, loyalty = false) => {
         optInForMarketing,
         TicketCount, // Use the provided default TicketCount
         Type, // Use the provided default Type
-        LoyaltyPoints, // Use the provided default LoyaltyPoints
         LoyaltyRegisteredDate, // Use the provided default LoyaltyRegisteredDate
         PointResetDate, // Use the provided default PointResetDate
       });
+
+      // Fetch loyalty rules data
+      const loyaltyRules = await fetchLoyaltyRules();
+      console.log ("loyaltyRules: " + JSON.stringify(loyaltyRules));
+      // If it's a loyalty customer, set LoyaltyPoints from the fetched rules
+      if (loyalty) {
+        newCustomer.LoyaltyPoints = loyaltyRules.startingPoints;
+        newCustomer.Type = true; // Mark as a loyalty customer
+        newCustomer.LoyaltyRegisteredDate = new Date();
+      }
 
       await newCustomer.save();
       res.json(
@@ -78,7 +89,7 @@ const createCustomer = async (req, res, loyalty = false) => {
       );
     }
   } catch (err) {
-    logger.error("error in customer.js");
+    console.log("Error in customer.js: " + err.message);
     errorHandler(
       res,
       400,
@@ -89,13 +100,11 @@ const createCustomer = async (req, res, loyalty = false) => {
   }
 };
 
-//....................
-//.......routes.......
-//....................
+// Routes for customer operations
 
-//add
+// Create or update customer
 router.route("/add").post(async (req, res) => {
-  await createCustomer(req, res);  
+  await createCustomer(req, res);
 });
 
 // Get all customers

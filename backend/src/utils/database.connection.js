@@ -15,7 +15,7 @@ const connect =async () => {
         Logger.info('Database connection established');
     })
     .catch((error) => {
-        Logger.error('Database connection failed');
+        Logger.error(error);
     })
 
 };

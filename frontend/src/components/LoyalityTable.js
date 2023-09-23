@@ -15,11 +15,14 @@ createTheme(
       default: "#222222", // Black background
     },
     context: {
-      background: "#006600", // Green hover effect
-      text: "#FFFFFF", // White text color for context
+      background: "#006600",
+      text: "#FFFFFF",
     },
     divider: {
-      default: "#222222", // Use the same as the background for the divider
+      default: "#444", // Color of the divider
+      boxShadow: "1px 2px 9px #F4AAB9",
+      margin: "4em",
+      padding: "1em", // Add a 3D effect using boxShadow
     },
     action: {
       button: "rgba(0,0,0,.54)",
@@ -31,13 +34,29 @@ createTheme(
       track: "#222222", // Dark color for scrollbar track
       hover: "#444444", // Dark color for scrollbar thumb on hover
     },
+    rows: {
+      main: "#333333", // Color for the main rows
+      hover: "#555555", // Color for rows on hover
+      selected: "#555555", // Color for selected rows
+      highlightOnHover: "#000000", // Color for rows on hover
+      boxShadow: "0px 5px 8px 0px rgba(0, 0, 0, 0.5)", // 3D effect shadow
+    },
+    cells: {
+      common: {
+        boxShadow: "0 0 4px rgba(85, 85, 85, 0.5)", // 3D effect shadow
+        border: "10px solid white", // Border color for cells
+        background: "#000000", // Background color for cells
+      },
+      header: {
+        background: "#555555", // Background color for header cells
+        color: "#FFFFFF", // Text color for header cells
+      },
+    },
   },
   "dark"
 );
 
 const LoyalityTable = (props) => {
-  
-
   //column decalration
   const [columns, setColumns, sendRow] = useState([
     {
@@ -141,8 +160,7 @@ const LoyalityTable = (props) => {
   const [data, setData] = useState("");
   const ReloadMe = () => {
     window.location.reload();
-  }
-
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -159,7 +177,7 @@ const LoyalityTable = (props) => {
 
   return (
     <div className="table">
-      <LoyalitySearchBar onRefresh={ReloadMe}  />
+      <LoyalitySearchBar onRefresh={ReloadMe} />
       <div>
         <DataTable
           columns={columns}

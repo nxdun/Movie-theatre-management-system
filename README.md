@@ -4,10 +4,10 @@
 ITP Project for Group ITP23_WD_B1_06
 
 
-
 ## Table of Contents
 
 - [About](#about)
+- [Fast Launch](#about)
 - [Features](#features)
 - [Technologies](#technologies)
   - [Prerequisites](#prerequisites)
@@ -17,6 +17,19 @@ ITP Project for Group ITP23_WD_B1_06
 ## About
 
 This project is developed by Group ITP23_WD_B1_06 for automataing manual work in movie theatre and providing interactive | easy | powerful management.
+
+## Fast Launch
+``
+npm run f
+``  starts frontend
+
+``
+npm run b
+``  starts backend
+
+``
+./run.bat
+``  starts both in external cmd
 
 ## Features
 

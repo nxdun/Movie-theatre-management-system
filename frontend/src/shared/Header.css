@@ -1,3 +1,12 @@
+@keyframes rotate {
+  0% {
+    transform: scale(2.5) rotateY(0deg);
+  }
+  100% {
+    transform: scale(2.5) rotateY(360deg);
+  }
+}
+
 /* main color pallete */
 :root {
   --black: #222222;
@@ -21,28 +30,23 @@ body {
   padding: 10px;
   background-color: var(--black);
   color: var(--white);
+  border-bottom: 2px solid #000;
 }
 
-/* Centered Icon */
+
+/* Header Text */
 .icon {
   width: 150px;
   height: 150px;
+  transform: scale(2.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 30px;
+  margin-bottom: 3px;
+  animation: rotate 20s linear infinite; /* Adjust the duration as needed */
 }
 
-/* Header Text */
-.header-h1 {
-  font-size: 24px;
-  margin-left: auto; /* dependable centered margin */
-  text-align: center; /* Center-align the text */
-  border: 2px solid var(--white); /* Add a circular border */
-  border-radius:  25px; /* Make the border half circular */
-  display: inline-block; /* Ensure the border does not take up the full width */
-  padding: 30px; /* Adjust padding as needed for spacing inside the circle */
-}
 
 /* Buttons Container */
 .button-container-main {
@@ -133,7 +137,7 @@ body {
   border: 2px solid transparent;
   transition: background-color 0.3s, border 0.3s;
   border-radius: 10px; /* Add border-radius for curved corners */
-  border: 0.1px solid var(--white); /* Use the red color variable */
+  border: 2px solid #000; /* Use the red color variable */
 }
 
 .logout-button:hover {
