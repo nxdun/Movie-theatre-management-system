@@ -1,68 +1,94 @@
 const router = require('express').Router();
 let Product = require('../models/product.js');
-//const { route } = require('./product.js');
 
+// Route to add a new product
 router.route('/add').post((req, res) => {
-    const P_id = req.body.P_id;
-    const P_name = req.body.P_name;
-    const P_Description = req.body.P_Description;
-    const P_price = req.body.P_price;
-    const P_quantity = req.body.P_quantity;
-    const P_status = req.body.P_status;
-    const P_createDate = req.body.P_createDate;
+    // Extract product data from the request body
+    const { P_id, P_type, P_name, P_description, P_image, P_supplierId, P_price, P_status, P_reoderLevel } = req.body;
 
+    // Create a new product instance
     const newProduct = new Product({
         P_id,
+        P_type,
         P_name,
-        P_Description,
+        P_description,
+        P_image,
+        P_supplierId,
         P_price,
-        P_quantity,
+        P_quantity:0,
         P_status,
-        P_createDate
-    })
+        P_reoderLevel,
+        P_createDate:new Date()
+    });
 
+    // Save the new product to the database
     newProduct.save()
-    .then(() => res.json('Product added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
-})
- router.route('/').get((req, res) => {
-    Product.find()
-    .then(product => res.json(product))
-    .catch(err => res.status(400).json('Error: ' + err));
-})  
+        .then(() => res.json('Product added!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
 
-router.route('/update/:p_id').put(async(req, res) => {  
+// Route to get all products
+router.route('/').get((req, res) => {
+    // Retrieve all products from the database
+    Product.find()
+        .then(products => res.status(200).send({ status: "Product fetched", products }))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// Route to update a product by ID
+router.route('/update/:p_id').put(async (req, res) => {
+    // Extract the product ID from the URL parameter
     let productId = req.params.p_id;
-    const {P_id, P_name, P_Description, P_price, P_quantity, P_status, P_createDate} = req.body;
-    const updateProduct = { 
+
+    // Extract updated product data from the request body
+    const { P_id, P_type, P_name, P_description, P_image, P_price, P_quantity, P_status, P_createDate } = req.body;
+
+    // Create an object with updated product data
+    const updateProduct = {
         P_id,
+        P_type,
         P_name,
-        P_Description,
+        P_description,
+        P_image,
         P_price,
         P_quantity,
         P_status,
+        P_reoderLevel,  // Note: P_supplierId and P_reoderLevel are missing in the request body
         P_createDate
-    }   
-    const update= await Product.findByIdAndUpdate(productId,updateProduct)
-    .then(() => {
-        res.status(200).send({status: "Product updated"})
-    }).catch(err => res.status(500).send({status: "Error with updating data", error: err.message}));
-})  
+    };
 
-router.route('/delete/:p_id').delete(async(req, res) => {
+    // Update the product in the database by its ID
+    const update = await Product.findByIdAndUpdate(productId, updateProduct)
+        .then(() => {
+            res.status(200).send({ status: "Product updated" });
+        })
+        .catch(err => res.status(500).send({ status: "Error with updating data", error: err.message }));
+});
+
+// Route to delete a product by ID
+router.route('/delete/:p_id').delete(async (req, res) => {
+    // Extract the product ID from the URL parameter
     let productId = req.params.p_id;
 
+    // Delete the product from the database by its ID
     await Product.findByIdAndDelete(productId)
-    .then(() => {
-        res.status(200).send({status: "Product deleted"});
-    }).catch(err => res.status(500).send({status: "Error with delete product", error: err.message}));
-})
+        .then(() => {
+            res.status(200).send({ status: "Product deleted" });
+        })
+        .catch(err => res.status(500).send({ status: "Error with delete product", error: err.message }));
+});
 
-router.route('/get/:p_id').get(async(req, res) => { 
+// Route to get a product by ID
+router.route('/get/:p_id').get(async (req, res) => {
+    // Extract the product ID from the URL parameter
     let productId = req.params.p_id;
-    const product = await Product.findById(p_id).then(() => {
-        res.status(200).send({status: "Product fetched", product})
-    }).catch(err => res.status(500).send({status: "Error with get product", error: err.message}));
-})
 
-module.exports = router;    // Path: backend/routes/supplier.js
+    // Retrieve the product from the database by its ID
+    const product = await Product.findById(productId)
+        .then((product) => {
+            res.status(200).send({ status: "Product fetched", product });
+        })
+        .catch(err => res.status(500).send({ status: "Error with get product", error: err.message }));
+});
+
+module.exports = router; // Path: backend/routes/supplier.js

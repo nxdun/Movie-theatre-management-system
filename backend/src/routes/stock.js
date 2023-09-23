@@ -3,15 +3,21 @@ let Stock = require('../models/stock.js');
 
 router.route('/add').post((req, res) => {
     const P_id = req.body.P_id;
+    const P_name = req.body.P_name;
     const s_id = req.body.s_id;
+    const s_name = req.body.s_name;
     const P_quantity = req.body.P_quantity;
     const St_price = req.body.St_price;
+    const Reorder_level = req.body.Reorder_level;
 
     const newStock = new Stock({
         P_id,
+        P_name,
         s_id,
+        s_name,
         P_quantity,
         St_price,
+        Reorder_level,
     })
 
     newStock.save()

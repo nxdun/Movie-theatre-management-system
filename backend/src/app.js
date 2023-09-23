@@ -35,6 +35,9 @@ app.listen(PORT, () => {
   connect();
   console.log(`Server running on port: ${PORT}`);
   app.use("/supplier", supplierRouter);
+  app.use("/stock", stockRouter); 
+  app.use("/product", productRouter);
+  
 
 }); // listen to port
 

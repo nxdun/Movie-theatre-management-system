@@ -5,11 +5,23 @@ const productSchema = new Schema({
         type: String,
         required: true,
     },
+    P_type: {
+        type: String,
+        required: true,
+    },
     P_name: {
         type: String,
         required: true,
     },
-    P_Description: {
+    P_description: {
+        type: String,
+        required: true,
+    },
+    P_image: {
+        type: String,
+        required: false,
+    },
+    P_supplierId: {     
         type: String,
         required: true,
     },
@@ -25,7 +37,11 @@ const productSchema = new Schema({
     P_status: {
         type: Boolean,
         required: true,
-    },          
+    },        
+    P_reoderLevel: {
+        type: String,
+        required: true,
+    },  
     P_createDate: { 
         type: Date,
         required: true,

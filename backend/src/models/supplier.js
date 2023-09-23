@@ -21,8 +21,11 @@ const supplierSchema = new Schema({
     S_status: {
         type: Boolean,
         required: true,
-    },          
-    
+    },
+    S_contactNo: {
+        type: String,
+        required: true,
+    },
     S_createDate: { 
         type: Date,
         required: true,
