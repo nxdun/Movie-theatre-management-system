@@ -53,6 +53,7 @@ const Showtimes = () => {
     if (showtime === selectedShowtime) {
       // If the same showtime is clicked twice, deselect it
       setSelectedShowtime(null);
+
     } else {
       setSelectedShowtime(showtime);
       setAlertMessage(null); // Clear the alert message
@@ -63,6 +64,11 @@ const Showtimes = () => {
     if (!selectedShowtime) {
       // If no showtime is selected, show an alert
       setAlertMessage("Please select a showtime");
+
+      setTimeout(() => {
+        setAlertMessage(null);
+      }, 2000);
+
     } else {
       console.log("Selected Showtime:", selectedShowtime);
     }
@@ -120,7 +126,9 @@ const Showtimes = () => {
       {/* Alert message popup */}
       <div className={`alert ${alertMessage ? 'show' : ''}`}>
         {alertMessage}
-        <button onClick={() => setAlertMessage(null)}>Close</button>
+        <button className="close-button" onClick={() => setAlertMessage(null)}>
+          &times;
+        </button>
       </div>
     </div>
   );
