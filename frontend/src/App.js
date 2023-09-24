@@ -1,5 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import ConcessionManagement from "./components/ConcessionManagement/ConcessionManagement";
+import ProductList from "./components/ConcessionManagement/components/ProductList/ProductList";
+import StockList from "./components/ConcessionManagement/components/StockList/StockList";
+import SupplierList from "./components/ConcessionManagement/components/SupplierList/SupplierList";
+import Dashboard from "./components/Dashboard/Dashboard";
+import MainLayout from "./components/MainLayout/MainLayout";
+import Navigate from './Navigate';
+
+
 
 /* vishwa screen and components*/
 // Screens
@@ -40,6 +49,10 @@ import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
 function App() {
   return (
+
+        
+
+    
     <Router>
       <main className="app">
         <Routes>
@@ -69,7 +82,7 @@ function App() {
           {/*we write exact eod for only display path=/ for exact /*/}
           <Route path="/movie" exact element={<AllMovies />} />
           <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
-          <Route path="/Home" element={<HomeMain />} />
+          <Route path="/" element={<HomeMain />} />
           <Route path="/Details" element={<DetailsM />} />
           {/* Sachiras Pages */}
           <Route exact path="/showtime" element={<Showtimes />} />
@@ -85,17 +98,29 @@ function App() {
             element={<UpdateMovieShedularPage />}
           />
           {/* omins Pages */}
-          <Route path="/" element={<SeatSelect />} />
+          <Route path="/seatbooking" element={<SeatSelect />} />
           <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
           <Route path="/SeatManage" element={<SeatManage />} />
           <Route
             path="/SeatUpdate/:bookingId/:seatId"
             element={<SeatUpdate />}
           />
+          {/*Aviska's route paths*/}
+        <Route path="/food" element={<MainLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="concession" element={<ConcessionManagement />}>
+            <Route path="supplier_list" element={<SupplierList />} />
+            <Route path="product_list" element={<ProductList />} />
+            <Route path="stock_list" element={<StockList />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
         </Routes>
       </main>
     </Router>
   );
+
 }
 
 export default App;
