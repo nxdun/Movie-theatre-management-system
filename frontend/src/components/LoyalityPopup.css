@@ -1,7 +1,10 @@
 .outside-close-button{
   width: 100px;
   height: 50px;
-  position: relative;
+  position: fixed; /* Use fixed positioning to make it stay in place */
+  top: 9%; /* Position from the top edge of the viewport */
+  right: 8%; /* Position from the left edge of the viewport */
+  outline: 1px solid red;
 }
 
 body {
@@ -14,8 +17,6 @@ body {
 }
 
 .modled-container{
-  width: 100%;
-  height: 100%;
   background-color: var(--black);
 }
 

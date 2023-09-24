@@ -1,5 +1,5 @@
-const router = require('express').Router();
-let Stock = require('../models/stock.js');
+const router = require("express").Router();
+let Stock = require("../models/stock.js");
 
 router.route('/add').post((req, res) => {
     const {

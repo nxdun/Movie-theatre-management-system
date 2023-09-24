@@ -1,20 +1,23 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "server.js",
-  "author": "nadu",
+  "main": "app.js",
+  "author": "SHIIT",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "nodemon --exec babel-node src/app.js"
+    "start": "nodemon --exec babel-node src/app.js",
+    "go": "cd frontend & npm start"
   },
   "devDependencies": {
     "@babel/core": "^7.22.15",
-    "@babel/node": "^7.22.15",
+    "@babel/node": "^7.22.19",
     "@babel/preset-env": "^7.22.15",
     "nodemon": "^3.0.1"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^2.1.6",
+    "axios": "^1.5.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",

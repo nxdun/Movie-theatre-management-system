@@ -26,3 +26,4 @@ yarn-error.log*
 
 #personal
 .drawio
+.vscode

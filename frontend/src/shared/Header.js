@@ -3,11 +3,13 @@ const Header = () => {
   return (
     <header className="header-main">
       <div className="icon">
+      <div className="rotator">
         <img
-          src="https://via.placeholder.com/150"
+          src="https://raw.githubusercontent.com/nxdun/BlaBla/main/2.png"
           alt="logo"
           className="header-img"
         />
+      </div>
       </div>
       <h1 className="header-h1">LOYALTY BASED REWARD MANAGEMENT PANEL</h1>
       <div className="button-container-main">

@@ -1,0 +1,19 @@
+.cancel {
+    text-align: center;
+    padding: 40px 0;
+  }
+  .cancel_logo{
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+
+.cancel > h1 {
+    color: #f35656;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    margin-bottom: 10px;
+  }

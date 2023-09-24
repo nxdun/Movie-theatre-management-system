@@ -1,54 +1,58 @@
-/* LoyaltySearchBar.module.css */
-
 .search-bar {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-evenly;
+  box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.5); 
 }
 
 .buttonn {
-  background-color:var(--black);
+  background-color: var(--black);
   color: white;
-  padding: 15px 32px;
+  padding: 15px 20px;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
   cursor: pointer;
-  margin-right: 10px;
-  border-radius: 20px; /* Add border-radius for curved corners */
-  box-shadow: 0px 1px 2px 0px #515151,
-            1px 2px 4px 0px #515151,
-            2px 4px 8px 0px #515151,
-            2px 4px 16px 0px #515151;
+  border-radius: 30px;
 }
 
-
-.buttonn:hover:not(.search-bar) {
+.buttonn:hover:not(.search-bar, .button-back) {
   background-color: #3e8e41;
-  outline : 10px solid #3e8e41;
-  border: #3e8e41;
-  box-shadow: 0px 1px 2px 0px #a8e7b5,
-  1px 2px 4px 0px #a8e7b5,
-  2px 4px 8px 0px #a8e7b5,
-  2px 4px 16px 0px #a8e7b5;
+  outline: 10px solid #3e8e41;
+  border-left: #3e8e41;
+  border-right: #3e8e41;
+  transition: all 0.3s ease;
 }
 
-.select-search {
+.button-back {
   background-color: var(--black);
   color: white;
-  padding: 10px;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
   font-size: 16px;
   cursor: pointer;
+}
+
+.button-back:hover {
+  background-color: #3e8e41;
+  outline: 10px solid #3e8e41;
+  border-left: #3e8e41;
+  border-right: #3e8e41;
+  transition: all 0.5s ease;
 }
 
 .search-form {
   display: flex;
   align-items: center;
+  padding-left: 80px;
 }
 
 .search-bar-input {
+  flex: 2;
   background-color: var(--black);
-  border: 1px solid green;
+  border-radius: 30px 0 0 30px;
+  border: none;
   color: white;
   padding: 10px;
   font-size: 16px;
@@ -57,21 +61,37 @@
 
 .search-submit {
   background-color: var(--black);
-  color: white;
-  padding: 10px;
-  font-size: 16px;
+  color: rgb(127, 126, 126);
+  padding: 2px 20px;
+  font-size: 30px;
   cursor: pointer;
+  border-radius: 30px;
+}
+.search-submit:hover {
+  background-color: var(--black);
+  color: rgb(127, 126, 126);
+  padding: 2px 20px;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 30px;
+  background-color: #3e8e41;
+  outline: 6px solid #3e8e41;
+  border-left: #3e8e41;
+  border-right: #3e8e41;
+  transition: all 0.2s ease;
 }
 
-.button-filter,
-.button-reset,
-.button-refresh {
-  background-color: var(--black);
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 20px;
-  cursor: pointer;
-  margin-left: 10px;
+.button-group {
+  display: flex;
+  align-items: center;
+  padding-right: 30px;
+}
+
+.button-reset{
+  margin-right: 20px;
+}
+.button-back:hover{
+  outline: 200px solid #3e8e41;
+  BORDER: 1px solid #3e8e41;
+  transition: all 0.8s ease;
 }
