@@ -23,10 +23,20 @@ import "./App.css";
   import GenerateReport from "./screens/viewPrivScBookingReport";
   import EditPrivateRoom from "./screens/editPrivRoom";
   import LoyalityDash from './screens/LoyalityDash';
-  
+  import Advertisement from './screens/Advertisement'
   //userscreens
-  import UserBooking from "./screens/userBooking"; //import userScreen component
-  import UserScreen from "./screens/userScreen"; //import userBooking component
+  import UserBooking from "./screens/userBooking"; 
+  import UserScreen from "./screens/userScreen"; 
+  import AddMoviesMainPage from "./screens/AddMoviesMainPage";
+  import MovieShedularCalPrevPage from "./screens/MovieShedularCalPrevPage";
+  import UpdateMovieShedularPage from "./screens/UpdateMovieShedularPage";
+  import Showtimes from './screens/Showtimes';
+
+import AddMovie from "./components/Movie/AddMovie";
+import AllMovies from "./components/Movie/AllMovies";
+import UpdateMovie from "./components/Movie/UpdateMovie";
+import HomeMain from "./components/Movie/Home";
+import DetailsM from "./components/Movie/Details";
   function App() {
     
     return (
@@ -44,8 +54,8 @@ import "./App.css";
         <Route path="/viewreport" exact element={<GenerateReport />} />
         <Route path="/user1" exact element={<UserScreen />} />
         <Route path="/userbooking" exact element={<UserBooking />} />
-
-         {/*vishwa's route paths  */}
+        <Route path="/adv" exact element={<Advertisement />} />
+        {/*vishwa's route paths  */}
          <Route element={<RouteWrapper />}> {/* Wrap the routes */}
             <Route exact path="/shop" element={<ShopScreen />} />
             <Route exact path="/prd/:id" element={<ProductScreen />} />
@@ -53,7 +63,19 @@ import "./App.css";
             <Route exact path="/success" element={<Success />} />
             <Route exact path="/cancel" element={<Cancel />} />
           </Route>
+      {/*shehan's route paths  */}
+    
+          <Route path="/addMovie" exact element={<AddMovie />} /> {/*we write exact eod for only display path=/ for exact /*/}
+          <Route path="/movie" exact element={<AllMovies />} />
+          <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
+          <Route path="/Home" element={<HomeMain />} />
+          <Route path="/Details" element={<DetailsM />} />
 
+           {/* Sachiras Pages */}
+           <Route exact path="/showtime" element={<Showtimes />} />
+           <Route path="/sheduleMovie" exact element={<AddMoviesMainPage />} />
+          <Route path="/calender" exact element={<MovieShedularCalPrevPage />} />
+          <Route path="/sheduleMovie/:sheduleId" exact element={<UpdateMovieShedularPage />} />
       </Routes>
       </main>
     </Router>

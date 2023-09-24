@@ -1,0 +1,23 @@
+/* Define the margin-top for small screens */
+.fillbtnsmallscreen {
+    margin-top: 0;
+    /* Add the desired margin for small screens */
+}
+
+/* Media query to remove the margin on larger screens */
+@media (min-width: 992px) {
+    .fillbtnsmallscreen {
+        margin-top: 30px;
+        /* Remove the margin on larger screens */
+    }
+
+  
+}
+
+@media (min-height: 992px) {
+
+    /* Adjust scroll height for large screens (lg and up) */
+    .customtable {
+        max-height: 600px;
+    }
+}
