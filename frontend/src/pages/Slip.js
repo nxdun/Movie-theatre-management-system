@@ -1,4 +1,4 @@
-import './Slip.css'; 
+import './Slip.css';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -12,9 +12,8 @@ function Slip() {
   const [bookingId, setBookingId] = useState(null);
 
   const handleGoToSeatManageClick = () => {
-    navigate('/SeatManage'); 
+    navigate('/SeatManage');
   };
-
 
   useEffect(() => {
     if (!seatId) {
@@ -24,7 +23,7 @@ function Slip() {
     fetch(`/booking/seat/${seatId}`)
       .then((response) => response.json())
       .then((data) => {
-        if (data && data.bookingId) { // Changed from data.BookingIdId to data.bookingId
+        if (data && data.bookingId) {
           setBookingId(data.bookingId);
         }
       })
@@ -57,29 +56,36 @@ function Slip() {
   };
 
   return (
-
-    
-    <div className="slip-container">
+    <div>
       <div className="sticky-div">
         <h1>AVATAR 2</h1>
         <h4>GALAXY CINEMA, Colombo</h4>
         <img src={dolbyImage} alt="screen" border="0" className="dolby" />
+        
       </div>
-      
-      <p className="seat-id">Selected Seat IDs: {seatId}</p>
-      <p>Theater ID: {theaterId}</p>
-      <p>Total Price: {price}</p>
+
+    <div className="slip-container">
+      <div className="bill-details">
+        <h4>Theater: GALAXY CINEMA, Colombo</h4>
+        <p>Movie: AVATAR 2</p>
+        <p>Selected Seat IDs: {seatId}</p>
+        <p>Theater ID: {theaterId}</p>
+        <p>Total Price: ${price}</p>
+      </div>
 
       {isDeleting ? (
         <p className="deleting">Deleting booking...</p>
       ) : (
-        <div>
-          <button className="buttonx" onClick={handleDelete}>Delete</button>
+        <div className="action-buttons">
+          <button className="buttonx" onClick={handleDelete}>
+            Delete
+          </button>
+          <Link to={`/SeatUpdate/${bookingId}/${seatId}`} className="buttonx">
+            Add More Seats
+          </Link>
         </div>
       )}
-
-      <Link to={`/SeatUpdate/${bookingId}/${seatId}`} className="buttonx">Add more seats</Link>
-      <button className="buttonx" onClick={() => handleGoToSeatManageClick()}>Go to SeatManage</button>
+    </div>
     </div>
   );
 }
