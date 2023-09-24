@@ -110,9 +110,9 @@ function App() {
             <Route path="supplier_list" element={<SupplierList />} />
             <Route path="product_list" element={<ProductList />} />
             <Route path="stock_list" element={<StockList />} />
-            <Route path="*" element={<Navigate to="/" />} />
+           
           </Route>
-          <Route path="*" element={<Navigate to="/" />} />
+          
         </Route>
         </Routes>
       </main>

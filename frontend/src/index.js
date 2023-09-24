@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'; //there is no client thing in video resource
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
 
 
 
