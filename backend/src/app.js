@@ -14,6 +14,7 @@ const advertisementRoutes = require("./routes/advertisementRoute");
 const Movie_routes = require('./routes/Students')
 // Stripe setup
 const stripe = require('stripe')('sk_test_51Ns9obAuazamskfx2FbGPFJyekhZ7Le2CEX6fBvU18ZnocXHhBGhz3FQdy1kjQ9BTgPGvyiq8XsOxvHOhrG5w9eI00zvkNE8OF');
+const AdminRoutes = require("./routes/adminRoutes");
 
 // Initialize Express
 const app = express();
@@ -25,7 +26,7 @@ const cors = require('cors');
 app.use(express.json({ limit: "2mb" }));
 app.use(cors());
 app.use("/api/advertisements", advertisementRoutes);
-
+app.use("/admin", AdminRoutes);
 // Routes
 app.use("/customer",customerRoutes);
 app.use("/loyality", loyaltyRoute);

@@ -1,6 +1,6 @@
 import "./CartScreen.css";
 import axios from "axios";
-import react, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";

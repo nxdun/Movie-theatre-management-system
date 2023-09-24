@@ -25,8 +25,12 @@ import "./App.css";
   import LoyalityDash from './screens/LoyalityDash';
   import Advertisement from './screens/Advertisement'
   //userscreens
-  import UserBooking from "./screens/userBooking"; //import userScreen component
-  import UserScreen from "./screens/userScreen"; //import userBooking component
+  import UserBooking from "./screens/userBooking"; 
+  import UserScreen from "./screens/userScreen"; 
+  import AddMoviesMainPage from "./screens/AddMoviesMainPage";
+  import MovieShedularCalPrevPage from "./screens/MovieShedularCalPrevPage";
+  import UpdateMovieShedularPage from "./screens/UpdateMovieShedularPage";
+  import Showtimes from './screens/Showtimes';
 
 import AddMovie from "./components/Movie/AddMovie";
 import AllMovies from "./components/Movie/AllMovies";
@@ -66,6 +70,12 @@ import DetailsM from "./components/Movie/Details";
           <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
           <Route path="/Home" element={<HomeMain />} />
           <Route path="/Details" element={<DetailsM />} />
+
+           {/* Sachiras Pages */}
+           <Route exact path="/showtime" element={<Showtimes />} />
+           <Route path="/sheduleMovie" exact element={<AddMoviesMainPage />} />
+          <Route path="/calender" exact element={<MovieShedularCalPrevPage />} />
+          <Route path="/sheduleMovie/:sheduleId" exact element={<UpdateMovieShedularPage />} />
       </Routes>
       </main>
     </Router>
