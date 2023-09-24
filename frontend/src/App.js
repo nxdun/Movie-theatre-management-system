@@ -7,6 +7,7 @@ import "./App.css";
   import ShopScreen from "./screens/ShopScreen";
   import ProductScreen from "./screens/ProductScreen";
   import CartScreen from "./screens/CartScreen";
+  import AddAdvForm from "./components/Advertisement/AddAdvForm";
 
   import RouteWrapper from './RouteWrapper';// Wrap the routes with the navbar, sidedrawer, and backdrop
   
@@ -23,7 +24,7 @@ import "./App.css";
   import GenerateReport from "./screens/viewPrivScBookingReport";
   import EditPrivateRoom from "./screens/editPrivRoom";
   import LoyalityDash from './screens/LoyalityDash';
-  import Advertisement from './screens/Advertisement'
+  import Advertisement from './screens/Advertisement';
   //userscreens
   import UserBooking from "./screens/userBooking"; //import userScreen component
   import UserScreen from "./screens/userScreen"; //import userBooking component
@@ -44,8 +45,7 @@ import "./App.css";
         <Route path="/viewreport" exact element={<GenerateReport />} />
         <Route path="/user1" exact element={<UserScreen />} />
         <Route path="/userbooking" exact element={<UserBooking />} />
-        <Route path="/adv" exact element={<Advertisement />} />
-
+        
          {/*vishwa's route paths  */}
          <Route element={<RouteWrapper />}> {/* Wrap the routes */}
             <Route exact path="/shop" element={<ShopScreen />} />
@@ -53,6 +53,14 @@ import "./App.css";
             <Route exact path="/cart" element={<CartScreen />} />
             <Route exact path="/success" element={<Success />} />
             <Route exact path="/cancel" element={<Cancel />} />
+          </Route>
+
+
+          <Route element={<RouteWrapper />}>
+            <Route path="/adv" exact element={<Advertisement />} />
+            <Route exact path="/adv/addAdv" element={<AddAdvForm />} />
+            <Route exact path="/adv/editAdv" element={<editAdv />} />
+            <Route exact path="/adv/deleteAdv" element={<deleteAdv />} />
           </Route>
 
       </Routes>
