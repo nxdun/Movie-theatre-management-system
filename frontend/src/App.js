@@ -6,7 +6,7 @@ import StockList from "./components/ConcessionManagement/components/StockList/St
 import SupplierList from "./components/ConcessionManagement/components/SupplierList/SupplierList";
 import Dashboard from "./components/Dashboard/Dashboard";
 import MainLayout from "./components/MainLayout/MainLayout";
-
+import Navigate from './Navigate';
 
 
 
@@ -50,7 +50,9 @@ import Slip from "./pages/Slip";
 function App() {
   return (
 
-        
+      
+    
+       
 
     
     <Router>
@@ -59,13 +61,14 @@ function App() {
           {/* nadun */}
           <Route path="/loyality/dashboard" exact element={<LoyalityDash />} />
           {/* dunal */}
-          <Route path="/privatedash" exact element={<PrivateScreenDash />} />
-          <Route path="/addroom" exact element={<AddPrivateRoom />} />
-          <Route path="/editroom" exact element={<EditPrivateRoom />} />
-          <Route path="/reviewbooking" exact element={<ReviewBookings />} />
-          <Route path="/viewreport" exact element={<GenerateReport />} />
-          <Route path="/user1" exact element={<UserScreen />} />
-          <Route path="/userbooking" exact element={<UserBooking />} />
+          <Route path="/privateScreen/DashBoard" exact element={<PrivateScreenDash />} />  
+        <Route path="/privateScreen/Addroom" exact element={<AddPrivateRoom />} />
+        <Route path="/privateScreen/:privScId" element={<EditPrivateRoom />} />
+        <Route path="/privateScreen/Reviewbooking" exact element={<ReviewBookings />} />
+        <Route path="/privateScreen/Viewbookingreport" exact element={<GenerateReport />} />
+        <Route path="/user1" exact element={<UserScreen />} />
+        <Route path="/userbooking" exact element={<UserBooking />} />
+        
           <Route path="/adv" exact element={<Advertisement />} />
           {/*vishwa's route paths  */}
           <Route element={<RouteWrapper />}>

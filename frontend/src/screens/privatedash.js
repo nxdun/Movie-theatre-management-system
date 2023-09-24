@@ -1,95 +1,65 @@
-import React, { useState } from 'react';   // import React and useState hook
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-
-//components
+import Header from '../components/PrivHeader';
 import PrivScreenList from '../components/PrivScreenList';
-import SidePanel  from "../components/sidePanelBtns"; // import SidePanel component
-//import SearchBar from '../components/SearchBar'; // import SearchBar component
-//import PrivDataTable from '../components/privDataTable'; // import DataTable component
-import Header from "../components/PrivHeader"; // import Header component
-import { Router } from 'react-router-dom';
-
-
-const DUMMY_PRIVSCREENS = [ // dummy data for private screening rooms
-  {
-    id: 'p1',
-    privscname: 'Panoramic Screen 1',
-    privseatcapacity: '10',
-    privscdescription: 'Screen 1 is the largest screen in the cinema',
-    privscprice: '5800.00',
-    privsclocation: '2nd Floor, Left of the main entrance',
-    imageUrl: 'https://fastly.picsum.photos/id/42/3456/2304.jpg?hmac=dhQvd1Qp19zg26MEwYMnfz34eLnGv8meGk_lFNAJR3g'
-  
-  },
-  {
-    id: 'p2',
-    privscname: 'Screen 1',
-    privseatcapacity: '100',
-    privscdescription: 'Screen 1 is the largest screen in the cinema',
-    privscprice: '£100',
-    privsclocation: 'London',
-    imageUrl: 'https://fastly.picsum.photos/id/85/1280/774.jpg?hmac=h_HHpvfhMmLP6uOSrHS7HSlXVRuMKfBbc8HFKd1Acv4'
-  
-  },
-  
-
-];
-
-
+import SidePanel from '../components/sidePanelBtns';
 
 const PrivateDashboard = () => {
+  const [loadedPrivateScreens, setLoadedPrivateScreens] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchPrivateScreens = async () => {
+      try {
+        const response = await axios.get('/privatescreen');
+        setLoadedPrivateScreens(response.data.privatescreens);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchPrivateScreens();
+  }, []);
+
+  const handleEditClick = (privScId) => {
+    navigate(`/privatescreen/${privScId}/edit`);
+  };
+
+  const handleDeleteClick = async (privScId) => {
+    if (window.confirm("Are you sure you want to delete this private screen?")) {
+      try {
+        const response = await axios.delete(`/privatescreen/${privScId}`);
+        if (response.status === 200) {
+          // Refresh the list of private screens after deletion
+          // You may fetch the updated list or use state to remove the deleted item
+        } else {
+          window.alert("Failed to delete the private screen. Please try again.");
+        }
+      } catch (err) {
+        console.error(err);
+        window.alert("An error occurred while deleting the private screen.");
+      }
+    }
+  };
+  
+
   return (
+    <div>
+      <Header />
+      <PrivScreenList
+        items={loadedPrivateScreens}
+        onEditClick={handleEditClick}
+        onDeleteClick={handleDeleteClick}
 
-    
+      />
+
       <div>
-          <Header />
-          <PrivScreenList items={DUMMY_PRIVSCREENS}/>  
-
-          <div>
-           {/*<PrivDataTable /> */}
-            <h2>Main Private screening dashboard</h2>
-            <SidePanel />
-
-          </div>
-          
-
-
-
-        <div>
-
-
-         <h2>Main Private screening dashboard</h2>  
-
-
-         </div>
-
-        
-
-         <div>
-
-          
-         </div>
-
-
-
-
-
-
-
-
+        <SidePanel />
       </div>
-
-      
-  )
+    </div>
+  );
 };
 
-
-
-
-
-
-export default PrivateDashboard; // export PrivateDash component
-
-
-
-
+export default PrivateDashboard;

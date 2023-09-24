@@ -24,9 +24,9 @@ const inputReducer = (state, action) => {
 
 const Input = props => {
   const [inputState, dispatch] = useReducer(inputReducer, {
-    value: '',
+    value: props.initialValue || '', //props.value is the value that is passed from the parent component
     isTouched: false,
-    isValid: false
+    isValid: props.initialValid || false //props.valid is the value that is passed from the parent component
   });
 
   const { id, onInput } = props;

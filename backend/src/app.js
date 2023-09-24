@@ -3,6 +3,15 @@ import "dotenv/config";
 import logger from "./utils/logger.js";
 import { connect } from "./utils/database.connection.js";
 
+<<<<<<< HEAD
+//routes(middlewares)
+const customerRoutes = require("./routes/customer.js");
+const productRouter = require("./routes/product.js");
+const supplierRouter = require("./routes/supplier.js");
+const stockRouter = require("./routes/stock.js");
+const loyaltyRoute = require("./routes/loyalitydb.js");
+const privatescreenRouter = require("./routes/privatescreens.js");
+=======
 // Import your routes heree
 import supplierRouter from "./routes/supplier.js";
 import stockRouter from "./routes/stock.js";
@@ -22,6 +31,7 @@ const app = express();
 const PORT = process.env.PORT || 3015;
 const cors = require('cors');
 
+>>>>>>> af48f552b81561ef2cb0ddd2d57311a9086a6e50
 
 // Middleware
 app.use(express.json({ limit: "2mb" }));
@@ -35,11 +45,15 @@ app.use('/prd', Prd);
 app.use("/product", productRouter);
 app.use("/supplier", supplierRouter);
 app.use("/stock", stockRouter);
+<<<<<<< HEAD
+app.use("/privatescreen", privatescreenRouter);
+=======
 app.use('/movie', Movie_routes);
 app.use('/booking', bookingRouter);
 app.use("/supplier", supplierRouter);
 app.use("/stock", stockRouter); 
 app.use("/product", productRouter);
+>>>>>>> af48f552b81561ef2cb0ddd2d57311a9086a6e50
 
 
 // app.get("/adv", (req, res)=>{

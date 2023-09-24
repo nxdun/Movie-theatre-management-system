@@ -6,22 +6,18 @@ const SidePnlBtns = () => {
   const navigate = useNavigate();
   return (
 
-  <div className="btn-container">
-
-      <button className='btn 01' onClick={() => navigate("/add-room")}>
-        Add Private Room
-      </button>     
-        
-        <button className='btn 03' onClick={() => navigate("/review-booking")}>
-          Review Screen Bookings</button>
-        <button className='btn 04' onClick={() => navigate("/view-report")}>
-          Generate Report</button>
-
-
-
+    <div className="btnn-container">
+    <button className="btnn btn01" onClick={() => navigate("/privateScreen/Addroom")}>
+      Add Private Room
+    </button>
+    <button className="btnn btn03" onClick={() => navigate("/privateScreen/Reviewbooking")}>
+      Review Screen Bookings
+    </button>
+    <button className="btnn btn04" onClick={() => navigate("/privateScreen/Viewbookingreport")}>
+      Generate Report
+    </button>
   </div>
-  
-  )
+);
 };
 
 

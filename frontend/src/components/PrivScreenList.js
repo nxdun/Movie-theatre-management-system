@@ -9,8 +9,7 @@ const PrivScreenList = (props) => {
     return (
       <div className="priv-sclist center">
         <Card>
-        <h2>No screening rooms found. Add Room maybe?</h2>
-        <button>ADD ROOM</button>
+          <h2>No screening rooms found.</h2>
         </Card>
       </div>
     );
@@ -20,20 +19,18 @@ const PrivScreenList = (props) => {
     <ul className="priv-sclist">
       {props.items.map((privscreen) => (
         <PrivScreenItem
-          key={privscreen.id}
-          id={privscreen.id}
-          image={privscreen.imageUrl}
+          key={privscreen.privScId}
+          id={privscreen.privScId}
+          image={privscreen.privscimage}
           privscname={privscreen.privscname}
-          privseatcapacity={privscreen.privseatcapacity}
-          privscdescription={privscreen.privscdescription}
           privscprice={privscreen.privscprice}
-          privsclocation={privscreen.privsclocation} 
+          privseatcapacity={privscreen.privseatcapacity}
+          privsclocation={privscreen.privsclocation}
+          privscdescription={privscreen.privscdescription}
         />
       ))}
     </ul>
   );
-
-
 };
 
 export default PrivScreenList;

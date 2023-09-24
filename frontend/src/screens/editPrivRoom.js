@@ -1,396 +1,227 @@
-import React, { useState } from "react";
-import ReactSelect from "react-select";
-//import "./editPrivRoom.css";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
+import Input from "../components/PrivateScreenForm/Input";
+import Button from "../components/PrivateScreenForm/Button";
+import Card from "../components/UIelements/Card";
+import {
+  VALIDATOR_REQUIRE,
+  VALIDATOR_MINLENGTH,
+} from "../components/util/validators";
+import "./inputPrivRoom.css";
+import { useForm } from "../components/PrivateScreenHooks/privScform-hook";
 
 const EditPrivRoom = () => {
-  const options = [
-    { value: "gujarat", label: "Gujarat" },
-    { value: "delhi", label: "Delhi" },
-    { value: "punjab", label: "Punjab" },
-    { value: "maharashtra", label: "Maharashtra" },
-    { value: "rajasthan", label: "Rajasthan" },
-  ];
+  const privScId = useParams().privScId;
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const multioptions = [
-    { value: "orange", label: "Orange" },
-    { value: "mango", label: "Mango" },
-    { value: "apple", label: "Apple" },
-    { value: "banana", label: "Banana" },
-    { value: "grapes", label: "Grapes" },
-  ];
-  const emptydata = {
-    userImage: "",
-    userImageName: "",
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
-    subject: "",
-    reactselect: "",
-    reactmultiselect: [],
-    gender: "",
-    hobbies: [],
-    message: "",
+  const handleCancelButtonClick = () => {
+    navigate("/privatescreen/dashboard");
   };
-  const [formData, SetFormData] = useState({
-    userImage: "",
-    userImageName: "",
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
-    subject: "",
-    reactselect: "",
-    reactmultiselect: [],
-    gender: "",
-    hobbies: [],
-    message: "",
-  });
 
-  const InputChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "hobbies") {
-      const hobbies = formData.hobbies;
-      const index = hobbies.indexOf(value);
-      if (e.target.checked === true) {
-        hobbies.push(value);
-      } else if (e.target.checked === false) {
-        hobbies.splice(index, 1);
-      }
-    } else if (name === "userImage") {
-      let reader = new FileReader();
-      let file = e.target.files[0];
-      let filename = e.target.files[0].name;
-      reader.onloadend = () => {
-        SetFormData((preValue) => {
-          return {
-            ...preValue,
-            userImageName: filename,
-            userImage: reader.result,
-          };
-        });
-      };
-      if (e.target.files[0]) {
-        reader.readAsDataURL(file);
-      }
-    } else {
-      SetFormData((preData) => {
-        return {
-          ...preData,
-          [name]: value,
+  const [formState, inputHandler, setFormData] = useForm(
+    {
+      privscname: {
+        value: "",
+        isValid: false,
+      },
+      privscprice: {
+        value: "",
+        isValid: false,
+      },
+      privseatcapacity: {
+        value: "",
+        isValid: false,
+      },
+      privsclocation: {
+        value: "",
+        isValid: false,
+      },
+      privscdescription: {
+        value: "",
+        isValid: false,
+      },
+      privscimage: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
+
+  useEffect(() => {
+    const fetchPrivateScreenData = async () => {
+      try {
+        const response = await axios.get(`/privatescreen/${privScId}`);
+        const privateScreenData = response.data.privatescreen;
+
+        const initialFormValues = {
+          privscname: {
+            value: privateScreenData.privscname,
+            isValid: true,
+          },
+          privscprice: {
+            value: privateScreenData.privscprice,
+            isValid: true,
+          },
+          privseatcapacity: {
+            value: privateScreenData.privseatcapacity,
+            isValid: true,
+          },
+          privsclocation: {
+            value: privateScreenData.privsclocation,
+            isValid: true,
+          },
+          privscdescription: {
+            value: privateScreenData.privscdescription,
+            isValid: true,
+          },
+          privscimage: {
+            value: privateScreenData.privscimage,
+            isValid: true,
+          },
         };
+
+        setFormData(initialFormValues, true);
+        setIsLoading(false);
+      } catch (err) {
+        console.error(err);
+        setIsLoading(false);
+      }
+    };
+
+    fetchPrivateScreenData();
+  }, [privScId, setFormData]);
+
+  const privScreenUpdateSubmitHandler = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.put(`/privatescreen/${privScId}`, {
+        privscname: formState.inputs.privscname.value,
+        privscprice: formState.inputs.privscprice.value,
+        privseatcapacity: formState.inputs.privseatcapacity.value,
+        privsclocation: formState.inputs.privsclocation.value,
+        privscdescription: formState.inputs.privscdescription.value,
+        privscimage: formState.inputs.privscimage.value,
       });
+
+      if (response.status === 200) {
+        window.alert("Room updated successfully!");
+        navigate(`/privatescreen/dashboard`);
+      } else {
+        window.alert("Failed to update room. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      window.alert("An error occurred while updating the room.");
     }
   };
 
-  const formSubmitEvent = (e) => {
-    e.preventDefault();
-
-    // Reset form on submit
-    e.target.reset();
-    SetFormData(emptydata);
-
-    // Result
-    console.log(formData);
-  };
+  if (isLoading) {
+    return (
+      <div className="center">
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
 
   return (
-    <React.Fragment>
-      <div className="row m-0 justify-content-center">
-        <div className="col-md-6 mt-5 mb-5">
-          <div className="form-area">
-            <div className="form-inner">
-              <form onSubmit={formSubmitEvent}>
-                <h4 className="form-heading mb-4 text-primary text-center">
-                  React Multiple Inputs form
-                </h4>
+    <form className="privscreen-form" onSubmit={privScreenUpdateSubmitHandler}>
+      <h4 className="form-heading mb-4 text-primary text-center">
+        Edit Private Screening Room
+      </h4>
+      <Input
+        id="privscname"
+        element="input"
+        type="text"
+        label="Screening Room Name"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid screening name."
+        onInput={inputHandler}
+        initialValue={formState.inputs.privscname.value} /* Add initialValue */
+        initialIsValid={
+          formState.inputs.privscname.isValid
+        } /* Add initialIsValid */
+      />
+      <Input
+        id="privscprice"
+        element="input"
+        type="text"
+        label="Screening Room Price"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid screening price."
+        onInput={inputHandler}
+        initialValue={formState.inputs.privscprice.value} 
+        initialIsValid={
+          formState.inputs.privscprice.isValid
+        }
+      />
+      <Input
+        id="privseatcapacity"
+        element="input"
+        type="text"
+        label="Screening Room Seat Capacity"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid screening seat capacity."
+        onInput={inputHandler}
+        initialValue={
+          formState.inputs.privseatcapacity.value
+        }
+        initialIsValid={
+          formState.inputs.privseatcapacity.isValid
+        }
+      />
+      <Input
+        id="privsclocation"
+        element="input"
+        type="text"
+        label="Screening Room Location"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid screening location."
+        onInput={inputHandler}
+        initialValue={
+          formState.inputs.privsclocation.value
+        }
+        initialIsValid={
+          formState.inputs.privsclocation.isValid
+        }
+      />
+      <Input
+        id="privscdescription"
+        element="textarea"
+        label="Screening Room Description"
+        validators={[VALIDATOR_MINLENGTH(5)]}
+        errorText="Please enter a valid screening room description.(at least 5 characters.)"
+        onInput={inputHandler}
+        initialValue={
+          formState.inputs.privscdescription.value
+        }
+        initialIsValid={
+          formState.inputs.privscdescription.isValid
+        } 
+      />
+      <Input
+        id="privscimage"
+        element="input"
+        type="text"
+        label="Screening Room Image"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid screening image."
+        onInput={inputHandler}
+        initialValue={formState.inputs.privscimage.value}
+        initialIsValid={
+          formState.inputs.privscimage.isValid
+        } 
+      />
 
-                <div className="row">
-                  <div className="col-lg-12">
-                    <div class="alert alert-warning" role="alert">
-                      You can see result in console
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
-                    <div className="form-group text-center">
-                      <div className="userprofile-img-bx">
-                        <img
-                          id="imgpreviewPrf"
-                          src={
-                            formData.userImage === ""
-                              ? "https://image.flaticon.com/icons/svg/145/145867.svg"
-                              : formData.userImage
-                          }
-                          alt="profile-img"
-                          className="prf-img-prev"
-                        />
-                        <div className="profile-img-change-btn">
-                          <i className="fa fa-pencil-alt"></i>
-                          <input
-                            type="file"
-                            name="userImage"
-                            className="filepreviewprofile"
-                            onChange={InputChange}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="form-group">
-                      <label className="d-block">First Name</label>
-                      <input
-                        type="text"
-                        name="firstname"
-                        className="form-control"
-                        value={formData.firstname}
-                        onChange={InputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="form-group">
-                      <label className="d-block">Last Name</label>
-                      <input
-                        type="text"
-                        name="lastname"
-                        className="form-control"
-                        value={formData.lastname}
-                        onChange={InputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="form-group">
-                      <label className="d-block">Email</label>
-                      <input
-                        type="email"
-                        name="email"
-                        className="form-control"
-                        value={formData.email}
-                        onChange={InputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="form-group">
-                      <label className="d-block">Password</label>
-                      <input
-                        type="password"
-                        name="password"
-                        className="form-control"
-                        value={formData.password}
-                        onChange={InputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="form-group">
-                      <label className="d-block">Subject</label>
-                      <select
-                        name="subject"
-                        className="form-control"
-                        value={formData.subject}
-                        onChange={InputChange}
-                      >
-                        <option value="">Select Subject</option>
-                        <option value="subject 1">Subject 1</option>
-                        <option value="subject 2">Subject 2</option>
-                        <option value="subject 3">Subject 3</option>
-                        <option value="subject 4">Subject 4</option>
-                        <option value="subject 5">Subject 5</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="form-group react-form-group">
-                      <label className="d-block">State (React Select)</label>
-                      <ReactSelect
-                        options={options}
-                        value={formData.reactselect}
-                        placeholder="Select State"
-                        onChange={(value) =>
-                          SetFormData((prevalue) => {
-                            return { ...prevalue, reactselect: value };
-                          })
-                        }
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
-                    <div className="form-group react-form-group">
-                      <label className="d-block">
-                        Select Fruit (Multiple) (React Select)
-                      </label>
-                      <ReactSelect
-                        isMulti={true}
-                        options={multioptions}
-                        // closeMenuOnSelect={false}
-                        hideSelectedOptions={false}
-                        placeholder="Select Fruits"
-                        value={formData.reactmultiselect}
-                        onChange={(value) =>
-                          SetFormData((prevalue) => {
-                            return { ...prevalue, reactmultiselect: value };
-                          })
-                        }
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="form-group radio-group">
-                      <label className="d-block">Select Gender</label>
-                      <div className="custom-control custom-radio d-inline-block mr-2">
-                        <input
-                          type="radio"
-                          id="multiradio1"
-                          name="gender"
-                          className="custom-control-input"
-                          value="Male"
-                          onChange={InputChange}
-                          checked={formData.gender === "Male"}
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor="multiradio1"
-                        >
-                          Male
-                        </label>
-                      </div>
-                      <div className="custom-control custom-radio d-inline-block mr-2">
-                        <input
-                          type="radio"
-                          id="multiradio2"
-                          name="gender"
-                          className="custom-control-input"
-                          value="Female"
-                          onChange={InputChange}
-                          checked={formData.gender === "Female"}
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor="multiradio2"
-                        >
-                          Female
-                        </label>
-                      </div>
-                      <div className="custom-control custom-radio d-inline-block mr-2">
-                        <input
-                          type="radio"
-                          id="multiradio3"
-                          name="gender"
-                          className="custom-control-input"
-                          value="Other"
-                          onChange={InputChange}
-                          checked={formData.gender === "Other"}
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor="multiradio3"
-                        >
-                          Other
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="form-group radio-group">
-                      <label className="d-block">Hobbies</label>
-                      <div className="custom-control custom-checkbox d-inline-block mr-2">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input checkbox-input"
-                          name="hobbies"
-                          id="multicheckbox1"
-                          value="Dance"
-                          onChange={InputChange}
-                          defaultChecked={
-                            formData.hobbies.includes("Dance") ? true : false
-                          }
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor="multicheckbox1"
-                        >
-                          Dance
-                        </label>
-                      </div>
-                      <div className="custom-control custom-checkbox d-inline-block mr-2">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input checkbox-input"
-                          name="hobbies"
-                          id="multicheckbox2"
-                          value="Music"
-                          onChange={InputChange}
-                          defaultChecked={
-                            formData.hobbies.includes("Music") ? true : false
-                          }
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor="multicheckbox2"
-                        >
-                          Music
-                        </label>
-                      </div>
-                      <div className="custom-control custom-checkbox d-inline-block mr-2">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input checkbox-input"
-                          name="hobbies"
-                          id="multicheckbox3"
-                          value="Cricket"
-                          onChange={InputChange}
-                          defaultChecked={
-                            formData.hobbies.includes("Cricket") ? true : false
-                          }
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor="multicheckbox3"
-                        >
-                          Cricket
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
-                    <div className="form-group">
-                      <label className="d-block">Message</label>
-                      <textarea
-                        name="message"
-                        rows="4"
-                        className="form-control"
-                        value={formData.message}
-                        onChange={InputChange}
-                      ></textarea>
-                    </div>
-                  </div>
-                  <div className="col-lg-12 text-right">
-                    <button
-                      type="submit"
-                      className="btn btn-primary form-submit"
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </React.Fragment>
-
-    /*<div>
-    
-                    <button className='btn btn-primary'>Add Room</button>
-                    <button className='btn btn-primary'>Cancel</button>
-    
-    
-                </div>*/
+<Button type="submit" disabled={!formState.isValid}>
+        EDIT ROOM
+      </Button>
+      <Button onClick={handleCancelButtonClick}>Cancel</Button>
+    </form>
   );
 };
 
