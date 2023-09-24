@@ -5,7 +5,7 @@ const Header = () => {
     <header class="site-header">
   <div class="site-identity">
   <div className="icon">
-    <Link to="/Home">
+    <Link to="/">
   <img src="https://raw.githubusercontent.com/nxdun/BlaBla/main/1.png"
           alt="logo"
           className="header-img"/>

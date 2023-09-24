@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3014",
+  "proxy": "http://localhost:3013",
   "dependencies": {
     "@fullcalendar/daygrid": "^6.1.9",
     "@fullcalendar/react": "^6.1.9",
@@ -25,7 +25,8 @@
     "redux-thunk": "^2.4.2",
     "styled-components": "^6.0.7",
     "sweetalert2": "^11.7.28",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",
