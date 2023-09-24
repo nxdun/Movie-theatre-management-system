@@ -7,18 +7,20 @@ import pic3 from './Images/p3.jpeg';
 import pic4 from './Images/p4.jpeg';
 import pic5 from './Images/p5.jpeg';
 import './CSS/AllMovies.css';
+import Header from "../../shared/HomeHeader";
 
 export default function HomeMain(){
   
     return(
         <div>
+        <Header/>
         <div className="cont">
             <div className="cont1">
                 <h1 className="h1">Avatar :</h1>
                 <h1 className="h1">The way of water</h1>
             </div>
             <div className="cont2">
-                <img className="ima" src={mainp} alt="My Image" width="95%" height= "100%" />
+                <img className="ima12" src={mainp} alt="My Image" width="95%" height= "100%" />
             
             </div>
         </div>
