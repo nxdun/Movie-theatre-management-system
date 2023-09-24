@@ -406,7 +406,7 @@ function AddMoviesMainPage(props) {
                                     <Item
                                         label="Movie Name"
                                         name="MovieName"
-                                        rules={[{ required: true, message: 'Please enter the company name' }]}
+                                        rules={[{ required: true, message: 'Please enter the Movie name' }]}
                                     >
                                         <Select
                                             showSearch
