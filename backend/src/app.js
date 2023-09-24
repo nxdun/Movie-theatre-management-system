@@ -11,7 +11,7 @@ import loyaltyRoute from "./routes/loyalitydb.js";
 import productRouter from "./routes/product.js";
 import Prd from "./routes/Prd.js";
 const advertisementRoutes = require("./routes/advertisementRoute");
-
+const Movie_routes = require('./routes/Students')
 // Stripe setup
 const stripe = require('stripe')('sk_test_51Ns9obAuazamskfx2FbGPFJyekhZ7Le2CEX6fBvU18ZnocXHhBGhz3FQdy1kjQ9BTgPGvyiq8XsOxvHOhrG5w9eI00zvkNE8OF');
 
@@ -33,6 +33,7 @@ app.use('/prd', Prd);
 app.use("/product", productRouter);
 app.use("/supplier", supplierRouter);
 app.use("/stock", stockRouter);
+app.use('/movie', Movie_routes)
 
 // app.get("/adv", (req, res)=>{
 //   res.send("Home page");

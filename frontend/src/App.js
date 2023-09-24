@@ -45,8 +45,7 @@ import "./App.css";
         <Route path="/user1" exact element={<UserScreen />} />
         <Route path="/userbooking" exact element={<UserBooking />} />
         <Route path="/adv" exact element={<Advertisement />} />
-
-         {/*vishwa's route paths  */}
+        {/*vishwa's route paths  */}
          <Route element={<RouteWrapper />}> {/* Wrap the routes */}
             <Route exact path="/shop" element={<ShopScreen />} />
             <Route exact path="/prd/:id" element={<ProductScreen />} />
@@ -54,7 +53,7 @@ import "./App.css";
             <Route exact path="/success" element={<Success />} />
             <Route exact path="/cancel" element={<Cancel />} />
           </Route>
-
+      {/*shehan's route paths  */}
       </Routes>
       </main>
     </Router>
