@@ -1,20 +1,55 @@
-
-  
 .form-heading {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
 
-  .privscreen-form {
-    list-style: none;
-    margin: 0 auto;
-    padding: 1rem;
-    width: 100%;
-    max-width: 40rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    border-radius: 6px;
-    background: white;
-  }
-  
-  
+.privscreen-form {
+  list-style: none;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
+  max-width: 40rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 6px;
+  background: white;
+}
+
+/* Style for buttons */
+.privscreen-form button {
+  background-color: #2196F3;
+  color: white;
+  padding: 12px 24px;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.privscreen-form button.cancel-button {
+  background-color: #FF5722;
+}
+
+.privscreen-form button:hover {
+  background-color: #1976D2;
+}
+
+/* Style for inputs and textareas */
+.privscreen-form input,
+.privscreen-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box; /* Add this line to include padding and border in the width calculation */
+}
+
+.privscreen-form input:focus,
+.privscreen-form textarea:focus {
+  outline: none;
+  border-color: #2196F3;
+}

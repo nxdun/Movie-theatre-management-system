@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
 import Input from "../components/PrivateScreenForm/Input";
 import Button from "../components/PrivateScreenForm/Button";
@@ -11,110 +12,113 @@ import {
 import "./inputPrivRoom.css";
 import { useForm } from "../components/PrivateScreenHooks/privScform-hook";
 
-
-const DUMMY_PRIVSCREENS = [ // dummy data for private screening rooms
-  {
-    id: 'p1',
-    privscname: 'Panoramic Screen 1',
-    privseatcapacity: '10',
-    privscdescription: 'Screen 1 is the largest screen in the cinema',
-    privscprice: '5800.00',
-    privsclocation: '2nd Floor, Left of the main entrance',
-    imageUrl: 'https://fastly.picsum.photos/id/42/3456/2304.jpg?hmac=dhQvd1Qp19zg26MEwYMnfz34eLnGv8meGk_lFNAJR3g'
-  
-  },
-  {
-    id: 'p2',
-    privscname: 'Screen 1',
-    privseatcapacity: '100',
-    privscdescription: 'Screen 1 is the largest screen in the cinema',
-    privscprice: '£100',
-    privsclocation: 'London',
-    imageUrl: 'https://fastly.picsum.photos/id/85/1280/774.jpg?hmac=h_HHpvfhMmLP6uOSrHS7HSlXVRuMKfBbc8HFKd1Acv4'
-  
-  },
-  
-
-];
-
-
-
 const EditPrivRoom = () => {
-
+  const privScId = useParams().privScId;
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
 
-  const privScId = useParams().privScId;
-
-  const [formState, inputHandler, setFormData] =useForm({
-    privscname: {
-      value: "",
-      isValid: false,
-    },
-    privscprice: {
-      value: "",
-      isValid: false,
-    },
-    privseatcapacity: {
-      value: "",
-      isValid: false,
-    },
-    privsclocation: {
-      value: "",
-      isValid: false,
-    },
-    privscdescription: {
-      value: "",
-      isValid: false,
-    },
-
-  },false);
-
-  const identifiedPrivSc = DUMMY_PRIVSCREENS.find(p => p.id === privScId);
-  
-  useEffect(() => {
-  if (identifiedPrivSc) {
-
-  setFormData({
-    privscname: {
-      value: identifiedPrivSc.privscname,
-      isValid: true,
-    },
-    privscprice: {
-      value: identifiedPrivSc.privscprice,
-      isValid: true,
-    },
-    privseatcapacity: {
-      value: identifiedPrivSc.privseatcapacity,
-      isValid: true,
-    },
-    privsclocation: {
-      value: identifiedPrivSc.privsclocation,
-      isValid: true,
-    },
-    privscdescription: {
-      value: identifiedPrivSc.privscdescription,
-      isValid: true,
-    },
-  },true);
-}
-  setIsLoading(false);
-}, [setFormData, identifiedPrivSc]);
-
-
-  const privScreenUpdateSubmitHandler = event => {
-    event.preventDefault(); 
-    console.log(formState.inputs); // send  this to the backend!
+  const handleCancelButtonClick = () => {
+    navigate("/privatescreen/dashboard");
   };
 
-  if (!identifiedPrivSc) {
-    return (
-      <div className="center">
-        <Card>
-        <h2>Could not find private screening room!</h2>
-        </Card>
-      </div>
-    );
-  }
+  const [formState, inputHandler, setFormData] = useForm(
+    {
+      privscname: {
+        value: "",
+        isValid: false,
+      },
+      privscprice: {
+        value: "",
+        isValid: false,
+      },
+      privseatcapacity: {
+        value: "",
+        isValid: false,
+      },
+      privsclocation: {
+        value: "",
+        isValid: false,
+      },
+      privscdescription: {
+        value: "",
+        isValid: false,
+      },
+      privscimage: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
+
+  useEffect(() => {
+    const fetchPrivateScreenData = async () => {
+      try {
+        const response = await axios.get(`/privatescreen/${privScId}`);
+        const privateScreenData = response.data.privatescreen;
+
+        const initialFormValues = {
+          privscname: {
+            value: privateScreenData.privscname,
+            isValid: true,
+          },
+          privscprice: {
+            value: privateScreenData.privscprice,
+            isValid: true,
+          },
+          privseatcapacity: {
+            value: privateScreenData.privseatcapacity,
+            isValid: true,
+          },
+          privsclocation: {
+            value: privateScreenData.privsclocation,
+            isValid: true,
+          },
+          privscdescription: {
+            value: privateScreenData.privscdescription,
+            isValid: true,
+          },
+          privscimage: {
+            value: privateScreenData.privscimage,
+            isValid: true,
+          },
+        };
+
+        setFormData(initialFormValues, true);
+        setIsLoading(false);
+      } catch (err) {
+        console.error(err);
+        setIsLoading(false);
+      }
+    };
+
+    fetchPrivateScreenData();
+  }, [privScId, setFormData]);
+
+  const privScreenUpdateSubmitHandler = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.put(`/privatescreen/${privScId}`, {
+        privscname: formState.inputs.privscname.value,
+        privscprice: formState.inputs.privscprice.value,
+        privseatcapacity: formState.inputs.privseatcapacity.value,
+        privsclocation: formState.inputs.privsclocation.value,
+        privscdescription: formState.inputs.privscdescription.value,
+        privscimage: formState.inputs.privscimage.value,
+      });
+
+      if (response.status === 200) {
+        window.alert("Room updated successfully!");
+        navigate(`/privatescreen/dashboard`);
+      } else {
+        window.alert("Failed to update room. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      window.alert("An error occurred while updating the room.");
+    }
+  };
 
   if (isLoading) {
     return (
@@ -124,83 +128,101 @@ const EditPrivRoom = () => {
     );
   }
 
-  return (   
-  <form className="privscreen-form" onSubmit={privScreenUpdateSubmitHandler}>
-  <h4 className="form-heading mb-4 text-primary text-center">
-    Edit Private Screening Room
-  </h4>
-  <Input
-    id="privscname"
-    element="input"
-    type="text"
-    label="Screening Room Name"
-    validators={[VALIDATOR_REQUIRE()]}
-    errorText="Please enter a valid screening name."
-    onInput={inputHandler}
-    initialValue={formState.inputs.privscname.value}
-    initialValid={formState.inputs.privscname.isValid}
+  return (
+    <form className="privscreen-form" onSubmit={privScreenUpdateSubmitHandler}>
+      <h4 className="form-heading mb-4 text-primary text-center">
+        Edit Private Screening Room
+      </h4>
+      <Input
+        id="privscname"
+        element="input"
+        type="text"
+        label="Screening Room Name"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid screening name."
+        onInput={inputHandler}
+        initialValue={formState.inputs.privscname.value} /* Add initialValue */
+        initialIsValid={
+          formState.inputs.privscname.isValid
+        } /* Add initialIsValid */
+      />
+      <Input
+        id="privscprice"
+        element="input"
+        type="text"
+        label="Screening Room Price"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid screening price."
+        onInput={inputHandler}
+        initialValue={formState.inputs.privscprice.value} 
+        initialIsValid={
+          formState.inputs.privscprice.isValid
+        }
+      />
+      <Input
+        id="privseatcapacity"
+        element="input"
+        type="text"
+        label="Screening Room Seat Capacity"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid screening seat capacity."
+        onInput={inputHandler}
+        initialValue={
+          formState.inputs.privseatcapacity.value
+        }
+        initialIsValid={
+          formState.inputs.privseatcapacity.isValid
+        }
+      />
+      <Input
+        id="privsclocation"
+        element="input"
+        type="text"
+        label="Screening Room Location"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid screening location."
+        onInput={inputHandler}
+        initialValue={
+          formState.inputs.privsclocation.value
+        }
+        initialIsValid={
+          formState.inputs.privsclocation.isValid
+        }
+      />
+      <Input
+        id="privscdescription"
+        element="textarea"
+        label="Screening Room Description"
+        validators={[VALIDATOR_MINLENGTH(5)]}
+        errorText="Please enter a valid screening room description.(at least 5 characters.)"
+        onInput={inputHandler}
+        initialValue={
+          formState.inputs.privscdescription.value
+        }
+        initialIsValid={
+          formState.inputs.privscdescription.isValid
+        } 
+      />
+      <Input
+        id="privscimage"
+        element="input"
+        type="text"
+        label="Screening Room Image"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid screening image."
+        onInput={inputHandler}
+        initialValue={formState.inputs.privscimage.value}
+        initialIsValid={
+          formState.inputs.privscimage.isValid
+        } 
+      />
 
-  />  
-  <Input
-    id="privscprice"
-    element="input"
-    type="text"
-    label="Screening Room Price"
-    validators={[VALIDATOR_REQUIRE()]}
-    errorText="Please enter a valid screening price."
-    onInput={inputHandler}
-    initialValue={formState.inputs.privscprice.value}
-    initialValid={formState.inputs.privscprice.isValid}
-  />
-  <Input
-    id="privseatcapacity"
-    element="input"
-    type="text"
-    label="Screening Room Seat Capacity"
-    validators={[VALIDATOR_REQUIRE()]}
-    errorText="Please enter a valid screening seat capacity."
-    onInput={inputHandler}
-    initialValue={formState.inputs.privseatcapacity.value}
-    initialValid={formState.inputs.privseatcapacity.isValid}
-  />
-  <Input
-    id="privsclocation"
-    element="input"
-    type="text"
-    label="Screening Room Location"
-    validators={[VALIDATOR_REQUIRE()]}
-    errorText="Please enter a valid screening location."
-    onInput={inputHandler}
-    initialValue={formState.inputs.privsclocation.value}
-    initialValid={formState.inputs.privsclocation.isValid}
-  />
-  <Input
-    id="privscdescription"
-    element="textarea"
-    label="Screening Room Description"
-    validators={[VALIDATOR_MINLENGTH(5)]}
-    errorText="Please enter a valid screening room description.(at least 5 characters.)"
-    onInput={inputHandler}
-    initialValue={formState.inputs.privscdescription.value}
-    initialValid={formState.inputs.privscdescription.isValid}
-  />
-  <Button type="submit" disabled={!formState.isValid}>
-    EDIT ROOM
-  </Button>
-  
-  </form> 
-    
-
-    
-    
-
+<Button type="submit" disabled={!formState.isValid}>
+        EDIT ROOM
+      </Button>
+      <Button onClick={handleCancelButtonClick}>Cancel</Button>
+    </form>
   );
-
-
-
-
-
-
 };
 
 export default EditPrivRoom;

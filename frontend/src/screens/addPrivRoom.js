@@ -1,5 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useNavigate} from "react-router-dom";
 
 import Input from "../components/PrivateScreenForm/Input";
 import Button from "../components/PrivateScreenForm/Button";
@@ -33,6 +34,10 @@ const AddPrivRoom = () => {
         value: "",
         isValid: false,
       },
+      privscimage: {
+        value: "",
+        isValid: false,
+      },
     },
     false
   );
@@ -43,11 +48,29 @@ const AddPrivRoom = () => {
     navigate("/privatescreen/dashboard");
   };
 
-  const privScreenSubmitHandler = (event) => {
+  const privScreenSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log(formState.inputs); // send this to the backend!
+    try {
+      const response = await axios.post(`/privatescreen`, {
+        privscname: formState.inputs.privscname.value,
+        privscprice: formState.inputs.privscprice.value,
+        privseatcapacity: formState.inputs.privseatcapacity.value,
+        privsclocation: formState.inputs.privsclocation.value,
+        privscdescription: formState.inputs.privscdescription.value,
+        privscimage: formState.inputs.privscimage.value,
+      });
+      if (response.status === 201) {
+        // Show a success popup
+        window.alert("Room added successfully!");
+        navigate("/privatescreen/dashboard");
+      } else {
+        window.alert("Failed to add room. Please try again.");
+      }
+    } catch (err) {
+      console.log(err);
+      window.alert("An error occurred while adding the room.");
+    }
   };
-
   return (
     <form className="privscreen-form" onSubmit={privScreenSubmitHandler}>
       <h4 className="form-heading mb-4 text-primary text-center">
@@ -95,6 +118,15 @@ const AddPrivRoom = () => {
         label="Screening Room Description"
         validators={[VALIDATOR_MINLENGTH(5)]}
         errorText="Please enter a valid screening room description.(at least 5 characters.)"
+        onInput={inputHandler}
+      />
+      <Input
+        id="privscimage"
+        element="input"
+        type="text"
+        label="Screening Room Image"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid screening image."
         onInput={inputHandler}
       />
       <Button type="submit" disabled={!formState.isValid}>

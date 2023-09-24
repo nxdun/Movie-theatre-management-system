@@ -11,7 +11,7 @@ const productRouter = require("./routes/product.js");
 const supplierRouter = require("./routes/supplier.js");
 const stockRouter = require("./routes/stock.js");
 const loyaltyRoute = require("./routes/loyalitydb.js");
-
+const privatescreenRouter = require("./routes/privatescreens.js");
 
 require("dotenv").config();
 // console.log(process.env))
@@ -27,6 +27,7 @@ app.use("/loyality", loyaltyRoute);
 app.use("/product", productRouter);
 app.use("/supplier", supplierRouter);
 app.use("/stock", stockRouter);
+app.use("/privatescreen", privatescreenRouter);
 
 
 app.listen(PORT, () => {

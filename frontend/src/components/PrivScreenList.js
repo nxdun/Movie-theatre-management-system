@@ -19,9 +19,9 @@ const PrivScreenList = (props) => {
     <ul className="priv-sclist">
       {props.items.map((privscreen) => (
         <PrivScreenItem
-          key={privscreen.id}
-          id={privscreen.id}
-          image={privscreen.imageUrl}
+          key={privscreen.privScId}
+          id={privscreen.privScId}
+          image={privscreen.privscimage}
           privscname={privscreen.privscname}
           privscprice={privscreen.privscprice}
           privseatcapacity={privscreen.privseatcapacity}
