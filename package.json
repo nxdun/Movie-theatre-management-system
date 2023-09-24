@@ -2,30 +2,42 @@
   "name": "movie-theatre-management-system",
   "version": "1.0.0",
   "description": "ITP Project for Group ITP23_WD_B1_06",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "server": "nodemon backend/server.js",
+    "start": "node backend/app.js",
+    "server": "nodemon backend/app.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seederScript.js",
+    "f": "cd frontend & npm start",
+    "b": "cd backend & npm start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.1",
-    "nodemon": "^3.0.1"
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "nodemon": "^3.0.1",
+    "react-scripts": "^5.0.1"
   },
   "dependencies": {
-    "@mui/icons-material": "^5.14.7",
-    "@mui/material": "^5.14.7",
+    "@fullcalendar/react": "^6.1.9",
+    "@stripe/stripe-js": "^2.1.6",
+    "axios": "^1.5.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongodb": "^6.0.0",
-    "mongoose": "^7.4.5",
+    "mongoose": "^7.5.0",
+    "react": "^18.2.0",
     "react-data-table-component": "^7.5.4",
     "react-modal": "^3.16.1",
-    "react-router-dom": "^5.3.4",
-    "styled-component": "^2.8.0"
+    "react-router-dom": "^6.16.0",
+    "stripe": "^13.7.0",
+    "styled-component": "^2.8.0",
+    "uuid": "^9.0.1",
+    "xlsx": "^0.18.5"
   }
 }

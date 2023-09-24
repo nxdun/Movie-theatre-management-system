@@ -5,31 +5,47 @@ const productSchema = new Schema({
         type: String,
         required: true,
     },
+    P_type: {
+        type: String,
+        required: true,
+    },
     P_name: {
         type: String,
         required: true,
     },
-    P_Description: {
+    P_description: {
+        type: String,
+        required: true,
+    },
+    P_image: {
+        type: String,
+        required: false,
+    },
+    P_supplierId: {     
         type: String,
         required: true,
     },
     P_price: {
-        type: String,
+        type: Number,
         required: true,
     },
     P_quantity: {
-        type: String,
+        type: Number,
         required: true,
     },
    
     P_status: {
         type: Boolean,
         required: true,
-    },          
+    },        
+    P_reoderLevel: {
+        type: Number,
+        required: true,
+    },  
     P_createDate: { 
         type: Date,
         required: true,
     },
 })  
-const Product = mongoose.model("product", productSchema);
-module.exports = Product;
+const ProductItem = mongoose.model("productItem", productSchema);
+module.exports = ProductItem;

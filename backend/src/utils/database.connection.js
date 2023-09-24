@@ -11,10 +11,11 @@ const connect =async () => {
     mongoose.connect(uri)
     .then((connection) => {
         database = connection;
+        
         Logger.info('Database connection established');
     })
     .catch((error) => {
-        Logger.error('Database connection failed');
+        Logger.error(error);
     })
 
 };

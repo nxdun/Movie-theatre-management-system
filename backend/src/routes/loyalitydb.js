@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 });
 
 // Update loyalty settings
-router.patch("/", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
       // Find the existing loyalty settings document
       const existingSettings = await LoyaltyData.findOne({});
