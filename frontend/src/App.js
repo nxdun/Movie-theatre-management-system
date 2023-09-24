@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import "./App.css";
 import ConcessionManagement from "./components/ConcessionManagement/ConcessionManagement";
 import ProductList from "./components/ConcessionManagement/components/ProductList/ProductList";
@@ -6,9 +11,6 @@ import StockList from "./components/ConcessionManagement/components/StockList/St
 import SupplierList from "./components/ConcessionManagement/components/SupplierList/SupplierList";
 import Dashboard from "./components/Dashboard/Dashboard";
 import MainLayout from "./components/MainLayout/MainLayout";
-
-
-
 
 /* vishwa screen and components*/
 // Screens
@@ -49,26 +51,38 @@ import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
 function App() {
   return (
-
-      
-    
-       
-
-    
     <Router>
       <main className="app">
         <Routes>
           {/* nadun */}
           <Route path="/loyality/dashboard" exact element={<LoyalityDash />} />
           {/* dunal */}
-          <Route path="/privateScreen/DashBoard" exact element={<PrivateScreenDash />} />  
-        <Route path="/privateScreen/Addroom" exact element={<AddPrivateRoom />} />
-        <Route path="/privateScreen/:privScId" element={<EditPrivateRoom />} />
-        <Route path="/privateScreen/Reviewbooking" exact element={<ReviewBookings />} />
-        <Route path="/privateScreen/Viewbookingreport" exact element={<GenerateReport />} />
-        <Route path="/user1" exact element={<UserScreen />} />
-        <Route path="/userbooking" exact element={<UserBooking />} />
-        
+          <Route
+            path="/privateScreen/DashBoard"
+            exact
+            element={<PrivateScreenDash />}
+          />
+          <Route
+            path="/privateScreen/Addroom"
+            exact
+            element={<AddPrivateRoom />}
+          />
+          <Route
+            path="/privateScreen/:privScId"
+            element={<EditPrivateRoom />}
+          />
+          <Route
+            path="/privateScreen/Reviewbooking"
+            exact
+            element={<ReviewBookings />}
+          />
+          <Route
+            path="/privateScreen/Viewbookingreport"
+            exact
+            element={<GenerateReport />}
+          />
+          <Route path="/user1" exact element={<UserScreen />} />
+          <Route path="/userbooking" exact element={<UserBooking />} />
           <Route path="/adv" exact element={<Advertisement />} />
           {/*vishwa's route paths  */}
           <Route element={<RouteWrapper />}>
@@ -108,22 +122,21 @@ function App() {
             path="/SeatUpdate/:bookingId/:seatId"
             element={<SeatUpdate />}
           />
+          <Route path="concession/supplier_list" element={<SupplierList />} />
+          <Route path="concession/product_list" element={<ProductList />} />
+          <Route path="concession/stock_list" element={<StockList />} />
           {/*Aviska's route paths*/}
-        <Route path="/food" element={<MainLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="concession" element={<ConcessionManagement />}>
-            <Route path="supplier_list" element={<SupplierList />} />
-            <Route path="product_list" element={<ProductList />} />
-            <Route path="stock_list" element={<StockList />} />
+          <Route path="/food" element={<MainLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="concession" element={<ConcessionManagement />}>
+              <Route path="*" element={<Navigate to="/" />} />
+            </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" />} />
-        </Route>
         </Routes>
       </main>
     </Router>
   );
-
 }
 
 export default App;
