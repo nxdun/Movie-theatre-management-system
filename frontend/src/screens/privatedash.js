@@ -13,7 +13,7 @@ const PrivateDashboard = () => {
   useEffect(() => {
     const fetchPrivateScreens = async () => {
       try {
-        const response = await axios.get('/privatescreen');
+        const response = await axios.get('/privatescreen/');
         setLoadedPrivateScreens(response.data.privatescreens);
       } catch (err) {
         console.error(err);
