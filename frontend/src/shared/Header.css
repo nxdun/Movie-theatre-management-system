@@ -1,0 +1,152 @@
+@keyframes rotate {
+  0% {
+    transform: scale(2.5) rotateY(0deg);
+  }
+  100% {
+    transform: scale(2.5) rotateY(360deg);
+  }
+}
+
+/* main color pallete */
+:root {
+  --black: #222222;
+  --white: #FFFFFF;
+  --green: #006600;
+  --red: #ff0000;
+}
+
+/* Default Value Removal */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header Container */
+.header-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: var(--black);
+  color: var(--white);
+  border-bottom: 2px solid #000;
+}
+
+
+/* Header Text */
+.icon {
+  padding-top: 10px;
+  width: 100px;
+  height: 100px;
+  transform: scale(2.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+  margin-bottom: 3px;
+  animation: rotate 10s linear infinite; /* Adjust the duration as needed */
+}
+
+
+/* Buttons Container */
+.button-container-main {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.login-button:hover {
+  color: var(--green); /* text color to white */
+  outline: 8px solid var(--green); /* Use the red color variable */
+  transition: color 0.3s, outline 0.3s,font-weight 0.3s;
+  font-weight: bold;
+}
+/* Login Button */
+.login-button {
+  margin-left: 10px;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  border-radius: 20px;
+}
+
+/* Style for the login image */
+.login-img {
+  width: 100px; /* Adjust the image size as needed */
+  height: 100px;
+  object-fit: contain; /* Keep the image aspect ratio */
+  margin-top: 8px;
+  margin-bottom: 2px;
+  border-radius: 20px;
+}
+
+
+
+/* Style for the Administrator text */
+.admin-text {
+  font-size: 16px; /* Adjust the font size as needed */
+  margin-top: 10px; /* Add spacing between image and text */
+  text-align: center; /* Center the text horizontally */
+}
+
+/* Buttons Container 2 */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    margin-right: 10px; /* Add spacing between buttons */
+    margin-left: 20px; /* Add spacing between buttons */
+  }
+  
+
+/* Disable Button */
+.disable-button {
+  width: 130px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--black); /* Use the black color variable */
+  color: white;
+  border: 2px solid transparent;
+  transition: background-color 0.3s, border 0.3s;
+  border-radius: 10px; /* Add border-radius for curved corners */
+}
+
+.disable-button:hover {
+  background-color: var(--black); /* button bg */
+  color: var(--white); /* text color to white */
+  border: 3px solid var(--red); /* Use the red color variable */
+
+}
+
+/* Logout Button */
+.logout-button {
+  width: 130px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--black); /* Use the black color variable */
+  color: white;
+  margin-top: 10px;
+  border: 2px solid transparent;
+  transition: background-color 0.3s, border 0.3s;
+  border-radius: 10px; /* Add border-radius for curved corners */
+  border: 2px solid #000; /* Use the red color variable */
+}
+
+.logout-button:hover {
+  background-color: var(--black); /* Use the yellow color variable */
+  border: 4px solid var(--red); /* Using the red color variable */
+  color: var(--red); /* text color */
+}
+
+body{
+  background-color: var(--black);
+}

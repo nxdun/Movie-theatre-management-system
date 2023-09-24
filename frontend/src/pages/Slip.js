@@ -21,7 +21,7 @@ function Slip() {
       return;
     }
     // Fetch booking data using seatId to get bookingId
-    fetch(`http://localhost:5101/booking/seat/${seatId}`)
+    fetch(`/booking/seat/${seatId}`)
       .then((response) => response.json())
       .then((data) => {
         if (data && data.bookingId) { // Changed from data.BookingIdId to data.bookingId
@@ -37,7 +37,7 @@ function Slip() {
     setIsDeleting(true);
 
     // Send a DELETE request to the server to delete the booking using seatId
-    fetch(`http://localhost:5101/booking/delete/${seatId}`, {
+    fetch(`/booking/delete/${seatId}`, {
       method: 'DELETE',
     })
       .then((response) => {

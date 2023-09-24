@@ -1,0 +1,139 @@
+.btn {
+  background-color: var(--black);
+  width: 400px;
+  padding-left: 110px;
+  padding-right: 110px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 20px;
+  border-radius: 20px; /* Add border-radius for curved corners */
+  box-shadow: 2px 4px 4px 6px rgba(0, 0, 0, 0.25), -6px -6px 12px 0px rgba(255, 255, 255, 0.25);
+  outline: 2px solid #000;
+
+  color: var(--white);
+}
+
+.btn:hover {
+  background-color: var(--black);
+  color: white;
+  text-decoration: none;
+}
+
+.btn-1 {
+  color: var(--green);
+  padding-top: 35px;
+  padding-bottom: 35px;
+  margin-top: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.btn-1:hover {
+  outline: 4px solid var(--green);
+  color: var(--green);
+  background-color: var(--black);
+  padding-top: 35px;
+  padding-bottom: 35px;
+  margin-top: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.btn-2 {
+  margin-top: 35px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.btn-2:hover {
+  outline: 4px solid var(--green);
+  color: var(--green);
+  background-color: var(--black);
+  margin-top: 35px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.btn-3 {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  margin-top: 15px;
+  margin-left: 29px;
+  margin-right: 30px;
+}
+
+.btn-3:hover {
+  outline: 4px solid var(--green);
+  color: var(--green);
+  background-color: var(--black);
+  padding-top: 35px;
+  padding-bottom: 35px;
+  margin-top: 15px;
+  margin-left: 29px;
+  margin-right: 30px;
+}
+
+.btn-4 {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  margin-top: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.btn-4:hover {
+  outline: 4px solid var(--red);
+  color: var(--red);
+  background-color: var(--black);
+  padding-top: 35px;
+  padding-bottom: 35px;
+  margin-top: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.btn-5 {
+  margin-top: 35px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.btn-5:hover {
+  outline: 4px solid var(--green);
+  color: var(--green);
+  background-color: var(--black);
+  margin-top: 35px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.btn-6 {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-top: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.btn-6:hover {
+  outline: 4px solid var(--green);
+  color: var(--green);
+  background-color: var(--black);
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-top: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.btn-container {
+  display: flex-inline;
+  height:100vh;
+  background-color: var(--black);
+}

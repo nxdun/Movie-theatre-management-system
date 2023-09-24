@@ -21,7 +21,7 @@ const URL = process.env.MONGODB_URL;
 
 mongoose.connect(URL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,   
+    useUnifieTopology: true,   
 });
 
 const connection = mongoose.connection;
@@ -29,8 +29,8 @@ connection.once("open", () => {
     console.log("MongoDB connection success!");
 });
 
-const bookingRouter = require('./src/routes/bookings.js');
-app.use('/booking', bookingRouter);
+
+
 
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

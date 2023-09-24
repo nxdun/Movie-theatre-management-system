@@ -16,7 +16,7 @@ function SeatSelect() {
 
   // Fetch booked seat data from the server when the component mounts
   useEffect(() => {
-    axios.get('http://localhost:5101/booking/')
+    axios.get('/booking/')
       .then((response) => {
         const bookedSeatIds = response.data.map((booking) => booking.seatId);
 
@@ -66,7 +66,7 @@ function SeatSelect() {
     };
 
     // Send a POST request to the server to add the booking
-    axios.post('http://localhost:5101/booking/add', bookingData)
+    axios.post('/booking/add', bookingData)
       .then((response) => {
         console.log(response.data);
 

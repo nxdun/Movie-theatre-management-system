@@ -17,7 +17,7 @@ function SeatUpdate() {
   // Fetch booked seat data from the server when the component mounts
   useEffect(() => {
     axios
-      .get('http://localhost:5101/booking/')
+      .get('/booking/')
       .then((response) => {
         const bookedSeatIds = response.data.map((booking) => booking.seatId);
         setBookedSeats(bookedSeatIds.join(',')); // Store booked seats as a comma-separated string
@@ -84,7 +84,7 @@ function SeatUpdate() {
 
     // Send the data in the POST request
     axios
-      .put(`http://localhost:5101/booking/update/${bookingId}`, postData)
+      .put(`/booking/update/${bookingId}`, postData)
       .then((response) => {
         console.log(response.data);
 

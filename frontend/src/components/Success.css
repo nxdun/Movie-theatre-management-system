@@ -1,0 +1,24 @@
+.success {
+    text-align: center;
+    padding: 40px 0;
+  }
+.success_logo{
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+.success > h1 {
+    color: #029e0a;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+  .success > p {
+    color: #404F5E;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-size:20px;
+    margin: 0;
+  }

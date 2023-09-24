@@ -8,7 +8,7 @@ function SeatManage() {
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:5101/booking')
+    axios.get('/booking')
       .then((response) => {
         setBookings(response.data);
       })
