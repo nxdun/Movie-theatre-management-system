@@ -1,0 +1,32 @@
+/* Slip.css */
+
+/* Style the container div */
+ /* div {
+    margin: 20px;
+    padding: 20px;
+    
+    background-color: #ffffff;
+    text-align: center;
+  } 
+   */
+
+  
+  /* Style the buttons */
+  .buttonx {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #004b00;
+    color: #ffffff; 
+    border: none;
+    cursor: pointer;
+  }
+  
+  .buttonx:hover {
+    background-color: #15aa01; 
+  }
+  
+  /* Style the deleting message */
+  p.deleting {
+    color: #000000; 
+    font-weight: bold;
+  }

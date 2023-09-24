@@ -29,7 +29,7 @@ connection.once("open", () => {
     console.log("MongoDB connection success!");
 });
 
-const bookingRouter = require('./routes/bookings.js');
+const bookingRouter = require('./src/routes/bookings.js');
 app.use('/booking', bookingRouter);
 
 

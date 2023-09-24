@@ -11,8 +11,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SeatSelect />} />
-          <Route path="/Slip/:bookingId/:seatId/:theaterId/:price" element={<Slip />} />
+          <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
           <Route path="/SeatManage" element={<SeatManage />} />
+          <Route path="/SeatUpdate/:bookingId/:seatId" element={<SeatUpdate />} />
+
+          
+
+
 
         </Routes>
       </BrowserRouter>

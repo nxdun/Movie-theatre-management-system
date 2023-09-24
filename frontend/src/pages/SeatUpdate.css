@@ -1,0 +1,139 @@
+/* SeatSelect CSS */
+
+/* Style the header with a gradient background and centered text */
+.sticky-div {
+  background: linear-gradient(to right, #007BFF, #6ACCE6);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the h1 heading */
+h1 {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the h4 cinema location */
+h4 {
+  font-size: 16px;
+  margin: 5px 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Center the location icon and adjust its size */
+.locIcon {
+  display: block;
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+}
+
+/* Style the Dolby logo */
+.dolby {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 25px;
+}
+
+/* Add a subtle box shadow to the screen image */
+.screen-img {
+  /* width: 100%; */
+  max-width: 1000px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Improve button styles */
+button {
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  padding: 10px 22px;
+  margin: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+  transform-style: preserve-3d; /* Enable 3D transformations */
+  transform-origin: center; /* Set the transform origin to the center */
+}
+
+/* Style the "Continue" button */
+.continue-button {
+  background-color: #007BFF;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover styles for buttons, excluding unavailable seats */
+button:not(.unavailable):hover {
+  background-color: #0056b3;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: translate(0, -5px) scale(1.05); /* Add a 3D hover effect */
+}
+
+
+/* Style individual seat buttons as rectangular 3D boxes */
+.seat-button {
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  margin: 20px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+  border-radius: 5px; /* Rounded corners for buttons */
+  width: 80px;
+  height: 60px;
+  background-color: #E5E5E5; /* Light gray */
+  color: black;
+  border: 2px solid #ccc; /* Border for a 3D effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  transform-style: preserve-3d; /* Enable 3D transformations */
+  transform-origin: center; /* Set the transform origin to the center */
+}
+
+
+/* Style unavailable (booked) seats */
+.unavailable {
+  background-color: #FF4F5A; /* Red */
+  color: white;
+  cursor: not-allowed;
+  border: 2px solid #b8262e; /* Red border for unavailable seats */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  transform: translate(0, -5px) scale(1.05); /* Add a 3D effect to unavailable seats */
+}
+
+/* Style selected seats */
+.selected {
+  background-color: #17B978; /* Green */
+  color: white;
+  border: 2px solid #149a66; /* Green border for selected seats */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  transform: translate(0, -5px) scale(1.05); /* Add a 3D effect to selected seats */
+}
+
+
+/* Additional styling for the button container */
+.button-container {
+  display: flex;
+  justify-content: center; /* Horizontally center the seat rows */
+  align-items: center; /* Vertically center the seat rows */
+  flex-wrap: wrap;
+  margin: 20px;
+  max-width: 1200px;
+  padding-right: 125px;
+  padding-left: 125px;
+  
+}
+
+/* Rectangular Seat Layout CSS */
+
+

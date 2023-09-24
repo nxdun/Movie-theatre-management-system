@@ -1,28 +1,31 @@
-import './SeatSelect.css';
+import './SeatUpdate.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import screenImage from './R.png';
-import locationImage from './loca.png';
+
 import dolbyImage from './dolby.png';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function SeatUpdate() {
-  const [selectedButtons, setSelectedButtons] = useState([]);
+  const { bookingId, seatId: gotSeatId } = useParams(); // Get URL parameters
   const [bookedSeats, setBookedSeats] = useState([]);
-  const navigate = useNavigate();
+  const [selectedSeats, setSelectedSeats] = useState([]);
 
-  // Define the isSeatBooked function
-  const isSeatBooked = (seatId) => bookedSeats.includes(String(seatId));
+  // Define the isSeatAlreadyBooked function
+  const isSeatAlreadyBooked = (seatId) => bookedSeats.includes(String(seatId));
 
   // Fetch booked seat data from the server when the component mounts
   useEffect(() => {
-    axios.get('http://localhost:5101/booking/')
+    axios
+      .get('http://localhost:5101/booking/')
       .then((response) => {
         const bookedSeatIds = response.data.map((booking) => booking.seatId);
+        setBookedSeats(bookedSeatIds.join(',')); // Store booked seats as a comma-separated string
+        console.log('Fetched booked seats:', bookedSeatIds);
 
-        const allBookedSeats = bookedSeatIds.flatMap(seatIds => seatIds.split(',').map(id => id.trim()));
-        setBookedSeats(allBookedSeats);
-        console.log('Fetched booked seats:', allBookedSeats);
+        if (gotSeatId && !selectedSeats.includes(Number(gotSeatId))) {
+          setSelectedSeats([...selectedSeats, Number(gotSeatId)]);
+        }
       })
       .catch((error) => {
         console.error('Error fetching booked seats:', error);
@@ -30,8 +33,7 @@ function SeatUpdate() {
   }, []);
 
   const handleButtonClick = (seatId) => {
-    const newSelectedButtons = [...selectedButtons];
-    const seatIsBooked = isSeatBooked(seatId);
+    const seatIsBooked = isSeatAlreadyBooked(seatId);
 
     console.log(`Seat ${seatId} is booked: ${seatIsBooked}`);
 
@@ -40,41 +42,53 @@ function SeatUpdate() {
       return;
     }
 
-    if (newSelectedButtons.includes(seatId)) {
-      newSelectedButtons.splice(newSelectedButtons.indexOf(seatId), 1);
+    const newSelectedSeats = [...selectedSeats];
+
+    if (newSelectedSeats.includes(seatId)) {
+      // If the seat is already selected, unselect it
+      const index = newSelectedSeats.indexOf(seatId);
+      newSelectedSeats.splice(index, 1);
     } else {
-      newSelectedButtons.push(seatId);
+      // If the seat is available, select it
+      newSelectedSeats.push(seatId);
     }
 
-    setSelectedButtons(newSelectedButtons);
+    setSelectedSeats(newSelectedSeats);
+  };
+
+  const calculateTotalPrice = () => {
+    // Assuming the price per selected seat is 1000
+    return selectedSeats.length * 1000;
   };
 
   const handleContinue = () => {
-    if (selectedButtons.length === 0) {
+    if (selectedSeats.length === 0) {
       alert('Please select at least one seat before continuing.');
       return;
     }
 
-    // Prepare booking data
-    const bookingData = {
-      bookingId: 'C20',
-      bookingDate: new Date(),
-      showTime: '6.00PM',
-      theaterId: 'A',
-      seatId: selectedButtons.join(', '), // Join selected seat IDs
-      price: selectedButtons.length * 1000, // Calculate price based on the number of selected seats
-      customerId: 'cus4',
+    const totalPrice = calculateTotalPrice();
+
+    // Prepare the data to send in the Axios POST request
+    const postData = {
+      seatId: selectedSeats.join(','), // Selected seat IDs
+      price: totalPrice, // Total price
     };
 
-    // Send a POST request to the server to add the booking
-    axios.post('http://localhost:5101/booking/add', bookingData)
+        console.log('bookingId:', bookingId);
+        console.log('selectedSeats:', selectedSeats);
+        console.log('gotSeatId:', gotSeatId);
+
+        console.log('totalPrice:', totalPrice);
+
+
+    // Send the data in the POST request
+    axios
+      .put(`http://localhost:5101/booking/update/${bookingId}`, postData)
       .then((response) => {
         console.log(response.data);
 
-        setSelectedButtons([]);
-        
-        // Navigate to the slip page and pass seat information as URL parameters
-        navigate(`/Slip/${bookingData.bookingId}/${bookingData.seatId}/${bookingData.theaterId}/${bookingData.price}`);
+        setSelectedSeats([]); // Clear selected seats after booking
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -83,22 +97,26 @@ function SeatUpdate() {
   };
 
   // Create an array of rows, each containing a row of seats
-  const rows = Array.from({ length: 5 }, (_, rowIndex) => (
+  const rows = Array.from({ length: 6 }, (_, rowIndex) => (
     <div key={rowIndex} className="seat-row">
       {Array.from({ length: 5 }, (_, seatIndex) => {
         const seatNumber = rowIndex * 5 + seatIndex + 1;
+        const isSeatBooked = isSeatAlreadyBooked(seatNumber);
+        const isSelected =
+          seatNumber.toString() === gotSeatId || selectedSeats.includes(seatNumber);
+
         return (
-            
           <button
             key={seatNumber}
-            className={`seat-button ${isSeatBooked(seatNumber) ? 'unavailable' : (selectedButtons.includes(seatNumber) ? 'selected' : 'available')}`}
+            className={`seat-button ${
+              isSeatBooked ? 'unavailable' : isSelected ? 'selected' : 'available'
+            }`}
             onClick={() => handleButtonClick(seatNumber)}
           >
             Seat {seatNumber}
           </button>
         );
       })}
-      
     </div>
   ));
 
@@ -108,17 +126,17 @@ function SeatUpdate() {
         <h1>AVATAR 2</h1>
         <h4>GALAXY CINEMA, Colombo</h4>
         <h3>Update Seats</h3>
-        <img src={locationImage} alt="screen" border="0" className="locIcon" />
+        
         <img src={dolbyImage} alt="screen" border="0" className="dolby" />
       </div>
+
+      <div><h2>Your seats: {selectedSeats}</h2></div>
 
       <div>
         <img src={screenImage} alt="screen" border="0" className="screen-img" />
       </div>
 
-      <div className="button-container">
-        {rows}
-      </div>
+      <div className="button-container">{rows}</div>
 
       <div>
         <button className="continue-button" onClick={handleContinue}>

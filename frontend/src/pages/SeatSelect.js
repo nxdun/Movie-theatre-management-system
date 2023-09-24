@@ -2,7 +2,6 @@ import './SeatSelect.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import screenImage from './R.png';
-import locationImage from './loca.png';
 import dolbyImage from './dolby.png';
 import { useNavigate } from 'react-router-dom';
 
@@ -58,7 +57,6 @@ function SeatSelect() {
 
     // Prepare booking data
     const bookingData = {
-      bookingId: 'C20',
       bookingDate: new Date(),
       showTime: '6.00PM',
       theaterId: 'A',
@@ -75,7 +73,7 @@ function SeatSelect() {
         setSelectedButtons([]);
         
         // Navigate to the slip page and pass seat information as URL parameters
-        navigate(`/Slip/${bookingData.bookingId}/${bookingData.seatId}/${bookingData.theaterId}/${bookingData.price}`);
+        navigate(`/Slip/${bookingData.seatId}/${bookingData.theaterId}/${bookingData.price}`);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -84,7 +82,7 @@ function SeatSelect() {
   };
 
   // Create an array of rows, each containing a row of seats
-  const rows = Array.from({ length: 5 }, (_, rowIndex) => (
+  const rows = Array.from({ length: 6 }, (_, rowIndex) => (
     <div key={rowIndex} className="seat-row">
       {Array.from({ length: 5 }, (_, seatIndex) => {
         const seatNumber = rowIndex * 5 + seatIndex + 1;
@@ -100,18 +98,19 @@ function SeatSelect() {
       })}
     </div>
   ));
-
+  
   return (
     <div>
       <div className="sticky-div">
         <h1>AVATAR 2</h1>
         <h4>GALAXY CINEMA, Colombo</h4>
-        <img src={locationImage} alt="screen" border="0" className="locIcon" />
         <img src={dolbyImage} alt="screen" border="0" className="dolby" />
+        
       </div>
 
       <div>
         <img src={screenImage} alt="screen" border="0" className="screen-img" />
+        <p className="screenWay"><b>↑ SCREEN THIS WAY</b></p>
       </div>
 
       <div className="button-container">
