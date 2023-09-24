@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Showtimes.css';
+import { Link } from "react-router-dom";
 
 const Showtimes = () => {
   // Sample data
@@ -116,9 +117,11 @@ const Showtimes = () => {
                   </div>
                 ))}
               </div>
+              <Link to ="/seatbooking">
               <button className="continue-button" onClick={handleContinueClick}>
                 Continue
               </button>
+              </Link>
             </div>
           ) : (
             <div>

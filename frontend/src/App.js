@@ -82,7 +82,7 @@ function App() {
           {/*we write exact eod for only display path=/ for exact /*/}
           <Route path="/movie" exact element={<AllMovies />} />
           <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
-          <Route path="/Home" element={<HomeMain />} />
+          <Route path="/" element={<HomeMain />} />
           <Route path="/Details" element={<DetailsM />} />
           {/* Sachiras Pages */}
           <Route exact path="/showtime" element={<Showtimes />} />
@@ -98,7 +98,7 @@ function App() {
             element={<UpdateMovieShedularPage />}
           />
           {/* omins Pages */}
-          <Route path="/" element={<SeatSelect />} />
+          <Route path="/seatbooking" element={<SeatSelect />} />
           <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
           <Route path="/SeatManage" element={<SeatManage />} />
           <Route

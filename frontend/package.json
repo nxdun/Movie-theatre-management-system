@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3014",
+  "proxy": "http://localhost:3013",
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "@fullcalendar/daygrid": "^6.1.9",
