@@ -1,0 +1,10 @@
+.MainLayout {
+    height: 100%;
+    width: 100%;
+}
+
+.HeaderTitle {
+    color: white;
+    font-size: 22px;
+    text-align: center;
+}

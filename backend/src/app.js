@@ -37,6 +37,9 @@ app.use("/supplier", supplierRouter);
 app.use("/stock", stockRouter);
 app.use('/movie', Movie_routes);
 app.use('/booking', bookingRouter);
+app.use("/supplier", supplierRouter);
+app.use("/stock", stockRouter); 
+app.use("/product", productRouter);
 
 
 // app.get("/adv", (req, res)=>{
@@ -48,6 +51,7 @@ app.listen(PORT, async () => {
   logger.info("Initializing MongoDB...");
   await connect();
   console.log(`Server running on port: ${PORT}`);
+  
 });
 
 // Checkout API

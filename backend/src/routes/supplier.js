@@ -11,7 +11,8 @@ router.post('/add', async (req, res) => {
       S_address,
       S_email,
       S_status,
-      S_createDate,
+      S_contactNo,
+      // S_createDate,
     } = req.body;
 
     const newSupplier = new Supplier({
@@ -20,7 +21,8 @@ router.post('/add', async (req, res) => {
       S_address,
       S_email,
       S_status,
-      S_createDate,
+      S_contactNo,
+      S_createDate: new Date(),
     });
 
     const savedSupplier = await newSupplier.save();
@@ -50,6 +52,7 @@ router.put('/update/:id', async (req, res) => {
       S_address,
       S_email,
       S_status,
+      S_contactNo,
       S_createDate,
     } = req.body;
 
@@ -59,6 +62,7 @@ router.put('/update/:id', async (req, res) => {
       S_address,
       S_email,
       S_status,
+      S_contactNo,
       S_createDate,
     };
 
