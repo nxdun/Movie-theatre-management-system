@@ -11,7 +11,7 @@ const CartItem = ({item, qtyChangeHandler,removeHandler}) => {
          />
       </div>
 
-        <Link to={`/product/${item.product}`} className="cartItem__name">
+        <Link to={`/prd/${item.product}`} className="cartItem__name">
           <p>{item.name}</p>
         </Link>
 
