@@ -1,0 +1,8 @@
+.AddEditProduct {}
+
+.ant-upload-list-item-container,
+.ant-upload-select {
+    height: 128px !important;
+    width: 128px !important;
+    margin-block: 0 !important;
+}

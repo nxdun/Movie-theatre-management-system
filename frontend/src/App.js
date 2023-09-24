@@ -1,5 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import ConcessionManagement from "./components/ConcessionManagement/ConcessionManagement";
+import ProductList from "./components/ConcessionManagement/components/ProductList/ProductList";
+import StockList from "./components/ConcessionManagement/components/StockList/StockList";
+import SupplierList from "./components/ConcessionManagement/components/SupplierList/SupplierList";
+import Dashboard from "./components/Dashboard/Dashboard";
+import MainLayout from "./components/MainLayout/MainLayout";
+
 
 /* vishwa screen and components*/
 // Screens
@@ -40,6 +47,10 @@ import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
 function App() {
   return (
+
+        
+
+    
     <Router>
       <main className="app">
         <Routes>
@@ -92,10 +103,22 @@ function App() {
             path="/SeatUpdate/:bookingId/:seatId"
             element={<SeatUpdate />}
           />
+          {/*Aviska's route paths*/}
+        <Route path="/food" element={<MainLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="concession" element={<ConcessionManagement />}>
+            <Route path="supplier_list" element={<SupplierList />} />
+            <Route path="product_list" element={<ProductList />} />
+            <Route path="stock_list" element={<StockList />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
         </Routes>
       </main>
     </Router>
   );
+
 }
 
 export default App;
