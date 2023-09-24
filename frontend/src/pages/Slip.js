@@ -43,7 +43,7 @@ function Slip() {
       .then((response) => {
         if (response.status === 200) {
           // Booking deleted successfully, navigate back to SeatSelect
-          navigate('/');
+          navigate('/seatbooking');
         } else {
           // Handle error here, show an error message
           console.error('Error deleting booking:', response.statusText);

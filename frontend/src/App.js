@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route,Navigate } from "react-router-dom";
 import "./App.css";
 import ConcessionManagement from "./components/ConcessionManagement/ConcessionManagement";
 import ProductList from "./components/ConcessionManagement/components/ProductList/ProductList";

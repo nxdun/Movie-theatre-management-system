@@ -72,14 +72,6 @@ button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Hover styles for buttons, excluding unavailable seats */
-button:not(.unavailable):hover {
-  background-color: #0056b3;
-  color: white;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  transform: translate(0, -5px) scale(1.05); /* Add a 3D hover effect */
-}
-
 
 
 /* Additional styling for the button container */
