@@ -8,6 +8,7 @@ import pic4 from './Images/p4.jpeg';
 import pic5 from './Images/p5.jpeg';
 import './CSS/AllMovies.css';
 import Header from "../../shared/HomeHeader";
+import { Link } from "react-router-dom";
 
 export default function HomeMain(){
   
@@ -20,32 +21,41 @@ export default function HomeMain(){
                 <h1 className="h1">The way of water</h1>
             </div>
             <div className="cont2">
-                <img className="ima12" src={mainp} alt="My Image" width="95%" height= "100%" />
-            
+               <Link to="/Details"><img className="ima12" src={mainp} alt="My Image" width="95%" height= "100%" /></Link> 
             </div>
         </div>
 
         <div className="contn">
             
-            <div className="contn1">          
+            <div className="contn1"> 
+            <Link to="/Details">         
             <img className="ima1" src={pic1} alt="My Image" width="95%" height= "100%" />
             <h3 className="h3">Oppenheimer</h3>
+            </Link>
             </div>
             <div className="contn1">
+            <Link to="/Details">         
             <img className="ima1" src={pic5} alt="My Image" width="95%" height= "100%" />
             <h3 className="h3">The Little Mermaid </h3> 
+            </Link>
             </div>
             <div className="contn1">
+            <Link to="/Details">         
             <img className="ima1" src={pic3} alt="My Image" width="95%" height= "100%" />
             <h3 className="h3">Spider-man </h3>
+            </Link>
             </div>
             <div className="contn1">
+            <Link to="/Details">         
             <img className="ima1" src={pic4} alt="My Image" width="95%" height= "100%" />
             <h3 className="h3">Guardian of the galaxy</h3>
+            </Link>
             </div>
             <div className="contn1">
+            <Link to="/Details">
             <img className="ima1" src={pic2} alt="My Image" width="95%" height= "100%" />
             <h3 className="h3">Fast X</h3>
+            </Link>
             </div>
 
         </div>

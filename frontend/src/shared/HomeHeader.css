@@ -2,6 +2,18 @@ body {
   font-family: Helvetica;
   margin: 0;
 }
+.icon {
+  padding-top: 10px;
+  width: 100px;
+  height: 100px;
+  transform: scale(2.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+  margin-bottom: 3px;
+  animation: rotate 10s linear infinite; /* Adjust the duration as needed */
+}
 a {
   text-decoration: none;
   color: #000;

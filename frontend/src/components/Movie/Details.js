@@ -7,7 +7,8 @@ export default function DetailsM(){
     return(
     <div>
         <div className="contD">
-        <a href={'/addMovie'}><button className="button8">Buy Tickets</button></a>
+
+        <a href={'/showtime'}><button className="button8">Buy Tickets</button></a>
         </div>
 
         <div className="contn3">
