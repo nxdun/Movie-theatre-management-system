@@ -30,6 +30,7 @@ import "./App.css";
   import AddMoviesMainPage from "./screens/AddMoviesMainPage";
   import MovieShedularCalPrevPage from "./screens/MovieShedularCalPrevPage";
   import UpdateMovieShedularPage from "./screens/UpdateMovieShedularPage";
+  import Showtimes from './screens/Showtimes';
 
 import AddMovie from "./components/Movie/AddMovie";
 import AllMovies from "./components/Movie/AllMovies";
@@ -70,7 +71,8 @@ import DetailsM from "./components/Movie/Details";
           <Route path="/Home" element={<HomeMain />} />
           <Route path="/Details" element={<DetailsM />} />
 
-           {/* Admin Add Movie Pages */}
+           {/* Sachiras Pages */}
+           <Route exact path="/showtime" element={<Showtimes />} />
            <Route path="/sheduleMovie" exact element={<AddMoviesMainPage />} />
           <Route path="/calender" exact element={<MovieShedularCalPrevPage />} />
           <Route path="/sheduleMovie/:sheduleId" exact element={<UpdateMovieShedularPage />} />
