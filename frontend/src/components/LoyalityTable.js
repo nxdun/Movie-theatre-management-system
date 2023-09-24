@@ -21,8 +21,7 @@ createTheme(
     divider: {
       default: "#444", // Color of the divider
       boxShadow: "1px 2px 9px #F4AAB9",
-      margin: "4em",
-      padding: "1em", // Add a 3D effect using boxShadow
+  
     },
     action: {
       button: "rgba(0,0,0,.54)",
@@ -44,7 +43,7 @@ createTheme(
     cells: {
       common: {
         boxShadow: "0 0 4px rgba(85, 85, 85, 0.5)", // 3D effect shadow
-        border: "10px solid white", // Border color for cells
+       
         background: "#000000", // Background color for cells
       },
       header: {

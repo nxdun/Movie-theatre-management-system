@@ -3,7 +3,7 @@ import "./LoyalitySearchBar.css";
 const LoyalitySearchBar = (props) => {
   return (
     <div className="search-bar">
-  <button className="buttonn button-back">{"<< back"}</button>
+  <button className="buttooonn buttooon-back">{"<< back"}</button>
 
   <form className="search-form">
     <input
@@ -17,9 +17,9 @@ const LoyalitySearchBar = (props) => {
     </button>
   </form>
 
-  <div className="button-group">
-    <button className="buttonn button-reset">R</button>
-    <button className="buttonn button-refresh" onClick={props.onRefresh}>
+  <div className="buttooon-group">
+    <button className="buttooonn buttooon-reset">R</button>
+    <button className="buttooonn buttooon-refresh" onClick={props.onRefresh}>
       &#10227;
     </button>
   </div>

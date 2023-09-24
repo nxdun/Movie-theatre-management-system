@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import ConcessionManagement from "./components/ConcessionManagement/ConcessionManagement";
 import ProductList from "./components/ConcessionManagement/components/ProductList/ProductList";
@@ -6,7 +6,7 @@ import StockList from "./components/ConcessionManagement/components/StockList/St
 import SupplierList from "./components/ConcessionManagement/components/SupplierList/SupplierList";
 import Dashboard from "./components/Dashboard/Dashboard";
 import MainLayout from "./components/MainLayout/MainLayout";
-import Navigate from './Navigate';
+
 
 
 

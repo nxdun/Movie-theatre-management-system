@@ -93,7 +93,7 @@ body {
 }
 
 /* Buttons Container 2 */
-.button-container {
+.button-ccontainer {
     display: flex;
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center items horizontally */

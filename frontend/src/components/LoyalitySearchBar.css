@@ -5,7 +5,7 @@
   box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.5); 
 }
 
-.buttonn {
+.buttooonn {
   background-color: var(--black);
   color: white;
   padding: 15px 20px;
@@ -16,7 +16,7 @@
   border-radius: 30px;
 }
 
-.buttonn:hover:not(.search-bar, .button-back) {
+.buttooonn:hover:not(.search-bar, .buttooon-back) {
   background-color: #3e8e41;
   outline: 10px solid #3e8e41;
   border-left: #3e8e41;
@@ -24,7 +24,7 @@
   transition: all 0.3s ease;
 }
 
-.button-back {
+.buttooon-back {
   background-color: var(--black);
   color: white;
   padding: 15px 20px;
@@ -34,7 +34,7 @@
   cursor: pointer;
 }
 
-.button-back:hover {
+.buttooon-back:hover {
   background-color: #3e8e41;
   outline: 10px solid #3e8e41;
   border-left: #3e8e41;
@@ -81,16 +81,16 @@
   transition: all 0.2s ease;
 }
 
-.button-group {
+.buttooon-group {
   display: flex;
   align-items: center;
   padding-right: 30px;
 }
 
-.button-reset{
+.buttooon-reset{
   margin-right: 20px;
 }
-.button-back:hover{
+.buttooon-back:hover{
   outline: 200px solid #3e8e41;
   BORDER: 1px solid #3e8e41;
   transition: all 0.8s ease;
