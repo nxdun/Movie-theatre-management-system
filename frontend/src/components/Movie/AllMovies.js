@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./CSS/AllMovies.css";
+//import "./CSS/AllMovies.css";
 import { handleDelete } from "./DeleteMovie";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export default function AllMovies() {
   const [Movies, setMovies] = useState([]); // Define the state as Movies
