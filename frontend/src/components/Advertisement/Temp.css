@@ -1,0 +1,28 @@
+.box{
+    width: 80%;
+    height: 60vh;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: #ccc;
+    border-color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 10px 20px #ccc;
+    text-align: center;
+}
+
+.button{
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
