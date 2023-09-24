@@ -1,5 +1,4 @@
 import "./Header.css";
-import  imge from "../images/"
 const Header = () => {
   return (
     <header className="header-main">

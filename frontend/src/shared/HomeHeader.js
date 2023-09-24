@@ -3,8 +3,14 @@ const Header = () => {
   return (
     <header class="site-header">
   <div class="site-identity">
-    <a href="#"><img src="http://via.placeholder.com/400" alt="Site Name" /></a>
-    <h1><a href="#">Site Name</a></h1>
+  <a href="#">
+  <img
+    src="https://raw.githubusercontent.com/nxdun/BlaBla/main/1.png"
+    alt="Site Name"
+  />
+</a>
+
+    <h1><a href="#">Galaxy Cinema</a></h1>
   </div>  
   <nav class="site-navigation">
     <ul class="nav">
