@@ -1,0 +1,30 @@
+
+.common-cotent-container {
+    padding: 5px 20px;
+    height: 100%;
+    background: white;
+}
+
+.common-save-btn {
+    background-color: #005eb8;
+}
+
+
+.common-cancel-btn {
+    background-color: var( --cancel-btn-bg-light);
+    color:  var(  --cancel-btn-color-light);
+    border: '1px solid rgba(0, 0, 0, 0.23)'
+}
+
+.common-btn-color {
+    background-color: #005eb8;
+}
+
+
+@media (min-height: 900px) {
+    .common-cotent-container {
+        height: 100%; /* Adjust maximum height for smaller screens */
+    }
+
+
+}
