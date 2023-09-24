@@ -26,11 +26,11 @@ const productSchema = new Schema({
         required: true,
     },
     P_price: {
-        type: String,
+        type: Number,
         required: true,
     },
     P_quantity: {
-        type: String,
+        type: Number,
         required: true,
     },
    
@@ -39,7 +39,7 @@ const productSchema = new Schema({
         required: true,
     },        
     P_reoderLevel: {
-        type: String,
+        type: Number,
         required: true,
     },  
     P_createDate: { 

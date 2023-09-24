@@ -22,7 +22,7 @@ export default function AddEditSupplier({ data, addMode, onDataChange }) {
     onDataChange(value.data);
   }
   const checkNo = (_, value) => {
-    if (value.number > 0 && value.number.toString().length === 9) {
+    if (value > 0 && value.toString().length === 9) {
       return Promise.resolve();
     }
     return Promise.reject(new Error('Input must be 9 digits!'));

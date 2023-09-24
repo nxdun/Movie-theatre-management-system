@@ -23,7 +23,7 @@ const supplierSchema = new Schema({
         required: true,
     },
     S_contactNo: {
-        type: String,
+        type: Number,
         required: true,
     },
     S_createDate: { 

@@ -1,18 +1,61 @@
 import { EyeOutlined, PlusOutlined, PrinterFilled } from '@ant-design/icons';
-import { Button, Col, Input, Layout, Modal, Row, Space, Table } from 'antd';
+import { Button, Col, Input, Layout, Modal, Row, Space, Table, message } from 'antd';
+import axios from "axios";
 import React, { useEffect, useRef, useState } from 'react';
 import { AddEditStock } from '../AddEditStock/AddEditStock';
 import './StockList.css';
+import html2canvas from 'html2canvas';
+import { jsPDF } from "jspdf";
 
 export default function StockList() {
+  const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState({ title: '', addMode: false, data: null });
   const [dataLoading, setDataLoading] = useState(false);
   const [searching, setSearching] = useState(false);
   const [dataSaving, setDataSaving] = useState(false);
   const [tableHeight, setTableHeight] = useState(600);
+  const [messageApi, contextHolder] = message.useMessage();
 
   const ref = useRef(null);
+
+  const columns = [
+    {
+      title: '#',
+      key: 'index',
+      render: (text, record, index) => (
+        index + 1
+      ),
+      width: 50
+    },
+    {
+      title: 'Product Code',
+      dataIndex: 'P_id',
+      key: 'P_id',
+    },
+    {
+      title: 'Product Name',
+      dataIndex: 'P_name',
+      key: 'P_name',
+    },
+    {
+      title: 'Available Quantity',
+      dataIndex: 'P_quantity',
+      key: ' P_quantity',
+    },
+
+    {
+      title: 'Edit',
+      key: 'action',
+      render: (_, record) => (
+        <Button type="primary" ghost icon={<EyeOutlined />} size="middle" onClick={() => handleViewStockClick(record)}>
+        </Button>
+      ),
+      width: 60
+    },
+  ];
+
 
   useEffect(() => {
     if (ref && ref.current) {
@@ -31,247 +74,96 @@ export default function StockList() {
         setTableHeight(height - 119);
       }
     });
-
+    getData();
     return function () {
       window.removeEventListener("resize", () => {
       });
     }
   }, []);
 
-  const handleSearch = (value) => {
+  const getData = () => {
     setDataLoading(true);
-    setSearching(true);
-    setTimeout(() => {
-      setDataLoading(false);
-      setSearching(false);
-    }, 3000);
+    axios
+      .get("http://localhost:3013/product/")
+      .then(res => {
+        const products = (res.data.products || []).map(val => ({ ...val, key: val._id }))
+        setData(products);
+        setSearchData(products);
+        setDataLoading(false);
+      })
+      .catch((err) => {
+        setDataLoading(false);
+        messageApi.open({
+          type: 'error',
+          content: err.message,
+        });
+      });
+  }
+
+  const handleSearch = (value) => {
+    if (value === '') {
+      getData();
+    } else {
+      setDataLoading(true);
+      setSearching(true);
+      setTimeout(() => {
+        setDataLoading(false);
+        setSearching(false);
+        setSearchData(data.filter(val => val.P_id.toLowerCase().includes(value.toLowerCase()) || val.P_name.toLowerCase().includes(value.toLowerCase())));
+      }, 1000);
+    }
   }
   const handleAddNewStockClick = () => {
-    setModalData({ title: 'Add New Stock', addMode: true, data: {} });
+    setModalData({ title: 'Add New Stock', addMode: true, data: { products: data, stock: { St_productId: '', St_price: '', St_quantity: '' } } });
     setModalOpen(true);
   }
-  const handleViewStockClick = (data) => {
-    setModalData({ title: 'View Stock', addMode: false, data: data });
+  const handleViewStockClick = (value) => {
+    setModalData({ title: 'View Stock', addMode: false, data: { products: data, stock: { St_productId: value._id } } });
     setModalOpen(true);
   }
-  const handleDataChange = (data) => {
-    setModalData({ ...modalData, data });
-  }
-  const handleModalOkClick = () => {
+  const handleDataChange = (value) => {
+
     if (modalData.addMode) {
       setDataSaving(true);
-      setTimeout(() => {
-        setDataSaving(false);
-        setModalOpen(false);
-      }, 3000);
-
+      axios
+        .post("http://localhost:3013/stock/add", value)
+        .then(res => {
+          setDataSaving(false);
+          getData();
+          setModalOpen(false);
+          messageApi.open({
+            type: 'success',
+            content: 'The Stock has been added successfully.',
+          });
+        })
+        .catch((err) => {
+          setDataSaving(false);
+          messageApi.open({
+            type: 'error',
+            content: err.message,
+          });
+        });
     } else {
       setModalOpen(false);
     }
-
   }
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name'
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags'
-    },
-    {
-      title: 'Edit',
-      key: 'action',
-      render: (_, record) => (
-        <Button type="primary" ghost icon={<EyeOutlined />} size="middle" onClick={() => handleViewStockClick(record)}>
-        </Button>
-      ),
-    },
-  ];
-
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-    {
-      key: '11',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '12',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '13',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-    {
-      key: '21',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '22',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '23',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-    {
-      key: '31',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '32',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '33',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-    {
-      key: '41',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '42',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '43',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-    {
-      key: '51',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '52',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '53',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-    {
-      key: '61',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '62',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '63',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-    {
-      key: '71',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '72',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '73',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-  ];
+  const handlePrintClick = () => {
+    const input = document.getElementById('StockListPrint');
+    html2canvas(input)
+      .then((canvas) => {
+        const imageData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+          orientation: 'landscape',
+        });
+        const imgProps = pdf.getImageProperties(imageData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imageData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('download.pdf');
+      });
+  }
   return <>
+    {contextHolder}
     <Layout className="StockList">
       <Layout.Header style={{ backgroundColor: "#ffffff" }}>
         <Row align="middle">
@@ -286,15 +178,15 @@ export default function StockList() {
               <Button type="primary" shape="round" icon={<PlusOutlined />} size="middle" onClick={handleAddNewStockClick}>
                 Add New Stock
               </Button>
-              <Button type="primary" shape="round" icon={<PrinterFilled />} size="middle">
+              <Button type="primary" shape="round" icon={<PrinterFilled />} size="middle" onClick={handlePrintClick}>
                 Print
               </Button>
             </Space>
           </Col>
         </Row></Layout.Header>
       <Layout.Content >
-        <div className='StockList' ref={ref}>
-          <Table columns={columns} dataSource={data} loading={dataLoading} scroll={{ y: tableHeight }} style={{ padding: "0px 50px" }} />
+        <div id="StockListPrint" className='StockList' ref={ref}>
+          <Table columns={columns} dataSource={searchData} loading={dataLoading} scroll={{ y: tableHeight }} style={{ padding: "0px 50px" }} />
         </div>
       </Layout.Content>
     </Layout>
@@ -304,12 +196,11 @@ export default function StockList() {
       width={700}
       open={modalOpen}
       okText={modalData.addMode ? "Save" : "Ok"}
-      okButtonProps={{ loading: dataSaving }}
-      onOk={handleModalOkClick}
+      okButtonProps={{ loading: dataSaving, form: "AddEditStockForm", key: "submit", htmlType: "submit" }}
       cancelButtonProps={{ disabled: dataSaving, style: { display: modalData.addMode ? "inline-block" : "none" } }}
       onCancel={() => setModalOpen(false)}
     >
-      <AddEditStock data={modalData.data} onDataChange={handleDataChange} />
+      <AddEditStock data={modalData.data} addMode={modalData.addMode} onDataChange={handleDataChange} />
     </Modal>
   </>
 }

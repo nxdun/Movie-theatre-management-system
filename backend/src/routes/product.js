@@ -41,7 +41,7 @@ router.route('/update/:p_id').put(async (req, res) => {
     let productId = req.params.p_id;
 
     // Extract updated product data from the request body
-    const { P_id, P_type, P_name, P_description, P_image, P_price, P_quantity, P_status, P_createDate } = req.body;
+    const { P_id, P_type, P_name, P_description, P_image, P_price, P_quantity, P_status,P_reoderLevel, P_createDate } = req.body;
 
     // Create an object with updated product data
     const updateProduct = {

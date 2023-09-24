@@ -9,6 +9,7 @@ import { jsPDF } from "jspdf";
 
 export default function SupplierList() {
   const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState({ title: '', addMode: false, data: null });
   const [dataLoading, setDataLoading] = useState(false);
@@ -43,7 +44,7 @@ export default function SupplierList() {
       dataIndex: 'S_status',
       key: 'S_status',
       render: (text, record, index) => (
-        record?.S_status?'Active':'Inactive'
+        record?.S_status ? 'Active' : 'Inactive'
       ),
       width: 100
     },
@@ -97,22 +98,32 @@ export default function SupplierList() {
     axios
       .get("http://localhost:3013/supplier/")
       .then(res => {
-        setData((res.data.suppliers||[]).map(val=>({...val,key:val._id})));
+        const suppliers = (res.data.suppliers || []).map(val => ({ ...val, key: val._id }))
+        setData(suppliers);
+        setSearchData(suppliers);
         setDataLoading(false);
       })
       .catch((err) => {
-        alert(err);
         setDataLoading(false);
+        messageApi.open({
+          type: 'error',
+          content: err.message,
+        });
       });
   }
 
   const handleSearch = (value) => {
-    setDataLoading(true);
-    setSearching(true);
-    setTimeout(() => {
-      setDataLoading(false);
-      setSearching(false);
-    }, 3000);
+    if (value === '') {
+      getData();
+    } else {
+      setDataLoading(true);
+      setSearching(true);
+      setTimeout(() => {
+        setDataLoading(false);
+        setSearching(false);
+        setSearchData(data.filter(val => val.S_id.toLowerCase().includes(value.toLowerCase()) || val.S_name.toLowerCase().includes(value.toLowerCase())));
+      }, 1000);
+    }
   }
   const handleAddNewSupplierClick = () => {
     setDataSaving(false);
@@ -139,58 +150,62 @@ export default function SupplierList() {
     const input = document.getElementById('SupplierListPrint');
     html2canvas(input)
       .then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF();
-        pdf.addImage(imgData, 'JPEG', 0, 0);
-        // pdf.output('dataurlnewwindow');
-        pdf.save("download.pdf");
-      })
-    ;
+        const imageData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+          orientation: 'landscape',
+        });
+        const imgProps = pdf.getImageProperties(imageData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imageData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('download.pdf');
+      });
   }
   const handleDataChange = (value) => {
     setDataSaving(true);
     if (modalData.addMode) {
-    axios
-      .post("http://localhost:3013/supplier/add", value)
-      .then(res => {
-        setDataSaving(false);
-        getData();
-        setModalOpen(false);
-        messageApi.open({
-          type: 'success',
-          content: 'The Supplier has been added successfully.',
-        });
-      })
-      .catch((err) => {
-        setDataSaving(false);
-        messageApi.open({
-          type: 'error',
-          content: err,
-        });
-      });
-    }else{
       axios
-      .put(`http://localhost:3013/supplier/update/${modalData.data._id}`, value)
-      .then(res => {
-        setDataSaving(false);
-        setModalOpen(false);
-        getData();
-        messageApi.open({
-          type: 'success',
-          content: 'The Supplier has been updated successfully.',
+        .post("http://localhost:3013/supplier/add", value)
+        .then(res => {
+          setDataSaving(false);
+          getData();
+          setModalOpen(false);
+          messageApi.open({
+            type: 'success',
+            content: 'The Supplier has been added successfully.',
+          });
+        })
+        .catch((err) => {
+          setDataSaving(false);
+          messageApi.open({
+            type: 'error',
+            content: err.message,
+          });
         });
-      })
-      .catch((err) => {
-        setDataSaving(false);
-        messageApi.open({
-          type: 'error',
-          content: err,
+    } else {
+      axios
+        .put(`http://localhost:3013/supplier/update/${modalData.data._id}`, value)
+        .then(res => {
+          setDataSaving(false);
+          setModalOpen(false);
+          getData();
+          messageApi.open({
+            type: 'success',
+            content: 'The Supplier has been updated successfully.',
+          });
+        })
+        .catch((err) => {
+          setDataSaving(false);
+          messageApi.open({
+            type: 'error',
+            content: err.message,
+          });
         });
-      });
     }
   }
 
   return <>
+    {contextHolder}
     <Layout className="SupplierList">
       <Layout.Header style={{ backgroundColor: "#ffffff" }}>
         <Row align="middle">
@@ -212,8 +227,8 @@ export default function SupplierList() {
           </Col>
         </Row></Layout.Header>
       <Layout.Content >
-        <div id="SupplierListPrint"className='SupplierList' ref={ref}>
-          <Table id="SupplierListPrint" columns={columns} dataSource={data} loading={dataLoading} scroll={{ y: tableHeight }} style={{ padding: "0px 50px" }} />
+        <div id="SupplierListPrint" className='SupplierList' ref={ref}>
+          <Table columns={columns} dataSource={searchData} loading={dataLoading} scroll={{ y: tableHeight }} style={{ padding: "0px 50px" }} />
         </div>
       </Layout.Content>
     </Layout>
@@ -228,7 +243,6 @@ export default function SupplierList() {
       cancelButtonProps={{ disabled: dataSaving }}
       onCancel={() => { setModalOpen(false); setModalData({ title: '', addMode: false, data: null }); }}
     >
-      {contextHolder}
       <AddEditSupplier data={modalData.data} addMode={modalData.addMode} onDataChange={handleDataChange} />
     </Modal>
   </>
