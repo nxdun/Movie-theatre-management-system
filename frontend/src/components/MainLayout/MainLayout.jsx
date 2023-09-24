@@ -22,7 +22,46 @@ export default function MainLayout() {
         { key: '/concession/supplier_list', label: 'Supplier List' },
         { key: '/concession/product_list', label: 'Product List' },
         { key: '/concession/stock_list', label: 'Stock List' }]
-    }
+    },
+    {
+      key: '/dashboard',
+      icon: <PieChartOutlined />,
+      label: 'Movie management',
+    },
+    {
+      key: '/sheduleMovie',
+      icon: <PieChartOutlined />,
+      label: 'Movie Schedule management',
+    },
+    {
+      key: '/dashboard',
+      icon: <PieChartOutlined />,
+      label: 'Seat management',
+    },
+    {
+      key: '/dashboard',
+      icon: <PieChartOutlined />,
+      label: 'Advertisement Management',
+    },
+    {
+      key: '/dashboard',
+      icon: <PieChartOutlined />,
+      label: 'Private Screen Management',
+    },
+    {
+      key: '/dashboard',
+      icon: <PieChartOutlined />,
+      label: 'Payment',
+    }, {
+      key: '/loyality/dashboard',
+      icon: <PieChartOutlined />,
+      label: 'Loyality management',
+    },
+     {
+      key: '/dashboard',
+      icon: <PieChartOutlined />,
+      label: 'Manager Dashboard',
+    },
   ];
   const handleMenuClick = ({ item, key, keyPath, domEvent }) => {
     navigate(key === '/dashboard' ? '/' : key);
