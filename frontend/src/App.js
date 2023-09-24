@@ -23,7 +23,7 @@ import "./App.css";
   import GenerateReport from "./screens/viewPrivScBookingReport";
   import EditPrivateRoom from "./screens/editPrivRoom";
   import LoyalityDash from './screens/LoyalityDash';
-  
+  import Advertisement from './screens/Advertisement'
   //userscreens
   import UserBooking from "./screens/userBooking"; //import userScreen component
   import UserScreen from "./screens/userScreen"; //import userBooking component
@@ -44,6 +44,7 @@ import "./App.css";
         <Route path="/viewreport" exact element={<GenerateReport />} />
         <Route path="/user1" exact element={<UserScreen />} />
         <Route path="/userbooking" exact element={<UserBooking />} />
+        <Route path="/adv" exact element={<Advertisement />} />
 
          {/*vishwa's route paths  */}
          <Route element={<RouteWrapper />}> {/* Wrap the routes */}
