@@ -4,9 +4,9 @@ import '../components/PrivHeader.css';
 const Header = () => {
   return (
     <header className="header-main">
-      <div className="icon">
+     <div className="icon">
         <img
-          src="https://via.placeholder.com/150"
+          src="https://raw.githubusercontent.com/nxdun/BlaBla/main/2.png"
           alt="logo"
           className="header-img"
         />
