@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Showtimes.css';
 import { Link } from "react-router-dom";
+import Header from "../shared/HomeHeader";
+
 
 const Showtimes = () => {
   // Sample data
@@ -83,9 +85,7 @@ const Showtimes = () => {
 
   return (
     <div>
-      <div className="header">
-        <h1>Showtimes For The Movie</h1>
-      </div>
+      <Header/>
       <h2>Avatar</h2>
       <div className="date-list">
         {weekDates.map(({ date, day }) => (

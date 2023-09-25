@@ -11,9 +11,7 @@ function Slip() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [bookingId, setBookingId] = useState(null);
 
-  const handleGoToSeatManageClick = () => {
-    navigate('/SeatManage');
-  };
+
 
   useEffect(() => {
     if (!seatId) {
@@ -82,6 +80,9 @@ function Slip() {
           </button>
           <Link to={`/SeatUpdate/${bookingId}/${seatId}`} className="buttonx">
             Add More Seats
+          </Link>
+          <Link to= "/shop">
+          <button className="buttonx">Continue</button>
           </Link>
         </div>
       )}

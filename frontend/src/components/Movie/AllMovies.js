@@ -3,6 +3,8 @@ import axios from "axios";
 //import "./CSS/AllMovies.css";
 import { handleDelete } from "./DeleteMovie";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from "../../shared/HomeHeader";
+import { Link } from "react-router-dom";
 
 
 export default function AllMovies() {
@@ -34,7 +36,10 @@ export default function AllMovies() {
 
   return (
     <div>
-
+     <Header/>
+     <Link to="/">
+    <img className="ima4" src={"https://www.freeiconspng.com/thumbs/return-button-png/back-undo-return-button-png-5.png"} alt="My Image" width="50px" height= "50px" />
+    </Link>
       <div className="contA">        
        <a href={'/addMovie'}><button className="button7">Add Movie</button></a>
         <table border="1">

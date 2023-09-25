@@ -1,10 +1,11 @@
 import "./LoyalitySearchBar.css";
-
+import { Link } from "react-router-dom";
 const LoyalitySearchBar = (props) => {
   return (
     <div className="search-bar">
-  <button className="buttooonn buttooon-back">{"<< back"}</button>
-
+      <Link to = "/admindash">
+  <button className="buttooonn buttooon-back" >{"<< back"}</button>
+    </Link>
   <form className="search-form">
     <input
       className="search-bar-input"

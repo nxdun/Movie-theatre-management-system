@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import './CSS/AllMovies.css';
+import Header from "../../shared/HomeHeader";
+import { Link } from "react-router-dom";
 export default function AddMovie() {
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState("");
@@ -69,6 +71,11 @@ export default function AddMovie() {
   }
 
   return (
+    <div>
+      <Header/>
+      <Link to="/movie">
+    <img className="ima4" src={"https://www.freeiconspng.com/thumbs/return-button-png/back-undo-return-button-png-5.png"} alt="My Image" width="50px" height= "50px" />
+    </Link>
     <div className="container1">
       <br />
       <br />
@@ -197,6 +204,7 @@ export default function AddMovie() {
           Submit
         </button>
       </form>
+    </div>
     </div>
   );
 }

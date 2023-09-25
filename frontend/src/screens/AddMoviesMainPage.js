@@ -60,9 +60,9 @@ function AddMoviesMainPage(props) {
 
 
     const showtimes = [
-        { label: '10:45 AM', value: '10:45 AM' },
-        { label: '12:00 PM', value: '12:00 PM' },
-        { label: '3:30 PM', value: '3:30 PM' },
+        { label: '10:30 AM', value: '10:30 AM' },
+        { label: '2:30 PM', value: '2:30 PM' },
+        { label: '6:30 PM', value: '6:30 PM' },
     ];
 
 

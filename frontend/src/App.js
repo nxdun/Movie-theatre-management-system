@@ -114,6 +114,7 @@ function App() {
             exact
             element={<UpdateMovieShedularPage />}
           />
+
           {/* omins Pages */}
           <Route path="/seatbooking" element={<SeatSelect />} />
           <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
@@ -126,7 +127,7 @@ function App() {
           <Route path="concession/product_list" element={<ProductList />} />
           <Route path="concession/stock_list" element={<StockList />} />
           {/*Aviska's route paths*/}
-          <Route path="/food" element={<MainLayout />}>
+          <Route path="/admindash" element={<MainLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="concession" element={<ConcessionManagement />}>
               <Route path="*" element={<Navigate to="/" />} />
