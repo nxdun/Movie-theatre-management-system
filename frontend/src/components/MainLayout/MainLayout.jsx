@@ -1,7 +1,7 @@
 import { MenuOutlined, PieChartOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Button, Col, Layout, Menu, Row } from 'antd';
 import React, { useState } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import './MainLayout.css';
 
 export default function MainLayout() {
@@ -24,7 +24,7 @@ export default function MainLayout() {
         { key: '/concession/stock_list', label: 'Stock List' }]
     },
     {
-      key: '/dashboard',
+      key: '/movie',
       icon: <PieChartOutlined />,
       label: 'Movie management',
     },
@@ -34,7 +34,7 @@ export default function MainLayout() {
       label: 'Movie Schedule management',
     },
     {
-      key: '/dashboard',
+      key: '/SeatManage',
       icon: <PieChartOutlined />,
       label: 'Seat management',
     },
@@ -44,7 +44,7 @@ export default function MainLayout() {
       label: 'Advertisement Management',
     },
     {
-      key: '/dashboard',
+      key: '/privatescreen/dashboard',
       icon: <PieChartOutlined />,
       label: 'Private Screen Management',
     },
@@ -90,7 +90,9 @@ export default function MainLayout() {
         </Col>
         <Col flex="auto" className="HeaderTitle">{findTitle(items, location.pathname) || 'Manager Dashboard'}</Col>
         <Col flex="40px">
+          <Link to="/">
           <Avatar size="large" icon={<UserOutlined />} />
+          </Link>
         </Col>
       </Row>
     </Layout.Header>

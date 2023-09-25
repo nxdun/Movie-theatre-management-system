@@ -17,11 +17,11 @@ const Navbar = ({ click }) => {
     <nav className="navbar">
       <div className="icon">
       <div className="rotator">
-        <img
-          src="https://raw.githubusercontent.com/nxdun/BlaBla/main/2.png"
+      <Link to="/">
+  <img src="https://raw.githubusercontent.com/nxdun/BlaBla/main/2.png"
           alt="logo"
-          className="header-img"
-        />
+          className="header-img"/>
+          </Link>
       </div>
       </div>
 

@@ -21,6 +21,7 @@ a {
 .site-header { 
   border-bottom: 1px solid #ccc;
   padding: .5em 1em;
+  background-color: var(--black);
 }
 
 .site-header::after {

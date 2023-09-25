@@ -6,7 +6,7 @@ const Header = () => {
   <div class="site-identity">
   <div className="icon">
     <Link to="/">
-  <img src="https://raw.githubusercontent.com/nxdun/BlaBla/main/1.png"
+  <img src="https://raw.githubusercontent.com/nxdun/BlaBla/main/2.png"
           alt="logo"
           className="header-img"/>
           </Link>
@@ -16,7 +16,7 @@ const Header = () => {
     <ul class="nav">
       <li><a href="#">About</a></li> 
       <li><a href="#">News</a></li> 
-      <li><a href="#">Contact</a></li> 
+      <li><a href="/admindash">Login</a></li> 
     </ul>
   </nav>
 </header>

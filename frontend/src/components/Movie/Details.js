@@ -1,11 +1,14 @@
 import React, {useState} from "react";
 import './CSS/AllMovies.css';
+import Header from "../../shared/HomeHeader";
 
 
 export default function DetailsM(){
   
     return(
     <div>
+      <Header/>
+
         <div className="contD">
 
         <a href={'/showtime'}><button className="button8">Buy Tickets</button></a>
