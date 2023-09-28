@@ -35,8 +35,6 @@ npm run b
 ./install.bat
 ``  quick install all dependencies
 
-
-
 ## Features
 
 List the main features and functionalities of your project. Use bullet points for easy readability.
