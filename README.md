@@ -31,6 +31,12 @@ npm run b
 ./run.bat
 ``  starts both in external cmd
 
+``
+./install.bat
+``  quick install all dependencies
+
+``
+
 ## Features
 
 List the main features and functionalities of your project. Use bullet points for easy readability.
