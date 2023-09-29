@@ -50,6 +50,7 @@ import DetailsM from "./components/Movie/Details";
 import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
 import Login from "./screens/Login";
+
 function App() {
   return (
     <Router>
