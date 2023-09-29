@@ -7,6 +7,7 @@
     "@ant-design/icons": "^5.2.6",
     "@fullcalendar/daygrid": "^6.1.9",
     "@fullcalendar/react": "^6.1.9",
+    "@stripe/stripe-js": "^2.1.6",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
