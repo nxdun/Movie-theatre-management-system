@@ -17,15 +17,22 @@
   }
 
   .icon {
-    width: 20px;
-    height: 20px;
-    transform: scale(2.5);
+    width: 10px;
+    height: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 30px;
     margin-bottom: 3px;
     animation: rotate 10s linear infinite; /* Adjust the duration as needed */
+  }
+  .header-img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    padding-bottom: 20px;
+    padding-top: 15px;
+
   }
   
   
