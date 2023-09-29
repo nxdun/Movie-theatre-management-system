@@ -8,10 +8,11 @@
   display: block;
   font-size: 20px;
   border-radius: 20px; /* Add border-radius for curved corners */
-  box-shadow: 2px 4px 4px 6px rgba(0, 0, 0, 0.25), -6px -6px 12px 0px rgba(255, 255, 255, 0.25);
-  outline: 2px solid #000;
-
   color: var(--white);
+  background: #222222;
+  background: linear-gradient(315deg, #1f1f1f, #242424);
+  box-shadow:  -23px -23px 46px #0f0f0f,
+               23px 23px 46px #353535;
 }
 
 .butn:hover {
@@ -134,6 +135,6 @@
 
 .butn-container {
   display: flex-inline;
-  height:100vh;
+  height: 100vh;
   background-color: var(--black);
 }
