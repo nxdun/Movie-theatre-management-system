@@ -19,7 +19,7 @@ import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 
 import RouteWrapper from "./RouteWrapper"; // Wrap the routes with the navbar, sidedrawer, and backdrop
-
+import Register from "./components/CustomerRegisterForm";
 // Components
 import Success from "./components/Success";
 import Cancel from "./components/Cancel";
@@ -56,6 +56,7 @@ function App() {
         <Routes>
           {/* nadun */}
           <Route path="/loyality/dashboard" exact element={<LoyalityDash />} />
+          <Route path="/register" exact element={<Register />} />
           {/* dunal */}
           <Route
             path="/privateScreen/DashBoard"
