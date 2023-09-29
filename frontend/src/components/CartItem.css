@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
     gap: 8px;
-    background: #fff;
+    background: #ccc9c9;
     border-radius: 2px;
     place-items: center;
     margin-bottom: 8px;

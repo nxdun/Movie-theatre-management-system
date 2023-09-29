@@ -49,6 +49,7 @@ import HomeMain from "./components/Movie/Home";
 import DetailsM from "./components/Movie/Details";
 import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
+import Login from "./screens/Login";
 function App() {
   return (
     <Router>
@@ -135,6 +136,8 @@ function App() {
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Route>
+          {/*Loggin route*/}
+          <Route exact path="/login" element={<Login />} />
         </Routes>
       </main>
     </Router>

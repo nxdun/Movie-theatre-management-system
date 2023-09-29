@@ -44,11 +44,15 @@
   .cartscreen__right div button {
     padding: 10px 17px;
     width: 100%;
-    background: #000000;
     color: #ffffff;
-    border: 1px solid #171717;
     cursor: pointer;
+
+    border-radius: 48px;
+background: linear-gradient(45deg, #cacaca, #43f143);
+box-shadow:  14px -14px 28px #6e6e6e,
+             -14px 14px 28px #ffffff;
   }
+
   
   .cartscreen__right div button:hover {
     opacity: 0.9;
