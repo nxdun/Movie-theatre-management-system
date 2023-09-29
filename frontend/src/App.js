@@ -11,6 +11,7 @@ import StockList from "./components/ConcessionManagement/components/StockList/St
 import SupplierList from "./components/ConcessionManagement/components/SupplierList/SupplierList";
 import Dashboard from "./components/Dashboard/Dashboard";
 import MainLayout from "./components/MainLayout/MainLayout";
+import Search from "./components/Movie/Search";
 
 /* vishwa screen and components*/
 // Screens
@@ -101,6 +102,8 @@ function App() {
           <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
           <Route path="/" element={<HomeMain />} />
           <Route path="/Details" element={<DetailsM />} />
+          <Route path="/search" element={<Search />} />
+          
           {/* Sachiras Pages */}
           <Route exact path="/showtime" element={<Showtimes />} />
           <Route path="/sheduleMovie" exact element={<AddMoviesMainPage />} />
