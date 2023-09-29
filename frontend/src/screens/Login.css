@@ -1,44 +1,25 @@
-.bubble {
-  position: absolute;
-  top: 100%;
-  border-radius: 50%;
-  animation: bubble linear;
-
+.container-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("https://raw.githubusercontent.com/nxdun/BlaBla/12c556a97796736be3d561f885c102cf1019b6bb/paul-volkmer-qVotvbsuM_c-unsplash.jpg");
+  background-size: cover;
 }
-
-  @keyframes bubble {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-300vh);
-    }
-  }
-
-
-.form {
+.form1 {
   position: relative;
   display: block;
   padding: 2.2rem;
   max-width: 350px;
-  background: linear-gradient(
-      14deg,
-      rgba(2, 0, 36, 0.8) 0%,
-      rgba(24, 24, 65, 0.7) 66%,
-      rgb(20, 76, 99) 100%
-    ),
-    radial-gradient(
-      circle,
-      rgba(2, 0, 36, 0.5) 0%,
-      rgba(32, 15, 53, 0.2) 65%,
-      rgba(14, 29, 28, 0.9) 100%
-    );
-  border: 2px solid #fff;
-  -webkit-box-shadow: rgba(0, 212, 255) 0px 0px 50px -15px;
-  box-shadow: rgba(0, 212, 255) 0px 0px 50px -15px;
+  background: linear-gradient(#212121, #212121) padding-box,
+              linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+  border: 2px solid transparent;
+
+  box-shadow: 0px 0px 50px -15px rgba(0, 212, 255);
   overflow: hidden;
-  z-index: +1;
+  z-index: 1; /* Changed z-index value */
 }
+
 
 /*------input and submit section-------*/
 
@@ -73,9 +54,10 @@
   transition: opacity 0.9s;
 }
 
-.submit {
+.submitx {
   position: relative;
   display: block;
+  left: -8px;
   padding: 8px;
   background-color: #c0c0c0;
   color: #ffffff;
@@ -88,22 +70,23 @@
   overflow: hidden;
 }
 
-.submit:hover {
+.submitx:hover {
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
   border-radius: 3.9px;
   box-shadow: 4px 5px 17px -4px #ffffff;
+  background-color: var(--green);
   cursor: pointer;
 }
 
-.submit:hover::before {
-  -webkit-animation: sh02 0.5s 0s linear;
-  -moz-animation: sh02 0.5s 0s linear;
-  animation: sh02 0.5s 0s linear;
+.submitx:hover::before {
+  -webkit-animation: sh02 1s 0s linear;
+  -moz-animation: sh02 1s 0s linear;
+  animation: sh02 1s 0s linear;
 }
 
-.submit::before {
+.submitx::before {
   content: "";
   display: block;
   width: 0px;
@@ -136,7 +119,6 @@
     left: 100%;
   }
 }
-
 
 /*--------signup section---------*/
 
@@ -173,7 +155,7 @@
 }
 
 .form-title span {
-  animation: flickering 2s linear infinite both;
+  animation: flickering 1s linear infinite both;
 }
 
 .title-2 {
@@ -236,13 +218,15 @@
 
 /*---------shooting stars-----------*/
 
+/* ---------shooting stars----------- */
+
 .bg-stars {
+
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
+  width: 100vh;
+  height: 100vh;
   background-size: cover;
   animation: animateBg 50s linear infinite;
 }
@@ -252,23 +236,29 @@
   100% {
     transform: scale(1);
   }
-
   50% {
     transform: scale(1.2);
   }
 }
 
-.star {
+.star-container {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
+  width: 100vh;
+  height: 100vh;
+}
+
+.star {
+  overflow: hidden;
+  position: absolute;
   width: 4px;
   height: 4px;
-  background: #fff;
+  background: #000000;
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
     0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
-  animation: animate 3s linear infinite;
+  animation: animate 2s linear infinite;
 }
 
 .star::before {
@@ -278,7 +268,7 @@
   transform: translateY(-50%);
   width: 300px;
   height: 1px;
-  background: linear-gradient(90deg, #fff, transparent);
+  background: linear-gradient(90deg, #656262, transparent);
 }
 
 @keyframes animate {
@@ -286,22 +276,18 @@
     transform: rotate(315deg) translateX(0);
     opacity: 1;
   }
-
-  70% {
-    opacity: 1;
-  }
-
   100% {
     transform: rotate(315deg) translateX(-1000px);
     opacity: 0;
   }
 }
 
+/* Position and duration of each star */
+/* Use :nth-child for stars */
 .star:nth-child(1) {
   top: 0;
   right: 0;
   left: initial;
-  animation-delay: 0s;
   animation-duration: 1s;
 }
 
@@ -309,7 +295,6 @@
   top: 0;
   right: 100px;
   left: initial;
-  animation-delay: 0.2s;
   animation-duration: 3s;
 }
 
@@ -317,7 +302,6 @@
   top: 0;
   right: 220px;
   left: initial;
-  animation-delay: 2.75s;
   animation-duration: 2.75s;
 }
 
@@ -325,6 +309,12 @@
   top: 0;
   right: -220px;
   left: initial;
-  animation-delay: 1.6s;
   animation-duration: 1.6s;
+}
+
+.star:nth-child(5) {
+  top: 50px;
+  right: 50px;
+  left: initial;
+  animation-duration: 2s;
 }

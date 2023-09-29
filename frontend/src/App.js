@@ -55,7 +55,7 @@ import Login from "./screens/Login";
 function App() {
   return (
     <Router>
-      <main className="app">
+     
         <Routes>
           {/* nadun */}
           <Route path="/loyality/dashboard" exact element={<LoyalityDash />} />
@@ -143,7 +143,7 @@ function App() {
           {/*Loggin route*/}
           <Route exact path="/login" element={<Login />} />
         </Routes>
-      </main>
+     
     </Router>
   );
 }
