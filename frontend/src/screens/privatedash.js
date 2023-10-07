@@ -24,7 +24,7 @@ const PrivateDashboard = () => {
   }, []);
 
   const handleEditClick = (privScId) => {
-    navigate(`/privatescreen/${privScId}/edit`);
+    navigate(`/editprivatescreen/${privScId}`);
   };
 
   const handleDeleteClick = async (privScId) => {

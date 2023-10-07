@@ -1,66 +1,112 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate} from "react-router-dom";
-
-import Input from "../components/PrivateScreenForm/Input";
-import Button from "../components/PrivateScreenForm/Button";
-import {
-  VALIDATOR_REQUIRE,
-  VALIDATOR_MINLENGTH,
-} from "../components/util/validators";
-import { useForm } from "../components/PrivateScreenHooks/privScform-hook";
+import { useNavigate } from "react-router-dom";
 import "./inputPrivRoom.css";
 
+
 const AddPrivRoom = () => {
-  const [formState, inputHandler] = useForm(
-    {
-      privscname: {
-        value: "",
-        isValid: false,
-      },
-      privscprice: {
-        value: "",
-        isValid: false,
-      },
-      privseatcapacity: {
-        value: "",
-        isValid: false,
-      },
-      privsclocation: {
-        value: "",
-        isValid: false,
-      },
-      privscdescription: {
-        value: "",
-        isValid: false,
-      },
-      privscimage: {
-        value: "",
-        isValid: false,
-      },
-    },
-    false
-  );
-
   const navigate = useNavigate();
+  const [fieldErrors, setFieldErrors] = useState({});
 
-  const handleCancelButtooncliclk = () => {
+  const [formState, setFormState] = useState({
+    privscname: {
+      value: "",
+      isValid: false,
+    },
+    privscprice: {
+      value: "",
+      isValid: false,
+    },
+    privseatcapacity: {
+      value: "",
+      isValid: false,
+    },
+    privsclocation: {
+      value: "",
+      isValid: false,
+    },
+    privscdescription: {
+      value: "",
+      isValid: false,
+    },
+    privscimage: {
+      value: "",
+      isValid: false,
+    },
+  });
+
+  const handleCancelButtonClick = () => {
     navigate("/privatescreen/dashboard");
+  };
+
+  const validateForm = () => {
+    const fieldValidationErrors = {};
+    let isFormValid = true;
+
+    // Validate each field individually
+    for (const fieldName in formState) {
+      const fieldValue = formState[fieldName].value;
+      let isValid = true;
+
+      switch (fieldName) {
+        case "privscname":
+          isValid = fieldValue.trim() !== "";
+          break;
+        case "privscprice":
+          isValid = fieldValue.trim() !== "";
+          break;
+        case "privseatcapacity":
+          isValid = fieldValue.trim() !== "";
+          break;
+        case "privsclocation":
+          isValid = fieldValue.trim() !== "";
+          break;
+        case "privscdescription":
+          isValid = fieldValue.trim().length >= 5;
+          break;
+        case "privscimage":
+          isValid = fieldValue.trim() !== "";
+          break;
+        default:
+          break;
+      }
+
+      if (!isValid) {
+        fieldValidationErrors[fieldName] = true;
+        isFormValid = false;
+      }
+    }
+
+    setFieldErrors(fieldValidationErrors);
+    return isFormValid;
+  };
+
+  const inputHandler = (fieldName, value) => {
+    const updatedFormState = { ...formState };
+    updatedFormState[fieldName].value = value;
+    setFormState(updatedFormState);
   };
 
   const privScreenSubmitHandler = async (event) => {
     event.preventDefault();
+
+    const isFormValid = validateForm();
+
+    if (!isFormValid) {
+      return;
+    }
+
     try {
-      const response = await axios.post(`/privatescreen`, {
-        privscname: formState.inputs.privscname.value,
-        privscprice: formState.inputs.privscprice.value,
-        privseatcapacity: formState.inputs.privseatcapacity.value,
-        privsclocation: formState.inputs.privsclocation.value,
-        privscdescription: formState.inputs.privscdescription.value,
-        privscimage: formState.inputs.privscimage.value,
+      const response = await axios.post("/privatescreen", {
+        privscname: formState.privscname.value,
+        privscprice: formState.privscprice.value,
+        privseatcapacity: formState.privseatcapacity.value,
+        privsclocation: formState.privsclocation.value,
+        privscdescription: formState.privscdescription.value,
+        privscimage: formState.privscimage.value,
       });
+
       if (response.status === 201) {
-        // Show a success popup
         window.alert("Room added successfully!");
         navigate("/privatescreen/dashboard");
       } else {
@@ -71,68 +117,131 @@ const AddPrivRoom = () => {
       window.alert("An error occurred while adding the room.");
     }
   };
+
   return (
     <form className="privscreen-form" onSubmit={privScreenSubmitHandler}>
       <h4 className="form-heading mb-4 text-primary text-center">
         Add Private Screening Room
       </h4>
-      <Input
-        id="privscname"
-        element="input"
-        type="text"
-        label="Screening Room Name"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid screening name."
-        onInput={inputHandler}
-      />
-      <Input
-        id="privscprice"
-        element="input"
-        type="text"
-        label="Screening Room Price"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid screening price."
-        onInput={inputHandler}
-      />
-      <Input
-        id="privseatcapacity"
-        element="input"
-        type="text"
-        label="Screening Room Seat Capacity"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid screening seat capacity."
-        onInput={inputHandler}
-      />
-      <Input
-        id="privsclocation"
-        element="input"
-        type="text"
-        label="Screening Room Location"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid screening location."
-        onInput={inputHandler}
-      />
-      <Input
-        id="privscdescription"
-        element="textarea"
-        label="Screening Room Description"
-        validators={[VALIDATOR_MINLENGTH(5)]}
-        errorText="Please enter a valid screening room description.(at least 5 characters.)"
-        onInput={inputHandler}
-      />
-      <Input
-        id="privscimage"
-        element="input"
-        type="text"
-        label="Screening Room Image"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid screening image."
-        onInput={inputHandler}
-      />
-      <Button type="submit" disabled={!formState.isValid}>
-        ADD ROOM
-      </Button>
-      <Button onClick={handleCancelButtooncliclk}>Cancel</Button>
+      <div
+        className={`form-control ${
+          fieldErrors.privscname && "form-control--invalid"
+        }`}
+      >
+        <label htmlFor="privscname">Screening Room Name</label>
+        <input
+          id="privscname"
+          type="text"
+          onChange={(e) => {
+            inputHandler("privscname", e.target.value);
+            setFieldErrors({ ...fieldErrors, privscname: false });
+          }}
+          value={formState.privscname.value}
+        />
+        {fieldErrors.privscname && (
+          <p className="error-text">Please enter a valid screening name.</p>
+        )}
+      </div>
+      <div
+        className={`form-control ${
+          fieldErrors.privscprice && "form-control--invalid"
+        }`}
+      >
+        <label htmlFor="privscprice">Price</label>
+        <input
+          id="privscprice"
+          type="text"
+          onChange={(e) => {
+            inputHandler("privscprice", e.target.value);
+            setFieldErrors({ ...fieldErrors, privscprice: false });
+          }}
+          value={formState.privscprice.value}
+        />
+        {fieldErrors.privscprice && (
+          <p className="error-text">Please enter a valid price.</p>
+        )}
+      </div>
+      <div
+        className={`form-control ${
+          fieldErrors.privseatcapacity && "form-control--invalid"
+        }`}
+      >
+        <label htmlFor="privseatcapacity">Seat Capacity</label>
+        <input
+          id="privseatcapacity"
+          type="text"
+          onChange={(e) => {
+            inputHandler("privseatcapacity", e.target.value);
+            setFieldErrors({ ...fieldErrors, privseatcapacity: false });
+          }}
+          value={formState.privseatcapacity.value}
+        />
+        {fieldErrors.privseatcapacity && (
+          <p className="error-text">Please enter a valid seat capacity.</p>
+        )}
+      </div>
+      <div
+        className={`form-control ${
+          fieldErrors.privsclocation && "form-control--invalid"
+        }`}
+      >
+        <label htmlFor="privsclocation">Location</label>
+        <input
+          id="privsclocation"
+          type="text"
+          onChange={(e) => {
+            inputHandler("privsclocation", e.target.value);
+            setFieldErrors({ ...fieldErrors, privsclocation: false });
+          }}
+          value={formState.privsclocation.value}
+        />
+        {fieldErrors.privsclocation && (
+          <p className="error-text">Please enter a valid location.</p>
+        )}
+      </div>
+      <div
+        className={`form-control ${
+          fieldErrors.privscdescription && "form-control--invalid"
+        }`}
+      >
+        <label htmlFor="privscdescription">Description</label>
+        <textarea
+          id="privscdescription"
+          rows="5"
+          onChange={(e) => {
+            inputHandler("privscdescription", e.target.value);
+            setFieldErrors({ ...fieldErrors, privscdescription: false });
+          }}
+          value={formState.privscdescription.value}
+        />
+        {fieldErrors.privscdescription && (
+          <p className="error-text">
+            Please enter a valid description (at least 5 characters).
+          </p>
+        )}
+      </div>
+      <div
+        className={`form-control ${
+          fieldErrors.privscimage && "form-control--invalid"
+        }`}
+      >
+        <label htmlFor="privscimage">Image</label>
+        <input
+          id="privscimage"
+          type="text"
+          onChange={(e) => {
+            inputHandler("privscimage", e.target.value);
+            setFieldErrors({ ...fieldErrors, privscimage: false });
+          }}
+          value={formState.privscimage.value}
+        />
+        {fieldErrors.privscimage && (
+          <p className="error-text">Please enter a valid image.</p>
+        )}
+      </div>
+
+      <button className="inputform-button1" type="submit">ADD ROOM</button>
+      <button className="inputform-button2" onClick={handleCancelButtonClick}>Cancel</button>
     </form>
   );
 };

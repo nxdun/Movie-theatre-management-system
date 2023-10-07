@@ -67,10 +67,7 @@ function App() {
             exact
             element={<AddPrivateRoom />}
           />
-          <Route
-            path="/privateScreen/:privScId"
-            element={<EditPrivateRoom />}
-          />
+          <Route path="/editprivatescreen/:id" element={<EditPrivateRoom />}/>
           <Route
             path="/privateScreen/Reviewbooking"
             exact

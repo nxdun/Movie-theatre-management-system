@@ -3,25 +3,27 @@ import '../components/PrivHeader.css';
 
 const Header = () => {
   return (
-    <header className="header-main">
-      <div className="icon">
-      <img src="https://raw.githubusercontent.com/nxdun/BlaBla/main/2.png"
+    <header className="header-main-custom">
+      <div className="icon-custom">
+        <img
+          src="https://raw.githubusercontent.com/nxdun/BlaBla/main/2.png"
           alt="logo"
-          className="header-img"/>
+          className="header-img-custom"
+        />
       </div>
-      <h1 className="headerr-h1">PRIVATE SCREENING MANAGEMENT DASHBOARD</h1>
-      <div className="button-container-main">
-        <button className="login-button">
+      <h1 className="headerr-h1-custom">PRIVATE SCREENING MANAGEMENT DASHBOARD</h1>
+      <div className="button-container-main-custom">
+        <button className="login-button-custom">
           <img
             src="https://via.placeholder.com/120"
             alt="logo"
-            className="login-img"
+            className="login-img-custom"
           />
-          <p className="admin-text">Administrator</p>
+          <p className="admin-text-custom">Administrator</p>
         </button>
       </div>
-      <div class="button-container">
-        <button variant="outlined" className="logout-button">Logout</button>
+      <div className="button-container-custom">
+        <button variant="outlined" className="logout-button-custom">Logout</button>
       </div>
     </header>
   );

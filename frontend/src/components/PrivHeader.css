@@ -1,9 +1,127 @@
-.header-h1 {
+/* Unique class names */
+.header-main-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: var(--black);
+  color: var(--white);
+  border-bottom: 2px solid #000;
+}
+
+.icon-custom {
+  padding-top: 10px;
+  width: 100px;
+  height: 100px;
+  transform: scale(2.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+  margin-bottom: 3px;
+  animation: rotate 10s linear infinite;
+}
+
+.button-container-main-custom {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.login-button-custom:hover {
+  color: var(--green);
+  outline: 8px solid var(--green);
+  transition: color 0.3s, outline 0.3s, font-weight 0.3s;
+  font-weight: bold;
+}
+
+.login-button-custom {
+  margin-left: 10px;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.login-img-custom {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-top: 8px;
+  margin-bottom: 2px;
+  border-radius: 20px;
+}
+
+.admin-text-custom {
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.button-container-custom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+.disable-button-custom {
+  width: 130px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--black);
+  color: white;
+  border: 2px solid transparent;
+  transition: background-color 0.3s, border 0.3s;
+  border-radius: 10px;
+}
+
+.disable-button-custom:hover {
+  background-color: var(--black);
+  color: var(--white);
+  border: 3px solid var(--red);
+}
+
+.logout-button-custom {
+  width: 130px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--black);
+  color: white;
+  margin-top: 10px;
+  border: 2px solid transparent;
+  transition: background-color 0.3s, border 0.3s;
+  border-radius: 10px;
+  border: 2px solid #000;
+}
+
+.logout-button-custom:hover {
+  background-color: var(--black);
+  border: 4px solid var(--red);
+  color: var(--red);
+}
+
+body {
+  background-color: var(--black);
+}
+
+.headerr-h1-custom {
   font-size: 24px;
-  margin-left: auto; /* dependable centered margin */
-  text-align: center; /* Center-align the text */
-  border: 4px solid var(--green); /* Enhance the border */
-  border-radius: 20px; /* Increase border-radius for a rounded box */
-  display: inline-block; /* Ensure the border does not take up the full width */
-  padding: 20px; /* Adjust padding as needed for spacing inside the box */
+  margin-left: 280px; /* Adjust this value to move it right */
+  margin-right: auto; /* Center-align the text */
+  text-align: center;
+  border: 4px solid var(--green);
+  border-radius: 20px;
+  display: inline-block;
+  padding: 20px;
+  font-weight: bold;
 }

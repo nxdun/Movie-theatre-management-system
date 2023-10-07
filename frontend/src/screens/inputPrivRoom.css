@@ -1,55 +1,92 @@
-.form-heading {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
+/* inputPrivRoom.css */
+
+/* Style for the form container */
+.privscreen-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5; /* Add background color */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add border radius */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add box shadow */
 }
 
-.privscreen-form {
-  list-style: none;
-  margin: 0 auto;
-  padding: 1rem;
+/* Style for form control container */
+.form-control {
+  margin-bottom: 15px;
+}
+
+/* Style for valid form controls */
+.form-control input,
+.form-control textarea {
+  border: 2px solid #ccc;
+  padding: 8px;
+  font-size: 16px;
   width: 100%;
-  max-width: 40rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 6px;
-  background: white;
+  transition: border-color 0.3s; /* Add smooth transition */
+}
+
+/* Style for invalid form controls */
+.form-control--invalid input,
+.form-control--invalid textarea {
+  border: 2px solid red;
+}
+
+/* Style for error messages */
+.form-control--invalid .error-text {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 /* Style for buttons */
-.privscreen-form button {
-  background-color: #2196F3;
-  color: white;
-  padding: 12px 24px;
-  margin: 10px 0;
+.inputform-button1,
+.inputform-button2 {
   border: none;
+  padding: 10px 20px;
   cursor: pointer;
-  width: 100%;
-  border-radius: 5px;
-  font-weight: bold;
+  margin-right: 10px;
+  transition: background-color 0.3s, transform 0.2s; /* Add smooth transition */
+}
+
+.inputform-button1 {
+  background-color: #007bff;
+  color: white;
+}
+
+.inputform-button2 {
+  background-color: #e7c4c4;
+  color: rgb(18, 17, 17);
+}
+
+/* Hover effect for buttons */
+.inputform-button1:hover,
+.inputform-button2:hover {
+  background-color: #0056b3; /* Darken the background color on hover */
+  transform: scale(1.05); /* Add a slight scale effect on hover */
+}
+
+/* Style for disabled button */
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Style for the description field container */
+.form-control textarea {
+  border: 2px solid #ccc;
+  padding: 8px;
   font-size: 16px;
-}
-
-.privscreen-form button.cancel-button {
-  background-color: #FF5722;
-}
-
-.privscreen-form button:hover {
-  background-color: #1976D2;
-}
-
-/* Style for inputs and textareas */
-.privscreen-form input,
-.privscreen-form textarea {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-sizing: border-box; /* Add this line to include padding and border in the width calculation */
+  transition: border-color 0.3s; /* Add smooth transition */
 }
 
-.privscreen-form input:focus,
-.privscreen-form textarea:focus {
-  outline: none;
-  border-color: #2196F3;
+/* Style for the description field when it has an error */
+.form-control--invalid textarea {
+  border: 2px solid red;
+}
+
+/* Add a hover effect for the description field */
+.form-control textarea:hover {
+  border-color: #007bff; /* Change border color on hover */
 }
