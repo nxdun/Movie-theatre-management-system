@@ -20,7 +20,7 @@ const PrivScreenItem = (props) => {
       window.confirm("Are you sure you want to delete this private screen?")
     ) {
       try {
-        const response = await axios.delete(`/privatescreen/${props.privScId}`);
+        const response = await axios.delete(`/privatescreen/deleteprivatescreen/${props.privScId}`);
         if (response.status === 200) {
           // Refresh the list of private screens after deletion
           // You may fetch the updated list or use state to remove the deleted item

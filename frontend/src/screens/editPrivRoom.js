@@ -44,7 +44,7 @@ const EditPrivRoom = () => {
   useEffect(() => {
     const fetchPrivateScreenData = async () => {
       try {
-        const response = await axios.get(`/privatescreen/${privScId}`);
+        const response = await axios.get(`/privatescreen/editprivatescreen/${privScId}`);
         const privateScreenData = response.data.privatescreen;
 
         const initialFormValues = {
@@ -135,7 +135,7 @@ const EditPrivRoom = () => {
     }
 
     try {
-      const response = await axios.put(`/editprivatescreen/${privScId}`, {
+      const response = await axios.put(`/privatescreen/editprivatescreen/${privScId}`, {
         privscname: formState.privscname.value,
         privscprice: formState.privscprice.value,
         privseatcapacity: formState.privseatcapacity.value,
