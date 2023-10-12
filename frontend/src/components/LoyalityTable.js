@@ -9,10 +9,10 @@ createTheme(
   "tableTheme",
   {
     text: {
-      primary: "#FFFFFF", // White text color
+      primary: "#222", // black text color
     },
     background: {
-      default: "#222222", // Black background
+      default: "#fff", // white background
     },
     context: {
       background: "#006600",
@@ -21,7 +21,6 @@ createTheme(
     divider: {
       default: "#444", // Color of the divider
       boxShadow: "1px 2px 9px #F4AAB9",
-  
     },
     action: {
       button: "rgba(0,0,0,.54)",
@@ -36,14 +35,14 @@ createTheme(
     rows: {
       main: "#333333", // Color for the main rows
       hover: "#555555", // Color for rows on hover
-      selected: "#555555", // Color for selected rows
+      selected: "#008000", // Color for selected rows
       highlightOnHover: "#000000", // Color for rows on hover
       boxShadow: "0px 5px 8px 0px rgba(0, 0, 0, 0.5)", // 3D effect shadow
     },
     cells: {
       common: {
         boxShadow: "0 0 4px rgba(85, 85, 85, 0.5)", // 3D effect shadow
-       
+
         background: "#000000", // Background color for cells
       },
       header: {
@@ -179,6 +178,7 @@ const LoyalityTable = (props) => {
       <LoyalitySearchBar onRefresh={ReloadMe} />
       <div>
         <DataTable
+          pagination={true}
           columns={columns}
           data={data}
           selectableRows={true}
