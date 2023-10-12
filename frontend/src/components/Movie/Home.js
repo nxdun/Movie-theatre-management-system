@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './CSS/AllMovies.css';
+import './myScript';
 import Header from "../../shared/HomeHeader";
 import { Link } from "react-router-dom";
+
+
 
 export default function HomeMain() {
   const [movies, setMovies] = useState([]);
@@ -73,7 +76,6 @@ export default function HomeMain() {
         </div>
       </div>
 
-
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -126,6 +128,9 @@ export default function HomeMain() {
         </div>
       </div>
   </footer>
-  </div>
+
+
+</div>
+  
   );
 }
