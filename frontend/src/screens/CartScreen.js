@@ -175,8 +175,8 @@ const CartScreen = () => {
       </div>
       <div className="cartscreen__right">
         <div className="cartscreen__info">
-          <p>Subtotal ({getCartCount()}) items</p>
-          <p>Rs.{getCartSubTotal().toFixed(2)}</p>
+          <p>Total ({getCartCount()}) items in the cart</p>
+         <b><p>Total Cost Rs.{getCartSubTotal().toFixed(2)}</p></b> 
         </div>
         <div>
           <div className="field">

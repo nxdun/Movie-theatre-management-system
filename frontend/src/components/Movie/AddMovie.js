@@ -81,7 +81,7 @@ export default function AddMovie() {
       <br />
       <form onSubmit={sendData}>
         <div className="mb-3">
-          <label htmlFor="title" className="form-label">
+          <label htmlFor="title" className="c2">
             Title
           </label>
           <input
@@ -97,7 +97,7 @@ export default function AddMovie() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="genre" className="form-label">
+          <label htmlFor="genre" className="c2">
             Genre
           </label>
           <select
@@ -119,7 +119,7 @@ export default function AddMovie() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="director" className="form-label">
+          <label htmlFor="director" className="c2">
             Director
           </label>
           <input
@@ -133,7 +133,7 @@ export default function AddMovie() {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="releasedate" className="form-label">
+          <label htmlFor="releasedate" className="c2">
             Release Date
           </label>
           <input
@@ -149,7 +149,7 @@ export default function AddMovie() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="languages" className="form-label">
+          <label htmlFor="languages" className="c2">
             Languages
           </label>
           <select
@@ -169,7 +169,7 @@ export default function AddMovie() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="runtime" className="form-label">
+          <label htmlFor="runtime" className="c2">
             Runtime
           </label>
           <input
@@ -184,7 +184,7 @@ export default function AddMovie() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="rating" className="form-label">
+          <label htmlFor="rating" className="c2">
             Rating
           </label>
           <input

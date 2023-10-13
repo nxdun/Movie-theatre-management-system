@@ -1,12 +1,23 @@
+.parentreg{
+  width: 100%;
+  height: 100%;
+  background-image: url("https://raw.githubusercontent.com/nxdun/BlaBla/12c556a97796736be3d561f885c102cf1019b6bb/paul-volkmer-qVotvbsuM_c-unsplash.jpg");
+  background-size: cover;
+}
+
 /* Form container styles */
 .form-container {
-  background-color: var(--black);
+  z-index: 1;
+   background: linear-gradient(#212121, #212121) padding-box,
+              linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+  border: 2px solid transparent;
   color: var(--white);
   padding: 40px;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
   max-width: 500px;
   margin: 0 auto;
+  box-shadow: 0px 0px 50px -15px rgba(0, 212, 255);
 }
 .head-label {
   font-weight: bold;
@@ -29,26 +40,138 @@
   color: var(--white);
 }
 
-/* Submit button styles */
 .form-submit-button {
   position: relative;
-  background-color: var(--green);
-  color: var(--white);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  display: block;
+  left: -8px;
+  padding: 8px;
+  background-color: #c0c0c0;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  width: 100%;
+  text-transform: uppercase;
+  overflow: hidden;
 }
 
 .form-submit-button:hover {
-  background-color: #004400; /* Darker green on hover */
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  border-radius: 3.9px;
+  box-shadow: 4px 5px 17px -4px #ffffff;
+  background-color: var(--green);
+  cursor: pointer;
 }
 
+.form-submit-button:hover::before {
+  -webkit-animation: sh02 1s 0s linear;
+  -moz-animation: sh02 1s 0s linear;
+  animation: sh02 1s 0s linear;
+}
+
+.form-submit-button::before {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 85%;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  opacity: 0;
+  background: #fff;
+  box-shadow: 0 0 50px 30px #fff;
+  -webkit-transform: skewX(-20deg);
+  -moz-transform: skewX(-20deg);
+  -ms-transform: skewX(-20deg);
+  -o-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+}
+
+@keyframes sh02 {
+  from {
+    opacity: 0;
+    left: 0%;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    left: 100%;
+  }
+}
 
 /* Error message styles */
 .error-message {
   color: var(--red);
   font-weight: bold;
   margin-top: 5px;
+}
+
+/*star anim*/
+.bg-stars {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vh;
+  height: 100vh;
+  background-size: cover;
+  animation: animateBg 50s linear infinite;
+}
+
+@keyframes animateBg {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.star-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vh;
+  height: 100vh;
+}
+
+.star {
+  overflow: hidden;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #000000;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
+    0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: animate 2s linear infinite;
+}
+
+.star::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 1px;
+  background: linear-gradient(90deg, #656262, transparent);
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(315deg) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(315deg) translateX(-1000px);
+    opacity: 0;
+  }
 }

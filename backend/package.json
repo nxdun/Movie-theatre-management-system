@@ -24,6 +24,8 @@
     "express-validator": "^7.0.1",
     "mongoose": "^7.5.0",
     "pino": "^8.15.0",
-    "pino-pretty": "^10.2.0"
+    "pino-pretty": "^10.2.0",
+    "stripe": "^13.8.0",
+    "uuid": "^9.0.1"
   }
 }

@@ -3,6 +3,7 @@ import './CSS/AllMovies.css';
 import Header from "../../shared/HomeHeader";
 
 
+
 export default function DetailsM(){
   
     return(
@@ -20,6 +21,9 @@ export default function DetailsM(){
 
         <iframe className="video" width="60%" height="500px" src="https://www.youtube.com/embed/d9MyW72ELq0" frameborder="0" allowfullscreen></iframe>
 
+
+
+      
 
 
     <footer class="site-footer">
@@ -75,8 +79,8 @@ export default function DetailsM(){
       </div>
 </footer>
 
-        </div>
 
+</div>
        
     )
 }
