@@ -5,7 +5,7 @@ const CartItem = ({item, qtyChangeHandler,removeHandler}) => {
   return (
     <div className="cartitem">
       <div className="cartitem__image">
-        <img 
+        <img className='cartitem__image'
         src={item.imageUrl}
          alt={item.name} 
          />
