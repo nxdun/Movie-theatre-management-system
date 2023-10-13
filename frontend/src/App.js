@@ -105,26 +105,6 @@ function App() {
         <Route path="/Details" element={<DetailsM />} />
         <Route path="/search" element={<Search />} />
 
-<<<<<<< HEAD
-          {/* omins Pages */}
-          <Route path="/seatbooking" element={<SeatSelect />} />
-          <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
-          <Route path="/Upslip/:selectedSeats/:theaterId/:price" element={<Upslip />} />
-          <Route path="/SeatManage" element={<SeatManage />} />
-          <Route
-            path="/SeatUpdate/:bookingId/:seatId/:theaterId"
-            element={<SeatUpdate />}
-          />
-          <Route path="concession/supplier_list" element={<SupplierList />} />
-          <Route path="concession/product_list" element={<ProductList />} />
-          <Route path="concession/stock_list" element={<StockList />} />
-          {/*Aviska's route paths*/}
-          <Route path="/admindash" element={<MainLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="concession" element={<ConcessionManagement />}>
-              <Route path="*" element={<Navigate to="/" />} />
-            </Route>
-=======
         {/* Sachiras Pages */}
         <Route exact path="/showtime" element={<Showtimes />} />
         <Route path="/sheduleMovie" exact element={<AddMoviesMainPage />} />
@@ -142,6 +122,7 @@ function App() {
         {/* omins Pages */}
         <Route path="/seatbooking" element={<SeatSelect />} />
         <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
+        <Route path="/Upslip/:selectedSeats/:theaterId/:price" element={<Upslip />} />
         <Route path="/SeatManage" element={<SeatManage />} />
         <Route
           path="/SeatUpdate/:bookingId/:seatId"
@@ -155,7 +136,6 @@ function App() {
             <Route path="supplier_list" element={<SupplierList />} />
             <Route path="product_list" element={<ProductList />} />
             <Route path="stock_list" element={<StockList />} />
->>>>>>> 38f01ccc84306f273cea2687dda618c2b217184d
             <Route path="*" element={<Navigate to="/" />} />
           </Route>
           <Route index element={<Navigate to="/manager/dashboard" />} />
