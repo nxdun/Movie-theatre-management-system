@@ -10,18 +10,18 @@ export default function MainLayout() {
   const [collapsed, setCollapsed] = useState(false);
   const items = [
     {
-      key: '/dashboard',
+      key: '/manager/dashboard',
       icon: <PieChartOutlined />,
       label: 'Manager Dashboard',
     },
     {
-      key: '/concession',
+      key: '/manager/concession',
       icon: <ShoppingCartOutlined />,
       label: 'Concession Management',
       children: [
-        { key: '/concession/supplier_list', label: 'Supplier List' },
-        { key: '/concession/product_list', label: 'Product List' },
-        { key: '/concession/stock_list', label: 'Stock List' }]
+        { key: '/manager/concession/supplier_list', label: 'Supplier List' },
+        { key: '/manager/concession/product_list', label: 'Product List' },
+        { key: '/manager/concession/stock_list', label: 'Stock List' }]
     },
     {
       key: '/movie',
@@ -44,7 +44,7 @@ export default function MainLayout() {
       label: 'Advertisement Management',
     },
     {
-      key: '/privatescreen/dashboard',
+      key: '/privateScreen/Dashboard',
       icon: <PieChartOutlined />,
       label: 'Private Screen Management',
     },
@@ -99,8 +99,8 @@ export default function MainLayout() {
     <Layout>
       <Layout.Sider width={250} trigger={null} collapsible collapsed={collapsed}>
         <Menu
-          defaultSelectedKeys={[location.pathname === '/' ? '/dashboard' : location.pathname]}
-          defaultOpenKeys={['/concession']}
+          defaultSelectedKeys={[location.pathname === '/manager' ? '/manager/dashboard' : location.pathname]}
+          defaultOpenKeys={['/manager/concession']}
           mode="inline"
           theme="dark"
           inlineCollapsed={collapsed}

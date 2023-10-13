@@ -3,14 +3,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import Card from "./UIelements/Card";
-import "../components/PrivScreenItem.css";
-import Button from "./PrivateScreenForm/Button";
+import "./PrivScreenItem.css";
+import Button from "./UIelements/Button";
+
 
 const PrivScreenItem = (props) => {
+  console.log("ID: " + props.privScId);
   const navigate = useNavigate();
 
   const handleEditClick = () => {
-    navigate(`/privatescreen/${props.id}`);
+    navigate(`/editprivatescreen/${props.privScId}`);
   };
 
   const handleDeleteClick = async () => {
@@ -18,7 +20,7 @@ const PrivScreenItem = (props) => {
       window.confirm("Are you sure you want to delete this private screen?")
     ) {
       try {
-        const response = await axios.delete(`/privatescreen/${props.id}`);
+        const response = await axios.delete(`/privatescreen/deleteprivatescreen/${props.privScId}`);
         if (response.status === 200) {
           // Refresh the list of private screens after deletion
           // You may fetch the updated list or use state to remove the deleted item

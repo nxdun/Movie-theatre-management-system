@@ -1,10 +1,11 @@
 body{
-  background-color: var(--black);
+  background-color: var(--white);
+  background-color: green;
   padding:0px;
 }
 
 .main-container {
-  background-color: var(--black);
+  color: var(--white);
   display: flex;
   justify-content: space-between;
   width: 100%;

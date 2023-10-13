@@ -1,40 +1,67 @@
-import React from 'react'
-import './Login.css'
-const  LoginScreen = () => {
+import React from "react";
+import "./Login.css"; // Import your CSS file
 
-    return (
-        
-    <form class="form">
-    <div class="form-title"><span>sign in to your</span></div>
-     <div class="title-2"><span>SPACE</span></div>
-     <div class="input-container">
-       <input class="input-mail" type="email" placeholder="Enter email"/>
-       <span> </span>
-     </div>
+const LoginScreen = () => {
+  const ShootingStars = () => {
+    const numStars = 20;
+    const stars = [];
 
-     <section class="bg-stars">
-       <span class="star"></span>
-       <span class="star"></span>
-       <span class="star"></span>
-       <span class="star"></span>
-     </section>
+    for (let i = 0; i < numStars; i++) {
+      const randomTop = `${Math.random() * 100}vh`; // Random top position between 0 and 100vh
+      const randomLeft = `${Math.random() * 100}vw`; // Random left position between 0 and 100vw
+      const randomDuration = `${Math.random() * 2 + 1}s`; // Random animation duration between 1s and 3s
 
-     <div class="input-container">
-       <input class="input-pwd" type="password" placeholder="Enter password"/>
-     </div>
-     <button type="submit" class="submit">
-       <span class="sign-text">Sign in</span>
-     </button>
+      const starStyle = {
+        top: randomTop,
+        left: randomLeft,
+        animationDuration: randomDuration,
+      };
 
-     <p class="signup-link">
-       No account?
-       <a href="" class="up">Sign up!</a>
-     </p>
-      
-  </form>
+      stars.push(
+        <span key={i} className={`star star-${i}`} style={starStyle} />
+      );
+    }
 
-    )
+    return <section className="bg-stars">{stars}</section>;
+  };
 
-}
+  return (
+    <div className="container-login">
+      <ShootingStars /> {/* Including my ShootingStars component */}
+      <form className="form1">
+        <div className="form-title">
+          <span>The Cinema Universe</span>
+        </div>
+        <div className="title-2">
+          <span>Log in</span>
+        </div>
+        <div className="input-container">
+          <input
+            className="input-mail"
+            type="email"
+            placeholder="Enter email"
+          />
+          <span> </span>
+        </div>
+        <div className="input-container">
+          <input
+            className="input-pwd"
+            type="password"
+            placeholder="Enter password"
+          />
+        </div>
+        <button type="submit" className="submitx">
+          <span className="sign-text">Sign in</span>
+        </button>
+        <p className="signup-link">
+          No account?{" "}
+          <a href="" className="up">
+            Sign up!
+          </a>
+        </p>
+      </form>
+    </div>
+  );
+};
 
-export default LoginScreen
+export default LoginScreen;

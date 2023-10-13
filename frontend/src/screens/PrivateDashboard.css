@@ -1,0 +1,14 @@
+/* PrivateDashboard.css */
+.priv-search-container {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .priv-search-input {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
