@@ -10,6 +10,10 @@ import customerRoutes from "./routes/customer.js";
 import loyaltyRoute from "./routes/loyalitydb.js";
 import productRouter from "./routes/product.js";
 import Prd from "./routes/Prd.js";
+
+import PaymentRoutes from "./routes/paymentRoutes.js";
+const Payment = require('./models/payment');
+
 const advertisementRoutes = require("./routes/advertisementRoute");
 const Movie_routes = require('./routes/Students')
 const bookingRouter = require('./routes/bookings.js');
@@ -42,6 +46,8 @@ app.use("/stock", stockRouter);
 app.use("/product", productRouter);
 app.use("/privatescreen", privateScreenRoutes);
 
+app.use("/payment", PaymentRoutes);
+
 
 // app.get("/adv", (req, res)=>{
 //   res.send("Home page");
@@ -54,6 +60,39 @@ app.listen(PORT, async () => {
   console.log(`Server running on port: ${PORT}`);
   
 });
+
+
+// Define the '/payment' route for handling POST requests
+app.post('/payment', async (req, res) => {
+  try {
+    // Extract data from the request body
+    const {
+      email,
+      phoneNumber,
+      cardHolderName,
+      cartItems,
+      totalCartPrice,
+    } = req.body;
+
+    // Create a new Payment document and save it to the database
+    const paymentData = new Payment({
+      email,
+      phoneNumber,
+      cardHolderName,
+      cartItems,
+      totalCartPrice,
+    });
+    await paymentData.save();
+
+    res.status(201).json({ message: 'Payment data saved successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while saving payment data' });
+  }
+});
+
+
+
 
 // Checkout API
 app.post('/api/create-checkout-session', async (req, res) => {
