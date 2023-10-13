@@ -40,6 +40,7 @@
   color: #ffffff;
   border: none;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .buttonx:hover {

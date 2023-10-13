@@ -18,6 +18,7 @@ import Search from "./components/Movie/Search";
 import ShopScreen from "./screens/ShopScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
+import Payment from "./screens/Payment";
 
 import RouteWrapper from "./RouteWrapper"; // Wrap the routes with the navbar, sidedrawer, and backdrop
 import Register from "./components/CustomerRegisterForm";
@@ -50,6 +51,7 @@ import HomeMain from "./components/Movie/Home";
 import DetailsM from "./components/Movie/Details";
 import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
+import Upslip from "./pages/Upslip";
 import Login from "./screens/Login";
 
 function App() {
@@ -94,6 +96,7 @@ function App() {
           <Route exact path="/cart" element={<CartScreen />} />
           <Route exact path="/success" element={<Success />} />
           <Route exact path="/cancel" element={<Cancel />} />
+          <Route exact path="/payment" element={<Payment />} />
         </Route>
         {/*shehan's route paths  */}
         <Route path="/addMovie" exact element={<AddMovie />} />{" "}
@@ -121,6 +124,7 @@ function App() {
         {/* omins Pages */}
         <Route path="/seatbooking" element={<SeatSelect />} />
         <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
+        <Route path="/Upslip/:selectedSeats/:theaterId/:price" element={<Upslip />} />
         <Route path="/SeatManage" element={<SeatManage />} />
         <Route
           path="/SeatUpdate/:bookingId/:seatId"

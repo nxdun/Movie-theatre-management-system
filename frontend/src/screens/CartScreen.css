@@ -1,7 +1,7 @@
 .cartscreen {
     display: flex;
     max-width: 1300px;
-    margin: 2rem auto;
+    margin: 4rem auto;
   }
   
   .cartscreen h2 {
@@ -10,18 +10,22 @@
   
   .cartscreen__left {
     flex: 0.7;
-    margin-right: 1rem;
-    background: transparent;
+    margin-right: 3rem;
     padding: 1rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 31px;
+background: linear-gradient(45deg, #eee7e7, #fafafa);
+box-shadow:  12px -12px 20px #949494,
+             -12px 12px 20px #ffffff;
     
   }
   
   .cartscreen__right {
     flex: 0.3;
-    background: #fff;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
     height: fit-content;
+    border-radius: 29px;
+  background: linear-gradient(45deg, #e7e3e3, #ffffff);
+  box-shadow:  13px -13px 35px #727272,
+             -13px 13px 35px #ffffff;
   }
   
   .cartscreen__right div {
@@ -42,21 +46,34 @@
   }
   
   .cartscreen__right div button {
-    padding: 10px 17px;
-    width: 100%;
-    color: #ffffff;
-    cursor: pointer;
-
-    border-radius: 48px;
-background: linear-gradient(45deg, #cacaca, #43f143);
-box-shadow:  14px -14px 28px #6e6e6e,
-             -14px 14px 28px #ffffff;
+    padding: 17px 40px;
+    border-radius: 50px;
+    border: 0;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all .5s ease;
+   
   }
 
   
   .cartscreen__right div button:hover {
-    opacity: 0.9;
+    letter-spacing: 3px;
+ background-color: hsl(125, 92%, 42%);
+ color: hsl(0, 0%, 100%);
+ box-shadow: rgb(3, 24, 12) 0px 7px 29px 0px;
+
   }
+  button:active {
+    letter-spacing: 3px;
+    background-color: hsl(123, 91%, 36%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(8, 8, 8) 0px 0px 0px 0px;
+    transform: translateY(10px);
+    transition: 100ms;
+   }
   
   @media (max-width: 1320px) {
     .cartscreen {
