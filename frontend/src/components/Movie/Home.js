@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './CSS/AllMovies.css';
+import './CSS/Home.css';
 import './myScript';
 import Header from "../../shared/HomeHeader";
 import { Link } from "react-router-dom";
@@ -24,8 +25,31 @@ export default function HomeMain() {
   }, []);
 
   return (
-    <div>
-        <Header/>
+    <div>     
+    <Header/>
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <img src="image1.jpg" alt="Image 1"/>
+        </div>
+        <div class="mySlides">
+            <img src="image2.jpg" alt="Image 2"/>
+        </div>
+        <div class="mySlides">
+            <img src="image3.jpg" alt="Image 3"/>
+        </div>
+
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+
+
+
+
+    
+   
+    <div className="fullContant">
         <div className="cont">
         {/* Display 5 movies in one row */}
         <div className="movie-row">
@@ -75,7 +99,7 @@ export default function HomeMain() {
           ))}
         </div>
       </div>
-
+</div>
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -128,6 +152,8 @@ export default function HomeMain() {
         </div>
       </div>
   </footer>
+
+  
 
 
 </div>
