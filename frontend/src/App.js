@@ -34,8 +34,8 @@ import EditPrivateRoom from "./components/PrivateScreens/editPrivRoom";
 import LoyalityDash from "./screens/LoyalityDash";
 import Advertisement from "./screens/Advertisement";
 //userscreens
-import UserBooking from "./components/PrivateScreens/userBooking";
-import PriUserScreen from "./components/PrivateScreens/PrivateScreenUI";
+import UserScBooking from "./components/PrivateScreens/PrivCusUI/UserScBooking";
+import PriUserScreen from "./components/PrivateScreens/PrivCusUI/PrivCusUI";
 import AddMoviesMainPage from "./screens/AddMoviesMainPage";
 import MovieShedularCalPrevPage from "./screens/MovieShedularCalPrevPage";
 import UpdateMovieShedularPage from "./screens/UpdateMovieShedularPage";
@@ -79,7 +79,7 @@ function App() {
             element={<GenerateReport />}
           />
           <Route path="/PrivScUI" exact element={<PriUserScreen />} />
-          <Route path="/userbooking" exact element={<UserBooking />} />
+          <Route path="/PrivScBooking" exact element={<UserScBooking />} />
           <Route path="/adv" exact element={<Advertisement />} />
           {/*vishwa's route paths  */}
           <Route element={<RouteWrapper />}>
