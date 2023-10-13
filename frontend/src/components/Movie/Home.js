@@ -27,6 +27,17 @@ export default function HomeMain() {
   return (
     <div>     
     <Header/>
+
+
+    <Link to="/Details">
+    <img
+      className="ima1"
+      src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2022/12/avatar-2.jpg?ssl=1&quality=80&w=f"
+      alt="Movie Poster"
+      width="100%"
+      height="100%"
+    />
+  </Link>
    
     <div className="fullContant">
         <div className="cont">
