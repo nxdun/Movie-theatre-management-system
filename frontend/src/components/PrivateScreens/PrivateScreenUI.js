@@ -1,6 +1,6 @@
 import React, { useState } from 'react';   // import React and useState hook
 
-import PrivScreenList from '../components/PrivScreenList';
+import PrivScreenList from './PrivScreenList';
 
 
 

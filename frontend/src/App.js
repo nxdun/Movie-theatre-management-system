@@ -27,15 +27,15 @@ import React from "react";
 
 //adminscreens
 import PrivateScreenDash from "./screens/privatedash";
-import AddPrivateRoom from "./screens/addPrivRoom";
-import ReviewBookings from "./screens/viewPrivScBookings";
-import GenerateReport from "./screens/viewPrivScBookingReport";
-import EditPrivateRoom from "./screens/editPrivRoom";
+import AddPrivateRoom from "./components/PrivateScreens/addPrivRoom";
+import ReviewBookings from "./components/PrivateScreens/viewPrivScBookings";
+import GenerateReport from "./components/PrivateScreens/viewPrivScBookingReport";
+import EditPrivateRoom from "./components/PrivateScreens/editPrivRoom";
 import LoyalityDash from "./screens/LoyalityDash";
 import Advertisement from "./screens/Advertisement";
 //userscreens
-import UserBooking from "./screens/userBooking";
-import UserScreen from "./screens/userScreen";
+import UserBooking from "./components/PrivateScreens/userBooking";
+import PriUserScreen from "./components/PrivateScreens/PrivateScreenUI";
 import AddMoviesMainPage from "./screens/AddMoviesMainPage";
 import MovieShedularCalPrevPage from "./screens/MovieShedularCalPrevPage";
 import UpdateMovieShedularPage from "./screens/UpdateMovieShedularPage";
@@ -78,7 +78,7 @@ function App() {
             exact
             element={<GenerateReport />}
           />
-          <Route path="/user1" exact element={<UserScreen />} />
+          <Route path="/PrivScUI" exact element={<PriUserScreen />} />
           <Route path="/userbooking" exact element={<UserBooking />} />
           <Route path="/adv" exact element={<Advertisement />} />
           {/*vishwa's route paths  */}

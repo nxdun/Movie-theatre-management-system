@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import ReactSelect from "react-select";
-import "../components/userBooking.css"
+import "./userBooking.css"
 
 const UserBooking = () => {
   const options = [

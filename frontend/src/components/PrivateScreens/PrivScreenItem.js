@@ -3,8 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import Card from "./UIelements/Card";
-import "../components/PrivScreenItem.css";
-import Button from "./PrivateScreenForm/Button";
+import "./PrivScreenItem.css";
+import Button from "./UIelements/Button";
 
 
 const PrivScreenItem = (props) => {

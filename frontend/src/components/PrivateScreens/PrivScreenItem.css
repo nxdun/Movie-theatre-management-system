@@ -58,3 +58,12 @@
       height: 20rem;
     } 
   }
+
+  .priv-sclist {
+    list-style: none;
+    margin: 1rem auto;
+    padding: 0;
+    width: 90%;
+    max-width: 40rem;
+  }
+  

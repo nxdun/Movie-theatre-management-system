@@ -17,6 +17,7 @@ const bookingRouter = require('./routes/bookings.js');
 const stripe = require('stripe')('sk_test_51Ns9obAuazamskfx2FbGPFJyekhZ7Le2CEX6fBvU18ZnocXHhBGhz3FQdy1kjQ9BTgPGvyiq8XsOxvHOhrG5w9eI00zvkNE8OF');
 const AdminRoutes = require("./routes/adminRoutes");
 const privateScreenRoutes = require("./routes/privatescreens.js");
+const privateScBookingRoutes = require('./routes/privateScBookings.js');
 // Initialize Express
 const app = express();
 const PORT = process.env.PORT || 3015;
@@ -41,6 +42,7 @@ app.use("/supplier", supplierRouter);
 app.use("/stock", stockRouter); 
 app.use("/product", productRouter);
 app.use("/privatescreen", privateScreenRoutes);
+app.use('/private-screens', privateScBookingRoutes);
 
 
 // app.get("/adv", (req, res)=>{

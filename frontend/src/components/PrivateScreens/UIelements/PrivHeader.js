@@ -1,5 +1,5 @@
 import React from 'react';
-import '../components/PrivHeader.css';
+import './PrivHeader.css';
 
 const Header = () => {
   return (
