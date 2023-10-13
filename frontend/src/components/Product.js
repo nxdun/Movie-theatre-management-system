@@ -6,7 +6,7 @@ const Product = ({imageUrl, name, price, description, productId}) => {
     <div className="product">
       <div className="scard">
 
-      <img src={imageUrl} alt={name}/>
+      <img className="pImage" src={imageUrl} alt={name}/>
 
       <div className="content-box">
         <span className="info__name">{name}</span>
