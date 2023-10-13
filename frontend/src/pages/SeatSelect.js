@@ -3,7 +3,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import screenImage from './R.png';
 import dolbyImage from './dolby.png';
+import unImage from './un.png';
+import avImage from './av.png';
+import selImage from './sel.png';
 import { useNavigate } from 'react-router-dom';
+import Header from "../shared/HomeHeader";
+import Footer from "../shared/Footer";
 
 
 function SeatSelect() {
@@ -101,6 +106,7 @@ function SeatSelect() {
   
   return (
     <div>
+      <Header/>
       <div className="sticky-div">
         <h1>AVATAR 2</h1>
         <h4>GALAXY CINEMA, Colombo</h4>
@@ -110,11 +116,22 @@ function SeatSelect() {
 
       <div>
         <img src={screenImage} alt="screen" border="0" className="screen-img" />
-        <p className="screenWay"><b>↑ SCREEN THIS WAY</b></p>
+        <p className="screenWay">↑ SCREEN THIS WAY</p>
+      </div>
+
+      <div className='d-icon'>
+      <img src={avImage} alt="Buttonimage" border="0" className="av" /><p>Available&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      <img src={unImage} alt="Buttonimage" border="0" className="av" /><p>Unavailable&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      <img src={selImage} alt="Buttonimage" border="0" className="av" /><p>Selected</p>
+
       </div>
 
       <div className="button-container">
         {rows}
+      </div><hr />
+
+      <div className='sel-price'>
+      <p>{selectedButtons.length} seat(s) selected, Price: Rs.{selectedButtons.length * 1000}</p>   
       </div>
 
       <div>
@@ -122,6 +139,7 @@ function SeatSelect() {
           Continue
         </button>
       </div>
+      <Footer/>
     </div>
   );
 }

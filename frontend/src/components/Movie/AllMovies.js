@@ -37,7 +37,7 @@ export default function AllMovies() {
   return (
     <div>
      <Header/>
-     <Link to="/">
+     <Link to="/admindash">
     <img className="ima4" src={"https://www.freeiconspng.com/thumbs/return-button-png/back-undo-return-button-png-5.png"} alt="My Image" width="50px" height= "50px" />
     </Link>
       <div className="contA">        

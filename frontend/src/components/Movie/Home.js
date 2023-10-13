@@ -1,124 +1,95 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import mainp from './Images/main.jpeg';
-import pic1 from './Images/p1.jpeg'
-import pic2 from './Images/p2.jpeg';
-import pic3 from './Images/p3.jpeg';
-import pic4 from './Images/p4.jpeg';
-import pic5 from './Images/p5.jpeg';
 import './CSS/AllMovies.css';
+import './CSS/Home.css';
+import './myScript';
 import Header from "../../shared/HomeHeader";
 import { Link } from "react-router-dom";
 
-export default function HomeMain(){
-  
-    return(
-        <div>
-        <Header/>
+
+
+export default function HomeMain() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    async function fetchMovies() {
+      try {
+        const response = await axios.get("/movie/");
+        setMovies(response.data);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    }
+
+    fetchMovies();
+  }, []);
+
+  return (
+    <div>     
+    <Header/>
+
+
+    <Link to="/Details">
+    <img
+      className="ima1"
+      src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2022/12/avatar-2.jpg?ssl=1&quality=80&w=f"
+      alt="Movie Poster"
+      width="100%"
+      height="100%"
+    />
+  </Link>
+   
+    <div className="fullContant">
         <div className="cont">
-            <div className="cont1">
-                <h1 className="h1">Avatar :</h1>
-                <h1 className="h1">The way of water</h1>
+        {/* Display 5 movies in one row */}
+        <div className="movie-row">
+          {movies.slice(0, 5).map((movie, index) => (
+            <div className="contn1" key={index}>
+              <Link to="/Details">
+                <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
+              </Link>
+              <h3 className="h3">{movie.title}</h3>
             </div>
-            <div className="cont2">
-               <Link to="/Details"><img className="ima12" src={mainp} alt="My Image" width="95%" height= "100%" /></Link> 
-            </div>
+          ))}
         </div>
-
-        <div className="contn">
-            
-            <div className="contn1"> 
-            <Link to="/Details">         
-            <img className="ima1" src={pic1} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Oppenheimer</h3>
-            </Link>
-            </div>
-            <div className="contn1">
-            <Link to="/Details">         
-            <img className="ima1" src={pic5} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">The Little Mermaid </h3> 
-            </Link>
-            </div>
-            <div className="contn1">
-            <Link to="/Details">         
-            <img className="ima1" src={pic3} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Spider-man </h3>
-            </Link>
-            </div>
-            <div className="contn1">
-            <Link to="/Details">         
-            <img className="ima1" src={pic4} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Guardian of the galaxy</h3>
-            </Link>
-            </div>
-            <div className="contn1">
-            <Link to="/Details">
-            <img className="ima1" src={pic2} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Fast X</h3>
-            </Link>
-            </div>
-
-        </div>
+      </div>
 
         <div className="contn2">
             <h2 className="hh" > Popular Movies</h2>
         </div>
 
-        <div className="contn">
-            
-            <div className="contn1">          
-            <img className="ima1" src={pic1} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Oppenheimer</h3>
+        <div className="cont">
+        {/* Display 5 movies in one row */}
+        <div className="movie-row">
+          {movies.slice(0, 5).map((movie, index) => (
+            <div className="contn1" key={index}>
+              <Link to="/Details">
+                <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
+              </Link>
+              <h3 className="h3">{movie.title}</h3>
             </div>
-            <div className="contn1">
-            <img className="ima1" src={pic5} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">The Little Mermaid </h3> 
-            </div>
-            <div className="contn1">
-            <img className="ima1" src={pic3} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Spider-man </h3>
-            </div>
-            <div className="contn1">
-            <img className="ima1" src={pic4} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Guardian of the galaxy</h3>
-            </div>
-            <div className="contn1">
-            <img className="ima1" src={pic2} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Fast X</h3>
-            </div>
-
+          ))}
         </div>
+      </div>
 
         <div className="contn2">
             <h2 className="hhh" > Recommended Movies</h2>
         </div>
 
-        <div className="contn">
-            
-            <div className="contn1">          
-            <img className="ima1" src={pic1} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Oppenheimer</h3>
+        <div className="cont">
+        {/* Display 5 movies in one row */}
+        <div className="movie-row">
+          {movies.slice(0, 5).map((movie, index) => (
+            <div className="contn1" key={index}>
+              <Link to="/Details">
+                <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
+              </Link>
+              <h3 className="h3">{movie.title}</h3>
             </div>
-            <div className="contn1">
-            <img className="ima1" src={pic5} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">The Little Mermaid </h3> 
-            </div>
-            <div className="contn1">
-            <img className="ima1" src={pic3} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Spider-man </h3>
-            </div>
-            <div className="contn1">
-            <img className="ima1" src={pic4} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Guardian of the galaxy</h3>
-            </div>
-            <div className="contn1">
-            <img className="ima1" src={pic2} alt="My Image" width="95%" height= "100%" />
-            <h3 className="h3">Fast X</h3>
-            </div>
-
+          ))}
         </div>
-
-
+      </div>
+</div>
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -170,11 +141,12 @@ export default function HomeMain(){
           </div>
         </div>
       </div>
-</footer>
+  </footer>
 
-        </div>
+  
 
-       
-    )
+
+</div>
+  
+  );
 }
-

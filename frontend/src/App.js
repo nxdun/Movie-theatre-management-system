@@ -11,6 +11,7 @@ import StockList from "./components/ConcessionManagement/components/StockList/St
 import SupplierList from "./components/ConcessionManagement/components/SupplierList/SupplierList";
 import Dashboard from "./components/Dashboard/Dashboard";
 import MainLayout from "./components/MainLayout/MainLayout";
+import Search from "./components/Movie/Search";
 
 /* vishwa screen and components*/
 // Screens
@@ -28,15 +29,15 @@ import React from "react";
 
 //adminscreens
 import PrivateScreenDash from "./screens/privatedash";
-import AddPrivateRoom from "./screens/addPrivRoom";
-import ReviewBookings from "./screens/viewPrivScBookings";
-import GenerateReport from "./screens/viewPrivScBookingReport";
-import EditPrivateRoom from "./screens/editPrivRoom";
+import AddPrivateRoom from "./components/PrivateScreens/addPrivRoom";
+import ReviewBookings from "./components/PrivateScreens/viewPrivScBookings";
+import GenerateReport from "./components/PrivateScreens/viewPrivScBookingReport";
+import EditPrivateRoom from "./components/PrivateScreens/editPrivRoom";
 import LoyalityDash from "./screens/LoyalityDash";
 import Advertisement from "./screens/Advertisement";
 //userscreens
-import UserBooking from "./screens/userBooking";
-import UserScreen from "./screens/userScreen";
+import UserScBooking from "./components/PrivateScreens/PrivCusUI/UserScBooking";
+import PriUserScreen from "./components/PrivateScreens/PrivCusUI/PrivCusUI";
 import AddMoviesMainPage from "./screens/AddMoviesMainPage";
 import MovieShedularCalPrevPage from "./screens/MovieShedularCalPrevPage";
 import UpdateMovieShedularPage from "./screens/UpdateMovieShedularPage";
@@ -50,18 +51,19 @@ import HomeMain from "./components/Movie/Home";
 import DetailsM from "./components/Movie/Details";
 import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
+import Upslip from "./pages/Upslip";
 import Login from "./screens/Login";
 
 function App() {
   return (
     <Router>
-      <main className="app">
-        <Routes>
-          {/* nadun */}
-          <Route path="/loyality/dashboard" exact element={<LoyalityDash />} />
-          <Route path="/register" exact element={<Register />} />
-          {/* dunal */}
-          <Route
+
+      <Routes>
+        {/* nadun */}
+        <Route path="/loyality/dashboard" exact element={<LoyalityDash />} />
+        <Route path="/register" exact element={<Register />} />
+        {/* dunal */}
+        <Route
             path="/privateScreen/DashBoard"
             exact
             element={<PrivateScreenDash />}
@@ -71,10 +73,7 @@ function App() {
             exact
             element={<AddPrivateRoom />}
           />
-          <Route
-            path="/privateScreen/:privScId"
-            element={<EditPrivateRoom />}
-          />
+          <Route path="/editprivatescreen/:privScId" element={<EditPrivateRoom />}/>
           <Route
             path="/privateScreen/Reviewbooking"
             exact
@@ -85,64 +84,69 @@ function App() {
             exact
             element={<GenerateReport />}
           />
-          <Route path="/user1" exact element={<UserScreen />} />
-          <Route path="/userbooking" exact element={<UserBooking />} />
-          <Route path="/adv" exact element={<Advertisement />} />
-          {/*vishwa's route paths  */}
-          <Route element={<RouteWrapper />}>
-            {" "}
-            {/* Wrap the routes */}
-            <Route exact path="/shop" element={<ShopScreen />} />
-            <Route exact path="/prd/:id" element={<ProductScreen />} />
-            <Route exact path="/cart" element={<CartScreen />} />
-            <Route exact path="/success" element={<Success />} />
-            <Route exact path="/cancel" element={<Cancel />} />
-            <Route exact path="/payment" element={<Payment />} />
-          </Route>
-          {/*shehan's route paths  */}
-          <Route path="/addMovie" exact element={<AddMovie />} />{" "}
-          {/*we write exact eod for only display path=/ for exact /*/}
-          <Route path="/movie" exact element={<AllMovies />} />
-          <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
-          <Route path="/" element={<HomeMain />} />
-          <Route path="/Details" element={<DetailsM />} />
-          {/* Sachiras Pages */}
-          <Route exact path="/showtime" element={<Showtimes />} />
-          <Route path="/sheduleMovie" exact element={<AddMoviesMainPage />} />
-          <Route
-            path="/calender"
-            exact
-            element={<MovieShedularCalPrevPage />}
-          />
-          <Route
-            path="/sheduleMovie/:sheduleId"
-            exact
-            element={<UpdateMovieShedularPage />}
-          />
+          <Route path="/PrivScUI" exact element={<PriUserScreen />} />
+          <Route path="/PrivScBooking" exact element={<UserScBooking />} />
+        <Route path="/adv" exact element={<Advertisement />} />
+        {/*vishwa's route paths  */}
+        <Route element={<RouteWrapper />}>
+          {" "}
+          {/* Wrap the routes */}
+          <Route exact path="/shop" element={<ShopScreen />} />
+          <Route exact path="/prd/:id" element={<ProductScreen />} />
+          <Route exact path="/cart" element={<CartScreen />} />
+          <Route exact path="/success" element={<Success />} />
+          <Route exact path="/cancel" element={<Cancel />} />
+          <Route exact path="/payment" element={<Payment />} />
+        </Route>
+        {/*shehan's route paths  */}
+        <Route path="/addMovie" exact element={<AddMovie />} />{" "}
+        {/*we write exact eod for only display path=/ for exact /*/}
+        <Route path="/movie" exact element={<AllMovies />} />
+        <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
+        <Route path="/" element={<HomeMain />} />
+        <Route path="/Details" element={<DetailsM />} />
+        <Route path="/search" element={<Search />} />
 
-          {/* omins Pages */}
-          <Route path="/seatbooking" element={<SeatSelect />} />
-          <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
-          <Route path="/SeatManage" element={<SeatManage />} />
-          <Route
-            path="/SeatUpdate/:bookingId/:seatId"
-            element={<SeatUpdate />}
-          />
-          <Route path="concession/supplier_list" element={<SupplierList />} />
-          <Route path="concession/product_list" element={<ProductList />} />
-          <Route path="concession/stock_list" element={<StockList />} />
-          {/*Aviska's route paths*/}
-          <Route path="/admindash" element={<MainLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="concession" element={<ConcessionManagement />}>
-              <Route path="*" element={<Navigate to="/" />} />
-            </Route>
+        {/* Sachiras Pages */}
+        <Route exact path="/showtime" element={<Showtimes />} />
+        <Route path="/sheduleMovie" exact element={<AddMoviesMainPage />} />
+        <Route
+          path="/calender"
+          exact
+          element={<MovieShedularCalPrevPage />}
+        />
+        <Route
+          path="/sheduleMovie/:sheduleId"
+          exact
+          element={<UpdateMovieShedularPage />}
+        />
+
+        {/* omins Pages */}
+        <Route path="/seatbooking" element={<SeatSelect />} />
+        <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
+        <Route path="/Upslip/:selectedSeats/:theaterId/:price" element={<Upslip />} />
+        <Route path="/SeatManage" element={<SeatManage />} />
+        <Route
+          path="/SeatUpdate/:bookingId/:seatId"
+          element={<SeatUpdate />}
+        />
+
+        {/*Aviska's route paths*/}
+        <Route path="/manager" element={<MainLayout />}>
+          <Route path="dashboard" index element={<Dashboard />} />
+          <Route path="concession" element={<ConcessionManagement />}>
+            <Route path="supplier_list" element={<SupplierList />} />
+            <Route path="product_list" element={<ProductList />} />
+            <Route path="stock_list" element={<StockList />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Route>
-          {/*Loggin route*/}
-          <Route exact path="/login" element={<Login />} />
-        </Routes>
-      </main>
+          <Route index element={<Navigate to="/manager/dashboard" />} />
+          <Route path="*" element={<Navigate to="/manager/dashboard" />} />
+        </Route>
+        {/*Loggin route*/}
+        <Route exact path="/login" element={<Login />} />
+      </Routes>
+
     </Router>
   );
 }

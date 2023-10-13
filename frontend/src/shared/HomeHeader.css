@@ -16,8 +16,15 @@ body {
 }
 a {
   text-decoration: none;
-  color: #000;
+  color: #ffffff;
 }
+
+.li{
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 20px;
+}
+
 .site-header { 
   border-bottom: 1px solid #ccc;
   padding: .5em 1em;

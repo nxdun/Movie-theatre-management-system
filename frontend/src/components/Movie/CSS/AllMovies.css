@@ -158,6 +158,7 @@ table {
 
 .h3{
     margin-top: 30px;
+    
 }
 
 .hh{
@@ -244,6 +245,12 @@ table {
   padding-top: 40px;
 }
 
+.c2{
+  color: #000;
+  font-size: 20px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
 
 
 
@@ -428,3 +435,50 @@ table {
     font-weight:600
   }
 }
+
+
+
+/* CSS/AllMovies.css */
+
+/* Add your existing styles here */
+
+/* Style for the movie row */
+.movie-row {
+  display: flex; /* Use flexbox to create a row layout */
+  flex-wrap: nowrap; /* Prevent items from wrapping to the next row */
+  overflow-x: auto; /* Enable horizontal scrolling if there are more than 5 movies */
+  margin: -10px; /* Add negative margin to counteract spacing between items */
+}
+
+/* Style for each movie card */
+.contn1 {
+  flex: 0 0 20%; /* Set each movie card to take up 20% of the container width */
+  box-sizing: border-box; /* Include padding and border in the width */
+  padding: 10px; /* Add spacing between movie cards */
+  text-align: center; /* Center align the content */
+}
+
+.ima1 {
+  max-width: 100%; /* Ensure images don't exceed the container width */
+  height: auto; /* Maintain the aspect ratio of the images */
+}
+
+.h3 {
+  margin-top: 10px; /* Add spacing below the movie title */
+}
+
+/* Add any additional styles you need */
+
+
+
+
+
+
+
+
+
+
+
+/*slide show*/
+
+

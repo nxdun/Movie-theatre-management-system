@@ -1,3 +1,11 @@
 .Dashboard {
-  
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+.Logo{
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    animation: rotate 10s linear infinite;
 }
