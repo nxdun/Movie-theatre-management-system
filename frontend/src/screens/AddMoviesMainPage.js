@@ -60,18 +60,33 @@ function AddMoviesMainPage(props) {
     setFilteredData(filteredMovies);
   };
 
-  const movies = [
-    { label: "The Shawshank Redemption", value: 12345 },
-    { label: "The Godfather", value: 67890 },
-    { label: "The Dark Knight", value: 54321 },
-    { label: "Pulp Fiction", value: 98765 },
-    { label: "Schindler's List", value: 45678 },
-    { label: "Forrest Gump", value: 23456 },
-    { label: "The Lord of the Rings: The Return of the King", value: 78901 },
-    { label: "Inception", value: 34567 },
-    { label: "Fight Club", value: 87654 },
-    { label: "The Matrix", value: 32109 },
-  ];
+  //fetch movie data from the database
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/movie/")
+      .then((response) => {
+        if (response.data && Array.isArray(response.data)) {
+          const movieListFromDB = response.data;
+
+          // Create a new list of objects with label and value properties
+          const movieOptions = movieListFromDB.map((movie) => ({
+            label: movie.title,
+            value: movie._id,
+          }));
+          // Set the 'movies' list with label and value properties
+          setMovies(movieOptions);
+        } else {
+          console.error(
+            "Failed to fetch movie data or data format is incorrect"
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching movie data:", error);
+      });
+  }, []);
 
   const theaters = [
     { label: "Theater A", value: "Theater A" },
