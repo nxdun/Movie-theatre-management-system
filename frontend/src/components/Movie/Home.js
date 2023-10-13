@@ -27,27 +27,6 @@ export default function HomeMain() {
   return (
     <div>     
     <Header/>
-    <div class="slideshow-container">
-        <div class="mySlides">
-            <img src="image1.jpg" alt="Image 1"/>
-        </div>
-        <div class="mySlides">
-            <img src="image2.jpg" alt="Image 2"/>
-        </div>
-        <div class="mySlides">
-            <img src="image3.jpg" alt="Image 3"/>
-        </div>
-
-
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
-
-
-
-
-
-    
    
     <div className="fullContant">
         <div className="cont">
