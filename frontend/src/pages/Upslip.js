@@ -1,13 +1,13 @@
-import './Slip.css';
+import './Upslip.css';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import dolbyImage from './dolby.png';
 import Header from "../shared/HomeHeader";
 
-function Slip() {
+function Upslip() {
   // Get URL parameters
-  const { seatId, theaterId, price } = useParams();
+  const { selectedSeats : seatId, theaterId, price } = useParams();
   const navigate = useNavigate();
   const [isDeleting, setIsDeleting] = useState(false);
   const [bookingId, setBookingId] = useState(null);
@@ -80,7 +80,7 @@ function Slip() {
           <button className="buttonx" onClick={handleDelete}>
             Delete
           </button>
-          <Link to={`/SeatUpdate/${bookingId}/${seatId}/${theaterId}`} className="buttonx">
+          <Link to={`/SeatUpdate/${bookingId}/${seatId}`} className="buttonx">
             Add More Seats
           </Link>
           <Link to= "/shop">
@@ -93,4 +93,4 @@ function Slip() {
   );
 }
 
-export default Slip;
+export default Upslip;

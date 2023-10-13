@@ -4,19 +4,19 @@
   padding: 20px;
 }
 
-table {
+.sm2 {
   width: 100%;
   border-collapse: collapse;
 }
 
-th, td {
+td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
 
-th {
-  background-color: #f2f2f2;
+.sm1 {
+  background-color: #09035c;
 }
 
 tr:hover {
@@ -32,8 +32,29 @@ tr {
 
 
 .highlighted-row {
-  background-color: rgb(208, 236, 139); 
+  background-color: rgb(154, 230, 255); 
   font-weight: bold; 
   color: rgb(0, 0, 0);
   
+}
+
+
+.search-container{
+  padding: 20px;
+  margin: 20px;
+  width: 500px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.sm3{
+  background-color: #09035c;
+  margin-top: 40px;
+  color: azure;
+}
+
+.sm3:hover{
+  background-color: #03012a;
+
 }

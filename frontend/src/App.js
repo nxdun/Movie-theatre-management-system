@@ -49,6 +49,7 @@ import HomeMain from "./components/Movie/Home";
 import DetailsM from "./components/Movie/Details";
 import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
+import Upslip from "./pages/Upslip";
 import Login from "./screens/Login";
 function App() {
   return (
@@ -119,9 +120,10 @@ function App() {
           {/* omins Pages */}
           <Route path="/seatbooking" element={<SeatSelect />} />
           <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
+          <Route path="/Upslip/:selectedSeats/:theaterId/:price" element={<Upslip />} />
           <Route path="/SeatManage" element={<SeatManage />} />
           <Route
-            path="/SeatUpdate/:bookingId/:seatId"
+            path="/SeatUpdate/:bookingId/:seatId/:theaterId"
             element={<SeatUpdate />}
           />
           <Route path="concession/supplier_list" element={<SupplierList />} />
