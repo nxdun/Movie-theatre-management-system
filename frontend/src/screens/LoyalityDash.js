@@ -15,6 +15,7 @@ const LoyalityDash = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isPopupOpen2, setIsPopupOpen2] = useState(false);
   const [isPopupOpen3, setIsPopupOpen3] = useState(false);
+  const [isprinted, setisprinted] = useState(false);
   //constants
   const ReloadMe = () => {
     window.location.reload();
@@ -38,6 +39,10 @@ const LoyalityDash = () => {
   const closePopup3 = () => {
     setIsPopupOpen3(false);
   };
+  const handlePrint = () => {
+    setisprinted(!isprinted);
+    console.log("Eprint = ", isprinted);
+  }
   const handleDeleteSelectedRows = async () => {
     try {
       // Send a DELETE request to delete the selected rows based on their IDs
@@ -66,12 +71,15 @@ const LoyalityDash = () => {
       <Header />
       <div className="main-container">
         <LoyalityTable
+          isprinted = {isprinted}
+          setisprinted = {setisprinted}
           ssetSelectedRowsIds={setSelectedRowsIds}
           sselectedRowsIds={selectedRowsIds}
           sendRow = {ssendRow}
           className="table-col"
         />
         <LoyalityControls
+        print={handlePrint}
           open={openPopup}
           edit={openPopup2}
           editor={openPopup3}

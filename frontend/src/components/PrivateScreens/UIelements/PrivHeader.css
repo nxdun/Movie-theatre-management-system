@@ -1,5 +1,5 @@
 /* Unique class names */
-.header-main-custom {
+.privv-header-main-custom {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,7 +9,7 @@
   border-bottom: 2px solid #000;
 }
 
-.icon-custom {
+.privv-icon-custom {
   padding-top: 10px;
   width: 100px;
   height: 100px;
@@ -22,20 +22,20 @@
   animation: rotate 10s linear infinite;
 }
 
-.button-container-main-custom {
+.privv-button-container-main-custom {
   display: flex;
   align-items: center;
   margin-left: auto;
 }
 
-.login-button-custom:hover {
+.privv-login-button-custom:hover {
   color: var(--green);
   outline: 8px solid var(--green);
   transition: color 0.3s, outline 0.3s, font-weight 0.3s;
   font-weight: bold;
 }
 
-.login-button-custom {
+.privv-login-button-custom {
   margin-left: 10px;
   width: 150px;
   height: 150px;
@@ -45,7 +45,7 @@
   border-radius: 20px;
 }
 
-.login-img-custom {
+.privv-login-img-custom {
   width: 100px;
   height: 100px;
   object-fit: contain;
@@ -54,13 +54,13 @@
   border-radius: 20px;
 }
 
-.admin-text-custom {
+.privv-admin-text-custom {
   font-size: 16px;
   margin-top: 10px;
   text-align: center;
 }
 
-.button-container-custom {
+.privv-button-container-custom {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,7 +88,7 @@
   border: 3px solid var(--red);
 }
 
-.logout-button-custom {
+.privv-logout-button-custom {
   width: 130px;
   height: 50px;
   display: flex;
@@ -104,7 +104,7 @@
   border: 2px solid #000;
 }
 
-.logout-button-custom:hover {
+.privv-logout-button-custom:hover {
   background-color: var(--black);
   border: 4px solid var(--red);
   color: var(--red);
@@ -114,7 +114,7 @@ body {
   background-color: var(--black);
 }
 
-.headerr-h1-custom {
+.privv-headerr-h1-custom {
   font-size: 24px;
   margin-left: 280px; /* Adjust this value to move it right */
   margin-right: auto; /* Center-align the text */
@@ -124,4 +124,10 @@ body {
   display: inline-block;
   padding: 20px;
   font-weight: bold;
+}
+
+
+.privv-small-logo {
+  width: 80px; 
+  height: 80px;
 }
