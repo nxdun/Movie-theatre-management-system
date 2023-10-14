@@ -3,17 +3,19 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Header from "../../shared/HomeHeader";
 import './CSS/AllMovies.css';
+import 'jspdf-autotable';
 
 export default function DetailsM() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
 
+  alert(movieId)
+
   useEffect(() => {
     async function fetchMovieDetails() {
       try {
-        const response = await axios.get(`/api/movies/${movieId}`); // Replace with your API endpoint
+        const response = await axios.get(`/movie/getOne/` + movieId); // Replace with your API endpoint
         setMovie(response.data);
-        alert(response.data)
       } catch (error) {
         console.error("Error fetching movie details:", error);
       }
@@ -45,11 +47,12 @@ export default function DetailsM() {
             title="Movie Trailer"
           ></iframe>
 
-          <h1>{movie._id}</h1>
+          <iframe className="video" width="60%" height="500px" src="https://www.youtube.com/embed/TnyWMhSqyjY" frameborder="0" allowfullscreen></iframe>
+
         </div>
       ) : (
         <p>Loading movie details...</p>
       )}
-    </div>
-  );
+    </div>
+  );
 }
