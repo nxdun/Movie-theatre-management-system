@@ -13,6 +13,7 @@ export default function DetailsM() {
       try {
         const response = await axios.get(`/api/movies/${movieId}`); // Replace with your API endpoint
         setMovie(response.data);
+        alert(response.data)
       } catch (error) {
         console.error("Error fetching movie details:", error);
       }
@@ -44,8 +45,7 @@ export default function DetailsM() {
             title="Movie Trailer"
           ></iframe>
 
-<iframe className="video" width="60%" height="500px" src="https://www.youtube.com/embed/TnyWMhSqyjY" frameborder="0" allowfullscreen></iframe>
-
+          <h1>{movie._id}</h1>
         </div>
       ) : (
         <p>Loading movie details...</p>
