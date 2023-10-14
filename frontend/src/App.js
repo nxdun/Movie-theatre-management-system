@@ -17,6 +17,7 @@ import Search from "./components/Movie/Search";
 import ShopScreen from "./screens/ShopScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
+import Payment from "./screens/Payment";
 
 import RouteWrapper from "./RouteWrapper"; // Wrap the routes with the navbar, sidedrawer, and backdrop
 import Register from "./components/CustomerRegisterForm";
@@ -27,15 +28,16 @@ import React from "react";
 
 //adminscreens
 import PrivateScreenDash from "./screens/privatedash";
-import AddPrivateRoom from "./screens/addPrivRoom";
-import ReviewBookings from "./screens/viewPrivScBookings";
-import GenerateReport from "./screens/viewPrivScBookingReport";
-import EditPrivateRoom from "./screens/editPrivRoom";
+import AddPrivateRoom from "./components/PrivateScreens/addPrivRoom";
+import ReviewBookings from "./components/PrivateScreens/viewPrivScBookings";
+import GenerateReport from "./components/PrivateScreens/viewPrivScBookingReport";
+import EditPrivateRoom from "./components/PrivateScreens/editPrivRoom";
 import LoyalityDash from "./screens/LoyalityDash";
 import Advertisement from "./screens/Advertisement";
+import PaymentRecords from "./screens/paymentRecords";
 //userscreens
-import UserBooking from "./screens/userBooking";
-import UserScreen from "./screens/userScreen";
+import UserScBooking from "./components/PrivateScreens/PrivCusUI/UserScBooking";
+import PriUserScreen from "./components/PrivateScreens/PrivCusUI/PrivCusUI";
 import AddMoviesMainPage from "./screens/AddMoviesMainPage";
 import MovieShedularCalPrevPage from "./screens/MovieShedularCalPrevPage";
 import UpdateMovieShedularPage from "./screens/UpdateMovieShedularPage";
@@ -49,6 +51,7 @@ import HomeMain from "./components/Movie/Home";
 import DetailsM from "./components/Movie/Details";
 import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
+import Upslip from "./pages/Upslip";
 import Login from "./screens/Login";
 import { components } from "react-select";
 
@@ -62,31 +65,28 @@ function App() {
         <Route path="/register" exact element={<Register />} />
         {/* dunal */}
         <Route
-          path="/privateScreen/DashBoard"
-          exact
-          element={<PrivateScreenDash />}
-        />
-        <Route
-          path="/privateScreen/Addroom"
-          exact
-          element={<AddPrivateRoom />}
-        />
-        <Route
-          path="/privateScreen/:privScId"
-          element={<EditPrivateRoom />}
-        />
-        <Route
-          path="/privateScreen/Reviewbooking"
-          exact
-          element={<ReviewBookings />}
-        />
-        <Route
-          path="/privateScreen/Viewbookingreport"
-          exact
-          element={<GenerateReport />}
-        />
-        <Route path="/user1" exact element={<UserScreen />} />
-        <Route path="/userbooking" exact element={<UserBooking />} />
+            path="/privateScreen/DashBoard"
+            exact
+            element={<PrivateScreenDash />}
+          />
+          <Route
+            path="/privateScreen/Addroom"
+            exact
+            element={<AddPrivateRoom />}
+          />
+          <Route path="/editprivatescreen/:privScId" element={<EditPrivateRoom />}/>
+          <Route
+            path="/privateScreen/Reviewbooking"
+            exact
+            element={<ReviewBookings />}
+          />
+          <Route
+            path="/privateScreen/Viewbookingreport"
+            exact
+            element={<GenerateReport />}
+          />
+          <Route path="/PrivScUI" exact element={<PriUserScreen />} />
+          <Route path="/PrivScBooking" exact element={<UserScBooking />} />
         <Route path="/adv" exact element={<Advertisement />} />
         {/*vishwa's route paths  */}
         <Route element={<RouteWrapper />}>
@@ -97,7 +97,9 @@ function App() {
           <Route exact path="/cart" element={<CartScreen />} />
           <Route exact path="/success" element={<Success />} />
           <Route exact path="/cancel" element={<Cancel />} />
+          <Route exact path="/payment" element={<Payment />} />
         </Route>
+        <Route exact path="/paymentrecords" element={<PaymentRecords/>} />
         {/*shehan's route paths  */}
         <Route path="/addMovie" exact element={<AddMovie />} />{" "}
         {/*we write exact eod for only display path=/ for exact /*/}
@@ -129,9 +131,10 @@ function App() {
         {/* omins Pages */}
         <Route path="/seatbooking" element={<SeatSelect />} />
         <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
+        <Route path="/Upslip/:selectedSeats/:theaterId/:price" element={<Upslip />} />
         <Route path="/SeatManage" element={<SeatManage />} />
         <Route
-          path="/SeatUpdate/:bookingId/:seatId"
+          path="/SeatUpdate/:bookingId/:seatId/:theaterId"
           element={<SeatUpdate />}
         />
 

@@ -1,0 +1,62 @@
+/* Updated Button Styles */
+.btn-custom {
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #ff0055;
+  border-radius: 4px;
+  background: #ff0055;
+  color: white;
+  cursor: pointer;
+  margin-right: 1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-custom:focus {
+  outline: none;
+}
+
+.btn-custom:hover,
+.btn-custom:active {
+  background: #ff4382;
+  border-color: #ff4382;
+}
+
+.btn-inverse {
+  background: transparent;
+  color: #ff0055;
+}
+
+.btn-inverse:hover,
+.btn-inverse:active {
+  color: white;
+  background: #ff0055;
+}
+
+.btn-danger {
+  background: #830000;
+  border-color: #830000;
+}
+
+.btn-danger:hover,
+.btn-danger:active {
+  background: #f34343;
+  border-color: #f34343;
+}
+
+.btn-custom:disabled,
+.btn-custom:hover:disabled,
+.btn-custom:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-small {
+  font-size: 0.8rem;
+}
+
+.btn-big {
+  font-size: 1.5rem;
+}

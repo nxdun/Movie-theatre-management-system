@@ -44,12 +44,12 @@ export default function MainLayout() {
       label: 'Advertisement Management',
     },
     {
-      key: '/privatescreen/dashboard',
+      key: '/privateScreen/Dashboard',
       icon: <PieChartOutlined />,
       label: 'Private Screen Management',
     },
     {
-      key: '/dashboard',
+      key: '/paymentrecords',
       icon: <PieChartOutlined />,
       label: 'Payment',
     }, {
@@ -57,7 +57,7 @@ export default function MainLayout() {
       icon: <PieChartOutlined />,
       label: 'Loyality management',
     },
-     {
+    {
       key: '/dashboard',
       icon: <PieChartOutlined />,
       label: 'Manager Dashboard',
@@ -81,23 +81,36 @@ export default function MainLayout() {
   return <Layout className="MainLayout">
     <Layout.Header>
       <Row>
-        <Col flex="40px">
-          <Button
-            ghost
-            icon={<MenuOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-          />
+        <Col flex="60px">
+          <div className="Icon">
+            <div className="Rotator">
+              <Link to="/">
+                <img src="https://raw.githubusercontent.com/nxdun/BlaBla/main/2.png"
+                  alt="logo"
+                  className="HeaderImg" />
+              </Link>
+            </div>
+          </div>
         </Col>
+
         <Col flex="auto" className="HeaderTitle">{findTitle(items, location.pathname) || 'Manager Dashboard'}</Col>
         <Col flex="40px">
           <Link to="/">
-          <Avatar size="large" icon={<UserOutlined />} />
+            <Avatar size="large" icon={<UserOutlined />} />
           </Link>
         </Col>
       </Row>
     </Layout.Header>
     <Layout>
       <Layout.Sider width={250} trigger={null} collapsible collapsed={collapsed}>
+        <Menu theme="dark" >
+          <Menu.Item onClick={(e) => { setCollapsed(!collapsed) }} icon={<MenuOutlined style={{ float: 'right', marginTop: 14 }} />} style={{ backgroundColor: 'transparent' }}></Menu.Item>
+        </Menu>
+        {/* <Button
+          ghost
+          icon={<MenuOutlined />}
+          onClick={() => setCollapsed(!collapsed)}
+        /> */}
         <Menu
           defaultSelectedKeys={[location.pathname === '/manager' ? '/manager/dashboard' : location.pathname]}
           defaultOpenKeys={['/manager/concession']}

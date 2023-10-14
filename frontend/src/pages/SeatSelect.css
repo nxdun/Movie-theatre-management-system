@@ -48,7 +48,7 @@ h4 {
   height: auto;
   display: block;
   /* margin: 20px auto; */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 
 /* Improve button styles */
@@ -72,13 +72,6 @@ button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Hover styles for buttons, excluding unavailable seats */
-/* button:not(.unavailable):hover {
-  background-color: #0056b3;
-  color: white;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  transform: translate(0, -5px) scale(1.05); }/* Add a 3D hover effect */
- 
 
 
 
@@ -142,4 +135,33 @@ button {
   align-items: center;
   font-family: "SF-Regular";
   font-size: 15px;
+}
+
+.av{
+  width: 25px;
+  height: 25px;
+  
+
+}
+
+.d-icon{
+
+  margin-right: 25px;
+  padding-left: 25px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.sel-price {
+  font-family: "SF-Regular";
+  font-size: 20px;
+  margin-left: 25px;
+  margin-right: 25px;
+  padding-left: 25px;
+  position: relative;
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
 }

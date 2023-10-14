@@ -3,8 +3,9 @@ import LoyalitySearchBar from "./LoyalitySearchBar";
 import React, { useState, useEffect } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import axios from "axios";
+import easyinvoice from 'easyinvoice';
 
-// createTheme creates a new theme named nadun that overrides the build in dark theme
+//theme for table
 createTheme(
   "tableTheme",
   {
@@ -55,6 +56,9 @@ createTheme(
 );
 
 const LoyalityTable = (props) => {
+  //querying search term
+  const [searchTerm, setSearchTerm] = useState("");
+  
   //column decalration
   const [columns, setColumns, sendRow] = useState([
     {
@@ -155,11 +159,19 @@ const LoyalityTable = (props) => {
     },
   ]);
   // empty US var to set data
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
+  console.log("data = ", data);
+
+  //reloading function
   const ReloadMe = () => {
     window.location.reload();
   };
 
+//props navigation
+  const getDataFromChild = (childData) => {
+    setSearchTerm(childData);
+  }
+  //use effect for fetching data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -173,14 +185,131 @@ const LoyalityTable = (props) => {
     fetchData();
   }, []); // Emptyy dependency array ensures this effect ruuns once when the component mounts
 
+  //filter the data according to the search term for UserName
+  const newData = data.filter((item) => {
+    return item.UserName.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+  //this is for printing purpose
+  var d = {
+    "customize": {
+        //  "template": fs.readFileSync('template.html', 'base64') // Must be base64 encoded html 
+    },
+    "images": {
+        // The logo on top of your invoice
+        "logo": "",
+        // The invoice background
+        "background": "https://public.easyinvoice.cloud/img/watermark-draft.jpg"
+    },
+    // Your own data
+    "sender": {
+        "company": "Galaxy cinemas",
+        "address": "the street 123",
+        "zip": "1234 ZIP",
+        "city": "Colombo",
+        "country": "Sri Lanka"
+  
+    },
+    // Your recipient
+    "client": {
+        "company": "Client data",
+        "address": "Clientstreet 456",
+        "zip": "4567 CD",
+        "city": "Clientcity",
+        "country": "Clientcountry"
+        // "custom1": "custom value 1",
+        // "custom2": "custom value 2",
+        // "custom3": "custom value 3"
+    },
+    "information": {
+        // Invoice number
+        "number": "2021.0001",
+        // Invoice data
+        "date": "{}",
+        // Invoice due date
+        "due-date": "31-12-2021"
+    },
+    // The products you would like to see on your invoice
+    // Total values are being calculated automatically
+    "products": [
+        {
+
+            "quantity": "2",
+            "PointResetDate": 2,
+        }
+    ],
+    // The message you would like to display on the bottom of your invoice
+    "bottom-notice": "this is a auto generated report.",
+    // Settings to customize your invoice
+    "settings": {
+        "currency": "USD", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
+        // "locale": "nl-NL", // Defaults to en-US, used for number formatting (See documentation 'Locales and Currency')        
+        // "margin-top": 25, // Defaults to '25'
+        // "margin-right": 25, // Defaults to '25'
+        // "margin-left": 25, // Defaults to '25'
+        // "margin-bottom": 25, // Defaults to '25'
+        // "format": "A4", // Defaults to A4, options: A3, A4, A5, Legal, Letter, Tabloid
+        // "height": "1000px", // allowed units: mm, cm, in, px
+        // "width": "500px", // allowed units: mm, cm, in, px
+        // "orientation": "landscape", // portrait or landscape, defaults to portrait
+    },
+    // Translate your invoice to your preferred language
+    "translate": {
+        // "invoice": "FACTUUR",  // Default to 'INVOICE'
+        // "number": "Nummer", // Defaults to 'Number'
+        // "date": "Datum", // Default to 'Date'
+        // "due-date": "Verloopdatum", // Defaults to 'Due Date'
+        // "subtotal": "Subtotaal", // Defaults to 'Subtotal'
+        // "products": "Producten", // Defaults to 'Products'
+        // "quantity": "Aantal", // Default to 'Quantity'
+        // "price": "Prijs", // Defaults to 'Price'
+        // "product-total": "Totaal", // Defaults to 'Total'
+        // "total": "Totaal", // Defaults to 'Total'
+        // "vat": "btw" // Defaults to 'vat'
+    },
+  };
+  
+  //generator
+  const generateInvoice = async () => {
+    try {
+      await easyinvoice.createInvoice(d, function(result) {
+        easyinvoice.print(result.pdf);
+        props.setisprinted(!props.isprinted);
+      });
+    } catch (error) {
+      if (error.message.includes("throttle")) {
+        // Handle throttle exception based on the error message
+        console.error("Throttle Exception: Too many requests. Please try again later.");
+      } else {
+        // Handle other exceptions if needed
+        console.error("An error occurred while generating the invoice:", error);
+      }
+    }
+  };
+  
+  if (props.isprinted) {
+    generateInvoice();
+    props.setisprinted(false);
+  }
+
+
   return (
     <div className="table">
-      <LoyalitySearchBar onRefresh={ReloadMe} />
+
+
+
+
+      <LoyalitySearchBar onRefresh={ReloadMe} sendDataToParent={getDataFromChild} />
+
+
+
+
+
       <div>
         <DataTable
           pagination={true}
           columns={columns}
-          data={data}
+          data={newData}
           selectableRows={true}
           persistTableHead={true}
           highlightOnHover={true}
@@ -198,7 +327,7 @@ const LoyalityTable = (props) => {
           selectableRowsHighlight={true} // Enable row selection
           selectableRowsSelected={props.sselectedRowsIds} // Pass selected row IDs
           onSelectedRowsChange={({ selectedRows }) => {
-            // Extract and store selected row IDs
+            // Extract and store selected row IDss
             props.sendRow(selectedRows);
             props.ssetSelectedRowsIds(selectedRows.map((row) => row._id));
           }}
@@ -207,5 +336,7 @@ const LoyalityTable = (props) => {
     </div>
   );
 };
+
+
 
 export default LoyalityTable;
