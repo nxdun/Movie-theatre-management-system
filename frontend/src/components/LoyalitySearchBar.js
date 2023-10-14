@@ -1,6 +1,14 @@
 import "./LoyalitySearchBar.css";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 const LoyalitySearchBar = (props) => {
+  //use state to store the search input
+  //onchange function
+  const handleChange = (e) => {
+    props.sendDataToParent(e.target.value);
+  };
+
+
   return (
     <div className="search-bar">
       <Link to = "/admindash">
@@ -12,6 +20,8 @@ const LoyalitySearchBar = (props) => {
       type="text"
       placeholder="Search here.."
       name="search"
+      onChange={handleChange}
+
     />
     <button className="search-submit" type="submit">
     &#x1F50E;&#xFE0E;
