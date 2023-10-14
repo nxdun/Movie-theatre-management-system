@@ -2,13 +2,8 @@
 
 /* Footer container */
 .footerdiv {
-<<<<<<< HEAD
-  background-color: #222222;
-  color: #fff;
-=======
   background-color: var(--white);
   color: #222;
->>>>>>> 38f01ccc84306f273cea2687dda618c2b217184d
   padding: 2rem 0;
   text-align: center;
 }

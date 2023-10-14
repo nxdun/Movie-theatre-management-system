@@ -125,7 +125,7 @@ function App() {
         <Route path="/Upslip/:selectedSeats/:theaterId/:price" element={<Upslip />} />
         <Route path="/SeatManage" element={<SeatManage />} />
         <Route
-          path="/SeatUpdate/:bookingId/:seatId"
+          path="/SeatUpdate/:bookingId/:seatId/:theaterId"
           element={<SeatUpdate />}
         />
 
