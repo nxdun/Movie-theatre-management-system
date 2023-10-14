@@ -1,4 +1,4 @@
-/* Unique class names */
+
 .privv-header-main-custom {
   display: flex;
   align-items: center;
@@ -22,44 +22,6 @@
   animation: rotate 10s linear infinite;
 }
 
-.privv-button-container-main-custom {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-}
-
-.privv-login-button-custom:hover {
-  color: var(--green);
-  outline: 8px solid var(--green);
-  transition: color 0.3s, outline 0.3s, font-weight 0.3s;
-  font-weight: bold;
-}
-
-.privv-login-button-custom {
-  margin-left: 10px;
-  width: 150px;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 20px;
-}
-
-.privv-login-img-custom {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  margin-top: 8px;
-  margin-bottom: 2px;
-  border-radius: 20px;
-}
-
-.privv-admin-text-custom {
-  font-size: 16px;
-  margin-top: 10px;
-  text-align: center;
-}
-
 .privv-button-container-custom {
   display: flex;
   flex-direction: column;
@@ -68,25 +30,7 @@
   margin-left: 20px;
 }
 
-.disable-button-custom {
-  width: 130px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background-color: var(--black);
-  color: white;
-  border: 2px solid transparent;
-  transition: background-color 0.3s, border 0.3s;
-  border-radius: 10px;
-}
 
-.disable-button-custom:hover {
-  background-color: var(--black);
-  color: var(--white);
-  border: 3px solid var(--red);
-}
 
 .privv-logout-button-custom {
   width: 130px;
@@ -102,6 +46,7 @@
   transition: background-color 0.3s, border 0.3s;
   border-radius: 10px;
   border: 2px solid #000;
+  text-decoration: none;
 }
 
 .privv-logout-button-custom:hover {
@@ -116,8 +61,8 @@ body {
 
 .privv-headerr-h1-custom {
   font-size: 24px;
-  margin-left: 280px; /* Adjust this value to move it right */
-  margin-right: auto; /* Center-align the text */
+  margin-left: 280px; 
+  margin-right: auto; 
   text-align: center;
   border: 4px solid var(--green);
   border-radius: 20px;
