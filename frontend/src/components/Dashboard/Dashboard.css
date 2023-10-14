@@ -1,7 +1,13 @@
-.Dashboard {
+.DashboardBackground {
     height: 100%;
     width: 100%;
     display: flex;
+    position: absolute;
+}
+.Dashboard {
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
 .Logo{
     height: 200px;
