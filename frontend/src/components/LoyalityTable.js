@@ -5,7 +5,7 @@ import DataTable, { createTheme } from "react-data-table-component";
 import axios from "axios";
 import easyinvoice from 'easyinvoice';
 
-// createTheme creates a new theme named nadun that overrides the build in dark theme
+//theme for table
 createTheme(
   "tableTheme",
   {
@@ -56,6 +56,7 @@ createTheme(
 );
 
 const LoyalityTable = (props) => {
+  //querying search term
   const [searchTerm, setSearchTerm] = useState("");
   
   //column decalration
@@ -159,17 +160,18 @@ const LoyalityTable = (props) => {
   ]);
   // empty US var to set data
   const [data, setData] = useState([]);
+  console.log("data = ", data);
+
+  //reloading function
   const ReloadMe = () => {
     window.location.reload();
   };
 
-
-  
+//props navigation
   const getDataFromChild = (childData) => {
     setSearchTerm(childData);
-    
-    
   }
+  //use effect for fetching data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -188,9 +190,8 @@ const LoyalityTable = (props) => {
     return item.UserName.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
+  //this is for printing purpose
   var d = {
-    // Customize enables you to provide your own templates
-    // Please review the documentation for instructions and examples
     "customize": {
         //  "template": fs.readFileSync('template.html', 'base64') // Must be base64 encoded html 
     },
@@ -211,7 +212,7 @@ const LoyalityTable = (props) => {
     },
     // Your recipient
     "client": {
-        "company": "Client Corp",
+        "company": "Client data",
         "address": "Clientstreet 456",
         "zip": "4567 CD",
         "city": "Clientcity",
@@ -232,22 +233,9 @@ const LoyalityTable = (props) => {
     // Total values are being calculated automatically
     "products": [
         {
-            "quantity": 2,
-            "description": "Product 1",
-            "tax-rate": 6,
-            "price": 33.87
-        },
-        {
-            "quantity": 4.1,
-            "description": "Product 2",
-            "tax-rate": 6,
-            "price": 12.34
-        },
-        {
-            "quantity": 4.5678,
-            "description": "Product 3",
-            "tax-rate": 21,
-            "price": 6324.453456
+
+            "quantity": "2",
+            "PointResetDate": 2,
         }
     ],
     // The message you would like to display on the bottom of your invoice
@@ -339,7 +327,7 @@ const LoyalityTable = (props) => {
           selectableRowsHighlight={true} // Enable row selection
           selectableRowsSelected={props.sselectedRowsIds} // Pass selected row IDs
           onSelectedRowsChange={({ selectedRows }) => {
-            // Extract and store selected row IDs
+            // Extract and store selected row IDss
             props.sendRow(selectedRows);
             props.ssetSelectedRowsIds(selectedRows.map((row) => row._id));
           }}
