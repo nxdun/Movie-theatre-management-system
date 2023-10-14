@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './CSS/AllMovies.css';
+import './CSS/Home.css';
+import './myScript';
 import Header from "../../shared/HomeHeader";
 import { Link } from "react-router-dom";
+
+
 
 export default function HomeMain() {
   const [movies, setMovies] = useState([]);
@@ -21,8 +25,21 @@ export default function HomeMain() {
   }, []);
 
   return (
-    <div>
-        <Header/>
+    <div>     
+    <Header/>
+
+
+    <Link to="/Details">
+    <img
+      className="ima1"
+      src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2022/12/avatar-2.jpg?ssl=1&quality=80&w=f"
+      alt="Movie Poster"
+      width="100%"
+      height="100%"
+    />
+  </Link>
+   
+    <div className="fullContant">
         <div className="cont">
         {/* Display 5 movies in one row */}
         <div className="movie-row">
@@ -72,8 +89,7 @@ export default function HomeMain() {
           ))}
         </div>
       </div>
-
-
+</div>
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -126,6 +142,11 @@ export default function HomeMain() {
         </div>
       </div>
   </footer>
-  </div>
+
+  
+
+
+</div>
+  
   );
 }

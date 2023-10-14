@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import dolbyImage from './dolby.png';
+import Header from "../shared/HomeHeader";
 
 function Slip() {
   // Get URL parameters
@@ -55,6 +56,7 @@ function Slip() {
 
   return (
     <div>
+      <Header/>
       <div className="sticky-div">
         <h1>AVATAR 2</h1>
         <h4>GALAXY CINEMA, Colombo</h4>
@@ -64,11 +66,11 @@ function Slip() {
 
     <div className="slip-container">
       <div className="bill-details">
-        <h4>Theater: GALAXY CINEMA, Colombo</h4>
+        <h4>GALAXY CINEMA, Colombo</h4>
         <p>Movie: AVATAR 2</p>
         <p>Selected Seat IDs: {seatId}</p>
         <p>Theater ID: {theaterId}</p>
-        <p>Total Price: ${price}</p>
+        <p>Total Price: Rs.{price}</p>
       </div>
 
       {isDeleting ? (
@@ -78,7 +80,7 @@ function Slip() {
           <button className="buttonx" onClick={handleDelete}>
             Delete
           </button>
-          <Link to={`/SeatUpdate/${bookingId}/${seatId}`} className="buttonx">
+          <Link to={`/SeatUpdate/${bookingId}/${seatId}/${theaterId}`} className="buttonx">
             Add More Seats
           </Link>
           <Link to= "/shop">

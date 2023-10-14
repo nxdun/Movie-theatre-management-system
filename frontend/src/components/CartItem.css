@@ -1,15 +1,23 @@
 .cartitem {
     width: 100%;
     padding: 1rem;
+    padding-bottom: 2rem;
     display: grid;
     grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
     gap: 8px;
-    background: #ccc9c9;
-    border-radius: 2px;
     place-items: center;
     margin-bottom: 8px;
+    border-radius: 29px;
+    background: #e0e0e0;
+    box-shadow: 20px 20px 60px #bebebe,
+                  -20px -20px 60px #ffffff;
   }
-
+  .cartitem__image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+  }
   
   .cartitem__name {
     text-decoration: none;
@@ -28,6 +36,7 @@
     padding: 10px 17px;
     color: red;
     background: #f4f4f4;
+    border-radius: 29px;
     border: 1px solid #171717;
     cursor: pointer;
     transition: all 0.3s ease-out;

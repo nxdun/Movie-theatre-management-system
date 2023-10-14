@@ -35,29 +35,6 @@ const createPrivatescreen = async (req, res, next) => {
   }
 };
 
-// Controller function to get a private screen by ID
-const getPrivatescreenById = async (req, res, next) => {
-  const privScId = req.params.privScId;
-
-  try {
-    const privatescreen = await Privatescreen.findById(privScId);
-
-    if (!privatescreen) {
-      return res.status(404).json({ message: "Private screen not found" });
-    }
-
-    res.json({ privatescreen });
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({
-        message: "Error while fetching private screen",
-        error: error.message,
-      });
-  }
-};
-
 // Controller function to get all private screens
 const getAllPrivatescreens = async (req, res, next) => {
   try {
@@ -69,22 +46,48 @@ const getAllPrivatescreens = async (req, res, next) => {
   }
 };
 
+// Controller function to get a private screen by ID
+const getPrivatescreenById = async (req, res, next) => {
+  const privatescreenId = req.params.id; // Assuming you pass the ID as a parameter in the URL
+
+  try {
+    const privatescreen = await Privatescreen.findById(privatescreenId);
+
+    if (!privatescreen) {
+      return res.status(404).json({ message: "Private screen not found" });
+    }
+
+    res.json({ privatescreen });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Fetching private screen failed" });
+  }
+};
+
 // Controller function to update a private screen by ID
 const updatePrivatescreenById = async (req, res, next) => {
-  // Check for validation errors
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  const privScId = req.params.privScId;
-  const updatedData = req.body; // Data to update
+  const {
+    privscname,
+    privseatcapacity,
+    privscprice,
+    privsclocation,
+    privscdescription,
+    privscimage,
+  } = req.body;
+  const privatescreenId = req.params.id; // Assuming you pass the ID as a parameter in the URL
 
   try {
     const updatedPrivatescreen = await Privatescreen.findByIdAndUpdate(
-      privScId,
-      updatedData,
-      { new: true }
+      privatescreenId,
+      {
+        privscname,
+        privseatcapacity,
+        privscprice,
+        privsclocation,
+        privscdescription,
+        privscimage,
+      },
+      { new: true } // To get the updated document
     );
 
     if (!updatedPrivatescreen) {
@@ -100,11 +103,11 @@ const updatePrivatescreenById = async (req, res, next) => {
 
 // Controller function to delete a private screen by ID
 const deletePrivatescreenById = async (req, res, next) => {
-  const privScId = req.params.privScId;
+  const privatescreenId = req.params.id; // Assuming you pass the ID as a parameter in the URL
 
   try {
-    const deletedPrivatescreen = await Privatescreen.findByIdAndRemove(
-      privScId
+    const deletedPrivatescreen = await Privatescreen.findByIdAndDelete(
+      privatescreenId
     );
 
     if (!deletedPrivatescreen) {
@@ -120,8 +123,8 @@ const deletePrivatescreenById = async (req, res, next) => {
 
 module.exports = {
   createPrivatescreen,
-  getPrivatescreenById,
   updatePrivatescreenById,
+  getPrivatescreenById,
   deletePrivatescreenById,
   getAllPrivatescreens,
 };

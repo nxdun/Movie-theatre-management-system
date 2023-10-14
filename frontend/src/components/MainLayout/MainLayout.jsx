@@ -44,7 +44,7 @@ export default function MainLayout() {
       label: 'Advertisement Management',
     },
     {
-      key: '/privatescreen/dashboard',
+      key: '/privateScreen/Dashboard',
       icon: <PieChartOutlined />,
       label: 'Private Screen Management',
     },

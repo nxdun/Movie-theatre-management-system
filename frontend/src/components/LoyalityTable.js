@@ -55,6 +55,8 @@ createTheme(
 );
 
 const LoyalityTable = (props) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  
   //column decalration
   const [columns, setColumns, sendRow] = useState([
     {
@@ -155,11 +157,18 @@ const LoyalityTable = (props) => {
     },
   ]);
   // empty US var to set data
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
   const ReloadMe = () => {
     window.location.reload();
   };
 
+
+  
+  const getDataFromChild = (childData) => {
+    setSearchTerm(childData);
+    
+    
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -173,14 +182,30 @@ const LoyalityTable = (props) => {
     fetchData();
   }, []); // Emptyy dependency array ensures this effect ruuns once when the component mounts
 
+  //filter the data according to the search term for UserName
+  const newData = data.filter((item) => {
+    return item.UserName.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+  console.log("st :", searchTerm);
+  console.log(newData);
+
   return (
     <div className="table">
-      <LoyalitySearchBar onRefresh={ReloadMe} />
+
+
+
+
+      <LoyalitySearchBar onRefresh={ReloadMe} sendDataToParent={getDataFromChild} />
+
+
+
+
+
       <div>
         <DataTable
           pagination={true}
           columns={columns}
-          data={data}
+          data={newData}
           selectableRows={true}
           persistTableHead={true}
           highlightOnHover={true}
