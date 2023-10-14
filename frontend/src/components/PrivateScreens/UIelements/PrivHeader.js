@@ -1,5 +1,6 @@
 import React from 'react';
 import './PrivHeader.css';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -11,19 +12,14 @@ const Header = () => {
           className="privv-header-img-custom privv-small-logo"
         />
       </div>
+
+      
       <h1 className="privv-headerr-h1-custom">PRIVATE SCREENING MANAGEMENT DASHBOARD</h1>
-      <div className="privv-button-container-main-custom">
-        <button className="privv-login-button-custom">
-          <img
-            src="https://via.placeholder.com/120"
-            alt="logo"
-            className="privv-login-img-custom"
-          />
-          <p className="privv-admin-text-custom">Administrator</p>
-        </button>
-      </div>
+    
       <div className="privv-button-container-custom">
+      <Link to="/">
         <button variant="outlined" className="privv-logout-button-custom">Logout</button>
+        </Link>
       </div>
     </header>
   );

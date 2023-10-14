@@ -15,11 +15,15 @@ const Header = () => {
   </div> 
   <nav class="site-navigation">
     <ul class="nav">
+      <li><a className="li" href="/">Home</a></li>
+      <li><a className="li" href="/PrivScUI">Private Screens</a></li>
       <li><a className="li" href="#">About</a></li> 
-      <li><a className="li" href="/search">Search</a></li> 
-      <li><a className="li" href="/manager">Manager</a></li>
-      <li><a className="li" href="/login">Login</a></li> 
+      <li><a className="li" href="#">Contact Us</a></li>
       <li><Search /></li>
+      <li><a className="li" href="/login">Login</a></li> 
+      <li><a className="li" href="/manager">Manager</a></li>
+      
+      
     </ul>
   </nav>
 </header>
