@@ -8,7 +8,6 @@ import avImage from './av.png';
 import selImage from './sel.png';
 import { useNavigate } from 'react-router-dom';
 import Header from "../shared/HomeHeader";
-import Footer from "../shared/Footer";
 
 
 function SeatSelect() {
@@ -139,7 +138,6 @@ function SeatSelect() {
           Continue
         </button>
       </div>
-      <Footer/>
     </div>
   );
 }
