@@ -18,6 +18,7 @@ import Search from "./components/Movie/Search";
 import ShopScreen from "./screens/ShopScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
+import Payment from "./screens/Payment";
 
 import RouteWrapper from "./RouteWrapper"; // Wrap the routes with the navbar, sidedrawer, and backdrop
 import Register from "./components/CustomerRegisterForm";
@@ -95,6 +96,7 @@ function App() {
           <Route exact path="/cart" element={<CartScreen />} />
           <Route exact path="/success" element={<Success />} />
           <Route exact path="/cancel" element={<Cancel />} />
+          <Route exact path="/payment" element={<Payment />} />
         </Route>
         {/*shehan's route paths  */}
         <Route path="/addMovie" exact element={<AddMovie />} />{" "}

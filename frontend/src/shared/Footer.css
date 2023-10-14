@@ -2,8 +2,8 @@
 
 /* Footer container */
 .footerdiv {
-  background-color: var(--white);
-  color: #222;
+  background-color: #222222;
+  color: #fff;
   padding: 2rem 0;
   text-align: center;
 }
