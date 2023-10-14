@@ -1,0 +1,12 @@
+.contD{
+    margin-top: 40px;
+    background-image: url('https://cdn.mos.cms.futurecdn.net/NJXQ8h3mUd9mhsh2m8xpba-1200-80.jpg.webp');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 95%; 
+    height: 700px;
+    border-radius: 20px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}

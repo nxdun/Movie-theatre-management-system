@@ -12,7 +12,6 @@ import SupplierList from "./components/ConcessionManagement/components/SupplierL
 import Dashboard from "./components/Dashboard/Dashboard";
 import MainLayout from "./components/MainLayout/MainLayout";
 import Search from "./components/Movie/Search";
-
 /* vishwa screen and components*/
 // Screens
 import ShopScreen from "./screens/ShopScreen";
@@ -51,6 +50,7 @@ import DetailsM from "./components/Movie/Details";
 import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
 import Login from "./screens/Login";
+import { components } from "react-select";
 
 function App() {
   return (
@@ -104,6 +104,11 @@ function App() {
         <Route path="/movie" exact element={<AllMovies />} />
         <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
         <Route path="/" element={<HomeMain />} />
+
+        <Route path="/details/:movieId" component={DetailsM} />
+        <Route path="/" exact component={HomeMain} />
+        
+
         <Route path="/Details" element={<DetailsM />} />
         <Route path="/search" element={<Search />} />
 

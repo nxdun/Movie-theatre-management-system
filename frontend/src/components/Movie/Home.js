@@ -45,8 +45,8 @@ export default function HomeMain() {
         <div className="movie-row">
           {movies.slice(0, 5).map((movie, index) => (
             <div className="contn1" key={index}>
-              <Link to="/Details">
-                <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
+              <Link to={`/details/${movie.id}`}>
+              <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
               </Link>
               <h3 className="h3">{movie.title}</h3>
             </div>
@@ -63,9 +63,13 @@ export default function HomeMain() {
         <div className="movie-row">
           {movies.slice(0, 5).map((movie, index) => (
             <div className="contn1" key={index}>
-              <Link to="/Details">
-                <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
-              </Link>
+
+
+              // Inside the map function in HomeMain component
+        <Link to={`/details/${movie.id}`}>
+              <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
+        </Link>
+
               <h3 className="h3">{movie.title}</h3>
             </div>
           ))}
@@ -85,6 +89,7 @@ export default function HomeMain() {
                 <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
               </Link>
               <h3 className="h3">{movie.title}</h3>
+              <h3 className="h3">{movie._id}</h3>
             </div>
           ))}
         </div>
