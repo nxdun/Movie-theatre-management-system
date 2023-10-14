@@ -35,6 +35,7 @@ import GenerateReport from "./components/PrivateScreens/viewPrivScBookingReport"
 import EditPrivateRoom from "./components/PrivateScreens/editPrivRoom";
 import LoyalityDash from "./screens/LoyalityDash";
 import Advertisement from "./screens/Advertisement";
+import PaymentRecords from "./screens/paymentRecords";
 //userscreens
 import UserScBooking from "./components/PrivateScreens/PrivCusUI/UserScBooking";
 import PriUserScreen from "./components/PrivateScreens/PrivCusUI/PrivCusUI";
@@ -98,6 +99,7 @@ function App() {
           <Route exact path="/cancel" element={<Cancel />} />
           <Route exact path="/payment" element={<Payment />} />
         </Route>
+        <Route exact path="/paymentrecords" element={<PaymentRecords/>} />
         {/*shehan's route paths  */}
         <Route path="/addMovie" exact element={<AddMovie />} />{" "}
         {/*we write exact eod for only display path=/ for exact /*/}
