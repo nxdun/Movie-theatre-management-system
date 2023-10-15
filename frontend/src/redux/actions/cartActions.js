@@ -24,6 +24,12 @@ export const addMovieSlipToCart = (movieSlip) => (dispatch) => {
       payload: movieSlip,
     });
   };
+  export const addPrivateScreenToCart = (privScSlip) => (dispatch) => {
+    dispatch({
+      type: actionTypes.ADD_TO_CART, // You can reuse the existing ADD_TO_CART action type
+      payload: privScSlip,
+    });
+  };
 
 //getState when remove update the local storege
 //once this complete 
