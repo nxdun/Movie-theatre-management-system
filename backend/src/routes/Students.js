@@ -104,12 +104,12 @@ router.route("/get/:id").get(async (req, res) => {
 
 */
 
-router.route("/getOne/:userId").get(async (req, res) => {
-    const { userId } = req.params;
+router.route("/getOne/:movieId").get(async (req, res) => {
+    const { movieId } = req.params;
 
     try {
         // Find the movie by ID
-        const movie = await Movie.findById(userId);
+        const movie = await Movie.findById(movieId);
 
         if (!movie) {
             return res.status(404).json({ message: 'Movie not found' });
@@ -142,4 +142,3 @@ router.route("/getOne/:userId").get(async (req, res) => {
 
 
 module.exports = router;
-

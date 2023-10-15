@@ -5,12 +5,8 @@ const privateScBookingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  genre: {
-    type: String,
-    required: true,
-  },
   bookingDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   parking: {

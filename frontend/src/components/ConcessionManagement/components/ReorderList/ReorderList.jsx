@@ -63,7 +63,7 @@ export function ReorderList({ prop = 'default value' }) {
           </Button>]}
         >
           <List.Item.Meta
-            avatar={<Avatar src={item.P_image} shape="square" size="large" icon="<ShoppingOutlined />" onError={() => false} />}
+            avatar={<Avatar src={item.P_image} shape="square" size="large" icon={<ShoppingOutlined />} onError={() => false} />}
             title={`${item.P_id}/${item.P_name}`}
             description={item.P_description}
           />
