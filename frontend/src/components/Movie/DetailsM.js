@@ -32,11 +32,17 @@ export default function DetailsM() {
       <Header />
       {movie ? (
         <div>
-          <div className="contD">
-
+          
+          
+          <img className="ima2" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
           <Link to={`/showtime/${movie.title}`}>
               <button className="button8">Buy Tickets</button>
           </Link>
+          
+          
+          <div className="contD">
+
+          
 
 
 
@@ -57,7 +63,7 @@ export default function DetailsM() {
             title="Movie Trailer"
           ></iframe>
 
-      <img className="ima2" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
+      
 
         </div>
       ) : (
