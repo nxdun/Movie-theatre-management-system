@@ -113,7 +113,7 @@ const UserScBooking = () => {
           dispatch(addPrivateScreenToCart(privScSlip));
 
           // Optional: Provide UI feedback to the user
-          navigate("/cart"); // Update the route as needed
+          navigate("/ccc"); // Update the route as needed
         })
         .catch((error) => {
           console.error("Error submitting booking data:", error);

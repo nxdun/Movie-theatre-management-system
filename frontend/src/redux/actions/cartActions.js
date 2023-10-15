@@ -42,3 +42,10 @@ export const removeFromCart = (id) => (dispatch, getState) => {
     localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));//set the items to local store
 
 };
+
+export const addConsessToCart = (conSec) => (dispatch) => {
+    dispatch({
+      type: actionTypes.ADD_TO_CART, // You can reuse the existing ADD_TO_CART action type
+      payload: conSec,
+    });
+  };
