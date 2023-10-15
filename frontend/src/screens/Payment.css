@@ -9,8 +9,9 @@
 .pmodal {
      width: 850px;
      height: 650px;
-    background: #FFFFFF;
-    box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+    background: #f8f7f7;
+    box-shadow: 15px 15px 30px #444343,
+               -15px -15px 20px #d4cccc;
     border-radius: 26px;
     max-width: 450px;
   }
@@ -19,12 +20,12 @@
     padding: 20px;
     margin-left: 50px;
     margin-top: 20px;
-    width: 600px;
+    width: 650px;
     height: 400px;
     border-radius: 30px;
     font-size: 20px;
     background: #e0e0e0;
-    box-shadow: 15px 15px 30px #bebebe,
+    box-shadow: 15px 15px 30px #444343,
                -15px -15px 30px #ffffff;
   }
   .pinput_label{
@@ -51,7 +52,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     gap: 10px;
-    color: #8B8E98;
+    color: #000000;
     margin: 0 10px;
   }
   
@@ -99,7 +100,7 @@
   
   .input_label {
     font-size: 15px;
-    color: #8B8E98;
+    color: #070707;
     font-weight: 600;
   }
   
@@ -129,7 +130,7 @@
     color: #ffffff;
     font-size: 15px;
     font-weight: 700;
-    background: linear-gradient(180deg, #39c939 0%, #52ff02 50%, #38b927 100%);
+    background: linear-gradient(180deg, #39c939 0%, #87e25d 50%, #38b927 100%);
     box-shadow: 0px 0px 0px 0px #FFFFFF, 0px 0px 0px 0px #000000;
     transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
   }

@@ -153,13 +153,13 @@ const Payment = () => {
             <label htmlFor="cart_items" className="pinput_label">
               Cart Items
             </label>
-            <ul>
+            <ol>
               {cartItems.map((item) => (
                 <li key={item.product}>
                   {item.name} - Price: {item.price}, Quantity: {item.qty}, Total: {item.price * item.qty}
                 </li>
               ))}
-            </ul>
+            </ol>
             <p className="ptotalprice" >Total Cart Price: {totalCartPrice}</p>
 
             </div>
