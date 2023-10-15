@@ -5,7 +5,6 @@ const createBooking = async (req, res) => {
   try {
     const {
       movie,
-      genre,
       bookingDate,
       parking,
       email,
@@ -19,7 +18,6 @@ const createBooking = async (req, res) => {
 
     const booking = new PrivateScBooking({
       movie,
-      genre,
       bookingDate,
       parking,
       email,

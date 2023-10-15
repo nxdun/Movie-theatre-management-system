@@ -48,6 +48,7 @@
   text-decoration: none;
   color: #ffffff;
   font-size: 20px;
+  transition: color 0.3s; /* Add a smooth color transition effect */
 }
 
 .pri-icon {
@@ -73,5 +74,9 @@
   padding: 20px;
   font-weight: bold;
   color: white;
+}
+
+.pri-li:hover {
+  color: blue;
 }
 

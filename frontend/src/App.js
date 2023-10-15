@@ -86,7 +86,7 @@ function App() {
             element={<GenerateReport />}
           />
           <Route path="/PrivScUI" exact element={<PriUserScreen />} />
-          <Route path="/PrivScBooking" exact element={<UserScBooking />} />
+          <Route path="/PrivScBooking/:privScId" element={<UserScBooking />} />
         <Route path="/adv" exact element={<Advertisement />} />
         {/*vishwa's route paths  */}
         <Route element={<RouteWrapper />}>
