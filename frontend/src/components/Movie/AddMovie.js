@@ -120,7 +120,7 @@ export default function AddMovie() {
 
         <div className="mb-3">
           <label htmlFor="director" className="c2">
-            Director
+          Image Link 1
           </label>
           <input
             type="text"
@@ -134,10 +134,10 @@ export default function AddMovie() {
         </div>
         <div className="mb-3">
           <label htmlFor="releasedate" className="c2">
-            Release Date
+          Image Link 2
           </label>
           <input
-            type="date"
+            type="text"
             className="form-control"
             id="releasedate"
             aria-describedby="emailHelp"
@@ -150,23 +150,20 @@ export default function AddMovie() {
 
         <div className="mb-3">
           <label htmlFor="languages" className="c2">
-            Languages
+          Trailer Link
           </label>
-          <select
-            className="form-select"
+
+          <input
+            type="text"
+            className="form-control"
             id="languages"
+            aria-describedby="emailHelp"
             onChange={(e) => {
               setLanguages(e.target.value);
             }}
             value={languages}
-          >
-            <option value="">Select Language</option>
-            <option value="English">English</option>
-            <option value="Sinhala">Sinhala</option>
-            <option value="Tamil">Tamil</option>
-            <option value="Hindi">Hindi</option>
-          </select>
-        </div>
+          />
+          </div>
 
         <div className="mb-3">
           <label htmlFor="runtime" className="c2">
