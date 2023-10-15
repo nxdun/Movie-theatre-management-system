@@ -53,7 +53,7 @@ import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
 import Upslip from "./pages/Upslip";
 import Login from "./screens/Login";
-import { components } from "react-select";
+import FoodAndBeverage from "./components/ConcessionManagement/components/FoodAndBeverage/FoodAndBeverage.jsx";
 
 function App() {
   return (
@@ -151,8 +151,11 @@ function App() {
           <Route index element={<Navigate to="/manager/dashboard" />} />
           <Route path="*" element={<Navigate to="/manager/dashboard" />} />
         </Route>
-        {/*Loggin route*/}
+      
+        {/*Login route*/}
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/ccc" element={<FoodAndBeverage />} />
+
       </Routes>
 
     </Router>
