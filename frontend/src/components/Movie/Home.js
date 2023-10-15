@@ -30,14 +30,14 @@ export default function HomeMain() {
 
 
     <Link to="/Details">
-    <img
-      className="ima1"
-      src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2022/12/avatar-2.jpg?ssl=1&quality=80&w=f"
-      alt="Movie Poster"
-      width="100%"
-      height="100%"
-    />
-  </Link>
+      <img
+        className="ima1"
+        src="https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2022/12/avatar-2.jpg?ssl=1&quality=80&w=f"
+        alt="Movie Poster"
+        width="100%"
+        height="100%"
+      />
+    </Link>
    
     <div className="fullContant">
         <div className="cont">
@@ -45,9 +45,10 @@ export default function HomeMain() {
         <div className="movie-row">
           {movies.slice(0, 5).map((movie, index) => (
             <div className="contn1" key={index}>
-              <Link to={`/details/${movie.id}`}>
-              <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
-              </Link>
+              <Link to={`/details/${movie._id}`}>
+                  <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
+                </Link>
+
               <h3 className="h3">{movie.title}</h3>
             </div>
           ))}
@@ -63,12 +64,9 @@ export default function HomeMain() {
         <div className="movie-row">
           {movies.slice(0, 5).map((movie, index) => (
             <div className="contn1" key={index}>
-
-
-              // Inside the map function in HomeMain component
-        <Link to={`/details/${movie.id}`}>
-              <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
-        </Link>
+              <Link to={`/details/${movie._id}`}>
+                  <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
+                </Link>
 
               <h3 className="h3">{movie.title}</h3>
             </div>
@@ -85,13 +83,11 @@ export default function HomeMain() {
         <div className="movie-row">
           {movies.slice(0, 5).map((movie, index) => (
             <div className="contn1" key={index}>
-              // Inside the map function in HomeMain component
               <Link to={`/details/${movie._id}`}>
                   <img className="ima1" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
                 </Link>
 
               <h3 className="h3">{movie.title}</h3>
-              <h3 className="h3">{movie._id}</h3>
             </div>
           ))}
         </div>

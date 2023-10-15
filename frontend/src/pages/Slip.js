@@ -11,12 +11,10 @@ import { addMovieSlipToCart } from '../redux/actions/cartActions';
 
 function Slip() {
   // Get URL parameters
-  const { seatId, theaterId, price } = useParams(); 
+  const { seatId, theaterName, movieName, showtime, price } = useParams(); 
   const navigate = useNavigate();
   const [isDeleting, setIsDeleting] = useState(false);
   const [bookingId, setBookingId] = useState(null);
-  const movieName = 'Avatar 2';
-  const movieTime = '10.30 AM';
   const dispatch = useDispatch();
  
 
@@ -49,7 +47,7 @@ function Slip() {
       .then((response) => {
         if (response.status === 200) {
           // Booking deleted successfully, navigate back to SeatSelect
-          navigate('/seatbooking');
+          navigate('/showtime');
         } else {
           // Handle error here, show an error message
           console.error('Error deleting booking:', response.statusText);
@@ -85,7 +83,7 @@ function Slip() {
     <div>
       <Header/>
       <div className="sticky-div">
-        <h1>AVATAR 2</h1>
+        <h1>{movieName}</h1>
         <h4>GALAXY CINEMA, Colombo</h4>
         <img src={dolbyImage} alt="screen" border="0" className="dolby" />
         
@@ -95,9 +93,9 @@ function Slip() {
       <div className="bill-details">
         <h4>GALAXY CINEMA, Colombo</h4>
         <p>Movie: {movieName}</p>
-        <p>Show Time: {movieTime}</p>
+        <p>Show Time: {showtime}</p>
         <p>Selected Seat IDs: {seatId}</p>
-        <p>Theater ID: {theaterId}</p>
+        <p>{theaterName}</p>
         <p>Total Price: Rs.{price}</p>
       </div>
 
@@ -108,7 +106,7 @@ function Slip() {
           <button className="buttonx" onClick={handleDelete}>
             Delete
           </button>
-          <Link to={`/SeatUpdate/${bookingId}/${seatId}/${theaterId}`} className="buttonx">
+          <Link to={`/SeatUpdate/${bookingId}/${seatId}/${theaterName}/${movieName}/${showtime}`} className="buttonx">
             Add More Seats
           </Link>
           

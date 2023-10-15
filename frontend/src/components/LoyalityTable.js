@@ -3,7 +3,9 @@ import LoyalitySearchBar from "./LoyalitySearchBar";
 import React, { useState, useEffect } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import axios from "axios";
-import easyinvoice from 'easyinvoice';
+import jsPDF from 'jspdf';
+import Swal from "sweetalert2";
+
 
 //theme for table
 createTheme(
@@ -171,139 +173,124 @@ const LoyalityTable = (props) => {
   const getDataFromChild = (childData) => {
     setSearchTerm(childData);
   }
-  //use effect for fetching data
+  //use effect for fetching data(customer)
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/customer/");
         setData(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        Swal.fire({
+          icon: "error",
+          title: "error fetching data",
+          text: "looks like database connection is not working",
+        });
       }
     };
 
     fetchData();
   }, []); // Emptyy dependency array ensures this effect ruuns once when the component mounts
+  //usesate for selected rows
+  const [setFormValues, setsetFormValues] = useState([]); //selected row ids
+
+  //use effect for fetching data(loyality)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/loyality/");
+        const data = response.data;
+        setFormValues({
+          startingPoints: data.startingPoints,
+          maximumPoints: data.maximumPoints,
+          incrementValue: data.incrementValue,
+          pointToCashConversionRate: data.pointToCashConversionRate,
+          resetMonthPeriod: data.resetMonthPeriod,
+          enableAutomatedPointReset: data.enableAutomatedPointReset,
+          enableManualConfig: data.enableManualConfig,
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   //filter the data according to the search term for UserName
   const newData = data.filter((item) => {
     return item.UserName.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
-  //this is for printing purpose
-  var d = {
-    "customize": {
-        //  "template": fs.readFileSync('template.html', 'base64') // Must be base64 encoded html 
-    },
-    "images": {
-        // The logo on top of your invoice
-        "logo": "",
-        // The invoice background
-        "background": "https://public.easyinvoice.cloud/img/watermark-draft.jpg"
-    },
-    // Your own data
-    "sender": {
-        "company": "Galaxy cinemas",
-        "address": "the street 123",
-        "zip": "1234 ZIP",
-        "city": "Colombo",
-        "country": "Sri Lanka"
-  
-    },
-    // Your recipient
-    "client": {
-        "company": "Client data",
-        "address": "Clientstreet 456",
-        "zip": "4567 CD",
-        "city": "Clientcity",
-        "country": "Clientcountry"
-        // "custom1": "custom value 1",
-        // "custom2": "custom value 2",
-        // "custom3": "custom value 3"
-    },
-    "information": {
-        // Invoice number
-        "number": "2021.0001",
-        // Invoice data
-        "date": "{}",
-        // Invoice due date
-        "due-date": "31-12-2021"
-    },
-    // The products you would like to see on your invoice
-    // Total values are being calculated automatically
-    "products": [
-        {
 
-            "quantity": "2",
-            "PointResetDate": 2,
-        }
-    ],
-    // The message you would like to display on the bottom of your invoice
-    "bottom-notice": "this is a auto generated report.",
-    // Settings to customize your invoice
-    "settings": {
-        "currency": "USD", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.
-        // "locale": "nl-NL", // Defaults to en-US, used for number formatting (See documentation 'Locales and Currency')        
-        // "margin-top": 25, // Defaults to '25'
-        // "margin-right": 25, // Defaults to '25'
-        // "margin-left": 25, // Defaults to '25'
-        // "margin-bottom": 25, // Defaults to '25'
-        // "format": "A4", // Defaults to A4, options: A3, A4, A5, Legal, Letter, Tabloid
-        // "height": "1000px", // allowed units: mm, cm, in, px
-        // "width": "500px", // allowed units: mm, cm, in, px
-        // "orientation": "landscape", // portrait or landscape, defaults to portrait
-    },
-    // Translate your invoice to your preferred language
-    "translate": {
-        // "invoice": "FACTUUR",  // Default to 'INVOICE'
-        // "number": "Nummer", // Defaults to 'Number'
-        // "date": "Datum", // Default to 'Date'
-        // "due-date": "Verloopdatum", // Defaults to 'Due Date'
-        // "subtotal": "Subtotaal", // Defaults to 'Subtotal'
-        // "products": "Producten", // Defaults to 'Products'
-        // "quantity": "Aantal", // Default to 'Quantity'
-        // "price": "Prijs", // Defaults to 'Price'
-        // "product-total": "Totaal", // Defaults to 'Total'
-        // "total": "Totaal", // Defaults to 'Total'
-        // "vat": "btw" // Defaults to 'vat'
-    },
-  };
   
   //generator
   const generateInvoice = async () => {
-    try {
-      await easyinvoice.createInvoice(d, function(result) {
-        easyinvoice.print(result.pdf);
-        props.setisprinted(!props.isprinted);
-      });
-    } catch (error) {
-      if (error.message.includes("throttle")) {
-        // Handle throttle exception based on the error message
-        console.error("Throttle Exception: Too many requests. Please try again later.");
-      } else {
-        // Handle other exceptions if needed
-        console.error("An error occurred while generating the invoice:", error);
-      }
-    }
+     // Create a new jsPDF instance
+  const doc = new jsPDF();
+
+  // Define the content to be added to the PDF
+  const content = document.getElementById('invoice-content'); // Assuming you have a container for your invoice content
+
+  // Define your table data. This is just a sample; replace it with your actual data.
+  const tableData = newData.map((row) => [
+    row.UserName,
+    row.FirstName,
+    row.LastName,
+    row.BirthDate,
+    row.PhoneNumber,
+    row.Gender,
+    row.Email,
+    row.optInForMarketing,
+    row.Type,
+    row.LoyaltyPoints,
+    row.LoyaltyRegisteredDate,
+    row.PointResetDate
+  ]);
+  console.log("tableData = ", tableData);
+
+  // Set the table headers
+  const tableHeaders = [
+    ['UserName', 'FirstName', 'LastName', 'BirthDate', 'PhoneNumber', 'Gender', 'Email'
+    , 'optInForMarketing', 'Type', 'LoyaltyPoints']
+  ];;
+
+  // Add the table to the PDF
+  doc.autoTable({
+    startY: 40, // Adjust the Y position as needed
+    head: tableHeaders,
+    body: tableData,
+  });
+
+// Get the current date
+  const date = new Date();
+
+
+// Get the individual date and time components
+const year = date.getFullYear();
+const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+const day = String(date.getDate()).padStart(2, '0');
+const hours = String(date.getHours()).padStart(2, '0');
+const minutes = String(date.getMinutes()).padStart(2, '0');
+const seconds = String(date.getSeconds()).padStart(2, '0');
+
+// Create the formatted date and time string
+const formattedDateTime = `${year}/${month}/${day} at ${hours}:${minutes}:${seconds}`;
+  // Create the filename
+  const filename = `Customer Report ${formattedDateTime}.pdf`;
+  doc.save(filename);
   };
   
   if (props.isprinted) {
     generateInvoice();
     props.setisprinted(false);
+    Swal.fire({icon: "success",title: "Printing success",text: "generated file is downloaded",});
   }
 
 
   return (
     <div className="table">
 
-
-
-
       <LoyalitySearchBar onRefresh={ReloadMe} sendDataToParent={getDataFromChild} />
-
-
-
-
 
       <div>
         <DataTable

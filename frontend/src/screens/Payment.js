@@ -4,6 +4,7 @@ import CreditCardInput from 'react-credit-card-input';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2";
 
 const Payment = () => {
 
@@ -92,6 +93,8 @@ const Payment = () => {
       validationErrors.phoneNumber = 'Phone number is required';
     } else if (!/^\d+$/.test(formData.phoneNumber)) {
       validationErrors.phoneNumber = 'Phone number must contain only digits';
+    } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
+      validationErrors.phoneNumber = 'Phone number must be 10 digits';
     }
 
     // Validate card holder name
@@ -120,7 +123,13 @@ const Payment = () => {
         await axios.post('http://localhost:3000/payment', paymentData);
         console.log('Payment data sent to the databse');
         // Navigate to the Success page
-        navigate('/success');
+        navigate('/success', { state: { cartItems: cartItems } });
+        Swal.fire({
+          icon: 'success',
+          title: 'Payment Prosessing...',
+          showConfirmButton: false,
+          timer: 900
+        })
       } catch (error) {
         console.error('An error occurred:', error);
         // Navigate to the cancel page
@@ -130,6 +139,11 @@ const Payment = () => {
       }
     } else {
       setErrors(validationErrors);
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "Please Enter Payment Details!",
+      });
     }
   };
 
