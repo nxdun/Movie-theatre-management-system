@@ -7,9 +7,7 @@ const UserScBooking = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { privscname, privscprice } = location.state;
-
   const [movies, setMovies] = useState([]);
-
   const [bookingData, setBookingData] = useState({
     movie: "",
     bookingDate: "",
