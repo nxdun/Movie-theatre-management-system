@@ -3,7 +3,7 @@ import { Card, Button, List, message, Avatar } from 'antd';
 import { ReloadOutlined, SendOutlined, ShoppingOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
-import './ReorderList.module.css';
+import './ReorderList.css';
 
 
 export function ReorderList({ prop = 'default value' }) {
@@ -29,7 +29,7 @@ export function ReorderList({ prop = 'default value' }) {
     axios
       .get("http://localhost:3013/product/")
       .then(res => {
-        const products = (res.data.products || []).map(val => ({ ...val, key: val._id }))
+        const products = (res.data.products || []).filter(val=>val.P_quantity<=val.P_reoderLevel).map(val => ({ ...val, key: val._id }))
         setData(products);
         setDataLoading(false);
       })
@@ -63,7 +63,7 @@ export function ReorderList({ prop = 'default value' }) {
           </Button>]}
         >
           <List.Item.Meta
-            avatar={<Avatar src={item.P_image} shape="square" size="large" icon="<ShoppingOutlined />" onError={() => false} />}
+            avatar={<Avatar src={item.P_image} shape="square" size="large" icon={<ShoppingOutlined />} onError={() => false} />}
             title={`${item.P_id}/${item.P_name}`}
             description={item.P_description}
           />

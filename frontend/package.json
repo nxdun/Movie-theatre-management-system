@@ -18,6 +18,7 @@
     "easyinvoice": "^3.0.23",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.7.0",
     "react": "^18.2.0",
     "react-credit-card-input": "^1.1.5",
     "react-data-table-component": "^7.5.4",
