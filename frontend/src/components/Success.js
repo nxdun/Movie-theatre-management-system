@@ -379,9 +379,8 @@ const base64EncodedTemplate = btoa(customTemplate);
   "products": cartItems.map((item) => ({
     "quantity": item.qty,
     "description": item.name,
-    "tax-rate": 10,
-    "price": item.price,
-    "nuu": item.reduce,
+    "tax-rate":  -10,
+    "price": item.price
   })),
   // The message you would like to display on the bottom of your invoice
   "bottom-notice": "Show this Invoice to reciption and get your items.Please Keep This Invoice For Your Future Reference.",
@@ -409,8 +408,8 @@ const base64EncodedTemplate = btoa(customTemplate);
       // "quantity": "Aantal", // Default to 'Quantity'
       // "price": "Prijs", // Defaults to 'Price'
       // "product-total": "Totaal", // Defaults to 'Total'
-      //"total": "Totaal", // Defaults to 'Total'
-      // "vat": "btw" // Defaults to 'vat'
+      // "total": "Totaal", // Defaults to 'Total'
+       "vat": "discount" // Defaults to 'vat'
   },
             
         };
