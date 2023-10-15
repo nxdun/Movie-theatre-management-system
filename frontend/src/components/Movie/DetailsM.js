@@ -3,13 +3,14 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Header from "../../shared/HomeHeader";
 import './CSS/AllMovies.css';
+import './CSS/DetailM.css';
 import 'jspdf-autotable';
 
 export default function DetailsM() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
 
-  alert(movieId)
+ 
 
   useEffect(() => {
     async function fetchMovieDetails() {
@@ -47,7 +48,7 @@ export default function DetailsM() {
             title="Movie Trailer"
           ></iframe>
 
-          <iframe className="video" width="60%" height="500px" src="https://www.youtube.com/embed/TnyWMhSqyjY" frameborder="0" allowfullscreen></iframe>
+      <img className="ima2" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
 
         </div>
       ) : (

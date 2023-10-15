@@ -27,7 +27,7 @@
     animation: rotate 10s linear infinite; /* Adjust the duration as needed */
   }
   .header-img{
-    width: 80px;
+    width: 70px;
     height: 80px;
     object-fit: cover;
     padding-bottom: 20px;
@@ -65,6 +65,9 @@
     padding: 10px;
     border-radius: 8px;
     
+  }
+  .shopnav{
+    margin-right: 10px;
   }
   
   .cart__link:hover {

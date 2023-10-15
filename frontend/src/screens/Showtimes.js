@@ -1,34 +1,87 @@
-import React, { useState } from 'react';
-import './Showtimes.css';
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import "./Showtimes.css";
+import { useNavigate } from "react-router-dom";
 import Header from "../shared/HomeHeader";
-
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Showtimes = () => {
-  // Sample data
-  const showtimesByDate = {
-    '2023-09-22': ['10:30', '14:30', '18:30'],
-    '2023-09-23': ['10:30', '14:30', '18:30'],
-    '2023-09-24': ['10:30', '14:30', '18:30'],
-    '2023-09-25': ['10:30', '14:30', '18:30'],
-    '2023-09-26': ['10:30', '14:30', '18:30'],
-    '2023-09-27': ['10:30', '14:30', '18:30'],
-    '2023-09-28': ['10:30', '14:30', '18:30'],
-    '2023-09-29': ['10:30', '14:30', '18:30'],
+  const navigate = useNavigate();
+  const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState("");
+  const [showtimes, setShowtimes] = useState([]);
+  const [theaterName, setTheaterName] = useState("");
+  const [filmName, setmovname] = useState("");
+
+  useEffect(() => {
+    // Fetch movie data from the API
+    axios
+      .get("/admin/getallMovieShedularDetails")
+      .then((response) => {
+        if (response.data && Array.isArray(response.data.data)) {
+          const movieListFromDB = response.data.data;
+
+          // Create a new list of objects
+          const movieOptions = movieListFromDB.map((movie) => ({
+            label: movie.MovieName,
+            value: movie.MovieId,
+            stime: movie.ShowTime,
+            startDate: movie.StartDate,
+            endDate: movie.EndDate,
+            tname: movie.TheaterName,
+          }));
+          // Set the 'movies' list with properties
+          setMovies(movieOptions);
+        } else {
+          console.error(
+            "Failed to fetch movie data or data format is incorrect"
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching movie data:", error);
+      });
+  }, []);
+
+  const handleMovieChange = (movieId) => {
+    setSelectedMovie(movieId);
+
+    // Find the selected movie based on its ID
+    const selectedMovieData = movies.find((movie) => movie.value === movieId);
+    if (selectedMovieData) {
+      // Generate the available dates and showtimes for the selected movie
+      const availableDates = [];
+      const showtimesByDate = {};
+
+      const startDate = new Date(selectedMovieData.startDate);
+      const endDate = new Date(selectedMovieData.endDate);
+      const showTime = selectedMovieData.stime;
+      setTheaterName(selectedMovieData.tname);
+      setmovname(selectedMovieData.label);
+
+      while (startDate <= endDate) {
+        const dateStr = startDate.toISOString().split("T")[0];
+        availableDates.push(dateStr);
+        showtimesByDate[dateStr] = [showTime];
+        startDate.setDate(startDate.getDate() + 1);
+      }
+
+      setShowtimes(showtimesByDate);
+    }
   };
 
   // get dates; starting from today, along with day names
   const getWeekDates = () => {
     const today = new Date();
     const offset = 330 * 60 * 1000;
-    const todayWithOffset = new Date(today.getTime() + offset); // matching the local time zone
+    const todayWithOffset = new Date(today.getTime() + offset);
     const weekDates = [];
 
     for (let i = 0; i < 7; i++) {
       const date = new Date(todayWithOffset);
       date.setDate(todayWithOffset.getDate() + i);
-      const dateString = date.toISOString().split('T')[0];
-      const dayName = date.toLocaleDateString('en-US', { weekday: 'long'}); // Get the day name
+      const dateString = date.toISOString().split("T")[0];
+      const dayName = date.toLocaleDateString("en-US", { weekday: "long" }); // Get the day name
       weekDates.push({ date: dateString, day: dayName });
     }
 
@@ -39,12 +92,11 @@ const Showtimes = () => {
 
   const [selectedDate, setSelectedDate] = useState(weekDates[0]?.date || null);
   const [selectedShowtime, setSelectedShowtime] = useState(null);
-  const [alertMessage, setAlertMessage] = useState(null);
+ // const [alertMessage, setAlertMessage] = useState(null);
 
   // handle date click
   const handleDateClick = (date) => {
     if (date === selectedDate) {
-
       setSelectedDate(null);
       setSelectedShowtime(null);
     } else {
@@ -57,86 +109,96 @@ const Showtimes = () => {
     if (showtime === selectedShowtime) {
       // If the same showtime is clicked twice, deselect it
       setSelectedShowtime(null);
-
     } else {
       setSelectedShowtime(showtime);
-      setAlertMessage(null); // Clear the alert message
+      //setAlertMessage(null); // Clear the alert message
     }
   };
 
   const handleContinueClick = () => {
     if (!selectedShowtime) {
       // If no showtime is selected, show an alert
-      setAlertMessage("Please select a showtime");
-
-      setTimeout(() => {
-        setAlertMessage(null);
-      }, 3000);
-
+      Swal.fire({
+        icon: "warning",
+        title: "Oops... You haven't selected Showtime!",
+        text: "Please select a Showtime",
+      });
     } else {
+
+      const url = `/seatbooking?movieName=${filmName}&theaterName=${theaterName}&showtime=${selectedShowtime}`;
+
+      // Use the navigate function to navigate to the next page
+      navigate(url);
+      console.log("Selected Movie:", selectedMovie);
       console.log("Selected Showtime:", selectedShowtime);
     }
   };
 
-  // Generate the array of dates
- // const weekDates = getWeekDates();
-
-  
-
   return (
     <div>
-      <Header/>
-      <h2>Avatar</h2>
+      <Header />
+      <div className="movie-dropdown">
+        <select
+          value={selectedMovie}
+          onChange={(e) => handleMovieChange(e.target.value)}
+        >
+          <option value="">Select a movie</option>
+          {movies.map((movie) => (
+            <option key={movie.value} value={movie.value}>
+              {movie.label}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="date-list">
         {weekDates.map(({ date, day }) => (
           <div
             key={date}
-            className={`date-item ${date === selectedDate ? 'selected' : ''}`}
+            className={`date-item ${date === selectedDate ? "selected" : ""}`}
             onClick={() => handleDateClick(date)}
           >
             <div>{date}</div>
-            <div className="day-name">{day.substring(0, 3)}
-            </div>
+            <div className="day-name">{day.substring(0, 3)}</div>
           </div>
         ))}
       </div>
-      <div className={`showtimes ${selectedDate ? 'show' : ''}`}>
+      <div className={`showtimes ${selectedDate ? "show" : ""}`}>
         {selectedDate ? (
-          showtimesByDate[selectedDate] && showtimesByDate[selectedDate].length > 0 ? (
+          showtimes[selectedDate] && showtimes[selectedDate].length > 0 ? (
             <div>
-              <h3>Theater A</h3>
-              <h4>Showtimes for {selectedDate}</h4>
+              <h3 className="th-nm">{theaterName}</h3>
+              <h4 className="show-nm" > Showtimes for {selectedDate}</h4>
               <div className="showtime-list">
-                {showtimesByDate[selectedDate].map((showtime) => (
+                {showtimes[selectedDate].map((showtime) => (
                   <div
                     key={showtime}
-                    className={`showtime-item ${showtime === selectedShowtime ? 'selected' : ''}`}
+                    className={`showtime-item ${
+                      showtime === selectedShowtime ? "selected" : ""
+                    }`}
                     onClick={() => handleShowtimeClick(showtime)}
                   >
                     {showtime}
                   </div>
                 ))}
               </div>
-              <Link to ="/seatbooking">
               <button className="continue-button" onClick={handleContinueClick}>
-                Continue
-              </button>
-              </Link>
+      Continue
+    </button>
             </div>
           ) : (
             <div>
-              <h3>No Showtime Available</h3>
+              <h3 className="No-sta">No Showtime Available</h3>
             </div>
           )
         ) : null}
       </div>
-      {/* Alert message popup */}
-      <div className={`alert ${alertMessage ? 'show' : ''}`}>
+      {/* Alert message popup 
+      <div className={`alert ${alertMessage ? "show" : ""}`}>
         {alertMessage}
-        <button className="close-button" onClick={() => setAlertMessage(null)}>
+        <button className="close-buttonsachi" onClick={() => setAlertMessage(null)}>
           &times;
         </button>
-      </div>
+          </div>*/}
     </div>
   );
 };
