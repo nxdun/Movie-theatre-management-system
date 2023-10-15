@@ -8,12 +8,18 @@ import avImage from './av.png';
 import selImage from './sel.png';
 import { useNavigate } from 'react-router-dom';
 import Header from "../shared/HomeHeader";
+import { useLocation } from 'react-router-dom';
 
 
 function SeatSelect() {
   const [selectedButtons, setSelectedButtons] = useState([]);
   const [bookedSeats, setBookedSeats] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const movieName = searchParams.get('movieName');
+  const theaterName = searchParams.get('theaterName');
+  const showtime = searchParams.get('showtime');
 
   // Define the isSeatBooked function
   const isSeatBooked = (seatId) => bookedSeats.includes(String(seatId));
@@ -62,8 +68,8 @@ function SeatSelect() {
     // Prepare booking data
     const bookingData = {
       bookingDate: new Date(),
-      showTime: '6.00PM',
-      theaterId: 'A',
+      showTime: showtime,
+      theaterId: theaterName,
       seatId: selectedButtons.join(', '), // Join selected seat IDs
       price: selectedButtons.length * 1000, // Calculate price based on the number of selected seats
       customerId: 'cus4',
@@ -77,7 +83,7 @@ function SeatSelect() {
         setSelectedButtons([]);
         
         // Navigate to the slip page and pass seat information as URL parameters
-        navigate(`/Slip/${bookingData.seatId}/${bookingData.theaterId}/${bookingData.price}`);
+        navigate(`/Slip/${bookingData.seatId}/${theaterName}/${movieName}/${showtime}/${bookingData.price}`);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -107,9 +113,12 @@ function SeatSelect() {
     <div>
       <Header/>
       <div className="sticky-div">
-        <h1>AVATAR 2</h1>
+        <h1>{movieName}</h1>
         <h4>GALAXY CINEMA, Colombo</h4>
         <img src={dolbyImage} alt="screen" border="0" className="dolby" />
+        <p className='the1'>{theaterName}</p>
+        <p className='the2'>{showtime}</p>
+        
       </div>
 
       <div>

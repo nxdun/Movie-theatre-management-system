@@ -1,7 +1,6 @@
 import './Upslip.css';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import dolbyImage from './dolby.png';
 import Header from "../shared/HomeHeader";
 import { useDispatch } from 'react-redux';
@@ -9,12 +8,11 @@ import { addMovieSlipToCart } from '../redux/actions/cartActions';
 
 function Upslip() {
   // Get URL parameters
-  const { selectedSeats : seatId, theaterId, price } = useParams();
+  const { selectedSeats : seatId, theaterName, movieName, showtime, totalPrice:price } = useParams();
   const navigate = useNavigate();
   const [isDeleting, setIsDeleting] = useState(false);
   const [bookingId, setBookingId] = useState(null);
-  const movieName = 'Avatar 2';
-  const movieTime = '10.30 AM';
+  
   const dispatch = useDispatch();
 
 
@@ -46,7 +44,7 @@ function Upslip() {
       .then((response) => {
         if (response.status === 200) {
           // Booking deleted successfully, navigate back to SeatSelect
-          navigate('/seatbooking');
+          navigate('/showtime');
         } else {
           // Handle error here, show an error message
           console.error('Error deleting booking:', response.statusText);
@@ -63,8 +61,7 @@ function Upslip() {
     // Create a movie slip object with relevant details
     const movieSlip = {
       product: seatId, // Use seatId or another identifier
-      name: movieName, // Customize as needed
-      
+      name: movieName, // Customize as needed      
       price: price,
       countInStock: 1, // Set the available stock count
       qty: 1, // Set the quantity to 1
@@ -82,7 +79,7 @@ function Upslip() {
     <div>
       <Header/>
       <div className="sticky-div">
-        <h1>AVATAR 2</h1>
+        <h1>{movieName}</h1>
         <h4>GALAXY CINEMA, Colombo</h4>
         <img src={dolbyImage} alt="screen" border="0" className="dolby" />
         
@@ -92,9 +89,9 @@ function Upslip() {
       <div className="bill-details">
         <h4>GALAXY CINEMA, Colombo</h4>
         <p>Movie: {movieName}</p>
-        <p>Show Time: {movieTime}</p>
+        <p>Show Time: {showtime}</p>
         <p>Selected Seat IDs: {seatId}</p>
-        <p>Theater ID: {theaterId}</p>
+        <p>{theaterName}</p>
         <p>Total Price: Rs.{price}</p>
       </div>
 
@@ -105,9 +102,6 @@ function Upslip() {
           <button className="buttonx" onClick={handleDelete}>
             Delete
           </button>
-          <Link to={`/SeatUpdate/${bookingId}/${seatId}`} className="buttonx">
-            Add More Seats
-          </Link>
           <button className="buttonx" onClick={handleAddToCart}>Continue</button>
         </div>
       )}
