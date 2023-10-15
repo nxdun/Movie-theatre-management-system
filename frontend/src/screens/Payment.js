@@ -186,7 +186,7 @@ const Payment = () => {
         await axios.post("http://localhost:3000/payment", paymentData);
         console.log("Payment data sent to the databse");
         // Navigate to the Success page
-        navigate("/success", { state: { cartItems: cartItems , reduce : Reduction} });
+        navigate('/success', { state: { cartItems: cartItems,email: formData.email,phoneNumber: formData.phoneNumber } });
         Swal.fire({
           icon: "success",
           title: "Payment Prosessing...",
