@@ -1,6 +1,9 @@
 .success {
     text-align: center;
     padding: 40px 0;
+    text-transform: uppercase;
+    color: var(--green);
+    outline: 5px  solid var(--green);
   }
 .success_logo{
     width: 150px;

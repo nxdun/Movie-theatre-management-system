@@ -11,7 +11,7 @@ const LoyalitySearchBar = (props) => {
 
   return (
     <div className="search-bar">
-      <Link to = "/admindash">
+      <Link to = "/manager/dashboard">
   <button className="buttooonn buttooon-back" >{"<< back"}</button>
     </Link>
   <form className="search-form">
