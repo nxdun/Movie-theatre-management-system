@@ -8,6 +8,8 @@ import { useLocation } from 'react-router-dom';
 const Success = () => {
     const [isLoading, setIsLoading] = useState(true);
     const location = useLocation();
+    const email = location.state.email;
+    const phoneNumber = location.state.phoneNumber;
     const cartItems = location.state?.cartItems || [];
 
     useEffect(() => {
@@ -225,12 +227,19 @@ const Success = () => {
     </tr>
     <tr>
         <td>
+        <tr>
+      <td id="email-wrapper">
+        <b> %client-custom-1%</b><br/>
+      </td>
+    </tr>
+
         </td>
         <td id="details-label-wrapper">
             <b>%date-title%:</b><br/>
+            <b>%date%</b><br/>
         </td>
         <td>
-            %date%<br/>
+            
             
         </td>
     </tr>
@@ -364,10 +373,9 @@ const base64EncodedTemplate = btoa(customTemplate);
   },
   // Your recipient
   "client": {
-    "email-title": "Email:",
-    "phone-title": "Phone:"
+    "custom1": `Email: ${email}`,
       // "custom1": "custom value 1",
-      // "custom2": "custom value 2",
+    "custom2": `Phone: ${phoneNumber}`,
       // "custom3": "custom value 3"
   },
   "information": {
@@ -379,7 +387,7 @@ const base64EncodedTemplate = btoa(customTemplate);
   "products": cartItems.map((item) => ({
     "quantity": item.qty,
     "description": item.name,
-    "tax-rate": 10,
+    "tax-rate": 1,
     "price": item.price
   })),
   // The message you would like to display on the bottom of your invoice
