@@ -2,69 +2,84 @@
 
 /* Container for the bill */
 .slip-container {
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    width: 400px;
-    height: 500px;
-    margin: 0 auto;
-    margin-top: 50px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
+  width: 1000px;
+  height: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  border: #ffffff;
+  background-image: url('ticket2.png');
+}
+
+/* Header section */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dolby {
+  max-width: 100px;
+}
+
+/* Bill details section */
+.bill-detailss {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-left: 450px;
+  font-weight: bold;
+
   
-  /* Header section */
-  .header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .dolby {
-    max-width: 100px;
-  }
-  
-  /* Bill details section */
-  .bill-details {
-    font-size: 16px;
-  }
-  
-  /* Action buttons */
-  .action-buttons {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .buttonx {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #004b00;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  .buttonx:hover {
-    background-color: #15aa01;
-  }
-  
-  /* Style the deleting message */
-  .deleting {
-    color: #000000;
-    font-weight: bold;
-  }
-  
-  /* Link button */
-  .button {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #0073e6;
-    color: #ffffff;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #005bb5;
-  }
-  
+}
+
+/* Action buttons */
+.action-buttons {
+  text-align: center;
+  margin-top: 1px;
+  margin-left: 160px;
+}
+
+.buttonx {
+  margin: 10px;
+  margin-top: 50px;
+  padding: 10px 20px;
+  background-color: #004b00;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.buttonx:hover {
+  background-color: #15aa01;
+}
+
+/* Style the deleting message */
+.deleting {
+  color: #000000;
+  font-weight: bold;
+}
+
+/* Link button */
+.button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #0073e6;
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #005bb5;
+}
+
+.aaaa{
+  margin-left: 90px;
+  margin-top: 0px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.bbbb{
+  margin-top: 130px;
+}

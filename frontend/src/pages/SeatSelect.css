@@ -2,27 +2,21 @@
 
 /* Style the header with a gradient background and centered text */
 .sticky-div {
-  background: linear-gradient(to right, #007BFF, #6ACCE6);
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 
 /* Style the h1 heading */
-h1 {
-  font-size: 24px;
+.filmm {
+  font-size: 30px;
   margin: 0;
   padding: 0;
+  font-weight: bold;
 }
 
-/* Style the h4 cinema location */
-h4 {
-  font-size: 16px;
-  margin: 5px 0;
-  padding: 0;
-  color: #333;
-}
+
 
 /* Center the location icon and adjust its size */
 .locIcon {
@@ -34,11 +28,9 @@ h4 {
 
 /* Style the Dolby logo */
 .dolby {
-  display: block;
-  margin: 0 auto;
-  position: left;
-  width: 100px;
-  height: 25px;
+  width: 220px;
+  height: 35px;
+  text-align: center;
 }
 
 /* Add a subtle box shadow to the screen image */
@@ -166,3 +158,15 @@ button {
   text-align: center; 
 }
 
+.the1{
+  text-align: right;
+  margin-left: 250px;
+  font-size: 20px;
+  
+}
+
+.the2{
+  text-align: left;
+  margin-right: 250px;
+  font-size: 20px;
+}

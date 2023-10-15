@@ -2,17 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Header from "../../shared/HomeHeader";
-import './CSS/AllMovies.css';
-import './CSS/DetailM.css';
-import 'jspdf-autotable';
-import { Link } from 'react-router-dom';
-
+import "./CSS/AllMovies.css";
+import "./CSS/DetailM.css";
+import "jspdf-autotable";
+import { Link } from "react-router-dom";
 
 export default function DetailsM() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-
- 
 
   useEffect(() => {
     async function fetchMovieDetails() {
@@ -32,32 +29,33 @@ export default function DetailsM() {
       <Header />
       {movie ? (
         <div>
-          
-          
-          <img className="ima2" src={movie.director} alt="Movie Poster" width="95%" height="600px" />
-          <Link to={`/showtime/${movie.title}`}>
-              <button className="button8">Buy Tickets </button>
-          </Link>
-          
-        
+          <div className="contD">
+            <Link to={`/showtime/${movieId}`}>
+              <button className="button8">Buy Tickets</button>
+                 
+            </Link>
 
-        
-          
+            <a href="/showtime">
+              <button className="button8">Buy Tickets</button>
+            </a>
+          </div>
           <div className="contn3">
             <h2 className="hh2">Movie Trailer</h2>
           </div>
           
 
-        <iframe width="95%" height="700px" src="https://www.youtube.com/embed/uYPbbksJxIg" frameborder="0" allowfullscreen></iframe>
-        <iframe width="95%" height="700px" src={movie.languages} frameborder="0" allowfullscreen></iframe>
-
-
-      
-
+          <img
+            className="ima2"
+            src={movie.director}
+            alt="Movie Poster"
+            width="95%"
+            height="100%"
+          />
         </div>
       ) : (
         <p>Loading movie details...</p>
       )}
-    </div>
-  );
+         
+    </div>
+  );
 }
