@@ -1,4 +1,4 @@
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { Button, Card, Flex, InputNumber, Tabs, message } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -37,6 +37,9 @@ export default function FoodAndBeverage({ prop = 'default value' }) {
   const handleAddItem = (item, q) => {
     console.log(item, q)
   }
+  const handleContinue  = () => {
+    console.log()
+  }
 
   const items = [
     {
@@ -59,6 +62,9 @@ export default function FoodAndBeverage({ prop = 'default value' }) {
     <Tabs
       type="card"
       items={items}
+       tabBarExtraContent={<Button type="primary" shape="round" size="large" icon={<ArrowRightOutlined />} onClick={handleContinue}>
+       continue
+     </Button>} 
     />
   </div>;
 }
