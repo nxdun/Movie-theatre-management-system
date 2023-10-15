@@ -121,18 +121,23 @@
   
   }
   
-    h2 {
+    /*h2 {
       text-align: center;
       margin-top: 20px;
       font-size: 60px;
+    }*/
+
+    .No-sta {
+      font-size: 27px;
+      margin-left: 25px;
     }
     
-    h3 {
+    .th-nm {
       font-size: 27px;
       margin-left: 25px;
     }
   
-    h4 {
+    .show-nm {
       font-size: 25px;
       margin-left: 25px;
     }
@@ -189,7 +194,7 @@
     }
   }
   
-  .close-button {
+  .close-buttonsachi {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -207,6 +212,6 @@
     justify-content: center;
   }
   
-  .close-button:hover {
+  .close-buttonsachi:hover {
     background-color: rgba(0, 0, 0, 0.4);
   }
