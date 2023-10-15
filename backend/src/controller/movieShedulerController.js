@@ -109,6 +109,31 @@ const getallMovieShedularByID =  async (req,res) => {
     }
 }
 
+// Define the controller function
+const getMovieShedularDetailsByMovieId = async (req, res) => {
+    try {
+      const objectId = req.params.id; // Capture the "_id" from the URL parameter
+  
+      // Query the database to find movie scheduling details by MongoDB ObjectId (_id)
+      const movieShedularDetails = await MovieShedular.findById(objectId);
+  
+      if (movieShedularDetails) {
+        return res.status(200).json({
+          data: movieShedularDetails,
+          status: 2100
+        });
+      } else {
+        return res.status(404).json({
+          message: "Movie scheduling details not found"
+        });
+      }
+    } catch (err) {
+      return res.status(500).json({
+        message: err
+      });
+    }
+  };
+
 const updateMovieShedularDetails = async (req, res) => {
     try {
       const id = req.params.id;
@@ -168,5 +193,6 @@ module.exports = {
     updateMovieShedularDetails,
     deleteMovieShedularDetails,
     getallMovieShedularByID,
-    getMovieSheduleByTimeAndTheater
+    getMovieSheduleByTimeAndTheater,
+    getMovieShedularDetailsByMovieId
 }

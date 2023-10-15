@@ -31,10 +31,6 @@ const PrivateCusScreen = () => {
     setFilteredPrivateScreens(filteredScreens);
   }, [searchQuery, loadedPrivateScreens]);
 
-  const handleBookNowClick = (privScreen) => {
-    navigate(`/PrivScBooking/${privScreen._id}`);
-  };
-
   return (
     <div>
       <Header />
@@ -47,10 +43,7 @@ const PrivateCusScreen = () => {
           className="priv-search-input"
         />
       </div>
-      <UservScreenList
-        items={filteredPrivateScreens}
-        onBookNowClick={handleBookNowClick}
-      />
+      <UservScreenList items={filteredPrivateScreens} />
     </div>
   );
 };

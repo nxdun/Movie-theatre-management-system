@@ -35,7 +35,6 @@ router.post('/payment', async (req, res) => {
 router.get('/paymentrecords', async (req, res) => {
   try {
     const paymentRecords = await Payment.find();
-    console.log('Payment Records:', paymentRecords); // Log the retrieved data
     res.json(paymentRecords);
   } catch (error) {
     console.error(error);

@@ -34,7 +34,7 @@ const Navbar = ({ click }) => {
             </span>
           </Link>
         </li>
-        <li>
+        <li className="shopnav">
           <Link to="/shop">Shop</Link>
         </li>
       </ul>
