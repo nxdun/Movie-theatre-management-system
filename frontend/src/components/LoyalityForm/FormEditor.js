@@ -168,11 +168,7 @@ const FormCreator = (props) => {
 
   return (
       <div className="modal-container">
-      {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="ui message success" >Data submitted successfully</div>
-        
-      ) : null}
-
+      
       <form onSubmit={handleSubmit} className="modal-form">
         <div className="ui divider"></div>
         <div className="ui form">
@@ -320,6 +316,11 @@ const FormCreator = (props) => {
                 checked={formValues.optInForMarketing}
                 onChange={handleChange}
               />
+              {Object.keys(formErrors).length === 0 && isSubmit ? (
+        <div className="ui message success" >Data submitted successfully</div>
+        
+      ) : null}
+
             </div>
             <button className="sub-button" >Add</button>
           </div>
