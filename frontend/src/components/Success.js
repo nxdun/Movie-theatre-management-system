@@ -417,7 +417,7 @@ const base64EncodedTemplate = btoa(customTemplate);
       // "price": "Prijs", // Defaults to 'Price'
       // "product-total": "Totaal", // Defaults to 'Total'
       // "total": "Totaal", // Defaults to 'Total'
-      // "vat": "btw" // Defaults to 'vat'
+       "vat": "discount" // Defaults to 'vat'
   },
             
         };

@@ -1,217 +1,189 @@
 /* Header styling */
 .header {
-    background-color: black;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    font-size: 12px;
-    height: 30px; 
-    line-height: 2px; 
-  }
-  
-  
-  /* Date boxes */
-  .date-list {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    margin: 0 auto; 
-    border-left: 2px solid #000; 
-    border-right: 2px solid #000; 
-    max-width: 800px; 
-  }
-  
-    
-    .date-item {
-      width: 200px; 
-      height: 150px;
-      background-color: #001323;
-      color: rgb(252, 250, 240);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin: 0 5px; 
-      border-radius: 8px;
-    }
-    
-    .date-item.selected {
-      background-color: #ffffff;
-      color: #000;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8); 
-      transform: translateY(-5px); 
-      transition: transform 0.3s ease, box-shadow 0.3s ease; 
-    }
-    
-    .date-item.selected:hover {
-      transform: translateY(-8px); 
-    }
-    
-    .date-item:hover {
-      background-color: #ffffff;
-      color: rgb(0, 0, 0);
-      box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.4);
-    }
-  
-    /* Add styling for day name */
-    .day-name {
-      font-size: 40px; 
-    }
-  
-  
-  /* Showtimes section */
-  .showtimes {
-    margin-top: 10px; 
-    padding: 5px; 
-    background-color: #ebebeb;
-    border-radius: 8px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out;
-  }
-  
-  .showtimes.show {
-    max-height: 500px; 
-    background-color: #ffffff;
-    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.4);
-    padding-top: 6px;
-    border: 1px solid #000;
-    border-left: 5px solid #000; 
-    border-right: 5px solid #000; 
-  }
-  
-  /* Showtime list */
-  .showtime-list {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .showtime-item {
-    width: 100px; 
-    height: 50px; 
-    background-color: #eef1f3;
-    color: rgb(0, 0, 0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 5px;
-    border: 2px solid #2196F3;
-    border-radius: 8px;
-    margin-left: 6px;
-    
-  }
-  
-  .showtime-item.selected {
-    background-color: #001323;
-    color: #fff;
-  }
-  
-  .showtime-item:hover {
-    background-color: #001323;
-    color: #fff;
-  
-  }
-  
-    /*h2 {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 60px;
-    }*/
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  height: 30px;
+  line-height: 2px;
+}
 
-    .No-sta {
-      font-size: 27px;
-      margin-left: 25px;
-    }
-    
-    .th-nm {
-      font-size: 27px;
-      margin-left: 25px;
-    }
+/* Date boxes */
+.date-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 0 auto;
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
+  max-width: 800px;
+}
+
+.date-item {
+  width: 200px;
+  height: 150px;
+  background-color: #001323;
+  color: rgb(252, 250, 240);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 5px;
+  border-radius: 8px;
+}
+
+.date-item.selected {
+  background-color: #ffffff;
+  color: #000;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+  transform: translateY(-5px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.date-item.selected:hover {
+  transform: translateY(-8px);
+}
+
+.date-item:hover {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Add styling for day name */
+.day-name {
+  font-size: 40px;
+}
+
+/* Showtimes section */
+.showtimes {
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #ebebeb;
+  border-radius: 8px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.showtimes.show {
+  max-height: 500px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.4);
+  padding-top: 6px;
+  border: 1px solid #000;
+  border-left: 5px solid #000;
+  border-right: 5px solid #000;
+}
+
+/* Showtime list */
+.showtime-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.showtime-item {
+  width: 100px;
+  height: 50px;
+  background-color: #eef1f3;
+  color: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+  border: 2px solid #2196f3;
+  border-radius: 8px;
+  margin-left: 25px;
+  margin-top: 25px;
+}
+
+.showtime-item.selected {
+  background-color: #001323;
+  color: #fff;
+}
+
+.showtime-item:hover {
+  background-color: #001323;
+  color: #fff;
+}
+
+.No-sta {
+  font-size: 27px;
+  margin-left: 25px;
+}
+
+.th-nm {
+  font-size: 27px;
+  margin-left: 25px;
+}
+
+.show-nm {
+  font-size: 25px;
+  margin-left: 25px;
+  margin-top: 20px;
   
-    .show-nm {
-      font-size: 25px;
-      margin-left: 25px;
-    }
-    /* Button styling */
-  .continue-button {
-    display: block;
-    margin: 0 auto; 
-    margin-bottom: 10px;
-    text-align: center; 
-    padding: 10px 20px; 
-    background-color: #0c9405;
-    color: rgb(255, 255, 255);
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
+}
+/* Button styling */
+.continue-button {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #0c9405;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.continue-button:hover {
+  background-color: #075103;
+}
+
+.close-buttonsachi {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-buttonsachi:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.movie-dropdown {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 20px 0;
+  font-size: 20px;
+}
+.movie-dropdown select {
+  max-width: 800px; 
   
-  .continue-button:hover {
-    background-color: #075103;
-  }
-  
-  /* Alert message popup styles */
-  .alert {
-    position: fixed;
-    top: 65%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    background: red;
-    color: white;
-    text-align: center;
-    width: 350px;
-    font-size: 20px;
-    padding: 20px;
-    display: none;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-  }
-  
-  .alert.show {
-    display: block;
-    animation: fadeIn 0.3s ease-in-out;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .close-buttonsachi {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .close-buttonsachi:hover {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
+
+}

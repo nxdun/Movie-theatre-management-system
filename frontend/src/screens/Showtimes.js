@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../shared/HomeHeader";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
 
 const Showtimes = () => {
   const navigate = useNavigate();
@@ -12,12 +13,15 @@ const Showtimes = () => {
   const [showtimes, setShowtimes] = useState([]);
   const [theaterName, setTheaterName] = useState("");
   const [filmName, setmovname] = useState("");
+  const [dataFetched, setDataFetched] = useState(false);
+  const { movieNM } = useParams();
 
   useEffect(() => {
-    // Fetch movie data from the API
-    axios
-      .get("/admin/getallMovieShedularDetails")
-      .then((response) => {
+    const fetchData = async () => {
+      try {
+        // Fetch movie data from the API
+        const response = await axios.get("/admin/getallMovieShedularDetails");
+
         if (response.data && Array.isArray(response.data.data)) {
           const movieListFromDB = response.data.data;
 
@@ -32,16 +36,37 @@ const Showtimes = () => {
           }));
           // Set the 'movies' list with properties
           setMovies(movieOptions);
+
+          setDataFetched(true);
+
+          if (movieNM && dataFetched) {
+            // Preselect the movie based on URL
+            const selectedMovieData = movieOptions.find(
+              (movie) => movie.value === movieNM
+            );
+            if (selectedMovieData) {
+              setSelectedMovie(selectedMovieData.value);
+            }
+          }
         } else {
           console.error(
             "Failed to fetch movie data or data format is incorrect"
           );
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching movie data:", error);
-      });
-  }, []);
+      }
+    };
+
+    fetchData();
+  }, [movieNM, dataFetched]);
+
+  useEffect(() => {
+    if (selectedMovie && dataFetched) {
+      // Handle movie change and associated data population
+      handleMovieChange(selectedMovie);
+    }
+  }, [selectedMovie, dataFetched]);
 
   const handleMovieChange = (movieId) => {
     setSelectedMovie(movieId);
@@ -92,7 +117,6 @@ const Showtimes = () => {
 
   const [selectedDate, setSelectedDate] = useState(weekDates[0]?.date || null);
   const [selectedShowtime, setSelectedShowtime] = useState(null);
- // const [alertMessage, setAlertMessage] = useState(null);
 
   // handle date click
   const handleDateClick = (date) => {
@@ -111,7 +135,6 @@ const Showtimes = () => {
       setSelectedShowtime(null);
     } else {
       setSelectedShowtime(showtime);
-      //setAlertMessage(null); // Clear the alert message
     }
   };
 
@@ -124,13 +147,9 @@ const Showtimes = () => {
         text: "Please select a Showtime",
       });
     } else {
-
+      // Navigate to the seat booking page
       const url = `/seatbooking?movieName=${filmName}&theaterName=${theaterName}&showtime=${selectedShowtime}`;
-
-      // Use the navigate function to navigate to the next page
       navigate(url);
-      console.log("Selected Movie:", selectedMovie);
-      console.log("Selected Showtime:", selectedShowtime);
     }
   };
 
@@ -167,7 +186,7 @@ const Showtimes = () => {
           showtimes[selectedDate] && showtimes[selectedDate].length > 0 ? (
             <div>
               <h3 className="th-nm">{theaterName}</h3>
-              <h4 className="show-nm" > Showtimes for {selectedDate}</h4>
+              <h4 className="show-nm"> Showtime for {selectedDate}</h4>
               <div className="showtime-list">
                 {showtimes[selectedDate].map((showtime) => (
                   <div
@@ -182,8 +201,8 @@ const Showtimes = () => {
                 ))}
               </div>
               <button className="continue-button" onClick={handleContinueClick}>
-      Continue
-    </button>
+                Continue
+              </button>
             </div>
           ) : (
             <div>
@@ -192,13 +211,6 @@ const Showtimes = () => {
           )
         ) : null}
       </div>
-      {/* Alert message popup 
-      <div className={`alert ${alertMessage ? "show" : ""}`}>
-        {alertMessage}
-        <button className="close-buttonsachi" onClick={() => setAlertMessage(null)}>
-          &times;
-        </button>
-          </div>*/}
     </div>
   );
 };
