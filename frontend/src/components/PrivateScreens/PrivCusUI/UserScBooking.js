@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./UserScBooking.css";
+import swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { addPrivateScreenToCart } from "../../../redux/actions/cartActions";
 
 const UserScBooking = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { privscname, privscprice } = location.state;
   const [movies, setMovies] = useState([]);
+  const dispatch = useDispatch();
   const [bookingData, setBookingData] = useState({
     movie: "",
     bookingDate: "",
@@ -89,14 +93,40 @@ const UserScBooking = () => {
         .post("http://localhost:3013/private-screens/book", bookingData)
         .then((response) => {
           console.log("Booking data submitted successfully:", response.data);
-          window.alert("Booking added to cart successfully!");
+          swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Booking added to cart successfully!",
+          });
+
+          // Create a movie slip object with relevant details
+          const privScSlip = {
+            product: "", // Use seatId or another identifier
+            name: privscname, // Customize as needed
+            imageUrl: "", // Provide an image URL if available
+            price: privscprice,
+            countInStock: 1, // Set the available stock count
+            qty: 1, // Set the quantity to 1
+          };
+
+          // Dispatch the action to add the movie slip to the cart
+          dispatch(addPrivateScreenToCart(privScSlip));
+
+          // Optional: Provide UI feedback to the user
+          navigate("/ccc"); // Update the route as needed
         })
         .catch((error) => {
           console.error("Error submitting booking data:", error);
         });
-    }
-  };
-
+      } else {
+        // If there are validation errors, display an error message
+        swal.fire({
+          icon: "error",
+          title: "Validation Error",
+          text: "Please fill in all the required fields and correct validation errors.",
+        });
+      }
+    };
   return (
     <div className="ggk page-container">
       <div className="ggk booking-container">
@@ -112,7 +142,7 @@ const UserScBooking = () => {
               <option value="">Select Movie</option>
               {movies.map((movie) => (
                 <option key={movie._id} value={movie.title}>
-                  {movie.name}
+                  {movie.title}
                 </option>
               ))}
             </select>

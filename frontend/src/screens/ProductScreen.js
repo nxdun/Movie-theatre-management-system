@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useParams and useNavigate
 import { getProductDetails } from '../redux/actions/productActions';
 import { addToCart } from '../redux/actions/cartActions';
+import Swal from "sweetalert2";
 
 const ProductScreen = () => {
   const [qty, setQty] = useState(1);
@@ -22,7 +23,13 @@ const ProductScreen = () => {
 
   const addToCartHandler = () => {
     dispatch(addToCart(id, qty));//add to cart with id and qty
-    navigate(`/cart`); // Use navigate to perform navigation this need to channge later
+    navigate(`/shop`); // Use navigate to perform navigation this need to channge later
+    Swal.fire({
+      icon: 'success',
+      title: 'Item Added To Cart',
+      showConfirmButton: false,
+      timer: 900
+    })
   };
 
   return (
