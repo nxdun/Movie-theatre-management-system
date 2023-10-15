@@ -48,7 +48,7 @@ function Upslip() {
             title: "Booking Deleted Successfully",          
           });
           // Booking deleted successfully, navigate back to SeatSelect
-          navigate('/showtime');
+          navigate('/');
         } else {
           // Handle error here, show an error message
           console.error('Error deleting booking:', response.statusText);
