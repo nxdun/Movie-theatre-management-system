@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addConsessToCart } from '../../../../redux/actions/cartActions';
+import Swal from 'sweetalert2';
 
 export default function FoodAndBeverage({ prop = 'default value' }) {
   const [food, setFood] = useState([]);
@@ -52,8 +53,15 @@ export default function FoodAndBeverage({ prop = 'default value' }) {
     // Dispatch the action to add the movie slip to the cart
     dispatch(addConsessToCart(conSec));
 
+    Swal.fire({
+      icon: 'success',
+      title: 'Item Added To Cart',
+      showConfirmButton: false,
+      timer: 900
+    })
+
     // Optional: Provide UI feedback to the user
-    navigate('/cart'); // Update the route as needed
+     // Update the route as needed
   };
 
   const items = [
@@ -74,6 +82,7 @@ export default function FoodAndBeverage({ prop = 'default value' }) {
   ];
 
   const handleContinue = () => {
+    navigate('/shop');
     console.log();
   };
 
