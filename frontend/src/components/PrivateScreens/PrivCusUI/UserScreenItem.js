@@ -6,11 +6,16 @@ import Button from "../UIelements/Button";
 import { useNavigate } from "react-router-dom";
 
 const UserScreenItem = (props) => {
-  const navigate = useNavigate();
   console.log("ID: " + props.privScId);
+  const navigate = useNavigate();
 
   const handleBookNowClick = () => {
-    navigate(`/PrivScBooking/${props.privScId}`);
+    navigate(`/PrivScBooking/${props.privScId}`, {
+      state: {
+        privscname: props.privscname,
+        privscprice: props.privscprice,
+      },
+    });
   };
 
   return (

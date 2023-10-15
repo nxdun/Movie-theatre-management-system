@@ -7,7 +7,6 @@ router.post("/book", async (req, res) => {
   try {
     const {
       movie,
-      genre,
       bookingDate,
       parking,
       email,
@@ -21,7 +20,6 @@ router.post("/book", async (req, res) => {
 
     const booking = new PrivateScBooking({
       movie,
-      genre,
       bookingDate,
       parking,
       email,

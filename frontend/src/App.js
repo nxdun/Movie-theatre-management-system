@@ -12,7 +12,6 @@ import SupplierList from "./components/ConcessionManagement/components/SupplierL
 import Dashboard from "./components/Dashboard/Dashboard";
 import MainLayout from "./components/MainLayout/MainLayout";
 import Search from "./components/Movie/Search";
-
 /* vishwa screen and components*/
 // Screens
 import ShopScreen from "./screens/ShopScreen";
@@ -49,11 +48,12 @@ import AddMovie from "./components/Movie/AddMovie";
 import AllMovies from "./components/Movie/AllMovies";
 import UpdateMovie from "./components/Movie/UpdateMovie";
 import HomeMain from "./components/Movie/Home";
-import DetailsM from "./components/Movie/Details";
+import DetailsM from "./components/Movie/DetailsM";
 import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
 import Upslip from "./pages/Upslip";
 import Login from "./screens/Login";
+import FoodAndBeverage from "./components/ConcessionManagement/components/FoodAndBeverage/FoodAndBeverage.jsx";
 
 function App() {
   return (
@@ -86,7 +86,7 @@ function App() {
             element={<GenerateReport />}
           />
           <Route path="/PrivScUI" exact element={<PriUserScreen />} />
-          <Route path="/PrivScBooking" exact element={<UserScBooking />} />
+          <Route path="/PrivScBooking/:privScId" element={<UserScBooking />} />
         <Route path="/adv" exact element={<Advertisement />} />
         {/*vishwa's route paths  */}
         <Route element={<RouteWrapper />}>
@@ -100,13 +100,19 @@ function App() {
           <Route exact path="/payment" element={<Payment />} />
         </Route>
         <Route exact path="/paymentrecords" element={<PaymentRecords/>} />
+
+
+        
         {/*shehan's route paths  */}
         <Route path="/addMovie" exact element={<AddMovie />} />{" "}
         {/*we write exact eod for only display path=/ for exact /*/}
         <Route path="/movie" exact element={<AllMovies />} />
         <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
         <Route path="/" element={<HomeMain />} />
-        <Route path="/Details" element={<DetailsM />} />
+
+        <Route exact path="/details/:movieId" element={<DetailsM />} />
+        <Route path="/" exact element={<HomeMain/>} />
+        
         <Route path="/search" element={<Search />} />
 
         {/* Sachiras Pages */}
@@ -145,8 +151,11 @@ function App() {
           <Route index element={<Navigate to="/manager/dashboard" />} />
           <Route path="*" element={<Navigate to="/manager/dashboard" />} />
         </Route>
-        {/*Loggin route*/}
+      
+        {/*Login route*/}
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/ccc" element={<FoodAndBeverage />} />
+
       </Routes>
 
     </Router>

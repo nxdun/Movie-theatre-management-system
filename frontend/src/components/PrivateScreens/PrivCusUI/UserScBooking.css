@@ -1,0 +1,97 @@
+.ggk.page-container {
+    background-image: url("rampage-backgriund-img.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+
+
+.ggk.booking-container {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff; /* White background for the form */
+    border-radius: 5px;
+  }
+
+
+.ggk.form-group {
+  margin-bottom: 10px;
+}
+
+.ggk label {
+  font-weight: bold;
+  display: block;
+}
+
+.ggk input[type="text"],
+.ggk input[type="email"],
+.ggk select,
+.ggk textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.ggk input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.ggk .error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.ggk.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.ggk.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.ggk.cancel-button {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 12px 30px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.ggk.cancel-button:hover {
+  background-color: #999;
+}
+
+.ggk.hh1 {
+  font-size: 28px;
+  color: #023c7b;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}

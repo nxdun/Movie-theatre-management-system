@@ -4,13 +4,21 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import dolbyImage from './dolby.png';
 import Header from "../shared/HomeHeader";
+import { useDispatch } from 'react-redux';
+import { addMovieSlipToCart } from '../redux/actions/cartActions';
+
+
 
 function Slip() {
   // Get URL parameters
-  const { seatId, theaterId, price } = useParams();
+  const { seatId, theaterId, price } = useParams(); 
   const navigate = useNavigate();
   const [isDeleting, setIsDeleting] = useState(false);
   const [bookingId, setBookingId] = useState(null);
+  const movieName = 'Avatar 2';
+  const movieTime = '10.30 AM';
+  const dispatch = useDispatch();
+ 
 
 
 
@@ -53,6 +61,25 @@ function Slip() {
         setIsDeleting(false);
       });
   };
+  
+  const handleAddToCart = () => {
+    // Create a movie slip object with relevant details
+    const movieSlip = {
+      product: seatId, // Use seatId or another identifier
+      name: 'Movie Slip', // Customize as needed
+      imageUrl: '', // Provide an image URL if available
+      price: price,
+      countInStock: 1, // Set the available stock count
+      qty: 1, // Set the quantity to 1
+    };
+
+    // Dispatch the action to add the movie slip to the cart
+    dispatch(addMovieSlipToCart(movieSlip));
+
+    // Optional: Provide UI feedback to the user
+    navigate('/cart'); // Update the route as needed
+
+  };
 
   return (
     <div>
@@ -67,7 +94,8 @@ function Slip() {
     <div className="slip-container">
       <div className="bill-details">
         <h4>GALAXY CINEMA, Colombo</h4>
-        <p>Movie: AVATAR 2</p>
+        <p>Movie: {movieName}</p>
+        <p>Show Time: {movieTime}</p>
         <p>Selected Seat IDs: {seatId}</p>
         <p>Theater ID: {theaterId}</p>
         <p>Total Price: Rs.{price}</p>
@@ -83,9 +111,10 @@ function Slip() {
           <Link to={`/SeatUpdate/${bookingId}/${seatId}/${theaterId}`} className="buttonx">
             Add More Seats
           </Link>
-          <Link to= "/shop">
-          <button className="buttonx">Continue</button>
-          </Link>
+          
+          <button className="buttonx" onClick={handleAddToCart}>Continue</button>
+          
+          
         </div>
       )}
     </div>
