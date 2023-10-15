@@ -1,4 +1,3 @@
-/* inputPrivRoom.css */
 
 /* Style for the form container */
 .privscreen-form {
@@ -14,6 +13,14 @@
 /* Style for form control container */
 .form-control {
   margin-bottom: 15px;
+  
+}
+
+.form-control label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 /* Style for valid form controls */
@@ -89,4 +96,13 @@ button:disabled {
 /* Add a hover effect for the description field */
 .form-control textarea:hover {
   border-color: #007bff; /* Change border color on hover */
+}
+
+
+.ggs {
+  font-size: 28px; /* Increase font size */
+  font-weight: 650;/* Make it bold */
+  margin-bottom: 20px; /* Add some bottom margin */
+  color: #00008B; /* Dark blue color */
+  text-align: center; /* Center the text */
 }

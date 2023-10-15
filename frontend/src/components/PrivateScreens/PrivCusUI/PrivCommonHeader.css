@@ -1,0 +1,83 @@
+/* Add this CSS to your existing stylesheet */
+.pri-site-header {
+    border-bottom: 1px solid #ccc;
+    padding: 0.5em 1em;
+    background-color: var(--black);
+  }
+  
+  .pri-site-header::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .pri-site-identity {
+    float: left;
+  }
+  
+  .pri-site-identity h1 {
+    font-size: 1.5em;
+    margin: 0.7em 0 0.3em 0;
+    display: inline-block;
+  }
+  
+  .pri-site-identity img {
+    max-width: 55px;
+    float: left;
+    margin: 0 10px 0 0;
+  }
+  
+  .pri-site-navigation {
+    float: right;
+    text-align: center;
+    margin-right: 5px;
+  }
+  
+  .pri-site-navigation ul,
+  .pri-nav {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .pri-nav li {
+    display: inline-block;
+    margin: 1.4em 1em 1em 1em;
+  }
+  
+  .pri-li {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+    transition: color 0.3s; /* Add a smooth color transition effect */
+  }
+  
+  .pri-icon {
+    padding-top: 10px;
+    width: 100px;
+    height: 100px;
+    transform: scale(2.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    margin-bottom: 3px;
+    animation: rotate 10s linear infinite; /* Adjust the duration as needed */
+  }
+  .pri-headerr-h1-custommm {
+    font-size: 24px;
+    margin-left: 100px;
+    margin-right: 100px;
+    text-align: center;
+    border: 4px solid var(--green);
+    border-radius: 20px;
+    display: inline-block;
+    padding: 20px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .pri-li:hover {
+    color: blue;
+  }
+  
+  
