@@ -42,15 +42,7 @@ export default function DetailsM() {
           <div className="contn3">
             <h2 className="hh2">Movie Trailer</h2>
           </div>
-          <iframe
-            className="video"
-            width="60%"
-            height="500px"
-            src={movie.releaseDate} // Use the actual video URL from the movie details
-            frameBorder="0"
-            allowFullScreen
-            title="Movie Trailer"
-          ></iframe>
+          
 
           <img
             className="ima2"

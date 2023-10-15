@@ -60,7 +60,7 @@ createTheme(
 const LoyalityTable = (props) => {
   //querying search term
   const [searchTerm, setSearchTerm] = useState("");
-  
+
   //column decalration
   const [columns, setColumns, sendRow] = useState([
     {
@@ -189,32 +189,10 @@ const LoyalityTable = (props) => {
     };
 
     fetchData();
-  }, []); // Emptyy dependency array ensures this effect ruuns once when the component mounts
-  //usesate for selected rows
-  const [setFormValues, setsetFormValues] = useState([]); //selected row ids
+  }, []); 
+  
 
-  //use effect for fetching data(loyality)
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/loyality/");
-        const data = response.data;
-        setFormValues({
-          startingPoints: data.startingPoints,
-          maximumPoints: data.maximumPoints,
-          incrementValue: data.incrementValue,
-          pointToCashConversionRate: data.pointToCashConversionRate,
-          resetMonthPeriod: data.resetMonthPeriod,
-          enableAutomatedPointReset: data.enableAutomatedPointReset,
-          enableManualConfig: data.enableManualConfig,
-        });
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+ 
 
   //filter the data according to the search term for UserName
   const newData = data.filter((item) => {

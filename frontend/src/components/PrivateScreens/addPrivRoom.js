@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./inputPrivRoom.css";
+import swal from "sweetalert2";
 
 
 const AddPrivRoom = () => {
@@ -78,6 +79,16 @@ const AddPrivRoom = () => {
     }
 
     setFieldErrors(fieldValidationErrors);
+
+    if (!isFormValid) {
+      // Display an error popup using swal
+      swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please check form errors before submitting.",
+      });
+    }
+
     return isFormValid;
   };
 
@@ -107,9 +118,15 @@ const AddPrivRoom = () => {
       });
 
       if (response.status === 201) {
-        window.alert("Room added successfully!");
+        swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Private Screen added successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/privatescreen/dashboard");
-      } else {
+      } else { 
         window.alert("Failed to add room. Please try again.");
       }
     } catch (err) {

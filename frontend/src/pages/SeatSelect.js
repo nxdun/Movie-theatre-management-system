@@ -9,6 +9,7 @@ import selImage from './sel.png';
 import { useNavigate } from 'react-router-dom';
 import Header from "../shared/HomeHeader";
 import { useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 function SeatSelect() {
@@ -61,7 +62,12 @@ function SeatSelect() {
 
   const handleContinue = () => {
     if (selectedButtons.length === 0) {
-      alert('Please select at least one seat before continuing.');
+      Swal.fire({
+        icon: "warning",
+        title: "Oops... You haven't selected any seats!",
+        text: " Please select at least one seat before continuing!",
+      });
+     
       return;
     }
 
@@ -87,7 +93,11 @@ function SeatSelect() {
       })
       .catch((error) => {
         console.error('Error:', error);
-        alert('Booking failed. Please try again.');
+        Swal.fire({
+          icon: "warning",
+          title: "Booking failed. Please try again",          
+        });
+        
       });
   };
 
@@ -113,12 +123,9 @@ function SeatSelect() {
     <div>
       <Header/>
       <div className="sticky-div">
-        <h1>{movieName}</h1>
-        <h4>GALAXY CINEMA, Colombo</h4>
-        <img src={dolbyImage} alt="screen" border="0" className="dolby" />
-        <p className='the1'>{theaterName}</p>
-        <p className='the2'>{showtime}</p>
-        
+      <p className='the1'>{theaterName}</p>
+        <p className='filmm'>{movieName}</p>
+        <p className='the2'>{showtime}</p>   
       </div>
 
       <div>

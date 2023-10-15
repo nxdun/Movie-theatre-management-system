@@ -2,14 +2,12 @@
 
 /* Container for the bill */
 .slip-container {
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  padding: 20px;
-  width: 400px;
+  width: 1000px;
   height: 500px;
   margin: 0 auto;
   margin-top: 50px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: #ffffff;
+  background-image: url('ticket2.png');
 }
 
 /* Header section */
@@ -24,17 +22,24 @@
 
 /* Bill details section */
 .bill-details {
-  font-size: 16px;
+  font-size: 20px;
+  margin-top: 130px;
+  margin-left: 450px;
+  font-weight: bold;
+
+  
 }
 
 /* Action buttons */
 .action-buttons {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1px;
+  margin-left: 160px;
 }
 
 .buttonx {
   margin: 10px;
+  margin-top: 50px;
   padding: 10px 20px;
   background-color: #004b00;
   color: #ffffff;
@@ -67,3 +72,10 @@
 .button:hover {
   background-color: #005bb5;
 }
+
+.aaabb{
+  font-size: 25px;
+  margin-left: 550px;
+  font-weight: bold;
+}
+

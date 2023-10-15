@@ -1,10 +1,10 @@
 import './Upslip.css';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import dolbyImage from './dolby.png';
 import Header from "../shared/HomeHeader";
 import { useDispatch } from 'react-redux';
 import { addMovieSlipToCart } from '../redux/actions/cartActions';
+import Swal from 'sweetalert2';
 
 function Upslip() {
   // Get URL parameters
@@ -43,8 +43,12 @@ function Upslip() {
     })
       .then((response) => {
         if (response.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Booking Deleted Successfully",          
+          });
           // Booking deleted successfully, navigate back to SeatSelect
-          navigate('/showtime');
+          navigate('/');
         } else {
           // Handle error here, show an error message
           console.error('Error deleting booking:', response.statusText);
@@ -69,26 +73,24 @@ function Upslip() {
 
     // Dispatch the action to add the movie slip to the cart
     dispatch(addMovieSlipToCart(movieSlip));
+    Swal.fire({
+      icon: "success",
+      title: "Booking Added To Cart Successfully!",          
+    });
 
     // Optional: Provide UI feedback to the user
-    navigate('/cart'); // Update the route as needed
+    navigate('/ccc'); // Update the route as needed
 
   };
 
   return (
     <div>
       <Header/>
-      <div className="sticky-div">
-        <h1>{movieName}</h1>
-        <h4>GALAXY CINEMA, Colombo</h4>
-        <img src={dolbyImage} alt="screen" border="0" className="dolby" />
-        
-      </div>
-
+      
     <div className="slip-container">
-      <div className="bill-details">
-        <h4>GALAXY CINEMA, Colombo</h4>
-        <p>Movie: {movieName}</p>
+      <div className="bill-detailss">
+        <p className='aaaa'>{movieName}</p>
+        <p className='bbbb'>GALAXY CINEMA, Colombo</p>        
         <p>Show Time: {showtime}</p>
         <p>Selected Seat IDs: {seatId}</p>
         <p>{theaterName}</p>

@@ -379,7 +379,7 @@ const base64EncodedTemplate = btoa(customTemplate);
   "products": cartItems.map((item) => ({
     "quantity": item.qty,
     "description": item.name,
-    "tax-rate": 10,
+    "tax-rate":  -10,
     "price": item.price
   })),
   // The message you would like to display on the bottom of your invoice
@@ -409,7 +409,7 @@ const base64EncodedTemplate = btoa(customTemplate);
       // "price": "Prijs", // Defaults to 'Price'
       // "product-total": "Totaal", // Defaults to 'Total'
       // "total": "Totaal", // Defaults to 'Total'
-      // "vat": "btw" // Defaults to 'vat'
+       "vat": "discount" // Defaults to 'vat'
   },
             
         };
