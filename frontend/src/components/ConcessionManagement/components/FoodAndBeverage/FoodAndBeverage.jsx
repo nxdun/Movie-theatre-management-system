@@ -4,7 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 
-export function FoodAndBeverage({ prop = 'default value' }) {
+export default function FoodAndBeverage({ prop = 'default value' }) {
   const [food, setFood] = useState([]);
   const [beverage, setBeverage] = useState([]);
   const [dataLoading, setDataLoading] = useState(false);
@@ -17,7 +17,7 @@ export function FoodAndBeverage({ prop = 'default value' }) {
   const getData = () => {
     setDataLoading(true);
     axios
-      .get("http://localhost:3013/product/")
+      .get("/product/")
       .then(res => {
         const food = (res.data.products || []).filter(val => val.P_type === 'Food').map(val => ({ ...val, key: val._id }));
         const beverage = (res.data.products || []).filter(val => val.P_type === 'Beverage').map(val => ({ ...val, key: val._id }));
@@ -43,14 +43,14 @@ export function FoodAndBeverage({ prop = 'default value' }) {
       key: '1',
       label: 'Food',
       children: <Flex wrap="wrap" gap="large" style={{ padding: 20 }}>
-        {food.map((item) => <FoodAndBeverage item={item} onAddItem={handleAddItem} />)}
+        {food.map((item) => <FoodAndBeverageItem item={item} onAddItem={handleAddItem} />)}
       </Flex>,
     },
     {
       key: '2',
       label: 'Beverage',
       children: <Flex wrap="wrap" gap="large" style={{ padding: 20 }}>
-        {beverage.map((item) => <FoodAndBeverage item={item} onAddItem={handleAddItem} />)}
+        {beverage.map((item) => <FoodAndBeverageItem item={item} onAddItem={handleAddItem} />)}
       </Flex>
     },
   ];
@@ -63,12 +63,12 @@ export function FoodAndBeverage({ prop = 'default value' }) {
   </div>;
 }
 
-function FoodAndBeverage({ item, onAddItem }) {
+function FoodAndBeverageItem({ item, onAddItem }) {
   const [q, setQ] = useState(0);
-  handleAddItem = () => {
+  const handleAddItem = () => {
     onAddItem(item, q)
   }
-  handleQtyChange = (q) => {
+  const handleQtyChange = (q) => {
     setQ(q)
   }
   return <Card
@@ -87,7 +87,7 @@ function FoodAndBeverage({ item, onAddItem }) {
     ]}
   >
     <Card.Meta
-      title={item.P_name}
+      title={`${item.P_name} - Rs. ${item.P_price}`}
       description={item.P_description}
     />
   </Card>;
