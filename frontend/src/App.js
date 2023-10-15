@@ -131,11 +131,11 @@ function App() {
 
         {/* omins Pages */}
         <Route path="/seatbooking" element={<SeatSelect />} />
-        <Route path="/Slip/:seatId/:theaterId/:price" element={<Slip />} />
-        <Route path="/Upslip/:selectedSeats/:theaterId/:price" element={<Upslip />} />
+        <Route path="/Slip/:seatId/:theaterName/:movieName/:showtime/:price" element={<Slip />} />
+        <Route path="/Upslip/:selectedSeats/:theaterName/:movieName/:showtime/:totalPrice" element={<Upslip />} />
         <Route path="/SeatManage" element={<SeatManage />} />
         <Route
-          path="/SeatUpdate/:bookingId/:seatId/:theaterId"
+          path="/SeatUpdate/:bookingId/:seatId/:theaterName/:movieName/:showtime"
           element={<SeatUpdate />}
         />
 

@@ -10,7 +10,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Header from "../shared/HomeHeader";
 
 function SeatUpdate() {
-  const { bookingId, seatId: gotSeatId, theaterId } = useParams(); // Get URL parameters
+  const { bookingId, seatId: gotSeatId, theaterName, movieName, showtime } = useParams(); // Get URL parameters
   const [bookedSeats, setBookedSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const navigate = useNavigate();
@@ -103,7 +103,7 @@ function SeatUpdate() {
         console.log(response.data);
 
         setSelectedSeats([]); // Clear selected seats after booking
-        navigate(`/Upslip/${selectedSeats}/${theaterId}/${totalPrice}`);
+        navigate(`/Upslip/${selectedSeats}/${theaterName}/${movieName}/${showtime}/${totalPrice}`);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -141,9 +141,11 @@ function SeatUpdate() {
     <div>
       <Header/>
       <div className="sticky-div">
-        <h1>AVATAR 2</h1>
+      <h1>{movieName}</h1>
         <h4>GALAXY CINEMA, Colombo</h4>
-        <h3>Update Seats</h3>
+        <img src={dolbyImage} alt="screen" border="0" className="dolby" />
+        <p className='the1'>{theaterName}</p>
+        <p className='the2'>{showtime}</p>
         
         <img src={dolbyImage} alt="screen" border="0" className="dolby" />
       </div>

@@ -68,8 +68,8 @@ function SeatSelect() {
     // Prepare booking data
     const bookingData = {
       bookingDate: new Date(),
-      showTime: '6.00PM',
-      theaterId: 'A',
+      showTime: showtime,
+      theaterId: theaterName,
       seatId: selectedButtons.join(', '), // Join selected seat IDs
       price: selectedButtons.length * 1000, // Calculate price based on the number of selected seats
       customerId: 'cus4',
@@ -83,7 +83,7 @@ function SeatSelect() {
         setSelectedButtons([]);
         
         // Navigate to the slip page and pass seat information as URL parameters
-        navigate(`/Slip/${bookingData.seatId}/${bookingData.theaterId}/${bookingData.price}`);
+        navigate(`/Slip/${bookingData.seatId}/${theaterName}/${movieName}/${showtime}/${bookingData.price}`);
       })
       .catch((error) => {
         console.error('Error:', error);
