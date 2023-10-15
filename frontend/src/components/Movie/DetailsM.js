@@ -5,6 +5,8 @@ import Header from "../../shared/HomeHeader";
 import './CSS/AllMovies.css';
 import './CSS/DetailM.css';
 import 'jspdf-autotable';
+import { Link } from 'react-router-dom';
+
 
 export default function DetailsM() {
   const { movieId } = useParams();
@@ -31,6 +33,13 @@ export default function DetailsM() {
       {movie ? (
         <div>
           <div className="contD">
+
+          <Link to={`/showtime/${movie.title}`}>
+              <button className="button8">Buy Tickets</button>
+          </Link>
+
+
+
             <a href="/showtime">
               <button className="button8">Buy Tickets</button>
             </a>
