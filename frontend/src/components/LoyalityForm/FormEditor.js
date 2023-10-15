@@ -72,6 +72,31 @@ const FormCreator = (props) => {
     }
   };
 
+  const [Rules, setRules] = useState([]);
+
+   //use effect for fetching data(loyality)
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/loyality/");
+        const data = response.data;
+        setRules({
+          startingPoints: data.startingPoints,
+          maximumPoints: data.maximumPoints,
+          incrementValue: data.incrementValue,
+          pointToCashConversionRate: data.pointToCashConversionRate,
+          resetMonthPeriod: data.resetMonthPeriod,
+          enableAutomatedPointReset: data.enableAutomatedPointReset,
+          enableManualConfig: data.enableManualConfig,
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const validate = (values) => {
     const errors = {};
     const usernameRegex = /^[a-zA-Z0-9_]{5,15}$/;
@@ -80,6 +105,8 @@ const FormCreator = (props) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const loyaltyPointsRegex = /^\d+(\.\d{1,2})?$/;
 
+    //if for checking maximumPoints is less or equal and greater than startingPoints
+   
     if (!values.UserName) {
       errors.UserName = "Username is required!";
     } else if (!usernameRegex.test(values.UserName)) {
@@ -125,6 +152,15 @@ const FormCreator = (props) => {
 
     if (!values.BirthDate) {
       errors.BirthDate = "BirthDate is mandatory!";
+    }
+
+    console.log("values.LoyaltyPoints < Rules.startingPoints  ",(values.LoyaltyPoints < Rules.startingPoints))
+    if (values.LoyaltyPoints < Rules.startingPoints ) {
+      errors.LoyaltyPoints = "Please check loyalty rules";
+    }
+    console.log("values.LoyaltyPoints > Rules.maximumPoints", (values.LoyaltyPoints > Rules.maximumPoints))
+    if (values.LoyaltyPoints > Rules.maximumPoints) {
+      errors.LoyaltyPoints = "Please check loyalty rules";
     }
 
     return errors;
