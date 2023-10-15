@@ -50,13 +50,16 @@ const LoginScreen = () => {
             placeholder="Enter password"
           />
         </div>
-        <button type="submit" className="submitx">
+        <button 
+        type="submit" className="submitx">
           <span className="sign-text">Sign in</span>
         </button>
         <p className="signup-link">
           No account?{" "}
           <a href="" className="up">
             Sign up!
+          </a> <a href="/manager" className="up">
+            are you admin?
           </a>
         </p>
       </form>
