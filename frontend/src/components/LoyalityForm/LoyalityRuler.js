@@ -196,7 +196,7 @@ const LoyalityRuler = () => {
               />
             </div>
             <p className="error">{formErrors.resetMonthPeriod}</p>
-            {Object.keys(formErrors).length === 0 && isSubmit ? (
+             {Object.keys(formErrors).length === 0 && isSubmit ? (
         <div className="ui message success">Data submitted successfully</div>
       ) : null}
 

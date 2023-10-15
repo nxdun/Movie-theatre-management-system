@@ -113,6 +113,7 @@ export default function AllMovies() {
                 <td><a href={'/updateMovie/' + i._id}><button className="button4">Update</button></a></td>
               </tr>
             );
+            
           })}
         </table>
 

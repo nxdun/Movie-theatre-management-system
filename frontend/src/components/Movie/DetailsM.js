@@ -5,6 +5,8 @@ import Header from "../../shared/HomeHeader";
 import './CSS/AllMovies.css';
 import './CSS/DetailM.css';
 import 'jspdf-autotable';
+import { Link } from 'react-router-dom';
+
 
 export default function DetailsM() {
   const { movieId } = useParams();
@@ -30,25 +32,27 @@ export default function DetailsM() {
       <Header />
       {movie ? (
         <div>
-          <div className="contD">
-            <a href="/showtime">
-              <button className="button8">Buy Tickets</button>
-            </a>
-          </div>
+          
+          
+          <img className="ima2" src={movie.director} alt="Movie Poster" width="95%" height="600px" />
+          <Link to={`/showtime/${movie.title}`}>
+              <button className="button8">Buy Tickets </button>
+          </Link>
+          
+        
+
+        
+          
           <div className="contn3">
             <h2 className="hh2">Movie Trailer</h2>
           </div>
-          <iframe
-            className="video"
-            width="60%"
-            height="500px"
-            src={movie.releaseDate} // Use the actual video URL from the movie details
-            frameBorder="0"
-            allowFullScreen
-            title="Movie Trailer"
-          ></iframe>
+          
 
-      <img className="ima2" src={movie.director} alt="Movie Poster" width="95%" height="100%" />
+        <iframe width="95%" height="700px" src="https://www.youtube.com/embed/uYPbbksJxIg" frameborder="0" allowfullscreen></iframe>
+        <iframe width="95%" height="700px" src={movie.languages} frameborder="0" allowfullscreen></iframe>
+
+
+      
 
         </div>
       ) : (

@@ -116,7 +116,11 @@ function App() {
         <Route path="/search" element={<Search />} />
 
         {/* Sachiras Pages */}
-        <Route exact path="/showtime" element={<Showtimes />} />
+   
+
+        <Route exact path="/showtime/:movieId" element={<Showtimes />} />
+
+
         <Route path="/sheduleMovie" exact element={<AddMoviesMainPage />} />
         <Route
           path="/calender"
