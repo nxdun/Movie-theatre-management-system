@@ -110,7 +110,6 @@ function SeatSelect() {
         <h1>AVATAR 2</h1>
         <h4>GALAXY CINEMA, Colombo</h4>
         <img src={dolbyImage} alt="screen" border="0" className="dolby" />
-        
       </div>
 
       <div>
