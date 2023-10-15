@@ -12,7 +12,6 @@ import SupplierList from "./components/ConcessionManagement/components/SupplierL
 import Dashboard from "./components/Dashboard/Dashboard";
 import MainLayout from "./components/MainLayout/MainLayout";
 import Search from "./components/Movie/Search";
-
 /* vishwa screen and components*/
 // Screens
 import ShopScreen from "./screens/ShopScreen";
@@ -35,6 +34,7 @@ import GenerateReport from "./components/PrivateScreens/viewPrivScBookingReport"
 import EditPrivateRoom from "./components/PrivateScreens/editPrivRoom";
 import LoyalityDash from "./screens/LoyalityDash";
 import Advertisement from "./screens/Advertisement";
+import PaymentRecords from "./screens/paymentRecords";
 //userscreens
 import UserScBooking from "./components/PrivateScreens/PrivCusUI/UserScBooking";
 import PriUserScreen from "./components/PrivateScreens/PrivCusUI/PrivCusUI";
@@ -48,11 +48,12 @@ import AddMovie from "./components/Movie/AddMovie";
 import AllMovies from "./components/Movie/AllMovies";
 import UpdateMovie from "./components/Movie/UpdateMovie";
 import HomeMain from "./components/Movie/Home";
-import DetailsM from "./components/Movie/Details";
+import DetailsM from "./components/Movie/DetailsM";
 import SeatSelect from "./pages/SeatSelect";
 import Slip from "./pages/Slip";
 import Upslip from "./pages/Upslip";
 import Login from "./screens/Login";
+import { components } from "react-select";
 
 function App() {
   return (
@@ -98,13 +99,20 @@ function App() {
           <Route exact path="/cancel" element={<Cancel />} />
           <Route exact path="/payment" element={<Payment />} />
         </Route>
+        <Route exact path="/paymentrecords" element={<PaymentRecords/>} />
+
+
+        
         {/*shehan's route paths  */}
         <Route path="/addMovie" exact element={<AddMovie />} />{" "}
         {/*we write exact eod for only display path=/ for exact /*/}
         <Route path="/movie" exact element={<AllMovies />} />
         <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
         <Route path="/" element={<HomeMain />} />
-        <Route path="/Details" element={<DetailsM />} />
+
+        <Route exact path="/details/:movieId" element={<DetailsM />} />
+        <Route path="/" exact element={<HomeMain/>} />
+        
         <Route path="/search" element={<Search />} />
 
         {/* Sachiras Pages */}

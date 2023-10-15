@@ -22,6 +22,7 @@ const paymentSchema = new mongoose.Schema({
     },
   ],
   totalCartPrice: Number,
+  timeStamp: { type: Date, default: Date.now },
 });
 
 const Payment = mongoose.model('Payment', paymentSchema);

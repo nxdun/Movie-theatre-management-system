@@ -21,18 +21,16 @@
   
   .scard:hover {
     background-position: -100px 100px, -100px 100px;
-    transform: rotate3d(0.5, 1, 0, 30deg);
+    transform: rotate3d(0.5, 1, 0, 20deg);
   }
   
   .pImage {
     width: 250px;
-    height: 250px;
     object-fit: contain;
-    border-radius: 8px;
   }
 
   .content-box {
-    background: rgba(4, 193, 250, 0.732);
+    background: rgba(0, 0, 0, 0.732);
     /* border-radius: 10px 100px 10px 10px; */
     transition: all 0.5s ease-in-out;
     padding: 60px 25px 25px 25px;
@@ -46,6 +44,7 @@
     font-weight: 900;
     transition: all 0.5s ease-in-out;
     transform: translate3d(0px, 0px, 50px);
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
   }
   
   .content-box .info__name:hover{
@@ -54,11 +53,12 @@
   
   .content-box .info__description{
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: #f2f2f2;
     transition: all 0.5s ease-in-out;
     transform: translate3d(0px, 0px, 30px);
+    text-shadow: 0 0 3px #0c0b0b, 0 0 5px #21005e;
   }
   
   .content-box .info__description:hover {
@@ -69,7 +69,7 @@
     margin-top: 10px;
     font-size: 20px;
     font-weight: 700;
-    color: #0e0d0d;
+    color: #ffffff;
     transition: all 0.5s ease-in-out;
     transform: translate3d(0px, 0px, 30px);
 

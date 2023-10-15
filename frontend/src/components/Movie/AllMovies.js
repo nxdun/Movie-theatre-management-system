@@ -5,6 +5,7 @@ import { handleDelete } from "./DeleteMovie";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "../../shared/HomeHeader";
 import { Link } from "react-router-dom";
+import jsPdf from 'jspdf';
 
 
 export default function AllMovies() {
@@ -33,6 +34,47 @@ export default function AllMovies() {
       alert(error.message); // Handle the error as neededd
     }
   };
+
+  function generatePdf() {
+
+    const unit = "pt"
+    const size = "A3"
+    const orientation = "portrait"
+
+    const marginLeft = 40;
+    const doc = new jsPdf(orientation, unit, size);
+
+    //const imageData = logo
+
+
+
+    doc.setFontSize(15);
+
+    const title = "                   Doctor Appoinments Table"
+
+    const headers = [
+        ["Doctor", "Patient Name", "Nic", "Contact Details", "Date & Time", "Number", "Status"]
+    ];
+
+    const data = Movies.map((rep) => [
+        rep.title + " ",
+        rep.genre + " ",
+
+        
+    ])
+
+    let content = {
+        startY: 50,
+        head: headers,
+        body: data,
+    }
+    //doc.addImage(imageData, "JPEG", 10, 10, 50, 50);
+    doc.text(title, marginLeft, 40);
+    doc.autoTable(content);
+    doc.save("AppoinmentReport.pdf");
+    //toast("Item Report Download");
+
+};
 
   return (
     <div>
@@ -73,6 +115,8 @@ export default function AllMovies() {
             );
           })}
         </table>
+
+        <button type="button" style={{ background: "#2F4FAA" }} onClick={function () { generatePdf() }} ><b>Download All details</b></button>
 
 
       </div>

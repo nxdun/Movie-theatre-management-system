@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Header from "../../../shared/HomeHeader";
+import Header from "./PrivCusHeader";
 import UservScreenList from "./UserScreenList";
 import "../../../screens/PrivateDashboard.css";
 

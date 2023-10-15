@@ -49,7 +49,7 @@ export default function MainLayout() {
       label: 'Private Screen Management',
     },
     {
-      key: '/dashboard',
+      key: '/paymentrecords',
       icon: <PieChartOutlined />,
       label: 'Payment',
     }, {
