@@ -8,6 +8,9 @@ const ReloadMe = () => {
 };
 
 const FormCreator = () => {
+  
+
+  
   const initialValues = {
     UserName: "",
     FirstName: "",
@@ -27,6 +30,7 @@ const FormCreator = () => {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  
 
   // Form validation
   const handleChange = (e) => {
@@ -77,6 +81,7 @@ const FormCreator = () => {
       errors.UserName =
         "Username must be 5-15 characters and can only include letters, numbers, and underscores.";
     }
+    
 
     if (!values.FirstName) {
       errors.FirstName = "First Name is required!";
@@ -123,9 +128,6 @@ const FormCreator = () => {
 
   return (
     <div className="modal-container">
-      {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="ui message success">Data submitted successfully</div>
-      ) : null}
 
       <form onSubmit={handleSubmit} className="modal-form">
         <div className="ui divider"></div>
@@ -274,6 +276,9 @@ const FormCreator = () => {
                 checked={formValues.optInForMarketing}
                 onChange={handleChange}
               />
+              {Object.keys(formErrors).length === 0 && isSubmit ? (
+        <div className="ui message success">Data submitted successfully</div>
+      ) : null}
             </div>
             <button className="sub-button">Add</button>
           </div>

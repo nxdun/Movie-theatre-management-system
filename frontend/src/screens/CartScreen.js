@@ -38,7 +38,6 @@ const CartScreen = () => {
 
   //loyality
   const [clicked, setClicked] = useState(false);
-  console.log(clicked);
   //handler  to switch setClicked between truefalse
   const handleClick = () => {
     if (reduction !== null && reduction > 0 && clicked === true) {
@@ -49,8 +48,8 @@ const CartScreen = () => {
     }
     setClicked(!clicked);
   };
-  const cusId = "650eb1a3a2be68cba0892a86";
-  let reduction = null; // Initialize reduction as null
+  const cusId = "6528c2a2902183a8ffbd0681";
+  let reduction = 100; // Initialize reduction as null
   const getLoyaltyPoints = () => {
     // Use Promise.all to make concurrent requests
     Promise.all([
@@ -88,7 +87,7 @@ const CartScreen = () => {
             reduction = null;
             break;
         }
-        console.log("pre", reduction);
+       
         if (reduction > 0 && customer.customer.Type === true) {
           const pointToCashConversionRate = loyalty.pointToCashConversionRate;
           reduction *= pointToCashConversionRate;
@@ -166,7 +165,7 @@ const CartScreen = () => {
 
         {cartItems.length === 0 ? (
           <div>
-            Your Cart is Empty <Link to="/shop">Go Back</Link>
+            Your Cart is Empty <Link to="/">Go Back</Link>
           </div> //0 == no items in cart if cart is empty show go back
         ) : (
           cartItems.map((item) => (
