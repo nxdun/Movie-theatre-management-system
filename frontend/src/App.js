@@ -109,18 +109,13 @@ function App() {
         <Route path="/movie" exact element={<AllMovies />} />
         <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
         <Route path="/" element={<HomeMain />} />
-
         <Route exact path="/details/:movieId" element={<DetailsM />} />
-        <Route path="/" exact element={<HomeMain/>} />
-        
+        <Route path="/" exact element={<HomeMain/>} />  
         <Route path="/search" element={<Search />} />
 
         {/* Sachiras Pages */}
    
-
-        <Route exact path="/showtime/:movieId" element={<Showtimes />} />
-
-
+        <Route exact path="/showtime/:movieNM" element={<Showtimes />} />
         <Route path="/sheduleMovie" exact element={<AddMoviesMainPage />} />
         <Route
           path="/calender"

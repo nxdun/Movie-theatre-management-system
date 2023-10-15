@@ -21,6 +21,7 @@ import "./common.css";
 import movieSheduler from "./movieSheduler.module.css";
 import { EditFilled, DeleteFilled } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY/MM/DD";
@@ -408,7 +409,7 @@ function AddMoviesMainPage(props) {
           }}
         >
           <Breadcrumb style={{ margin: "10px 0" }}>
-            <Breadcrumb.Item>Movie</Breadcrumb.Item>
+            <Breadcrumb.Item> <Link to= "/manager/dashboard">Manager DashBoard</Link></Breadcrumb.Item>
             <Breadcrumb.Item>Shedule</Breadcrumb.Item>
             <Breadcrumb.Item>Add</Breadcrumb.Item>
           </Breadcrumb>
