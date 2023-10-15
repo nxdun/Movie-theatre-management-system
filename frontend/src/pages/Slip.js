@@ -6,6 +6,7 @@ import dolbyImage from './dolby.png';
 import Header from "../shared/HomeHeader";
 import { useDispatch } from 'react-redux';
 import { addMovieSlipToCart } from '../redux/actions/cartActions';
+import Swal from 'sweetalert2';
 
 
 
@@ -46,6 +47,10 @@ function Slip() {
     })
       .then((response) => {
         if (response.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Booking Deleted Successfully",          
+          });
           // Booking deleted successfully, navigate back to SeatSelect
           navigate('/showtime');
         } else {
@@ -73,26 +78,24 @@ function Slip() {
 
     // Dispatch the action to add the movie slip to the cart
     dispatch(addMovieSlipToCart(movieSlip));
+    Swal.fire({
+      icon: "success",
+      title: "Booking Added To Cart Successfully!",          
+    });
 
     // Optional: Provide UI feedback to the user
-    navigate('/cart'); // Update the route as needed
+    navigate('/ccc'); // Update the route as needed
 
   };
 
   return (
     <div>
       <Header/>
-      <div className="sticky-div">
-        <h1>{movieName}</h1>
-        <h4>GALAXY CINEMA, Colombo</h4>
-        <img src={dolbyImage} alt="screen" border="0" className="dolby" />
-        
-      </div>
-
+      
     <div className="slip-container">
-      <div className="bill-details">
-        <h4>GALAXY CINEMA, Colombo</h4>
-        <p>Movie: {movieName}</p>
+      <p className='aaabb'>{movieName}</p>
+      <div className="bill-details">  
+        <p>GALAXY CINEMA, Colombo</p>        
         <p>Show Time: {showtime}</p>
         <p>Selected Seat IDs: {seatId}</p>
         <p>{theaterName}</p>

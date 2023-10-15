@@ -2,13 +2,12 @@ import './SeatUpdate.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import screenImage from './R.png';
-import dolbyImage from './dolby.png';
 import unImage from './un.png';
 import avImage from './av.png';
 import selImage from './sel.png';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from "../shared/HomeHeader";
-
+import Swal from 'sweetalert2';
 function SeatUpdate() {
   const { bookingId, seatId: gotSeatId, theaterName, movieName, showtime } = useParams(); // Get URL parameters
   const [bookedSeats, setBookedSeats] = useState([]);
@@ -79,7 +78,11 @@ function SeatUpdate() {
 
   const handleContinue = () => {
     if (selectedSeats.length === 0) {
-      alert('Please select at least one seat before continuing.');
+      Swal.fire({
+        icon: "warning",
+        title: "Oops... You haven't selected any seats!",
+        text: " Please select at least one seat before continuing!",
+      });
       return;
     }
 
@@ -107,7 +110,10 @@ function SeatUpdate() {
       })
       .catch((error) => {
         console.error('Error:', error);
-        alert('Booking failed. Please try again.');
+        Swal.fire({
+          icon: "warning",
+          title: "Booking failed. Please try again",          
+        });
       });
 
       
@@ -141,16 +147,16 @@ function SeatUpdate() {
     <div>
       <Header/>
       <div className="sticky-div">
-      <h1>{movieName}</h1>
-        <h4>GALAXY CINEMA, Colombo</h4>
-        <img src={dolbyImage} alt="screen" border="0" className="dolby" />
-        <p className='the1'>{theaterName}</p>
+      <p className='the1'>{theaterName}</p>
+        <p className='filmm'>{movieName}</p>
         <p className='the2'>{showtime}</p>
         
-        <img src={dolbyImage} alt="screen" border="0" className="dolby" />
+        
       </div>
 
       <div>
+      
+      <p className='upd'>Book more seats</p>
         <img src={screenImage} alt="screen" border="0" className="screen-img" />
         <p className="screenWay">↑ SCREEN THIS WAY</p>
       </div>
