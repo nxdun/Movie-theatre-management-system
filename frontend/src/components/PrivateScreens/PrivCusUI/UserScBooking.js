@@ -3,8 +3,8 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./UserScBooking.css";
 import swal from "sweetalert2";
-import { useDispatch } from 'react-redux';
-import { addPrivateScreenToCart } from '../../../redux/actions/cartActions';
+import { useDispatch } from "react-redux";
+import { addPrivateScreenToCart } from "../../../redux/actions/cartActions";
 
 const UserScBooking = () => {
   const navigate = useNavigate();
@@ -98,35 +98,35 @@ const UserScBooking = () => {
             title: "Success",
             text: "Booking added to cart successfully!",
           });
-          // window.alert("Booking added to cart successfully!");
+
+          // Create a movie slip object with relevant details
+          const privScSlip = {
+            product: "", // Use seatId or another identifier
+            name: privscname, // Customize as needed
+            imageUrl: "", // Provide an image URL if available
+            price: privscprice,
+            countInStock: 1, // Set the available stock count
+            qty: 1, // Set the quantity to 1
+          };
+
+          // Dispatch the action to add the movie slip to the cart
+          dispatch(addPrivateScreenToCart(privScSlip));
+
+          // Optional: Provide UI feedback to the user
+          navigate("/cart"); // Update the route as needed
         })
         .catch((error) => {
-
           console.error("Error submitting booking data:", error);
         });
-    }
-  };
-
-
-  const handleAddToCart = () => {
-    // Create a movie slip object with relevant details
-    const privScSlip = {
-      product: "", // Use seatId or another identifier
-      name: privscname, // Customize as needed
-      imageUrl: '', // Provide an image URL if available
-      price: privscprice,
-      countInStock: 1, // Set the available stock count
-      qty: 1, // Set the quantity to 1
+      } else {
+        // If there are validation errors, display an error message
+        swal.fire({
+          icon: "error",
+          title: "Validation Error",
+          text: "Please fill in all the required fields and correct validation errors.",
+        });
+      }
     };
-
-    // Dispatch the action to add the movie slip to the cart
-    dispatch(addPrivateScreenToCart(privScSlip));
-
-    // Optional: Provide UI feedback to the user
-    navigate('/cart'); // Update the route as needed
-
-  };
-
   return (
     <div className="ggk page-container">
       <div className="ggk booking-container">
@@ -142,7 +142,7 @@ const UserScBooking = () => {
               <option value="">Select Movie</option>
               {movies.map((movie) => (
                 <option key={movie._id} value={movie.title}>
-                  {movie.name}
+                  {movie.title}
                 </option>
               ))}
             </select>
@@ -256,7 +256,7 @@ const UserScBooking = () => {
             />
             {errors.mobile && <div className="ggk error">{errors.mobile}</div>}
           </div>
-          <button type="submit" className="ggk submit-button" onClick={handleAddToCart}>
+          <button type="submit" className="ggk submit-button">
             Book Screen
           </button>
           <button
