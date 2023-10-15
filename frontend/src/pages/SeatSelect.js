@@ -8,12 +8,18 @@ import avImage from './av.png';
 import selImage from './sel.png';
 import { useNavigate } from 'react-router-dom';
 import Header from "../shared/HomeHeader";
+import { useLocation } from 'react-router-dom';
 
 
 function SeatSelect() {
   const [selectedButtons, setSelectedButtons] = useState([]);
   const [bookedSeats, setBookedSeats] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const movieName = searchParams.get('movieName');
+  const theaterName = searchParams.get('theaterName');
+  const showtime = searchParams.get('showtime');
 
   // Define the isSeatBooked function
   const isSeatBooked = (seatId) => bookedSeats.includes(String(seatId));
@@ -107,9 +113,11 @@ function SeatSelect() {
     <div>
       <Header/>
       <div className="sticky-div">
-        <h1>AVATAR 2</h1>
+        <h1>{movieName}</h1>
         <h4>GALAXY CINEMA, Colombo</h4>
         <img src={dolbyImage} alt="screen" border="0" className="dolby" />
+        <p className='the1'>{theaterName}</p>
+        <p className='the2'>{showtime}</p>
         
       </div>
 
