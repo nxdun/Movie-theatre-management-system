@@ -3,7 +3,8 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "../../shared/HomeHeader";
 import { Link } from "react-router-dom";
-import jsPdf from 'jspdf'; // Import jsPdf
+import jsPdf from 'jspdf';
+import 'jspdf-autotable'; // Import jsPdf autoTable
 import './CSS/AllMovies.css';
 
 export default function AllMovies() {
@@ -32,21 +33,31 @@ export default function AllMovies() {
     }
   };
 
-  // Define the generatePdf function
+  // Define the generatePdf function with a table
   function generatePdf() {
     const doc = new jsPdf();
+    
+    // Define the table header
+    const tableHeader = [['Title', 'Genre', 'Director', 'Release Date', 'Languages', 'Runtime', 'Rating']];
 
-    const content = `Movie List:\n\n${filteredMovies.map((movie) => `
-Title: ${movie.title}
-Genre: ${movie.genre}
-Director: ${movie.director}
-Release Date: ${movie.releaseDate}
-Languages: ${movie.languages}
-Runtime: ${movie.runtime}
-Rating: ${movie.Rating}
-`).join('\n\n')}`;
+    // Map your data to an array of arrays (table rows)
+    const tableData = filteredMovies.map((movie) => [
+      movie.title,
+      movie.genre,
+      movie.director,
+      movie.releaseDate,
+      movie.languages,
+      movie.runtime,
+      movie.Rating,
+    ]);
 
-    doc.text(content, 10, 10);
+    // Create the PDF table using autoTable
+    doc.autoTable({
+      head: tableHeader,
+      body: tableData,
+    });
+
+    // Save the PDF with a specific filename
     doc.save('movie_list.pdf');
   }
 
@@ -93,6 +104,7 @@ Rating: ${movie.Rating}
           <button type="submit" className="search-button">Search</button>
         </form>
 
+        {/* Render the table using autoTable */}
         <table border="1">
           <tr>
             <th>Title</th>
