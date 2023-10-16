@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Card from "./UIelements/Card";
 import "./PrivScreenItem.css";
 import Button from "./UIelements/Button";
+import Swal from "sweetalert2";
 
 const PrivScreenItem = (props) => {
   console.log("ID: " + props.privScId);
@@ -15,9 +16,16 @@ const PrivScreenItem = (props) => {
   };
 
   const handleDeleteClick = async () => {
-    if (
-      window.confirm("Are you sure you want to delete this private screen?")
-    ) {
+    Swal.fire({
+      title: "Delete Private Screen",
+      text: "Are you sure you want to delete this private screen?",
+      icon: "warning",
+      showCancelButton: true,
+      // confirmButtonColor: "#3085d6",
+      // cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
       try {
         const response = await axios.delete(
           `/privatescreen/deleteprivatescreen/${props.privScId}`
@@ -35,6 +43,8 @@ const PrivScreenItem = (props) => {
         window.alert("An error occurred while deleting the private screen.");
       }
     }
+    });
+    
   };
 
   return (

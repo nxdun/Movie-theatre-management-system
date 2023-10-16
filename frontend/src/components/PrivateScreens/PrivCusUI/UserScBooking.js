@@ -5,6 +5,7 @@ import "./UserScBooking.css";
 import swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { addPrivateScreenToCart } from "../../../redux/actions/cartActions";
+import Header from "./PrivCusHeader";
 
 const UserScBooking = () => {
   const navigate = useNavigate();
@@ -42,10 +43,34 @@ const UserScBooking = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setBookingData({
-      ...bookingData,
-      [name]: value,
-    });
+
+    if (name === "mobile") {
+      // Remove any non-digit characters from the value
+      const formattedMobile = value.replace(/\D/g, "");
+
+      // Add the hyphen as per your desired format
+      let formattedMobileWithHyphen = "";
+      if (formattedMobile.length > 3) {
+        formattedMobileWithHyphen =
+          formattedMobile.slice(0, 3) +
+          "-" +
+          formattedMobile.slice(3, 10);
+      } else {
+        formattedMobileWithHyphen = formattedMobile;
+      }
+
+      setBookingData({
+        ...bookingData,
+        [name]: formattedMobileWithHyphen,
+      });
+
+    } else {
+      // For other input fields, handle them as before
+      setBookingData({
+        ...bookingData,
+        [name]: value,
+      });
+    }
   };
 
   const validateForm = () => {
@@ -76,8 +101,8 @@ const UserScBooking = () => {
     }
     if (!bookingData.mobile.trim()) {
       errors.mobile = "Mobile is required";
-    } else if (!/^\d{3}-\d{7}$/.test(bookingData.mobile)) {
-      errors.mobile = "Mobile must be in the format 012-3456789";
+    } else if  (!/^\d{3}-\d{7}$/.test(bookingData.mobile)) {
+      errors.mobile = "Mobile must be in the format: 077-1234567";
     }
     if (!bookingData.parking) {
       errors.parking = "Please select Parking preference";
@@ -118,154 +143,159 @@ const UserScBooking = () => {
         .catch((error) => {
           console.error("Error submitting booking data:", error);
         });
-      } else {
-        // If there are validation errors, display an error message
-        swal.fire({
-          icon: "error",
-          title: "Validation Error",
-          text: "Please fill in all the required fields and correct validation errors.",
-        });
-      }
-    };
+    } else {
+      // If there are validation errors, display an error message
+      swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please fill all required fields with correct inputs.",
+      });
+    }
+  };
   return (
-    <div className="ggk page-container">
-      <div className="ggk booking-container">
-        <h1 className="ggk hh1">BOOK PRIVATE SCREEN</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="ggk form-group">
-            <label htmlFor="movie">Movie:</label>
-            <select
-              name="movie"
-              value={bookingData.movie}
-              onChange={handleChange}
+    <div>
+      <Header />
+      <div className="ggk page-container">
+        <div className="ggk booking-container">
+          <h1 className="ggk hh1">BOOK PRIVATE SCREEN</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="ggk form-group">
+              <label htmlFor="movie">Movie:</label>
+              <select
+                name="movie"
+                value={bookingData.movie}
+                onChange={handleChange}
+              >
+                <option value="">Select Movie</option>
+                {movies.map((movie) => (
+                  <option key={movie._id} value={movie.title}>
+                    {movie.title}
+                  </option>
+                ))}
+              </select>
+
+              {errors.movie && <div className="ggk error">{errors.movie}</div>}
+            </div>
+            <div className="ggk form-group">
+              <label htmlFor="screen">Private Screen:</label>
+              <input
+                type="text"
+                name="screen"
+                value={bookingData.screen}
+                readOnly
+              />
+            </div>
+            <div className="ggk form-group">
+              <label htmlFor="price">Price (Rs):</label>
+              <input
+                type="number"
+                name="price"
+                value={bookingData.price}
+                readOnly
+              />
+            </div>
+
+            <div className="ggk form-group">
+              <label htmlFor="bookingDate">Booking Date:</label>
+              <input
+                type="date"
+                name="bookingDate"
+                value={bookingData.bookingDate}
+                onChange={handleChange}
+              />
+              {errors.bookingDate && (
+                <div className="ggk error">{errors.bookingDate}</div>
+              )}
+            </div>
+
+            <div className="ggk form-group">
+              <label htmlFor="time">Time:</label>
+              <select
+                name="time"
+                value={bookingData.time}
+                onChange={handleChange}
+              >
+                <option value="">Select Time</option>
+                <option value="10:00 AM">10:30 AM</option>
+                <option value="1:00 PM">01:00 PM</option>
+                <option value="03:30 PM">03:30 PM</option>
+                <option value="06:00 PM">06:00 PM</option>
+                <option value="08:30 AM">08:30 PM</option>
+              </select>
+              {errors.time && <div className="ggk error">{errors.time}</div>}
+            </div>
+
+            <div className="ggk form-group">
+              <label htmlFor="parking">Need Parking Area:</label>
+              <select
+                name="parking"
+                value={bookingData.parking}
+                onChange={handleChange}
+              >
+                <option value="">Select Parking</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+              {errors.parking && (
+                <div className="ggk error">{errors.parking}</div>
+              )}
+            </div>
+            <div className="ggk form-group">
+              <label htmlFor="otherReqs">Special Requests:</label>
+              <textarea
+                name="otherReqs"
+                value={bookingData.otherReqs}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="ggk form-group">
+              <label htmlFor="cusName">Customer Name:</label>
+              <input
+                type="text"
+                name="cusName"
+                value={bookingData.cusName}
+                onChange={handleChange}
+              />
+              {errors.cusName && (
+                <div className="ggk error">{errors.cusName}</div>
+              )}
+            </div>
+
+            <div className="ggk form-group">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={bookingData.email}
+                onChange={handleChange}
+              />
+              {errors.email && <div className="ggk error">{errors.email}</div>}
+            </div>
+
+            <div className="ggk form-group">
+              <label htmlFor="mobile">Mobile:</label>
+              <input
+                type="text"
+                name="mobile"
+                value={bookingData.mobile}
+                onChange={handleChange}
+              />
+              {errors.mobile && (
+                <div className="ggk error">{errors.mobile}</div>
+              )}
+            </div>
+            <button type="submit" className="ggk submit-button">
+              Book Screen
+            </button>
+            <button
+              className="ggk cancel-button"
+              onClick={() => navigate("/PrivScUI")} // Use navigate function
             >
-              <option value="">Select Movie</option>
-              {movies.map((movie) => (
-                <option key={movie._id} value={movie.title}>
-                  {movie.title}
-                </option>
-              ))}
-            </select>
-
-            {errors.movie && <div className="ggk error">{errors.movie}</div>}
-          </div>
-          <div className="ggk form-group">
-            <label htmlFor="screen">Private Screen:</label>
-            <input
-              type="text"
-              name="screen"
-              value={bookingData.screen}
-              readOnly
-            />
-          </div>
-          <div className="ggk form-group">
-            <label htmlFor="price">Price (Rs):</label>
-            <input
-              type="number"
-              name="price"
-              value={bookingData.price}
-              readOnly
-            />
-          </div>
-
-          <div className="ggk form-group">
-            <label htmlFor="bookingDate">Booking Date:</label>
-            <input
-              type="date"
-              name="bookingDate"
-              value={bookingData.bookingDate}
-              onChange={handleChange}
-            />
-            {errors.bookingDate && (
-              <div className="ggk error">{errors.bookingDate}</div>
-            )}
-          </div>
-
-          <div className="ggk form-group">
-            <label htmlFor="time">Time:</label>
-            <select
-              name="time"
-              value={bookingData.time}
-              onChange={handleChange}
-            >
-              <option value="">Select Time</option>
-              <option value="10:00 AM">10:30 AM</option>
-              <option value="1:00 PM">01:00 PM</option>
-              <option value="03:30 PM">03:30 PM</option>
-              <option value="06:00 PM">06:00 PM</option>
-              <option value="08:30 AM">08:30 PM</option>
-            </select>
-            {errors.time && <div className="ggk error">{errors.time}</div>}
-          </div>
-
-          <div className="ggk form-group">
-            <label htmlFor="parking">Need Parking Area:</label>
-            <select
-              name="parking"
-              value={bookingData.parking}
-              onChange={handleChange}
-            >
-              <option value="">Select Parking</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-            {errors.parking && (
-              <div className="ggk error">{errors.parking}</div>
-            )}
-          </div>
-          <div className="ggk form-group">
-            <label htmlFor="otherReqs">Special Requests:</label>
-            <textarea
-              name="otherReqs"
-              value={bookingData.otherReqs}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="ggk form-group">
-            <label htmlFor="cusName">Customer Name:</label>
-            <input
-              type="text"
-              name="cusName"
-              value={bookingData.cusName}
-              onChange={handleChange}
-            />
-            {errors.cusName && (
-              <div className="ggk error">{errors.cusName}</div>
-            )}
-          </div>
-
-          <div className="ggk form-group">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={bookingData.email}
-              onChange={handleChange}
-            />
-            {errors.email && <div className="ggk error">{errors.email}</div>}
-          </div>
-
-          <div className="ggk form-group">
-            <label htmlFor="mobile">Mobile:</label>
-            <input
-              type="text"
-              name="mobile"
-              value={bookingData.mobile}
-              onChange={handleChange}
-            />
-            {errors.mobile && <div className="ggk error">{errors.mobile}</div>}
-          </div>
-          <button type="submit" className="ggk submit-button">
-            Book Screen
-          </button>
-          <button
-            className="ggk cancel-button"
-            onClick={() => navigate("/PrivScUI")} // Use navigate function
-          >
-            Cancel
-          </button>
-        </form>
+              Cancel
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
