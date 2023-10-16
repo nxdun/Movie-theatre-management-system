@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { addPrivateScreenToCart } from "../../../redux/actions/cartActions";
 import Header from "./PrivCusHeader";
 
+
 const UserScBooking = () => {
   const navigate = useNavigate();
   const location = useLocation();

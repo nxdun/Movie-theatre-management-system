@@ -92,6 +92,7 @@ function App() {
         <Route element={<RouteWrapper />}>
           {" "}
           {/* Wrap the routes */}
+          <Route exact path="/ccc" element={<FoodAndBeverage />} />
           <Route exact path="/shop" element={<ShopScreen />} />
           <Route exact path="/prd/:id" element={<ProductScreen />} />
           <Route exact path="/cart" element={<CartScreen />} />
@@ -155,7 +156,7 @@ function App() {
       
         {/*Login route*/}
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/ccc" element={<FoodAndBeverage />} />
+       
 
       </Routes>
 

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./viewPrivScBookings.css";
 import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
 
 const ViewReport = () => {
   const [bookings, setBookings] = useState([]);
@@ -22,8 +21,6 @@ const ViewReport = () => {
 
     fetchBookings();
   }, []);
-
-
 
   const handleCancelClick = () => {
     // Navigate to the private screen dashboard (replace with your actual route)
@@ -53,18 +50,56 @@ const ViewReport = () => {
     booking.cusName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handlePrintClick = () => {
-    const input = document.getElementById("table-to-print");
+  const handleGenerateReport = () => {
+    const doc = new jsPDF();
   
-    html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF();
-      pdf.addImage(imgData, "PNG", 10, 10);
-      pdf.save("PrivatescreenBooking.pdf");
-    });
-  };
+    // Add a header to the PDF
+    doc.setFontSize(18);
+    doc.text("Private Screen Booking Report", 20, 20);
   
+    // Add your logo to the PDF (replace 'your_logo_url' with your actual logo URL)
+    const logoWidth = 50;
+    const logoHeight = 30;
+    doc.addImage("https://raw.githubusercontent.com/nxdun/BlaBla/main/1.png", "PNG", 150, 10, logoWidth, logoHeight);
 
+
+    doc.line(0, 40, doc.internal.pageSize.getWidth() , 40);
+  
+    // Create an array for table data
+    const tableData = [];
+  
+    // Iterate over your database records and add them to the table
+    bookings.forEach((record) => {
+      const dataRow = [
+        record.screen,
+        record.movie,
+        record.price,
+        record.bookingDate,
+        record.time,
+        record.cusName,
+        record.mobile,
+
+
+      ];
+      tableData.push(dataRow);
+    });
+  
+    // Define table columns
+    const columns = ["Private Screen", "movie","Price", "Booking Date", "Time", "Customer Name", "Mobile"];
+  
+    
+    // Add the table to the PDF using jspdf-autotable
+    doc.autoTable({
+      head: [columns],
+      body: tableData,
+      startY: 50,
+      tableWidth: doc.internal.pageSize.getWidth()-10,
+      margin: { left: 5 },
+    });
+  
+    // Save or open the PDF as needed
+    doc.save("PrivateScreenBooking.pdf");
+  };
 
   return (
     <div className="sldklkfldsd-view-report-container">
@@ -80,13 +115,12 @@ const ViewReport = () => {
         />
       </div>
 
-      <table className="sldklkfldsd-table" id="table-to-print" >
+      <table className="sldklkfldsd-table" id="table-to-print">
         <thead>
           <tr>
             <th>Movie</th>
             <th>Private Screen</th>
             <th>Price</th>
-
             <th>Booking Date</th>
             <th>Time</th>
             <th>Parking</th>
@@ -102,7 +136,6 @@ const ViewReport = () => {
               <td>{booking.movie}</td>
               <td>{booking.screen}</td>
               <td>{booking.price}</td>
-
               <td>{new Date(booking.bookingDate).toLocaleDateString()}</td>
               <td>{booking.time}</td>
               <td>{booking.parking}</td>
@@ -126,7 +159,7 @@ const ViewReport = () => {
       <div className="sldklkfldsd-action-buttons">
         <button
           className="sldklkfldsd-print-button"
-          onClick={handlePrintClick}
+          onClick={handleGenerateReport}
         >
           Print
         </button>
