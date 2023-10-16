@@ -54,10 +54,10 @@ const AddPrivRoom = () => {
           isValid = fieldValue.trim() !== "";
           break;
         case "privscprice":
-          isValid = fieldValue.trim() !== "";
+          isValid = fieldValue >= 1;
           break;
         case "privseatcapacity":
-          isValid = fieldValue.trim() !== "";
+          isValid = fieldValue >= 1;
           break;
         case "privsclocation":
           isValid = fieldValue.trim() !== "";
@@ -85,7 +85,7 @@ const AddPrivRoom = () => {
       swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Please check form errors before submitting.",
+        text: "Please fill all fields before submitting.",
       });
     }
 
@@ -136,16 +136,17 @@ const AddPrivRoom = () => {
   };
 
   return (
+    <div className="lllk">
     <form className="privscreen-form" onSubmit={privScreenSubmitHandler}>
-      <h4 className="form-heading mb-4 text-primary text-center">
-        Add Private Screening Room
+      <h4 className="ggs">
+        ADD PRIVATE ROOM
       </h4>
       <div
         className={`form-control ${
           fieldErrors.privscname && "form-control--invalid"
         }`}
       >
-        <label htmlFor="privscname">Screening Room Name</label>
+        <label htmlFor="privscname">Private Screen Name:</label>
         <input
           id="privscname"
           type="text"
@@ -164,10 +165,11 @@ const AddPrivRoom = () => {
           fieldErrors.privscprice && "form-control--invalid"
         }`}
       >
-        <label htmlFor="privscprice">Price</label>
+        <label htmlFor="privscprice">Price (Rs):</label>
         <input
           id="privscprice"
           type="text"
+          min="1"
           onChange={(e) => {
             inputHandler("privscprice", e.target.value);
             setFieldErrors({ ...fieldErrors, privscprice: false });
@@ -183,10 +185,11 @@ const AddPrivRoom = () => {
           fieldErrors.privseatcapacity && "form-control--invalid"
         }`}
       >
-        <label htmlFor="privseatcapacity">Seat Capacity</label>
+        <label htmlFor="privseatcapacity">Seat Capacity:</label>
         <input
           id="privseatcapacity"
-          type="text"
+          type="number"
+          min= "1"
           onChange={(e) => {
             inputHandler("privseatcapacity", e.target.value);
             setFieldErrors({ ...fieldErrors, privseatcapacity: false });
@@ -202,7 +205,7 @@ const AddPrivRoom = () => {
           fieldErrors.privsclocation && "form-control--invalid"
         }`}
       >
-        <label htmlFor="privsclocation">Location</label>
+        <label htmlFor="privsclocation">Location:</label>
         <input
           id="privsclocation"
           type="text"
@@ -221,7 +224,7 @@ const AddPrivRoom = () => {
           fieldErrors.privscdescription && "form-control--invalid"
         }`}
       >
-        <label htmlFor="privscdescription">Description</label>
+        <label htmlFor="privscdescription">Description:</label>
         <textarea
           id="privscdescription"
           rows="5"
@@ -242,7 +245,7 @@ const AddPrivRoom = () => {
           fieldErrors.privscimage && "form-control--invalid"
         }`}
       >
-        <label htmlFor="privscimage">Image</label>
+        <label htmlFor="privscimage">Image URL:</label>
         <input
           id="privscimage"
           type="text"
@@ -260,6 +263,7 @@ const AddPrivRoom = () => {
       <button className="inputform-button1" type="submit">ADD ROOM</button>
       <button className="inputform-button2" onClick={handleCancelButtonClick}>Cancel</button>
     </form>
+    </div>
   );
 };
 

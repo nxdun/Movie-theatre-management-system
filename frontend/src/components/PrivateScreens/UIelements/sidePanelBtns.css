@@ -42,12 +42,9 @@
 }
 
 .btnn.btn03 {
-  background-color: #4CAF50;
-}
-
-.btnn.btn04 {
   background-color: #FF5722;
 }
+
 
 /* Hover effect */
 .btnn:hover {

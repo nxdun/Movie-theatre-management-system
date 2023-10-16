@@ -13,9 +13,7 @@ const SidePnlBtns = () => {
     <button className="btnn btn03" onClick={() => navigate("/privateScreen/Reviewbooking")}>
       Review Screen Bookings
     </button>
-    <button className="btnn btn04" onClick={() => navigate("/privateScreen/Viewbookingreport")}>
-      Generate Report
-    </button>
+   
   </div>
 );
 };
