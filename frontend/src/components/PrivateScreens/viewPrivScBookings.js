@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./viewPrivScBookings.css";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 const ViewReport = () => {
   const [bookings, setBookings] = useState([]);
@@ -21,10 +23,7 @@ const ViewReport = () => {
     fetchBookings();
   }, []);
 
-  const handlePrintClick = () => {
-    // Navigate to the print route (replace with your actual route for printing)
-    navigate("/print-report");
-  };
+
 
   const handleCancelClick = () => {
     // Navigate to the private screen dashboard (replace with your actual route)
@@ -54,6 +53,19 @@ const ViewReport = () => {
     booking.cusName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const handlePrintClick = () => {
+    const input = document.getElementById("table-to-print");
+  
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, "PNG", 10, 10);
+      pdf.save("PrivatescreenBooking.pdf");
+    });
+  };
+  
+
+
   return (
     <div className="sldklkfldsd-view-report-container">
       <h2 className="sldklkfldsd-h2">Private Screen Bookings</h2>
@@ -68,7 +80,7 @@ const ViewReport = () => {
         />
       </div>
 
-      <table className="sldklkfldsd-table">
+      <table className="sldklkfldsd-table" id="table-to-print" >
         <thead>
           <tr>
             <th>Movie</th>
