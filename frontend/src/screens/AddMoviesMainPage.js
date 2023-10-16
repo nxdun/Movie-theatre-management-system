@@ -21,7 +21,10 @@ import "./common.css";
 import movieSheduler from "./movieSheduler.module.css";
 import { EditFilled, DeleteFilled } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+import { PrinterOutlined } from "@ant-design/icons";
 
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY/MM/DD";
@@ -397,6 +400,21 @@ function AddMoviesMainPage(props) {
     filterData();
   }, [searchValue, AllMovieShedulers]);
 
+  const handleGenerateReport = () => {
+    const input = document.getElementById("tableToPrint");
+    html2canvas(input).then((canvas) => {
+      const imageData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({
+        orientation: "landscape",
+      });
+      const imgProps = pdf.getImageProperties(imageData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      pdf.addImage(imageData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("movie_schedule_report.pdf");
+    });
+  };
+
   return (
     <Layout>
       <Sidebar />
@@ -409,7 +427,10 @@ function AddMoviesMainPage(props) {
           }}
         >
           <Breadcrumb style={{ margin: "10px 0" }}>
-            <Breadcrumb.Item> <Link to= "/manager/dashboard">Manager DashBoard</Link></Breadcrumb.Item>
+            <Breadcrumb.Item>
+              {" "}
+              <Link to="/manager/dashboard">Manager DashBoard</Link>
+            </Breadcrumb.Item>
             <Breadcrumb.Item>Shedule</Breadcrumb.Item>
             <Breadcrumb.Item>Add</Breadcrumb.Item>
           </Breadcrumb>
@@ -612,9 +633,18 @@ function AddMoviesMainPage(props) {
                     y: screenWidth > 960 ? 600 : 300,
                     x: screenWidth > 960 ? false : true,
                   }}
+                  id="tableToPrint"
                   className={`${movieSheduler.customtable}`}
                 />
               </Content>
+              <Button
+                type="primary"
+                onClick={handleGenerateReport}
+                style={{ marginTop: "16px" }}
+                icon={<PrinterOutlined />}
+              >
+                Print
+              </Button>
             </Col>
           </Row>
         </div>
