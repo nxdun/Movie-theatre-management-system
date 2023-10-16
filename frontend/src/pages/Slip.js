@@ -69,7 +69,7 @@ function Slip() {
     // Create a movie slip object with relevant details
     const movieSlip = {
       product: seatId, // Use seatId or another identifier
-      name: 'Movie Slip', // Customize as needed
+      name: movieName, // Customize as needed
       imageUrl: '', // Provide an image URL if available
       price: price,
       countInStock: 1, // Set the available stock count
