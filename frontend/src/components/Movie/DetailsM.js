@@ -35,9 +35,6 @@ export default function DetailsM() {
                  
             </Link>
 
-            <a href="/showtime">
-              <button className="button8">Buy Tickets</button>
-            </a>
           </div>
           <div className="contn3">
             <h2 className="hh2">Movie Trailer</h2>

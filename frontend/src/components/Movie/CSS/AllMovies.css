@@ -89,12 +89,13 @@ table {
   color: white;
   border: none;
   padding-top: 10px;
-  padding: 10px 80px;
+  padding: 20px 100px;
   cursor: pointer;
   border-radius: 5px;
   margin-bottom: 50px;
-  position: relative;
-  left: 1690px;
+  position: absolute;
+  top: -100px;
+  right: 590px;
 }
 /* Home page CSS */
 
@@ -214,7 +215,7 @@ table {
   cursor: pointer;
   border-radius: 5px;
   margin-bottom: 50px;
-  margin-top: 40px;
+  margin-top: 800px;
   position: relative;
   left: 1120px;
   
@@ -223,6 +224,7 @@ table {
 
 .contn3{
   position: relative;
+  margin-top: 300px;
   left: 0px;
 
 }
@@ -481,15 +483,11 @@ table {
 
 
 
-
-
-
-
-
 /*slide show*/
 
 table{
   width:1000px;
+  margin-top: 100px;
 }
 
 
@@ -501,13 +499,13 @@ table{
   align-items: center;
   margin-bottom: 20px;
   position: absolute;
-  top:-60px;
+  top:-140px;
   right: 0px;
 }
 
 .search-input {
   flex: 1;
-  padding: 10px;
+  padding: 18px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -519,6 +517,9 @@ table{
   border-radius: 4px;
   margin-left: 10px;
   cursor: pointer;
+  padding: 18px;
+  width: 100px;
+
 }
 
 .search-button:hover {
