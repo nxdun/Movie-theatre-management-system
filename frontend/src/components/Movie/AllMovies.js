@@ -126,9 +126,12 @@ export default function AllMovies() {
           onClick={function () {
             generatePdf();
           }}
-        >
+        >   
           <b>Download All details</b>
         </button>
+
+      
+
       </div>
     </div>
   );
