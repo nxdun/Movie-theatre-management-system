@@ -8,8 +8,8 @@ import { useLocation } from 'react-router-dom';
 const Success = () => {
     const [isLoading, setIsLoading] = useState(true);
     const location = useLocation();
-    const email = location.state.email;
-    const phoneNumber = location.state.phoneNumber;
+const email = location.state.email;
+const phoneNumber =location.state.phoneNumber;
     const cartItems = location.state?.cartItems || [];
 
     useEffect(() => {
@@ -230,6 +230,7 @@ const Success = () => {
         <tr>
       <td id="email-wrapper">
         <b> %client-custom-1%</b><br/>
+        <b>%client-custom-2%</b><br/>
       </td>
     </tr>
 
@@ -374,8 +375,9 @@ const base64EncodedTemplate = btoa(customTemplate);
   // Your recipient
   "client": {
     "custom1": `Email: ${email}`,
-      // "custom1": "custom value 1",
     "custom2": `Phone: ${phoneNumber}`,
+      // "custom1": "custom value 1",
+      // "custom2": "custom value 2",
       // "custom3": "custom value 3"
   },
   "information": {
@@ -387,7 +389,7 @@ const base64EncodedTemplate = btoa(customTemplate);
   "products": cartItems.map((item) => ({
     "quantity": item.qty,
     "description": item.name,
-    "tax-rate": 1,
+    "tax-rate": 10,
     "price": item.price
   })),
   // The message you would like to display on the bottom of your invoice
@@ -417,7 +419,7 @@ const base64EncodedTemplate = btoa(customTemplate);
       // "price": "Prijs", // Defaults to 'Price'
       // "product-total": "Totaal", // Defaults to 'Total'
       // "total": "Totaal", // Defaults to 'Total'
-       "vat": "discount" // Defaults to 'vat'
+      // "vat": "btw" // Defaults to 'vat'
   },
             
         };

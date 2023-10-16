@@ -1,19 +1,34 @@
-/* inputPrivRoom.css */
 
-/* Style for the form container */
+.lllk {
+  background-image: url('rampage-backgriund-imgg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+
 .privscreen-form {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f5f5f5; /* Add background color */
-  border: 1px solid #ccc; /* Add a border */
-  border-radius: 5px; /* Add border radius */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add box shadow */
+  background-color: rgba(245, 245, 245, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
-
 /* Style for form control container */
 .form-control {
   margin-bottom: 15px;
+  
+}
+
+.form-control label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 /* Style for valid form controls */
@@ -89,4 +104,13 @@ button:disabled {
 /* Add a hover effect for the description field */
 .form-control textarea:hover {
   border-color: #007bff; /* Change border color on hover */
+}
+
+
+.ggs {
+  font-size: 28px; /* Increase font size */
+  font-weight: 650;/* Make it bold */
+  margin-bottom: 20px; /* Add some bottom margin */
+  color: #00008B; /* Dark blue color */
+  text-align: center; /* Center the text */
 }

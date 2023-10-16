@@ -61,7 +61,7 @@ const Payment = () => {
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
-          setReduction(30)
+          setReduction(null)
         });
     };
 
@@ -77,8 +77,7 @@ const Payment = () => {
 
   // Calculate the total price of items in the cart
   const totalCartPrice =
-    cartItems.reduce((total, item) => total + item.price * item.qty, 0) -
-    Reduction;
+    cartItems.reduce((total, item) => total + item.price * item.qty, 0);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -176,7 +175,7 @@ const Payment = () => {
           name: item.name,
           price: item.price,
           quantity: item.qty,
-          total: ((item.price * item.qty- Reduction/cartItems.length)),
+          total: item.price * item.qty
         })),
         totalCartPrice,
       };
@@ -216,14 +215,14 @@ const Payment = () => {
         <label htmlFor="cart_items" className="pinput_label">
           Cart Items
         </label>
-        <ul>
+        <ol>
           {cartItems.map((item) => (
             <li key={item.product}>
               {item.name} - Price: {item.price}, Quantity: {item.qty}, Total:{" "}
               {item.price * item.qty}
             </li>
           ))}
-        </ul>
+        </ol>
         <p className="ptotalprice">
           Total Cart Price: {totalCartPrice} LKR
           {Reduction !== null && (

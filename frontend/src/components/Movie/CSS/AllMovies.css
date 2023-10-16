@@ -89,12 +89,13 @@ table {
   color: white;
   border: none;
   padding-top: 10px;
-  padding: 10px 80px;
+  padding: 20px 100px;
   cursor: pointer;
   border-radius: 5px;
   margin-bottom: 50px;
-  position: relative;
-  left: 1100px;
+  position: absolute;
+  top: -100px;
+  right: 590px;
 }
 /* Home page CSS */
 
@@ -154,6 +155,9 @@ table {
 
 .ima1{
   border-radius: 10px;
+  margin-top: 40px;
+  margin-left: 20px;
+  
 }
 
 .h3{
@@ -203,33 +207,39 @@ table {
 }
 
 .button8{
-  background-color: #ffffff;
-  color: rgb(1, 0, 0);
-  border: 4px solid #000;
+  background-color: #444444;
+  color: rgb(255, 255, 255);
+  border: 4px solid #444444;
   padding-top: 10px;
   padding: 10px 80px;
   cursor: pointer;
   border-radius: 5px;
   margin-bottom: 50px;
+  margin-top: 800px;
   position: relative;
-  left: 1000px;
+  left: 1120px;
+  
   font-size: 35px;
 }
 
 .contn3{
   position: relative;
+  margin-top: 300px;
+  left: 0px;
 
 }
 
 .hh2{
-  background-color: #3498db;
+  background-color: #444444;
+  color: #ffffff;
   width: 300px;
   height: 45px;
   position: relative;
-  left:1150px;
+  left:35px;
   border-radius: 10px;
   text-align: center;
   margin-top: 60px;
+  margin-bottom: 40px;
 }
 
 .video{
@@ -458,7 +468,7 @@ table {
 }
 
 .ima1 {
-  max-width: 100%; /* Ensure images don't exceed the container width */
+  max-width: 95%; /* Ensure images don't exceed the container width */
   height: auto; /* Maintain the aspect ratio of the images */
 }
 
@@ -473,11 +483,46 @@ table {
 
 
 
-
-
-
-
-
 /*slide show*/
 
+table{
+  width:1000px;
+  margin-top: 100px;
+}
+
+
+/* search */
+
+/* Add this CSS to your project, or include it in your component's CSS file */
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: absolute;
+  top:-140px;
+  right: 0px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-button {
+  background: #2F4FAA;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 18px;
+  width: 100px;
+
+}
+
+.search-button:hover {
+  background: #1C3263;
+}
 

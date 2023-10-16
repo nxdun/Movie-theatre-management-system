@@ -116,7 +116,9 @@ function App() {
         <Route path="/updateMovie/:userId" element={<UpdateMovie />} />
         <Route path="/" element={<HomeMain />} />
         <Route exact path="/details/:movieId" element={<DetailsM />} />
-        <Route path="/" exact element={<HomeMain/>} />  
+        <Route exact path="/details" element={<DetailsM />} />
+        <Route path="/" exact element={<HomeMain/>} />
+        
         <Route path="/search" element={<Search />} />
 
         {/* Sachiras Pages */}

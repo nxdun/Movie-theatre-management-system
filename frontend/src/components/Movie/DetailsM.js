@@ -35,22 +35,17 @@ export default function DetailsM() {
                  
             </Link>
 
-            <a href="/showtime">
-              <button className="button8">Buy Tickets</button>
-            </a>
           </div>
           <div className="contn3">
             <h2 className="hh2">Movie Trailer</h2>
           </div>
           
 
-          <img
-            className="ima2"
-            src={movie.director}
-            alt="Movie Poster"
-            width="95%"
-            height="100%"
-          />
+        <iframe className="traller" width="95%" height="700px" src={movie.languages} frameborder="0" allowfullscreen></iframe>
+
+
+      
+
         </div>
       ) : (
         <p>Loading movie details...</p>

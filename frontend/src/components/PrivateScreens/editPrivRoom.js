@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "./inputPrivRoom.css";
+import swal from "sweetalert2";
 
 const EditPrivRoom = () => {
   const privScId = useParams().privScId;
@@ -92,10 +93,10 @@ const EditPrivRoom = () => {
         isValid = value.trim() !== "";
         break;
       case "privscprice":
-        isValid = value.trim() !== "";
+        isValid = value >= 1;
         break;
       case "privseatcapacity":
-        isValid = value.trim() !== "";
+        isValid = value >= 1;
         break;
       case "privsclocation":
         isValid = value.trim() !== "";
@@ -131,6 +132,11 @@ const EditPrivRoom = () => {
 
     if (Object.keys(fieldValidationErrors).length > 0) {
       setFieldErrors(fieldValidationErrors);
+      swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please fill all fields before submitting.",
+      });
       return;
     }
 
@@ -145,7 +151,14 @@ const EditPrivRoom = () => {
       });
 
       if (response.status === 200) {
-        window.alert("Room updated successfully!");
+        swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Private Screen updated successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // window.alert("Room updated successfully!");
         navigate(`/privatescreen/dashboard`);
       } else {
         window.alert("Failed to update room. Please try again.");
@@ -165,12 +178,13 @@ const EditPrivRoom = () => {
   }
 
   return (
+    <div className="lllk">
     <form className="privscreen-form" onSubmit={privScreenUpdateSubmitHandler}>
-      <h4 className="form-heading mb-4 text-primary text-center">
-        Edit Private Screening Room
+      <h4 className="ggs">
+        EDIT PRIVATE ROOM
       </h4>
       <div className={`form-control ${fieldErrors.privscname && "form-control--invalid"}`}>
-        <label htmlFor="privscname">Screening Room Name</label>
+        <label htmlFor="privscname">Private Screen Name:</label>
         <input
           id="privscname"
           type="text"
@@ -180,27 +194,29 @@ const EditPrivRoom = () => {
         {fieldErrors.privscname && <p className="error-text">Please enter a valid screening name.</p>}
       </div>
       <div className={`form-control ${fieldErrors.privscprice && "form-control--invalid"}`}>
-        <label htmlFor="privscprice">Price</label>
+        <label htmlFor="privscprice">Price (Rs):</label>
         <input
           id="privscprice"
           type="text"
+          min="1"
           onChange={(e) => inputHandler("privscprice", e.target.value)}
           value={formState.privscprice.value}
         />
         {fieldErrors.privscprice && <p className="error-text">Please enter a valid price.</p>}
       </div>
       <div className={`form-control ${fieldErrors.privseatcapacity && "form-control--invalid"}`}>
-        <label htmlFor="privseatcapacity">Seat Capacity</label>
+        <label htmlFor="privseatcapacity">Seat Capacity:</label>
         <input
           id="privseatcapacity"
-          type="text"
+          type="number"
+          min="1"
           onChange={(e) => inputHandler("privseatcapacity", e.target.value)}
           value={formState.privseatcapacity.value}
         />
         {fieldErrors.privseatcapacity && <p className="error-text">Please enter a valid seat capacity.</p>}
       </div>
       <div className={`form-control ${fieldErrors.privsclocation && "form-control--invalid"}`}>
-        <label htmlFor="privsclocation">Location</label>
+        <label htmlFor="privsclocation">Location:</label>
         <input
           id="privsclocation"
           type="text"
@@ -210,7 +226,7 @@ const EditPrivRoom = () => {
         {fieldErrors.privsclocation && <p className="error-text">Please enter a valid location.</p>}
       </div>
       <div className={`form-control ${fieldErrors.privscdescription && "form-control--invalid"}`}>
-        <label htmlFor="privscdescription">Description</label>
+        <label htmlFor="privscdescription">Description:</label>
         <textarea
           id="privscdescription"
           rows="5"
@@ -220,7 +236,7 @@ const EditPrivRoom = () => {
         {fieldErrors.privscdescription && <p className="error-text">Please enter a valid description.</p>}
       </div>
       <div className={`form-control ${fieldErrors.privscimage && "form-control--invalid"}`}>
-        <label htmlFor="privscimage">Image</label>
+        <label htmlFor="privscimage">Image URL:</label>
         <input
           id="privscimage"
           type="text"
@@ -233,6 +249,7 @@ const EditPrivRoom = () => {
       <button type="submit" className="inputform-button1">EDIT ROOM</button>
       <button onClick={handleCancelButtonClick} className="inputform-button2">Cancel</button>
     </form>
+    </div>
   );
 };
 
