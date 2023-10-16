@@ -1,4 +1,4 @@
-// movieApi.js
+
 import './Adv.css';
 import axios from "axios";
 

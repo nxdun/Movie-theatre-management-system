@@ -7,8 +7,7 @@ import "./App.css";
   import ShopScreen from "./screens/ShopScreen";
   import ProductScreen from "./screens/ProductScreen";
   import CartScreen from "./screens/CartScreen";
-  import AddAdvForm from "./components/Advertisement/AddAdvForm";
-
+  
   import RouteWrapper from './RouteWrapper';// Wrap the routes with the navbar, sidedrawer, and backdrop
   
   // Components
@@ -25,9 +24,19 @@ import "./App.css";
   import EditPrivateRoom from "./screens/editPrivRoom";
   import LoyalityDash from './screens/LoyalityDash';
   import Advertisement from './screens/Advertisement';
+
+  //import Advertisement from "./components/Advertisement/Advertisement";
+  import HomeAdv from "./components/Advertisement/HomeAdv"; 
+  import Advertisements from "./components/Advertisement/Advertisements";
+  import Update from "./components/Advertisement/Update";
+  import ScreenListing from "./components/Advertisement/ScreenListing";
+  import Screen from "./components/Advertisement/Screen";
+  
+
   //userscreens
   import UserBooking from "./screens/userBooking"; //import userScreen component
   import UserScreen from "./screens/userScreen"; //import userBooking component
+  
   function App() {
     
     return (
@@ -57,12 +66,13 @@ import "./App.css";
 
 
           <Route element={<RouteWrapper />}>
-            <Route path="/adv" exact element={<Advertisement />} />
-            <Route exact path="/adv/addAdv" element={<AddAdvForm />} />
-            <Route exact path="/adv/editAdv" element={<editAdv />} />
-            <Route exact path="/adv/deleteAdv" element={<deleteAdv />} />
+            <Route path="/advhome" element={<HomeAdv />}/>
+            <Route path="/adv" element={<Advertisements />}/>
+            <Route path="/adv/:id" element={<Advertisement />}/>
+            <Route path="/adv/update/:id" element={<Update />}/>
+            <Route path="/screen" element={<ScreenListing />}/>
+            <Route path="/screen/:id" element={<Screen />}/>
           </Route>
-
       </Routes>
       </main>
     </Router>

@@ -1,16 +1,19 @@
-import Header from "../shared/Header";
+//import Header from "../shared/Header";
 import Footer from "../shared/Footer"; 
-import Temp from "../components/Advertisement/Temp"; 
+import Advertisements from "../components/Advertisement/Advertisements"; 
 
 import "./LoyalityDash.css";
+//import Advertisement from "../components/Advertisement/Advertisement";
 
 const LoyalityDash = () => {
   
     return (
       <div>
-        <Header />
+        
 
-       <Temp/>
+<> <Advertisements/>
+{/* <Advertisement /> */}
+</>
         <Footer/>
       </div>
     );

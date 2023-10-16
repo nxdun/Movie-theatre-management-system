@@ -1,0 +1,12 @@
+*,
+::after,
+::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.btn{
+    border-radius: 30px;
+    padding: 10px 20px;
+}

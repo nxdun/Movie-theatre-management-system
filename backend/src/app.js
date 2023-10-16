@@ -11,6 +11,7 @@ import loyaltyRoute from "./routes/loyalitydb.js";
 import productRouter from "./routes/product.js";
 import Prd from "./routes/Prd.js";
 const advertisementRoutes = require("./routes/advertisementRoute");
+const screenRoutes = require("./routes/screenRoute")
 
 // Stripe setup
 const stripe = require('stripe')('sk_test_51Ns9obAuazamskfx2FbGPFJyekhZ7Le2CEX6fBvU18ZnocXHhBGhz3FQdy1kjQ9BTgPGvyiq8XsOxvHOhrG5w9eI00zvkNE8OF');
@@ -24,7 +25,6 @@ const cors = require('cors');
 // Middleware
 app.use(express.json({ limit: "2mb" }));
 app.use(cors());
-app.use("/api/advertisements", advertisementRoutes);
 
 // Routes
 app.use("/customer",customerRoutes);
@@ -33,6 +33,9 @@ app.use('/prd', Prd);
 app.use("/product", productRouter);
 app.use("/supplier", supplierRouter);
 app.use("/stock", stockRouter);
+app.use("/api/advertisements", advertisementRoutes);
+app.use("/api/screens", screenRoutes);
+
 
 // app.get("/adv", (req, res)=>{
 //   res.send("Home page");
