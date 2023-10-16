@@ -3,9 +3,8 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "../../shared/HomeHeader";
 import { Link } from "react-router-dom";
+import jsPdf from 'jspdf'; // Import jsPdf
 import './CSS/AllMovies.css';
-
-import jsPdf from 'jspdf';
 
 export default function AllMovies() {
   const [Movies, setMovies] = useState([]);
@@ -27,16 +26,28 @@ export default function AllMovies() {
 
   const onDeleteClick = async (_id) => {
     try {
-      // Implement the handleDelete function or use your logic here to delete the movie.
-      // For now, we'll remove it from the filteredMovies only.
       setFilteredMovies((prevMovies) => prevMovies.filter((movie) => movie._id !== _id));
     } catch (error) {
       alert(error.message);
     }
   };
 
+  // Define the generatePdf function
   function generatePdf() {
-    // Your PDF generation code.
+    const doc = new jsPdf();
+
+    const content = `Movie List:\n\n${filteredMovies.map((movie) => `
+Title: ${movie.title}
+Genre: ${movie.genre}
+Director: ${movie.director}
+Release Date: ${movie.releaseDate}
+Languages: ${movie.languages}
+Runtime: ${movie.runtime}
+Rating: ${movie.Rating}
+`).join('\n\n')}`;
+
+    doc.text(content, 10, 10);
+    doc.save('movie_list.pdf');
   }
 
   const handleSearchInput = (e) => {
@@ -51,8 +62,7 @@ export default function AllMovies() {
   };
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission
-    // You can add code here to handle the search submission, if needed.
+    e.preventDefault();
   };
 
   return (
@@ -123,15 +133,10 @@ export default function AllMovies() {
         <button
           type="button"
           style={{ background: "#2F4FAA" }}
-          onClick={function () {
-            generatePdf();
-          }}
-        >   
+          onClick={generatePdf}
+        >
           <b>Download All details</b>
         </button>
-
-      
-
       </div>
     </div>
   );
