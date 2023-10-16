@@ -18,6 +18,19 @@ export const addToCart = (id, qty) => async(dispatch, getState) => {
 
     localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));//set the items to local store
 };
+export const addMovieSlipToCart = (movieSlip) => (dispatch) => {
+    dispatch({
+      type: actionTypes.ADD_TO_CART, // You can reuse the existing ADD_TO_CART action type
+      payload: movieSlip,
+    });
+  };
+  export const addPrivateScreenToCart = (privScSlip) => (dispatch) => {
+    dispatch({
+      type: actionTypes.ADD_TO_CART, // You can reuse the existing ADD_TO_CART action type
+      payload: privScSlip,
+    });
+  };
+
 //getState when remove update the local storege
 //once this complete 
 export const removeFromCart = (id) => (dispatch, getState) => {
@@ -29,3 +42,10 @@ export const removeFromCart = (id) => (dispatch, getState) => {
     localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));//set the items to local store
 
 };
+
+export const addConsessToCart = (conSec) => (dispatch) => {
+    dispatch({
+      type: actionTypes.ADD_TO_CART, // You can reuse the existing ADD_TO_CART action type
+      payload: conSec,
+    });
+  };

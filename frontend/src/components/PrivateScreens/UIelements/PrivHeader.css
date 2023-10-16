@@ -1,0 +1,78 @@
+
+.privv-header-main-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: var(--black);
+  color: var(--white);
+  border-bottom: 2px solid #000;
+}
+
+.privv-icon-custom {
+  padding-top: 10px;
+  width: 100px;
+  height: 100px;
+  transform: scale(2.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+  margin-bottom: 3px;
+  animation: rotate 10s linear infinite;
+}
+
+.privv-button-container-custom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+
+
+.privv-logout-button-custom {
+  width: 130px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--black);
+  color: white;
+  margin-top: 10px;
+  border: 2px solid transparent;
+  transition: background-color 0.3s, border 0.3s;
+  border-radius: 10px;
+  border: 2px solid #000;
+  text-decoration: none;
+}
+
+.privv-logout-button-custom:hover {
+  background-color: var(--black);
+  border: 4px solid var(--red);
+  color: var(--red);
+}
+
+body {
+  background-color: var(--black);
+}
+
+.privv-headerr-h1-custom {
+  font-size: 24px;
+  margin-left: 280px; 
+  margin-right: auto; 
+  text-align: center;
+  border: 4px solid var(--green);
+  border-radius: 20px;
+  display: inline-block;
+  padding: 20px;
+  font-weight: bold;
+}
+
+
+.privv-small-logo {
+  width: 80px; 
+  height: 80px;
+}

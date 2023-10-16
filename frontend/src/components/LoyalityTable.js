@@ -3,16 +3,19 @@ import LoyalitySearchBar from "./LoyalitySearchBar";
 import React, { useState, useEffect } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import axios from "axios";
+import jsPDF from 'jspdf';
+import Swal from "sweetalert2";
 
-// createTheme creates a new theme named nadun that overrides the build in dark theme
+
+//theme for table
 createTheme(
   "tableTheme",
   {
     text: {
-      primary: "#FFFFFF", // White text color
+      primary: "#222", // black text color
     },
     background: {
-      default: "#222222", // Black background
+      default: "#fff", // white background
     },
     context: {
       background: "#006600",
@@ -21,8 +24,6 @@ createTheme(
     divider: {
       default: "#444", // Color of the divider
       boxShadow: "1px 2px 9px #F4AAB9",
-      margin: "4em",
-      padding: "1em", // Add a 3D effect using boxShadow
     },
     action: {
       button: "rgba(0,0,0,.54)",
@@ -37,14 +38,14 @@ createTheme(
     rows: {
       main: "#333333", // Color for the main rows
       hover: "#555555", // Color for rows on hover
-      selected: "#555555", // Color for selected rows
+      selected: "#008000", // Color for selected rows
       highlightOnHover: "#000000", // Color for rows on hover
       boxShadow: "0px 5px 8px 0px rgba(0, 0, 0, 0.5)", // 3D effect shadow
     },
     cells: {
       common: {
         boxShadow: "0 0 4px rgba(85, 85, 85, 0.5)", // 3D effect shadow
-        border: "10px solid white", // Border color for cells
+
         background: "#000000", // Background color for cells
       },
       header: {
@@ -57,6 +58,9 @@ createTheme(
 );
 
 const LoyalityTable = (props) => {
+  //querying search term
+  const [searchTerm, setSearchTerm] = useState("");
+
   //column decalration
   const [columns, setColumns, sendRow] = useState([
     {
@@ -157,31 +161,120 @@ const LoyalityTable = (props) => {
     },
   ]);
   // empty US var to set data
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
+  console.log("data = ", data);
+
+  //reloading function
   const ReloadMe = () => {
     window.location.reload();
   };
 
+//props navigation
+  const getDataFromChild = (childData) => {
+    setSearchTerm(childData);
+  }
+  //use effect for fetching data(customer)
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/customer/");
         setData(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        Swal.fire({
+          icon: "error",
+          title: "error fetching data",
+          text: "looks like database connection is not working",
+        });
       }
     };
 
     fetchData();
-  }, []); // Emptyy dependency array ensures this effect ruuns once when the component mounts
+  }, []); 
+  
+
+ 
+
+  //filter the data according to the search term for UserName
+  const newData = data.filter((item) => {
+    return item.UserName.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+
+  
+  //generator
+  const generateInvoice = async () => {
+     // Create a new jsPDF instance
+  const doc = new jsPDF();
+
+  // Define the content to be added to the PDF
+  const content = document.getElementById('invoice-content'); // Assuming you have a container for your invoice content
+
+  // Define your table data. This is just a sample; replace it with your actual data.
+  const tableData = newData.map((row) => [
+    row.UserName,
+    row.FirstName,
+    row.LastName,
+    row.BirthDate,
+    row.PhoneNumber,
+    row.Gender,
+    row.Email,
+    row.optInForMarketing,
+    row.Type,
+    row.LoyaltyPoints,
+    row.LoyaltyRegisteredDate,
+    row.PointResetDate
+  ]);
+  console.log("tableData = ", tableData);
+
+  // Set the table headers
+  const tableHeaders = [
+    ['UserName', 'FirstName', 'LastName', 'BirthDate', 'PhoneNumber', 'Gender', 'Email'
+    , 'optInForMarketing', 'Type', 'LoyaltyPoints']
+  ];;
+
+  // Add the table to the PDF
+  doc.autoTable({
+    startY: 40, // Adjust the Y position as needed
+    head: tableHeaders,
+    body: tableData,
+  });
+
+// Get the current date
+  const date = new Date();
+
+
+// Get the individual date and time components
+const year = date.getFullYear();
+const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+const day = String(date.getDate()).padStart(2, '0');
+const hours = String(date.getHours()).padStart(2, '0');
+const minutes = String(date.getMinutes()).padStart(2, '0');
+const seconds = String(date.getSeconds()).padStart(2, '0');
+
+// Create the formatted date and time string
+const formattedDateTime = `${year}/${month}/${day} at ${hours}:${minutes}:${seconds}`;
+  // Create the filename
+  const filename = `Customer Report ${formattedDateTime}.pdf`;
+  doc.save(filename);
+  };
+  
+  if (props.isprinted) {
+    generateInvoice();
+    props.setisprinted(false);
+    Swal.fire({icon: "success",title: "Printing success",text: "generated file is downloaded",});
+  }
+
 
   return (
     <div className="table">
-      <LoyalitySearchBar onRefresh={ReloadMe} />
+
+      <LoyalitySearchBar onRefresh={ReloadMe} sendDataToParent={getDataFromChild} />
+
       <div>
         <DataTable
+          pagination={true}
           columns={columns}
-          data={data}
+          data={newData}
           selectableRows={true}
           persistTableHead={true}
           highlightOnHover={true}
@@ -199,7 +292,7 @@ const LoyalityTable = (props) => {
           selectableRowsHighlight={true} // Enable row selection
           selectableRowsSelected={props.sselectedRowsIds} // Pass selected row IDs
           onSelectedRowsChange={({ selectedRows }) => {
-            // Extract and store selected row IDs
+            // Extract and store selected row IDss
             props.sendRow(selectedRows);
             props.ssetSelectedRowsIds(selectedRows.map((row) => row._id));
           }}
@@ -208,5 +301,7 @@ const LoyalityTable = (props) => {
     </div>
   );
 };
+
+
 
 export default LoyalityTable;

@@ -12,15 +12,19 @@
   .left__image {
     margin: 1rem;
     flex: 0.6;
+    height: 350px;
+    width: 450px;
   }
   
   .left__info {
     margin: 1rem;
     flex: 0.4;
-    background: #fff;
     height: fit-content;
     font-size: 0.9rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe,
+             -15px -15px 30px #ffffff;
   }
   
   .left__name {
@@ -46,8 +50,10 @@
   .right__info {
     width: 250px;
     margin: 1rem;
-    background: #fff;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe,
+             -15px -15px 30px #ffffff;
   }
   
   .right__info p {
@@ -57,19 +63,31 @@
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .right__info p > button {
-    grid-column: 1/-1;
-    width: 100%;
-    padding: 10px 16px;
-    background: #00ff00;
-    color: #000000;
-    border: 1px solid #171717;
+  .right__info p > .buton {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 1);
+    transition: all 0.3s ease 0s;
     cursor: pointer;
-    border-radius: 5px;
+    outline: none;
+    width: 210px;
   }
 
-  .right__info  button:hover {
-    opacity: 0.9;
+  .right__info  .buton:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  .right__info  .buton:active {
+    transform: translateY(-1px);
   }
   
   .right__info select {

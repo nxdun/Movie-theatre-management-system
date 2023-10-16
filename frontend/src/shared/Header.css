@@ -62,6 +62,16 @@ body {
   transition: color 0.3s, outline 0.3s,font-weight 0.3s;
   font-weight: bold;
 }
+
+.header-h1 {
+  font-size: 24px;
+  margin-left: auto; /* dependable centered margin */
+  text-align: center; /* Center-align the text */
+  border: 4px solid var(--green); /* Enhance the border */
+  border-radius: 20px; /* Increase border-radius for a rounded box */
+  display: inline-block; /* Ensure the border does not take up the full width */
+  padding: 20px; /* Adjust padding as needed for spacing inside the box */
+}
 /* Login Button */
 .login-button {
   margin-left: 10px;
@@ -93,7 +103,7 @@ body {
 }
 
 /* Buttons Container 2 */
-.button-container {
+.button-ccontainer {
     display: flex;
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center items horizontally */

@@ -1,6 +1,7 @@
 import './LoyalityControls.css'
 
 
+
 const LoyalityControls = props => {
 
 
@@ -40,13 +41,13 @@ const LoyalityControls = props => {
   };
       
     return (
-        <div className = "btn-container">
-            <button className="btn btn-1" onClick={handleEditor}>Change rules</button>
-            <button className="btn btn-2" onClick={props.open}>Add manually</button>
-            <button className="btn btn-3" onClick={handleEdition}>EDIT selection</button>
-            <button className="btn btn-4" onClick={handleDeleteSelection}>DELETE selection</button>
-            <button className="btn btn-5">SHOW LOGS</button>
-            <button className="btn btn-6">REVIEW SUBMISSIONS</button>
+        <div className = "butn-container">
+            <button className="butn butn-1" onClick={handleEditor}>Change rules</button>
+            <button className="butn butn-2" onClick={props.open}>Add manually</button>
+            <button className="butn butn-3" onClick={handleEdition}>EDIT selection</button>
+            <button className="butn butn-4" onClick={handleDeleteSelection}>DELETE selection</button>
+            <button className="butn butn-5"onClick={props.print}>&#x1F5B6; PRINT</button>
+            
   
         </div>
     );

@@ -111,9 +111,7 @@ const LoyalityRuler = () => {
 
   return (
     <div className="modal-container">
-      {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="ui message success">Data submitted successfully</div>
-      ) : null}
+     
 
       <form onSubmit={handleSubmit} className="modal-form">
         <div className="ui divider"></div>
@@ -198,6 +196,9 @@ const LoyalityRuler = () => {
               />
             </div>
             <p className="error">{formErrors.resetMonthPeriod}</p>
+             {Object.keys(formErrors).length === 0 && isSubmit ? (
+        <div className="ui message success">Data submitted successfully</div>
+      ) : null}
 
             <button className="sub-button">Add</button>
           </div>

@@ -13,9 +13,17 @@ import Prd from "./routes/Prd.js";
 const advertisementRoutes = require("./routes/advertisementRoute");
 const screenRoutes = require("./routes/screenRoute")
 
+import PaymentRoutes from "./routes/paymentRoutes.js";
+const Payment = require('./models/payment');
+
+const advertisementRoutes = require("./routes/advertisementRoute");
+const Movie_routes = require('./routes/Students')
+const bookingRouter = require('./routes/bookings.js');
 // Stripe setup
 const stripe = require('stripe')('sk_test_51Ns9obAuazamskfx2FbGPFJyekhZ7Le2CEX6fBvU18ZnocXHhBGhz3FQdy1kjQ9BTgPGvyiq8XsOxvHOhrG5w9eI00zvkNE8OF');
-
+const AdminRoutes = require("./routes/adminRoutes");
+const privateScreenRoutes = require("./routes/privatescreens.js");
+const privateScBookingRoutes = require('./routes/privateScBookings.js');
 // Initialize Express
 const app = express();
 const PORT = process.env.PORT || 3015;
@@ -25,7 +33,6 @@ const cors = require('cors');
 // Middleware
 app.use(express.json({ limit: "2mb" }));
 app.use(cors());
-
 // Routes
 app.use("/customer",customerRoutes);
 app.use("/loyality", loyaltyRoute);
@@ -35,6 +42,15 @@ app.use("/supplier", supplierRouter);
 app.use("/stock", stockRouter);
 app.use("/api/advertisements", advertisementRoutes);
 app.use("/api/screens", screenRoutes);
+app.use('/movie', Movie_routes);
+app.use('/booking', bookingRouter);
+app.use("/supplier", supplierRouter);
+app.use("/stock", stockRouter); 
+app.use("/product", productRouter);
+app.use("/privatescreen", privateScreenRoutes);
+app.use('/private-screens', privateScBookingRoutes);
+
+app.use("/payment", PaymentRoutes);
 
 
 // app.get("/adv", (req, res)=>{
@@ -46,7 +62,41 @@ app.listen(PORT, async () => {
   logger.info("Initializing MongoDB...");
   await connect();
   console.log(`Server running on port: ${PORT}`);
+  
 });
+
+
+// Define the '/payment' route for handling POST requests
+app.post('/payment', async (req, res) => {
+  try {
+    // Extract data from the request body
+    const {
+      email,
+      phoneNumber,
+      cardHolderName,
+      cartItems,
+      totalCartPrice,
+    } = req.body;
+
+    // Create a new Payment document and save it to the database
+    const paymentData = new Payment({
+      email,
+      phoneNumber,
+      cardHolderName,
+      cartItems,
+      totalCartPrice,
+    });
+    await paymentData.save();
+
+    res.status(201).json({ message: 'Payment data saved successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while saving payment data' });
+  }
+});
+
+
+
 
 // Checkout API
 app.post('/api/create-checkout-session', async (req, res) => {

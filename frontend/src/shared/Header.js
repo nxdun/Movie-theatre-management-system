@@ -22,7 +22,7 @@ const Header = () => {
           <p className="admin-text">Administrator</p>
         </button>
       </div>
-      <div class="button-container">
+      <div class="button-ccontainer">
         <button variant="outlined" className="disable-button" color="secondary">Disable function</button>
         
         <button variant="outlined" className="logout-button">Logout</button>
