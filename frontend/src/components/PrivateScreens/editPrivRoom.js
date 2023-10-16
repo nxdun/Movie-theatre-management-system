@@ -178,6 +178,7 @@ const EditPrivRoom = () => {
   }
 
   return (
+    <div className="lllk">
     <form className="privscreen-form" onSubmit={privScreenUpdateSubmitHandler}>
       <h4 className="ggs">
         EDIT PRIVATE ROOM
@@ -248,6 +249,7 @@ const EditPrivRoom = () => {
       <button type="submit" className="inputform-button1">EDIT ROOM</button>
       <button onClick={handleCancelButtonClick} className="inputform-button2">Cancel</button>
     </form>
+    </div>
   );
 };
 

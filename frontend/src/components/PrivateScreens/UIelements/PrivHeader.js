@@ -6,11 +6,13 @@ const Header = () => {
   return (
     <header className="privv-header-main-custom">
       <div className="privv-icon-custom">
+        <Link to="/">
         <img
           src="https://raw.githubusercontent.com/nxdun/BlaBla/main/2.png"
           alt="logo"
           className="privv-header-img-custom privv-small-logo"
         />
+        </Link>
       </div>
 
       

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./viewPrivScBookings.css";
 
 const ViewReport = () => {
   const [bookings, setBookings] = useState([]);
@@ -54,11 +55,12 @@ const ViewReport = () => {
   );
 
   return (
-    <div>
-      <h2>Private Screen Bookings</h2>
+    <div className="sldklkfldsd-view-report-container">
+      <h2 className="sldklkfldsd-h2">Private Screen Bookings</h2>
 
       <div>
         <input
+          className="sldklkfldsd-search-input"
           type="text"
           placeholder="Search by Customer Name"
           value={searchQuery}
@@ -66,7 +68,7 @@ const ViewReport = () => {
         />
       </div>
 
-      <table className="table">
+      <table className="sldklkfldsd-table">
         <thead>
           <tr>
             <th>Movie</th>
@@ -98,7 +100,7 @@ const ViewReport = () => {
               <td>{booking.mobile}</td>
               <td>
                 <button
-                  className="btn btn-danger"
+                  className="sldklkfldsd-delete-button"
                   onClick={() => handleDeleteClick(booking._id)}
                 >
                   Delete
@@ -109,11 +111,17 @@ const ViewReport = () => {
         </tbody>
       </table>
 
-      <div>
-        <button className="btn btn-primary" onClick={handlePrintClick}>
+      <div className="sldklkfldsd-action-buttons">
+        <button
+          className="sldklkfldsd-print-button"
+          onClick={handlePrintClick}
+        >
           Print
         </button>
-        <button className="btn btn-primary" onClick={handleCancelClick}>
+        <button
+          className="sldklkfldsd-cancel-button"
+          onClick={handleCancelClick}
+        >
           Cancel
         </button>
       </div>

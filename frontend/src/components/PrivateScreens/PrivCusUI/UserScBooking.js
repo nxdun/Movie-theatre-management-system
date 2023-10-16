@@ -5,7 +5,7 @@ import "./UserScBooking.css";
 import swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { addPrivateScreenToCart } from "../../../redux/actions/cartActions";
-import Header from "./PrivCommonHeader";
+import Header from "./PrivCusHeader";
 
 const UserScBooking = () => {
   const navigate = useNavigate();
@@ -43,10 +43,34 @@ const UserScBooking = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setBookingData({
-      ...bookingData,
-      [name]: value,
-    });
+
+    if (name === "mobile") {
+      // Remove any non-digit characters from the value
+      const formattedMobile = value.replace(/\D/g, "");
+
+      // Add the hyphen as per your desired format
+      let formattedMobileWithHyphen = "";
+      if (formattedMobile.length > 3) {
+        formattedMobileWithHyphen =
+          formattedMobile.slice(0, 3) +
+          "-" +
+          formattedMobile.slice(3, 10);
+      } else {
+        formattedMobileWithHyphen = formattedMobile;
+      }
+
+      setBookingData({
+        ...bookingData,
+        [name]: formattedMobileWithHyphen,
+      });
+
+    } else {
+      // For other input fields, handle them as before
+      setBookingData({
+        ...bookingData,
+        [name]: value,
+      });
+    }
   };
 
   const validateForm = () => {
@@ -77,8 +101,8 @@ const UserScBooking = () => {
     }
     if (!bookingData.mobile.trim()) {
       errors.mobile = "Mobile is required";
-    } else if (!/^\d{3}-\d{7}$/.test(bookingData.mobile)) {
-      errors.mobile = "Mobile must be in the format 012-3456789";
+    } else if  (!/^\d{3}-\d{7}$/.test(bookingData.mobile)) {
+      errors.mobile = "Mobile must be in the format: 077-1234567";
     }
     if (!bookingData.parking) {
       errors.parking = "Please select Parking preference";

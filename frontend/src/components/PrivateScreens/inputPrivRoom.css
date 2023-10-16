@@ -1,15 +1,23 @@
 
-/* Style for the form container */
+.lllk {
+  background-image: url('rampage-backgriund-imgg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+
 .privscreen-form {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f5f5f5; /* Add background color */
-  border: 1px solid #ccc; /* Add a border */
-  border-radius: 5px; /* Add border radius */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add box shadow */
+  background-color: rgba(245, 245, 245, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
-
 /* Style for form control container */
 .form-control {
   margin-bottom: 15px;

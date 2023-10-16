@@ -136,6 +136,7 @@ const AddPrivRoom = () => {
   };
 
   return (
+    <div className="lllk">
     <form className="privscreen-form" onSubmit={privScreenSubmitHandler}>
       <h4 className="ggs">
         ADD PRIVATE ROOM
@@ -262,6 +263,7 @@ const AddPrivRoom = () => {
       <button className="inputform-button1" type="submit">ADD ROOM</button>
       <button className="inputform-button2" onClick={handleCancelButtonClick}>Cancel</button>
     </form>
+    </div>
   );
 };
 
