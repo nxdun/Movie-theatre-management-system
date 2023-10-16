@@ -60,7 +60,11 @@ export default function MainLayout() {
     {
       key: '/dashboard',
       icon: <PieChartOutlined />,
-      label: 'Manager Dashboard',
+      label: 'Advertisement Dashboard',
+      children: [
+        { key: '/screen', label: 'Screens' },
+        { key: '/adv', label: 'Adverts' }
+       ]
     },
   ];
   const handleMenuClick = ({ item, key, keyPath, domEvent }) => {

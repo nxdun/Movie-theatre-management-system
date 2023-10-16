@@ -16,7 +16,6 @@ const screenRoutes = require("./routes/screenRoute")
 import PaymentRoutes from "./routes/paymentRoutes.js";
 const Payment = require('./models/payment');
 
-const advertisementRoutes = require("./routes/advertisementRoute");
 const Movie_routes = require('./routes/Students')
 const bookingRouter = require('./routes/bookings.js');
 // Stripe setup

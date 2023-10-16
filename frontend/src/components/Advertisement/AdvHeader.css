@@ -43,10 +43,7 @@ body {
     margin-bottom: 3px;
     animation: rotate 10s linear infinite; /* Adjust the duration as needed */
   }
-  a {
-    text-decoration: none;
-    color: #ffffff;
-  }
+ 
   
   .li{
     text-decoration: none;
