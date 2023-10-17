@@ -70,7 +70,7 @@ const Advertisements = () => {
         <br></br>
 
 
-        <table className="table">
+        <table className="tb-kalmi">
           <thead>
             <tr>
               <th>Title</th>

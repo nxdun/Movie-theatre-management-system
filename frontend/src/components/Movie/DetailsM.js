@@ -24,6 +24,7 @@ export default function DetailsM() {
     fetchMovieDetails();
   }, [movieId]);
 
+
   return (
     <div>
       <Header />
@@ -31,21 +32,22 @@ export default function DetailsM() {
         <div>
           <div className="contD">
             <Link to={`/showtime/${movieId}`}>
-              <button className="button8">Buy Tickets</button>
+              <button className="button85">Buy Tickets</button>
                  
             </Link>
-
           </div>
           <div className="contn3">
             <h2 className="hh2">Movie Trailer</h2>
           </div>
           
 
-        <iframe className="traller" width="95%" height="700px" src={movie.languages} frameborder="0" allowfullscreen></iframe>
-
-
-      
-
+          <img
+            className="ima2"
+            src={movie.director}
+            alt="Movie Poster"
+            width="95%"
+            height="100%"
+          />
         </div>
       ) : (
         <p>Loading movie details...</p>
@@ -54,3 +56,4 @@ export default function DetailsM() {
     </div>
   );
 }
+

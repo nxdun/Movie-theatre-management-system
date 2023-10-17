@@ -32,6 +32,7 @@ const cors = require('cors');
 // Middleware
 app.use(express.json({ limit: "2mb" }));
 app.use(cors());
+app.use("/admin", AdminRoutes);
 // Routes
 app.use("/customer",customerRoutes);
 app.use("/loyality", loyaltyRoute);

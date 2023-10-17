@@ -28,34 +28,42 @@
   background-color: white;
 }
 
-table {
-    border-radius: 15px;
-    border-collapse: collapse;
-    width: 80%;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-    column-width: 200px;
-  }
-  
-  th, td {
-    padding: 15px;
-    text-align: center;
-    background-color: white;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  th {
-    background-color: #327f87;
-    color: white;
-  }
+
+table.tb-kalmi {
+  border-radius: 15px;
+  border-collapse: collapse;
+  width: 80%;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+table.tb-kalmi, 
+table.tb-kalmi th,
+table.tb-kalmi td {
+  border: 1px solid #ddd;
+  column-width: 200px;
+}
+
+
+table.tb-kalmi th,
+table.tb-kalmi td {
+  padding: 15px;
+  text-align: center;
+  background-color: white;
+}
+
+
+table.tb-kalmi tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+table.tb-kalmi th {
+  background-color: #327f87;
+  color: white;
+}
 
   .expand{
     width: 100%;

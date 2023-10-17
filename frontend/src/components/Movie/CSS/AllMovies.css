@@ -1,51 +1,42 @@
-table {
-    border-radius: 10px;
-    border-collapse: collapse;
-    width: 90%;
-    
-    
-  }
+.tb-shehan {
+  border-radius: 10px;
+  border-collapse: collapse;
+  width: 90%;
   
-  table, th, td {
-    border: 1px solid #ddd;
-  }
   
-  th, td {
-    padding: 8px;
-    text-align: left;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  th {
-    background-color: #3398db;
-    color: white;
-  }
-  
-  .contA{
+}
 
-    position: relative;
-    top: 60px;
-    padding-left: 40px;
+table.tb-shehan{
+  border: 1px solid #ddd;
+}
 
-  }
+table.tb-shehan th,
+table.tb-shehan td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
 
-  .button4{
+table.tb-shehan tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-      background-color: #3498db;
-      color: white;
-      border: none;
-      padding: 4px 20px;
-      cursor: pointer;
-      border-radius: 5px;
-  }
+table.tb-shehan th {
+  background-color: #3398db;
+  color: white;
+}
 
-  
-  .button5{
+.contA{
 
-    background-color: #F15A59;
+  position: relative;
+  top: 60px;
+  padding-left: 40px;
+
+}
+
+.button4{
+
+    background-color: #3498db;
     color: white;
     border: none;
     padding: 4px 20px;
@@ -53,46 +44,57 @@ table {
     border-radius: 5px;
 }
 
-.button6{
 
-  background-color: #3498db;
+.button5{
+
+  background-color: #F15A59;
   color: white;
   border: none;
-  padding-top: 100px;
-  padding: 8px 40px;
+  padding: 4px 20px;
   cursor: pointer;
   border-radius: 5px;
-  margin-top: 50px;
+}
+
+.button6{
+
+background-color: #3498db;
+color: white;
+border: none;
+padding-top: 100px;
+padding: 8px 40px;
+cursor: pointer;
+border-radius: 5px;
+margin-top: 50px;
 }
 
 .container1{
-  width:80%;
-  padding-left: 200px;
-  
+width:80%;
+padding-left: 200px;
+
 }
 
 .btn2{
-  
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding-top: 100px;
-  padding: 10px 80px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 50px;
-  margin-bottom: 200px;
+
+background-color: #3498db;
+color: white;
+border: none;
+padding-top: 100px;
+padding: 10px 80px;
+cursor: pointer;
+border-radius: 5px;
+margin-top: 50px;
+margin-bottom: 200px;
 }
 
 .button7{
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding-top: 10px;
+background-color: #3498db;
+color: white;
+border: none;
+padding-top: 10px;
   padding: 20px 100px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-bottom: 50px;
+cursor: pointer;
+border-radius: 5px;
+margin-bottom: 50px;
   position: absolute;
   top: -100px;
   right: 590px;
@@ -100,130 +102,130 @@ table {
 /* Home page CSS */
 
 .cont{
-  margin-top: 0px;
-    display: flex;
-    height: 500px;
-    /*border: 2px solid #000;*/
+margin-top: 0px;
+  display: flex;
+  height: 500px;
+  /*border: 2px solid #000;*/
 }
 
 .cont1{
-    width: 35%;
-    height: 100%;
+  width: 35%;
+  height: 100%;
 
 }
 
 .cont2{
-  width: 65%;
-  height: 100%;
+width: 65%;
+height: 100%;
 
 }
 
 
 
 .h1{
-  font-size: 50px;
-  position: relative;
-  top:300px;
-  left: 80px;
+font-size: 50px;
+position: relative;
+top:300px;
+left: 80px;
 }
 
 /*movie List*/
 
 .contn{
-  margin-top: 120px;
-  margin-left: 30px;
-  height: 400px;
-  width: 95%;
-  display: flex;
-  justify-content: space-around;
-  /*border: 2px solid #000;*/
+margin-top: 120px;
+margin-left: 30px;
+height: 400px;
+width: 95%;
+display: flex;
+justify-content: space-around;
+/*border: 2px solid #000;*/
 
 }
 .contn1{
-  height: 300px;
-  width: 18%;
-  /*border: 2px solid #000;*/
+height: 300px;
+width: 18%;
+/*border: 2px solid #000;*/
 
 }
 
 .form-label{
-  margin-top: 20px;
-  margin-bottom: 10px;
+margin-top: 20px;
+margin-bottom: 10px;
 }
 
 /* Image List */
 
 .ima1{
-  border-radius: 10px;
+border-radius: 10px;
   margin-top: 40px;
   margin-left: 20px;
   
 }
 
 .h3{
-    margin-top: 30px;
-    
+  margin-top: 30px;
+  
 }
 
 .hh{
-  background-color: #3498db;
-  width: 300px;
-  height: 45px;
-  position: absolute;
-  right:40px;
-  border-radius: 10px;
-  text-align: center;
-  margin-top: 40px;
+background-color: #3498db;
+width: 300px;
+height: 45px;
+position: absolute;
+right:40px;
+border-radius: 10px;
+text-align: center;
+margin-top: 40px;
 }
 
 .hhh{
-  background-color: #3498db;
-  width: 400px;
-  height: 45px;
-  position: absolute;
-  right:40px;
-  border-radius: 10px;
-  text-align: center;
-  margin-top: 40px;
+background-color: #3498db;
+width: 400px;
+height: 45px;
+position: absolute;
+right:40px;
+border-radius: 10px;
+text-align: center;
+margin-top: 40px;
 }
 
 
 /* Details*/
 .ima4{
-  border-radius: 10px;
+border-radius: 10px;
 
 }
 .contD{
-    margin-top: 40px;
-    background-image: url('../Images/main.jpeg');
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 95%; 
-    height: 700px;
-    border-radius: 20px;
-    margin-left: 30px;
-    margin-bottom: 10px;
+  margin-top: 40px;
+  background-image: url('../Images/main.jpeg');
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 95%; 
+  height: 700px;
+  border-radius: 20px;
+  margin-left: 30px;
+  margin-bottom: 10px;
 }
 
-.button8{
+.button85{
   background-color: #444444;
   color: rgb(255, 255, 255);
   border: 4px solid #444444;
-  padding-top: 10px;
-  padding: 10px 80px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-bottom: 50px;
+padding-top: 10px;
+padding: 10px 80px;
+cursor: pointer;
+border-radius: 5px;
+margin-bottom: 50px;
   margin-top: 800px;
-  position: relative;
+position: relative;
   left: 1120px;
   
-  font-size: 35px;
+font-size: 35px;
 }
 
 .contn3{
-  position: relative;
+position: relative;
   margin-top: 300px;
   left: 0px;
 
@@ -232,33 +234,33 @@ table {
 .hh2{
   background-color: #444444;
   color: #ffffff;
-  width: 300px;
-  height: 45px;
-  position: relative;
+width: 300px;
+height: 45px;
+position: relative;
   left:35px;
-  border-radius: 10px;
-  text-align: center;
-  margin-top: 60px;
+border-radius: 10px;
+text-align: center;
+margin-top: 60px;
   margin-bottom: 40px;
 }
 
 .video{
-  margin-left: 40px;
-  margin-top: 50px;
-  border-radius: 20px;
+margin-left: 40px;
+margin-top: 50px;
+border-radius: 20px;
 }
 
 
 .ima12{
-  margin-right: 20px;
-  padding-top: 40px;
+margin-right: 20px;
+padding-top: 40px;
 }
 
 .c2{
-  color: #000;
-  font-size: 20px;
-  margin-top: 40px;
-  margin-bottom: 10px;
+color: #000;
+font-size: 20px;
+margin-top: 40px;
+margin-bottom: 10px;
 }
 
 
@@ -283,166 +285,166 @@ table {
 
 .site-footer
 {
-  background-color:#26272b;
-  padding:45px 0 20px;
-  font-size:15px;
-  line-height:24px;
-  color:#737373;
+background-color:#26272b;
+padding:45px 0 20px;
+font-size:15px;
+line-height:24px;
+color:#737373;
 }
 .site-footer hr
 {
-  border-top-color:#bbb;
-  opacity:0.5
+border-top-color:#bbb;
+opacity:0.5
 }
 .site-footer hr.small
 {
-  margin:20px 0
+margin:20px 0
 }
 .site-footer h6
 {
-  color:#fff;
-  font-size:16px;
-  text-transform:uppercase;
-  margin-top:5px;
-  letter-spacing:2px
+color:#fff;
+font-size:16px;
+text-transform:uppercase;
+margin-top:5px;
+letter-spacing:2px
 }
 .site-footer a
 {
-  color:#737373;
+color:#737373;
 }
 .site-footer a:hover
 {
-  color:#3366cc;
-  text-decoration:none;
+color:#3366cc;
+text-decoration:none;
 }
 .footer-links
 {
-  padding-left:0;
-  list-style:none
+padding-left:0;
+list-style:none
 }
 .footer-links li
 {
-  display:block
+display:block
 }
 .footer-links a
 {
-  color:#737373
+color:#737373
 }
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover
 {
-  color:#3366cc;
-  text-decoration:none;
+color:#3366cc;
+text-decoration:none;
 }
 .footer-links.inline li
 {
-  display:inline-block
+display:inline-block
 }
 .site-footer .social-icons
 {
-  text-align:right
+text-align:right
 }
 .site-footer .social-icons a
 {
-  width:40px;
-  height:40px;
-  line-height:40px;
-  margin-left:6px;
-  margin-right:0;
-  border-radius:100%;
-  background-color:#33353d
+width:40px;
+height:40px;
+line-height:40px;
+margin-left:6px;
+margin-right:0;
+border-radius:100%;
+background-color:#33353d
 }
 .copyright-text
 {
-  margin:0
+margin:0
 }
 @media (max-width:991px)
 {
-  .site-footer [class^=col-]
-  {
-    margin-bottom:30px
-  }
+.site-footer [class^=col-]
+{
+  margin-bottom:30px
+}
 }
 @media (max-width:767px)
 {
-  .site-footer
-  {
-    padding-bottom:0
-  }
-  .site-footer .copyright-text,.site-footer .social-icons
-  {
-    text-align:center
-  }
+.site-footer
+{
+  padding-bottom:0
+}
+.site-footer .copyright-text,.site-footer .social-icons
+{
+  text-align:center
+}
 }
 .social-icons
 {
-  padding-left:0;
-  margin-bottom:0;
-  list-style:none
+padding-left:0;
+margin-bottom:0;
+list-style:none
 }
 .social-icons li
 {
-  display:inline-block;
-  margin-bottom:4px
+display:inline-block;
+margin-bottom:4px
 }
 .social-icons li.title
 {
-  margin-right:15px;
-  text-transform:uppercase;
-  color:#96a2b2;
-  font-weight:700;
-  font-size:13px
+margin-right:15px;
+text-transform:uppercase;
+color:#96a2b2;
+font-weight:700;
+font-size:13px
 }
 .social-icons a{
-  background-color:#eceeef;
-  color:#818a91;
-  font-size:16px;
-  display:inline-block;
-  line-height:44px;
-  width:44px;
-  height:44px;
-  text-align:center;
-  margin-right:8px;
-  border-radius:100%;
-  -webkit-transition:all .2s linear;
-  -o-transition:all .2s linear;
-  transition:all .2s linear
+background-color:#eceeef;
+color:#818a91;
+font-size:16px;
+display:inline-block;
+line-height:44px;
+width:44px;
+height:44px;
+text-align:center;
+margin-right:8px;
+border-radius:100%;
+-webkit-transition:all .2s linear;
+-o-transition:all .2s linear;
+transition:all .2s linear
 }
 .social-icons a:active,.social-icons a:focus,.social-icons a:hover
 {
-  color:#fff;
-  background-color:#29aafe
+color:#fff;
+background-color:#29aafe
 }
 .social-icons.size-sm a
 {
-  line-height:34px;
-  height:34px;
-  width:34px;
-  font-size:14px
+line-height:34px;
+height:34px;
+width:34px;
+font-size:14px
 }
 .social-icons a.facebook:hover
 {
-  background-color:#3b5998
+background-color:#3b5998
 }
 .social-icons a.twitter:hover
 {
-  background-color:#00aced
+background-color:#00aced
 }
 .social-icons a.linkedin:hover
 {
-  background-color:#007bb6
+background-color:#007bb6
 }
 .social-icons a.dribbble:hover
 {
-  background-color:#ea4c89
+background-color:#ea4c89
 }
 @media (max-width:767px)
 {
-  .social-icons li.title
-  {
-    display:block;
-    margin-right:0;
-    font-weight:600
-  }
+.social-icons li.title
+{
+  display:block;
+  margin-right:0;
+  font-weight:600
+}
 }
 
 
@@ -453,27 +455,27 @@ table {
 
 /* Style for the movie row */
 .movie-row {
-  display: flex; /* Use flexbox to create a row layout */
-  flex-wrap: nowrap; /* Prevent items from wrapping to the next row */
-  overflow-x: auto; /* Enable horizontal scrolling if there are more than 5 movies */
-  margin: -10px; /* Add negative margin to counteract spacing between items */
+display: flex; /* Use flexbox to create a row layout */
+flex-wrap: nowrap; /* Prevent items from wrapping to the next row */
+overflow-x: auto; /* Enable horizontal scrolling if there are more than 5 movies */
+margin: -10px; /* Add negative margin to counteract spacing between items */
 }
 
 /* Style for each movie card */
 .contn1 {
-  flex: 0 0 20%; /* Set each movie card to take up 20% of the container width */
-  box-sizing: border-box; /* Include padding and border in the width */
-  padding: 10px; /* Add spacing between movie cards */
-  text-align: center; /* Center align the content */
+flex: 0 0 20%; /* Set each movie card to take up 20% of the container width */
+box-sizing: border-box; /* Include padding and border in the width */
+padding: 10px; /* Add spacing between movie cards */
+text-align: center; /* Center align the content */
 }
 
 .ima1 {
   max-width: 95%; /* Ensure images don't exceed the container width */
-  height: auto; /* Maintain the aspect ratio of the images */
+height: auto; /* Maintain the aspect ratio of the images */
 }
 
 .h3 {
-  margin-top: 10px; /* Add spacing below the movie title */
+margin-top: 10px; /* Add spacing below the movie title */
 }
 
 /* Add any additional styles you need */
@@ -485,7 +487,7 @@ table {
 
 /*slide show*/
 
-table{
+.tb-shehan{
   width:1000px;
   margin-top: 100px;
 }

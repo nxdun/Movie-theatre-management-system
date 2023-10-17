@@ -105,7 +105,7 @@ export default function AllMovies() {
         </form>
 
         {/* Render the table using autoTable */}
-        <table border="1">
+        <table border="1" className="tb-shehan">
           <tr>
             <th>Title</th>
             <th>Genre</th>
@@ -132,11 +132,7 @@ export default function AllMovies() {
                     Delete
                   </button>
                 </td>
-                <td>
-                  <a href="#" onClick={() => { /* Handle the click event here */ }}>
-                    <button className="button4">Update</button>
-                  </a>
-                </td>
+                <td><a href={'/updateMovie/' + i._id}><button className="button4">Update</button></a></td>
               </tr>
             );
           })}
