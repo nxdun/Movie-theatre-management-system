@@ -10,11 +10,12 @@ import customerRoutes from "./routes/customer.js";
 import loyaltyRoute from "./routes/loyalitydb.js";
 import productRouter from "./routes/product.js";
 import Prd from "./routes/Prd.js";
+const advertisementRoutes = require("./routes/advertisementRoute");
+const screenRoutes = require("./routes/screenRoute")
 
 import PaymentRoutes from "./routes/paymentRoutes.js";
 const Payment = require('./models/payment');
 
-const advertisementRoutes = require("./routes/advertisementRoute");
 const Movie_routes = require('./routes/Students')
 const bookingRouter = require('./routes/bookings.js');
 // Stripe setup
@@ -31,7 +32,6 @@ const cors = require('cors');
 // Middleware
 app.use(express.json({ limit: "2mb" }));
 app.use(cors());
-app.use("/api/advertisements", advertisementRoutes);
 app.use("/admin", AdminRoutes);
 // Routes
 app.use("/customer",customerRoutes);
@@ -40,6 +40,8 @@ app.use('/prd', Prd);
 app.use("/product", productRouter);
 app.use("/supplier", supplierRouter);
 app.use("/stock", stockRouter);
+app.use("/api/advertisements", advertisementRoutes);
+app.use("/api/screens", screenRoutes);
 app.use('/movie', Movie_routes);
 app.use('/booking', bookingRouter);
 app.use("/supplier", supplierRouter);

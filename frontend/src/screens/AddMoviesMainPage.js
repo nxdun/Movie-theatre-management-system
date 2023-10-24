@@ -23,7 +23,7 @@ import { EditFilled, DeleteFilled } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+import "jspdf-autotable";
 import { PrinterOutlined } from "@ant-design/icons";
 
 const { RangePicker } = DatePicker;
@@ -400,19 +400,59 @@ function AddMoviesMainPage(props) {
     filterData();
   }, [searchValue, AllMovieShedulers]);
 
+  // Generate PDF
   const handleGenerateReport = () => {
-    const input = document.getElementById("tableToPrint");
-    html2canvas(input).then((canvas) => {
-      const imageData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF({
-        orientation: "landscape",
-      });
-      const imgProps = pdf.getImageProperties(imageData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(imageData, "PNG", 0, 0, pdfWidth, pdfHeight);
-      pdf.save("movie_schedule_report.pdf");
+    const doc = new jsPDF();
+
+    // header of the PDF
+    doc.setFontSize(18);
+    doc.text("Movie Schedule Report", 20, 20);
+
+    //logo
+    const logoWidth = 50;
+    const logoHeight = 30;
+    doc.addImage(
+      "https://raw.githubusercontent.com/nxdun/BlaBla/main/1.png",
+      "PNG",
+      150,
+      10,
+      logoWidth,
+      logoHeight
+    );
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+    doc.line(0, 40, pageWidth, 40);
+
+    const tableData = [];
+
+    AllMovieShedulers.forEach((record) => {
+      const dataRow = [
+        record.MovieName,
+        record.TheaterName,
+        record.StartDate,
+        record.EndDate,
+        record.ShowTime,
+      ];
+      tableData.push(dataRow);
     });
+
+    // pdf columns names
+    const columns = [
+      "Film Name",
+      "Theater",
+      "Start Date",
+      "End Date",
+      "Show Time",
+    ];
+
+    doc.autoTable({
+      head: [columns],
+      body: tableData,
+      startY: 45,
+    });
+
+    // Saving format of the pdf
+    doc.save("movie_schedule_report.pdf");
   };
 
   return (

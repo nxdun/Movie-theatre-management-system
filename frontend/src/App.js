@@ -54,6 +54,12 @@ import Slip from "./pages/Slip";
 import Upslip from "./pages/Upslip";
 import Login from "./screens/Login";
 import FoodAndBeverage from "./components/ConcessionManagement/components/FoodAndBeverage/FoodAndBeverage.jsx";
+import HomeAdv from "./components/Advertisement/HomeAdv";
+import Advertisements from "./components/Advertisement/Advertisements";
+import Update from "./components/Advertisement/Update";
+import ScreenListing from "./components/Advertisement/ScreenListing";
+import Screen from "./components/Advertisement/Screen";
+
 
 function App() {
   return (
@@ -158,6 +164,15 @@ function App() {
         <Route exact path="/login" element={<Login />} />
        
 
+
+          <Route element={<RouteWrapper />}>
+            <Route path="/advhome" element={<HomeAdv />}/>
+            <Route path="/adv" element={<Advertisements />}/>
+            <Route path="/adv/:id" element={<Advertisement />}/>
+            <Route path="/adv/update/:id" element={<Update />}/>
+            <Route path="/screen" element={<ScreenListing />}/>
+            <Route path="/screen/:id" element={<Screen />}/>
+          </Route>
       </Routes>
 
     </Router>

@@ -3,9 +3,9 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "../../shared/HomeHeader";
 import { Link } from "react-router-dom";
-import './CSS/AllMovies.css';
-
 import jsPdf from 'jspdf';
+import 'jspdf-autotable'; // Import jsPdf autoTable
+import './CSS/AllMovies.css';
 
 export default function AllMovies() {
   const [Movies, setMovies] = useState([]);
@@ -27,16 +27,38 @@ export default function AllMovies() {
 
   const onDeleteClick = async (_id) => {
     try {
-      // Implement the handleDelete function or use your logic here to delete the movie.
-      // For now, we'll remove it from the filteredMovies only.
       setFilteredMovies((prevMovies) => prevMovies.filter((movie) => movie._id !== _id));
     } catch (error) {
       alert(error.message);
     }
   };
 
+  // Define the generatePdf function with a table
   function generatePdf() {
-    // Your PDF generation code.
+    const doc = new jsPdf();
+    
+    // Define the table header
+    const tableHeader = [['Title', 'Genre', 'Director', 'Release Date', 'Languages', 'Runtime', 'Rating']];
+
+    // Map your data to an array of arrays (table rows)
+    const tableData = filteredMovies.map((movie) => [
+      movie.title,
+      movie.genre,
+      movie.director,
+      movie.releaseDate,
+      movie.languages,
+      movie.runtime,
+      movie.Rating,
+    ]);
+
+    // Create the PDF table using autoTable
+    doc.autoTable({
+      head: tableHeader,
+      body: tableData,
+    });
+
+    // Save the PDF with a specific filename
+    doc.save('movie_list.pdf');
   }
 
   const handleSearchInput = (e) => {
@@ -51,8 +73,7 @@ export default function AllMovies() {
   };
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission
-    // You can add code here to handle the search submission, if needed.
+    e.preventDefault();
   };
 
   return (
@@ -83,7 +104,8 @@ export default function AllMovies() {
           <button type="submit" className="search-button">Search</button>
         </form>
 
-        <table border="1">
+        {/* Render the table using autoTable */}
+        <table border="1" className="tb-shehan">
           <tr>
             <th>Title</th>
             <th>Genre</th>
@@ -110,11 +132,7 @@ export default function AllMovies() {
                     Delete
                   </button>
                 </td>
-                <td>
-                  <a href="#" onClick={() => { /* Handle the click event here */ }}>
-                    <button className="button4">Update</button>
-                  </a>
-                </td>
+                <td><a href={'/updateMovie/' + i._id}><button className="button4">Update</button></a></td>
               </tr>
             );
           })}
@@ -123,15 +141,10 @@ export default function AllMovies() {
         <button
           type="button"
           style={{ background: "#2F4FAA" }}
-          onClick={function () {
-            generatePdf();
-          }}
-        >   
+          onClick={generatePdf}
+        >
           <b>Download All details</b>
         </button>
-
-      
-
       </div>
     </div>
   );
