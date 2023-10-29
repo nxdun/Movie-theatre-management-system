@@ -43,7 +43,7 @@ List the main features and functionalities of your project. Use bullet points fo
 - Feature 2: Movie Showtimes and Scheduling.
 - Feature 3: Theatre seat booking function.
 - Feature 4: Food and beverages management.
-- Feature 5: Private Screening/V.I.P. Management function.
+- Feature 5: Private Screening Management function.
 - Feature 6: Shopping Cart management function.
 - Feature 7: Loyalty-based reward function.
 - Feature 8: Advertisement management. 
