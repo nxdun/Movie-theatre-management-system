@@ -26,7 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
     - run: npm i
     - run: cd frontend & npm install --save react-credit-card-input styled-components easyinvoice --force & npm i --force
     - run: backend & npm i
