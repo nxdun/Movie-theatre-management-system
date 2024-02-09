@@ -7,16 +7,19 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
-
+    branches: [ "main" ]\
+    
+permissions:
+  contents: read
+  
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -26,6 +29,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm i
-    - run: cd frontend & npm install --save react-credit-card-input styled-components easyinvoice --force & npm i --force
-    - run: backend & npm i
+    - run: ./install.bat
+
