@@ -1,7 +1,4 @@
 
-```json
-                                             #REDEVELOPEMENT IN PROGRESS.
-```
 </div>
 
 # Movie theatre Management System
