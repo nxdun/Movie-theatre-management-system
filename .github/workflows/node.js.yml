@@ -26,5 +26,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: ./install.bat
+    - run: npm install
+    - run: chmod +x ./install.bat
+    - run: ./install.bat    
+
 
